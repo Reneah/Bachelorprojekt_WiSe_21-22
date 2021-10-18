@@ -11,7 +11,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" />
+      </list>
+    </option>
   </component>
   <component name="ProjectId" id="1zgRI0EmvhJhc4Fe442lVhtJ1I2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -24,21 +31,29 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
       <method v="2" />
     </configuration>
     <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -51,11 +66,12 @@
       <updated>1634567666486</updated>
       <workItem from="1634567692710" duration="7000" />
       <workItem from="1634568413926" duration="595000" />
+      <workItem from="1634584042512" duration="1073000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
