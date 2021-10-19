@@ -19,6 +19,7 @@
           </e>
           <e p="02_Enemies" t="Include">
             <e p="FieldOfView.cs" t="Include" />
+            <e p="Patrolling.cs" t="Include" />
             <e p="Placeholder.txt" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
           </e>
