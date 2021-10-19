@@ -11,6 +11,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/Menu/InGameMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/Patrolling.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -19,6 +20,11 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/Patrolling.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/InGameMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/Options.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/InGameMenu.cs" />
       </list>
     </option>
   </component>
@@ -69,7 +75,8 @@
       <workItem from="1634567692710" duration="7000" />
       <workItem from="1634568413926" duration="595000" />
       <workItem from="1634584042512" duration="1073000" />
-      <workItem from="1634634386535" duration="8966000" />
+      <workItem from="1634634386535" duration="10241000" />
+      <workItem from="1634649481470" duration="2864000" />
     </task>
     <servers />
   </component>
