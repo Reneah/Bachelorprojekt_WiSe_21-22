@@ -12,6 +12,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/Menu/InGameMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../UEGP3/UEGP3Unity/Assets/Code/PlayerSystem/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/Patrolling.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -25,6 +26,11 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/Options.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/InGameMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerJumpState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
       </list>
     </option>
   </component>
@@ -76,7 +82,11 @@
       <workItem from="1634568413926" duration="595000" />
       <workItem from="1634584042512" duration="1073000" />
       <workItem from="1634634386535" duration="10241000" />
-      <workItem from="1634649481470" duration="2864000" />
+      <workItem from="1634649481470" duration="2892000" />
+      <workItem from="1634726550890" duration="84000" />
+      <workItem from="1634726980181" duration="2114000" />
+      <workItem from="1634735408381" duration="9523000" />
+      <workItem from="1634759391870" duration="19000" />
     </task>
     <servers />
   </component>
@@ -87,5 +97,11 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="778" y="221" key="RiderGenerateDialog" timestamp="1634756482501">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1634756482501" />
   </component>
 </project>

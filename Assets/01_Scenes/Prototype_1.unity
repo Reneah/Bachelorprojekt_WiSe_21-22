@@ -741,6 +741,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 309951434}
   _patrollingRoute: {fileID: 152567684}
+  _dwellingTimer: 1
+  _stopDistance: 0.5
 --- !u!1 &315354845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,7 +1184,7 @@ GameObject:
   - component: {fileID: 897566640}
   - component: {fileID: 897566639}
   - component: {fileID: 897566638}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1973,7 +1975,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -2638,19 +2640,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73523d3a50cd9d9438f2ace86ddcf0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
-  smoothRotation: 10
-  smoothSpeed: 10
-  terminalVelocity: 10
-  jumpHeight: 0.3
-  groundCheckRadius: 0.001
-  groundLayerMask:
+  _movementSpeed: 3
+  _smoothSpeed: 10
+  _smoothRotation: 10
+  _sprintSpeed: 5
+  _terminalVelocity: 10
+  _gravityModifier: 1.5
+  _jumpHeight: 1
+  _groundCheckRadius: 0.001
+  _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  gravityModifier: 1
-  slowDownTime: 15
-  myAnimator: {fileID: 1802201524}
-  groundCheckTransform: {fileID: 1876422168}
+  _groundCheckTransform: {fileID: 1876422168}
 --- !u!136 &1802201527
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3173,7 +3174,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.817509e+20, y: NaN, z: 1.9204616e+31, w: 6.2106012e+22}
+  m_BoundingSphereOverride: {x: NaN, y: 2.1328e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
