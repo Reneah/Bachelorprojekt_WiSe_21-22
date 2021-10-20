@@ -25,6 +25,8 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/Options.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/InGameMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
       </list>
     </option>
   </component>
@@ -76,7 +78,9 @@
       <workItem from="1634568413926" duration="595000" />
       <workItem from="1634584042512" duration="1073000" />
       <workItem from="1634634386535" duration="10241000" />
-      <workItem from="1634649481470" duration="2864000" />
+      <workItem from="1634649481470" duration="2892000" />
+      <workItem from="1634726550890" duration="84000" />
+      <workItem from="1634726980181" duration="2114000" />
     </task>
     <servers />
   </component>

@@ -23,14 +23,4 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         playerAnimator.SetFloat(MovementSpeed, movementSpeed);
     }
-
-    public void StopPlayerMovement()
-    {
-        playerController.StopPlayerMovement();
-    }
-        
-    public void ContinuePlayerMovement()
-    {
-        playerController.ContinuePlayerMovement();
-    }
 }

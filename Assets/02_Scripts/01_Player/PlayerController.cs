@@ -10,111 +10,71 @@ namespace untitledProject
     {
         [Header("Movement Settings")]
         [Tooltip("set the speed of the character")]
-        [SerializeField]
-        private float movementSpeed = 3;
-        [Tooltip("smooth the character rotation")]
-        [SerializeField]
-        private float smoothRotation = 10;
+        [SerializeField] private float _movementSpeed = 3;
         [Tooltip("smooth the movement speed of the character")]
-        [SerializeField]
-        private float smoothSpeed = 10;
+        [SerializeField] private float _smoothSpeed = 10;
+        [Tooltip("smooth the character rotation")]
+        [SerializeField] private float _smoothRotation = 10;
         // the ref Velocity of the forward movement
-        private float refVelocity;
-        private float currentForwardVelocity;
-        private Vector3 moveDirection;
+        private float _refVelocity;
+        private float _currentForwardVelocity;
+        private Vector3 _moveDirection;
         // Movement Inputs
-        private float verticalAxis;
-        private float horizontalAxis;
+        private float _verticalAxis;
+        private float _horizontalAxis;
+        private float _currentVerticalVelocity;
         
-        [Tooltip("Maximum falling velocity the player can reach")] [Range(1f, 15f)] [SerializeField]
-        private float terminalVelocity = 10f;
-
-        private CharacterController myCharacterController;
-
-        private RaycastHit hit;
-        private bool isGrounded;
-        [Tooltip("The height in meters the player can jump")] [SerializeField]
-        private float jumpHeight = 1;
+        private CharacterController _myCharacterController;
+        private PlayerAnimationHandler _playerAnimationHandler;
         
+        [Header("Jump Settings")]
+        [Tooltip("Maximum falling velocity the player can reach")] [Range(1f, 15f)] 
+        [SerializeField] private float _terminalVelocity = 10f;
+        [SerializeField] private float _gravityModifier;
+        [Tooltip("The height in meters the player can jump")] 
+        [SerializeField] private float _jumpHeight = 1;
+        // Use formula: Mathf.Sqrt(h * (-2) * g)
+        private float JumpVelocity => Mathf.Sqrt(_jumpHeight * -2 * Physics.gravity.y);
+        
+        [Header("Ground Check")]
         [Tooltip("the register radius around the position of the check position")] 
-        [SerializeField] private float groundCheckRadius = 0.001f;
+        [SerializeField] private float _groundCheckRadius = 0.001f;
         [Tooltip("the layer mask where the ground will be registered")] 
-        [SerializeField] private LayerMask groundLayerMask;
-
-        [SerializeField] private float gravityModifier;
-        private PlayerAnimationHandler playerAnimationHandler;
-        private bool playerIsAbleToMove = true;
-        [SerializeField] private float slowDownTime = 15;
-        [SerializeField] private Animator myAnimator;
-        
-        public bool PlayerIsAbleToMove
-        {
-            get => playerIsAbleToMove;
-            set => playerIsAbleToMove = value;
-        }
-
-        public float RefVelocity => refVelocity;
-
+        [SerializeField] private LayerMask _groundLayerMask;
+        [SerializeField] private Transform _groundCheckTransform;
+        private RaycastHit hit;
+        private bool _isGrounded;
         
         // the current state of the player
-        private IPlayerState currentState;
-
+        private IPlayerState _currentState;
         private static readonly PlayerIdleState PlayerIdleState = new PlayerIdleState();
         public static readonly PlayerRunState PlayerRunState = new PlayerRunState();
-        private float currentVerticalVelocity;
-
-        [SerializeField] private Transform groundCheckTransform;
-         private bool jumpButton;
-
-        // Use formula: Mathf.Sqrt(h * (-2) * g)
-        private float JumpVelocity => Mathf.Sqrt(jumpHeight * -2 * Physics.gravity.y);
-
-
+        
         private void Awake()
         {
             // start state machine with LookAroundState
-            currentState = PlayerIdleState;
+            _currentState = PlayerIdleState;
         }
         
-        // Start is called before the first frame update
         void Start()
         {
-            playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
-            myCharacterController = GetComponent<CharacterController>();
+            _playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
+            _myCharacterController = GetComponent<CharacterController>();
         }
-    
-        // Update is called once per frame
-        void FixedUpdate()
-        {
-            
-        }
-
-        // Update is called once per frame
+        
         private void Update()
         {
-            jumpButton = Input.GetButtonDown("Jump");
-            Debug.Log(Input.GetKeyDown(KeyCode.Space) + "space");
-            Debug.Log(jumpButton);
-            Debug.Log(currentState);
-            // get the input of the direction
-            verticalAxis = Input.GetAxisRaw("Vertical");
-            horizontalAxis = Input.GetAxisRaw("Horizontal");
+            MovementDirection();
+            Move();
+            Rotation();
+            Jump();
             
-            moveDirection = (Camera.main.transform.right * horizontalAxis + Camera.main.transform.forward * verticalAxis).normalized;
-            
-            if (playerIsAbleToMove)
+            var playerState = _currentState.Execute(this);
+            if (playerState != _currentState)
             {
-                Move();
-                Rotation();
-                Jump();
-            }
-            
-            var playerState = currentState.Execute(this);
-            if (playerState != currentState)
-            {
-                currentState.Exit(this);
-                currentState = playerState;
-                currentState.Enter(this);
+                _currentState.Exit(this);
+                _currentState = playerState;
+                _currentState.Enter(this);
             }
         }
         
@@ -123,18 +83,25 @@ namespace untitledProject
         /// </summary>
         private void Move()
         {
-            playerAnimationHandler.SetSpeed(currentForwardVelocity);
+            _playerAnimationHandler.SetSpeed(_currentForwardVelocity);
             // Clamp velocity to reach no more than our defined terminal velocity
-            currentVerticalVelocity = Mathf.Clamp(currentVerticalVelocity, -terminalVelocity, JumpVelocity);
+            _currentVerticalVelocity = Mathf.Clamp(_currentVerticalVelocity, -_terminalVelocity, JumpVelocity);
             
             // the current velocity will be smoothed, so that it is possible to have some tweaks 
-            currentForwardVelocity = Mathf.SmoothDamp(currentForwardVelocity, moveDirection.magnitude * movementSpeed , ref refVelocity, smoothSpeed * Time.deltaTime);
-            
-            Vector3 velocity = new Vector3(moveDirection.x * currentForwardVelocity, currentVerticalVelocity, moveDirection.z * currentForwardVelocity) + new Vector3(0, Gravity(), 0);
-            
-            myCharacterController.Move(velocity * Time.deltaTime);
+            _currentForwardVelocity = Mathf.SmoothDamp(_currentForwardVelocity, _moveDirection.magnitude * _movementSpeed , ref _refVelocity, _smoothSpeed * Time.deltaTime);
+            Vector3 velocity = new Vector3(_moveDirection.x * _currentForwardVelocity, _currentVerticalVelocity, _moveDirection.z * _currentForwardVelocity) + new Vector3(0, Gravity(), 0);
+            _myCharacterController.Move(velocity * Time.deltaTime);
 
-            playerAnimationHandler.SetSpeed(currentForwardVelocity);
+            _playerAnimationHandler.SetSpeed(_currentForwardVelocity);
+        }
+
+        private void MovementDirection()
+        {
+            // get the input of the direction
+            _verticalAxis = Input.GetAxisRaw("Vertical");
+            _horizontalAxis = Input.GetAxisRaw("Horizontal");
+            
+            _moveDirection = (Camera.main.transform.right * _horizontalAxis + Camera.main.transform.forward * _verticalAxis).normalized;
         }
         
         /// <summary>
@@ -142,9 +109,9 @@ namespace untitledProject
         /// </summary>
         private void Rotation()
         {
-            if (moveDirection != Vector3.zero)
+            if (_moveDirection != Vector3.zero)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveDirection.x, 0, moveDirection.z)), smoothRotation * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(_moveDirection.x, 0, _moveDirection.z)), _smoothRotation * Time.deltaTime);
             }
         }
         
@@ -153,41 +120,29 @@ namespace untitledProject
         /// </summary>
         private float Gravity()
         {
-            isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
-            if (!isGrounded)
+            _isGrounded = Physics.CheckSphere(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask);
+            if (!_isGrounded)
             {
-                currentVerticalVelocity += Physics.gravity.y * gravityModifier * Time.deltaTime;
-                return currentVerticalVelocity;
+                _currentVerticalVelocity += Physics.gravity.y * _gravityModifier * Time.deltaTime;
+                return _currentVerticalVelocity;
             }
-            return currentVerticalVelocity;
+            return _currentVerticalVelocity;
         }
 
         public void Jump()
         {
             // Check if we are grounded, if so reset gravity
-            isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundCheckRadius, groundLayerMask);
-            if (isGrounded)
+            _isGrounded = Physics.CheckSphere(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask);
+            if (_isGrounded)
             {
                 // Reset current vertical velocity
-                currentVerticalVelocity = 0f;
+                _currentVerticalVelocity = 0f;
             }
-            if (isGrounded && jumpButton)
+            if (_isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("JUMP");
                 //_playerAnimationHandler.DoJump();
-                currentVerticalVelocity = JumpVelocity;
+                _currentVerticalVelocity = JumpVelocity;
             }
-        }
-        
-        public void StopPlayerMovement()
-        {
-            playerIsAbleToMove = false;
-        }
-        
-        public void ContinuePlayerMovement()
-        {
-            playerIsAbleToMove = true;
-      
         }
     }
 }
