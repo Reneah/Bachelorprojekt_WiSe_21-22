@@ -1184,7 +1184,7 @@ GameObject:
   - component: {fileID: 897566640}
   - component: {fileID: 897566639}
   - component: {fileID: 897566638}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1975,7 +1975,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 3.1e-44, w: 3.2e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -2643,13 +2643,14 @@ MonoBehaviour:
   _movementSpeed: 3
   _smoothSpeed: 10
   _smoothRotation: 10
+  _sprintSpeed: 5
   _terminalVelocity: 10
+  _gravityModifier: 1.5
   _jumpHeight: 1
   _groundCheckRadius: 0.001
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  _gravityModifier: 1.5
   _groundCheckTransform: {fileID: 1876422168}
 --- !u!136 &1802201527
 CapsuleCollider:
@@ -3173,7 +3174,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3.1e-44, z: 3.2e-44, w: 3.4e-44}
+  m_BoundingSphereOverride: {x: NaN, y: 2.1328e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

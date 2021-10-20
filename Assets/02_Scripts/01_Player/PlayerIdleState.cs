@@ -8,6 +8,13 @@ namespace untitledProject
         Vector3 currentPosition;
         public IPlayerState Execute(PlayerController player)
         {
+            bool move = player.MoveDirection.magnitude >= 0.1f;
+            if (move)
+            {
+                return PlayerController.PlayerRunState;
+            }
+            
+            player.MovementExecution();
             return this;
         }
     

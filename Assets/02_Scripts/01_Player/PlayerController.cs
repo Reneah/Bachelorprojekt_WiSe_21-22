@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 using untitledProject;
 using Physics = UnityEngine.Physics;
@@ -15,16 +16,26 @@ namespace untitledProject
         [SerializeField] private float _smoothSpeed = 10;
         [Tooltip("smooth the character rotation")]
         [SerializeField] private float _smoothRotation = 10;
+        [Tooltip("set the sprint speed of the character ")]
+        [SerializeField] private float _sprintSpeed = 5;
         // the ref Velocity of the forward movement
         private float _refVelocity;
         private float _currentForwardVelocity;
         private Vector3 _moveDirection;
+        private float targetSpeed;
+
+        public Vector3 MoveDirection
+        {
+            get => _moveDirection;
+            set => _moveDirection = value;
+        }
+
         // Movement Inputs
         private float _verticalAxis;
         private float _horizontalAxis;
         private float _currentVerticalVelocity;
         
-        private CharacterController _myCharacterController;
+        private CharacterController _characterController;
         private PlayerAnimationHandler _playerAnimationHandler;
         
         [Header("Jump Settings")]
@@ -35,6 +46,12 @@ namespace untitledProject
         [SerializeField] private float _jumpHeight = 1;
         // Use formula: Mathf.Sqrt(h * (-2) * g)
         private float JumpVelocity => Mathf.Sqrt(_jumpHeight * -2 * Physics.gravity.y);
+        private bool _isJumping = false;
+        public bool IsJumping
+        {
+            get => _isJumping;
+            set => _isJumping = value;
+        }
         
         [Header("Ground Check")]
         [Tooltip("the register radius around the position of the check position")] 
@@ -44,11 +61,18 @@ namespace untitledProject
         [SerializeField] private Transform _groundCheckTransform;
         private RaycastHit hit;
         private bool _isGrounded;
-        
+
+        public bool IsGrounded
+        {
+            get => _isGrounded;
+            set => _isGrounded = value;
+        }
+
         // the current state of the player
         private IPlayerState _currentState;
-        private static readonly PlayerIdleState PlayerIdleState = new PlayerIdleState();
+        public static readonly PlayerIdleState PlayerIdleState = new PlayerIdleState();
         public static readonly PlayerRunState PlayerRunState = new PlayerRunState();
+        public static readonly PlayerJumpState PlayerJumpState =  new PlayerJumpState();
         
         private void Awake()
         {
@@ -59,16 +83,11 @@ namespace untitledProject
         void Start()
         {
             _playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
-            _myCharacterController = GetComponent<CharacterController>();
+            _characterController = GetComponent<CharacterController>();
         }
         
         private void Update()
         {
-            MovementDirection();
-            Move();
-            Rotation();
-            Jump();
-            
             var playerState = _currentState.Execute(this);
             if (playerState != _currentState)
             {
@@ -77,20 +96,34 @@ namespace untitledProject
                 _currentState.Enter(this);
             }
         }
+
+        public void MovementExecution()
+        {
+            MovementDirection();
+            Rotation();
+            Move();
+        }
         
         /// <summary>
         /// move the character in the desired direction on the X and Z axis
         /// </summary>
-        private void Move()
+        public void Move()
         {
             _playerAnimationHandler.SetSpeed(_currentForwardVelocity);
             // Clamp velocity to reach no more than our defined terminal velocity
             _currentVerticalVelocity = Mathf.Clamp(_currentVerticalVelocity, -_terminalVelocity, JumpVelocity);
+
+            // use this bool to prevent the player control about the the speed during the jump
+            if (!_isJumping)
+            {
+                bool sprint = Input.GetKey(KeyCode.LeftShift);
+                targetSpeed = (sprint? _sprintSpeed : _movementSpeed) * _moveDirection.magnitude;
+            }
             
             // the current velocity will be smoothed, so that it is possible to have some tweaks 
-            _currentForwardVelocity = Mathf.SmoothDamp(_currentForwardVelocity, _moveDirection.magnitude * _movementSpeed , ref _refVelocity, _smoothSpeed * Time.deltaTime);
+            _currentForwardVelocity = Mathf.SmoothDamp(_currentForwardVelocity, targetSpeed, ref _refVelocity, _smoothSpeed * Time.deltaTime);
             Vector3 velocity = new Vector3(_moveDirection.x * _currentForwardVelocity, _currentVerticalVelocity, _moveDirection.z * _currentForwardVelocity) + new Vector3(0, Gravity(), 0);
-            _myCharacterController.Move(velocity * Time.deltaTime);
+            _characterController.Move(velocity * Time.deltaTime);
 
             _playerAnimationHandler.SetSpeed(_currentForwardVelocity);
         }
@@ -129,10 +162,15 @@ namespace untitledProject
             return _currentVerticalVelocity;
         }
 
-        public void Jump()
+        public void GroundCheck()
         {
             // Check if we are grounded, if so reset gravity
             _isGrounded = Physics.CheckSphere(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask);
+        }
+        
+        public void Jump()
+        {
+            GroundCheck();
             if (_isGrounded)
             {
                 // Reset current vertical velocity
