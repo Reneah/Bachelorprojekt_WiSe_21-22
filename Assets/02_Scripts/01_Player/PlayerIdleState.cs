@@ -14,6 +14,13 @@ namespace untitledProject
                 return PlayerController.PlayerRunState;
             }
             
+            bool jump = Input.GetKeyDown(KeyCode.Space);
+            if (jump)
+            {
+                player.Jump();
+                return PlayerController.PlayerJumpState;
+            }
+            
             player.MovementExecution();
             return this;
         }
