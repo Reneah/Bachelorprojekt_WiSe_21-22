@@ -21,9 +21,10 @@
             <e p="PlayerRunState.cs" t="Include" />
           </e>
           <e p="02_Enemies" t="Include">
-            <e p="FieldOfView.cs" t="Include" />
-            <e p="Patrolling.cs" t="Include" />
-            <e p="Placeholder.txt" t="Include" />
+            <e p="EnemyController.cs" t="Include" />
+            <e p="EnemyIdleState.cs" t="Include" />
+            <e p="EnemyPatrolState.cs" t="Include" />
+            <e p="IEnemyState.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
           </e>
           <e p="Editor" t="Include">

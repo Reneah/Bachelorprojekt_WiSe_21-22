@@ -3,13 +3,13 @@ using UnityEditor;
 using UnityEngine;
 
 // The Source of the code: https://www.youtube.com/watch?v=j1-OyLo77ss&t=973s
-[CustomEditor(typeof(FieldOfView))]
+[CustomEditor(typeof(EnemyController))]
 public class FieldOfViewEditor : Editor
 {
    private void OnSceneGUI()
    {
       // the reference of the FieldOfView script
-      FieldOfView fov = (FieldOfView) target;
+      EnemyController fov = (EnemyController) target;
       // the color of the circle of the enemy vision range
       Handles.color = Color.white;
       // the circle of the enemy vision range
