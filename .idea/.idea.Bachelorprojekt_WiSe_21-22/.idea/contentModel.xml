@@ -13,7 +13,9 @@
           <e p="01_Player" t="Include">
             <e p="IPlayerState.cs" t="Include" />
             <e p="PlayerAnimationHandler.cs" t="Include" />
+            <e p="PlayerCollectItemState.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
+            <e p="PlayerHideState.cs" t="Include" />
             <e p="PlayerIdleState.cs" t="Include" />
             <e p="PlayerJumpState.cs" t="Include" />
             <e p="PlayerRunState.cs" t="Include" />

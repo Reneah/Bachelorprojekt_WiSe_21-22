@@ -16,7 +16,6 @@ namespace untitledProject
             }
 
             bool jump = Input.GetKeyDown(KeyCode.Space);
-
             if (jump)
             {
                 player.Jump();
