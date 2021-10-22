@@ -12,10 +12,11 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../UEGP3/UEGP3Unity/Assets/Code/PlayerSystem/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/Patrolling.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -33,12 +34,14 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerHideState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerCollectItemState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/IEnemyState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/IEnemyState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/FieldOfViewEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
       </list>
     </option>
   </component>
@@ -96,7 +99,9 @@
       <workItem from="1634735408381" duration="9523000" />
       <workItem from="1634759391870" duration="19000" />
       <workItem from="1634823214430" duration="2654000" />
-      <workItem from="1634838855496" duration="5039000" />
+      <workItem from="1634838855496" duration="5787000" />
+      <workItem from="1634905050053" duration="11188000" />
+      <workItem from="1634918222997" duration="5000" />
     </task>
     <servers />
   </component>
@@ -109,9 +114,9 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="778" y="221" key="RiderGenerateDialog" timestamp="1634840148041">
+    <state x="778" y="221" key="RiderGenerateDialog" timestamp="1634907116457">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1634840148041" />
+    <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1634907116457" />
   </component>
 </project>
