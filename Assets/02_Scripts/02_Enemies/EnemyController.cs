@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour
     public static readonly EnemyIdleState EnemyIdleState = new EnemyIdleState();
     public static readonly EnemyChaseState EnemyChaseState = new EnemyChaseState();
     public static readonly EnemySearchState EnemySearchState = new EnemySearchState();
+    public static readonly EnemyInvestigationState EnemyInvestigationState = new EnemyInvestigationState();
 
     [Header("Start Behaviour")] 
     [SerializeField] private bool _patrolling;
@@ -120,9 +121,22 @@ public class EnemyController : MonoBehaviour
     }
     
     #endregion
-    
-    
-    
+
+    private bool _soundNoticed = false;
+    private int _soundBehaviourStage = 0;
+
+    public bool SoundNoticed
+    {
+        get => _soundNoticed;
+        set => _soundNoticed = value;
+    }
+
+    public int SoundBehaviourStage
+    {
+        get => _soundBehaviourStage;
+        set => _soundBehaviourStage = value;
+    }
+
     void Start()
     {
         // start state machine with LookAroundState
@@ -279,24 +293,36 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // before goes into the stages the enemy checks the obstacles (Raycast) if it is hearable and if the stage has to go down
-        // maybe instead of using bools I should take floats (1-3) to be im code more flexible
-        
         if (other.CompareTag("Sound"))
         {
-            if(other.GetComponent<SoundItem>().FirstStage);
-            {
-                // use first Stage Enemy Behaviour
-            }
-            if(other.GetComponent<SoundItem>().SecondStage);
-            {
-                // use second Stage Enemy Behaviour
-            }
-            if(other.GetComponent<SoundItem>().ThirdStage);
-            {
-                // use third Stage Enemy Behaviour
-            }
-        }
+            SoundItem _soundItemScript = other.GetComponentInParent<SoundItem>();
+            float _distance = Vector3.Distance(transform.position, other.transform.position);
+            
+            RaycastHit hit;
+            Physics.Raycast(other.transform.position, transform.position - other.transform.position, out hit, _distance);
 
+            if (hit.collider.CompareTag("Wall"))
+            {
+                Debug.Log("Stage: 0");
+                _soundItemScript.Stage--;
+
+                if (_soundItemScript.Stage <= 0)
+                {
+                    _soundItemScript.Stage = 0;
+                    return;
+                }
+                
+            }
+
+            if(_soundItemScript.Stage <= 3)
+            {
+                Debug.Log("Stage");
+                _soundBehaviourStage = _soundItemScript.Stage;
+                _soundNoticed = true;
+            }
+            
+            // deactivate the sound collider
+            other.GetComponent<Collider>().gameObject.SetActive(false);
+        }
     }
 }

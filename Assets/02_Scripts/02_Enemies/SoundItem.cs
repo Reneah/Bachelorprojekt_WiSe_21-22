@@ -13,32 +13,23 @@ public class SoundItem : MonoBehaviour
    [SerializeField] private TextMeshProUGUI _useButtonText;
 
 
-    [Header("Choose the ONE Stage which will be represented")] 
-    [Tooltip("the enemy will walk to the point of interest")] 
-    [SerializeField] private bool _firstStage;
-    [Tooltip("the enemy will run to the point of interest")] 
-    [SerializeField] private bool _secondStage;
-    [Tooltip("the enemy runs to the point of interest, knows that the player is nearby and start searching")] 
-    [SerializeField] private bool _thirdStage;
+    [Header("Choose the ONE Stage which will be represented")]
+    [Tooltip("First Stage: the enemy will walk to the point of interest" +
+             " Second Stage: the enemy will run to the point of interest" +
+             " Third Stage: the enemy runs to the point of interest, knows that the player is nearby and start searching")]
+    [Range(1,3)]
+    [SerializeField] private int stage;
+
+    [Header("Sound Collider")]
+    [Tooltip("the collider, which shows the sound range of the item")]
+    [SerializeField] private GameObject _soundRangeCollider;
+
+    public int Stage
+    {
+        get => stage;
+        set => stage = value;
+    }
     
-    public bool FirstStage
-    {
-        get => _firstStage;
-        set => _firstStage = value;
-    }
-
-    public bool SecondStage
-    {
-        get => _secondStage;
-        set => _secondStage = value;
-    }
-
-    public bool ThirdStage
-    {
-        get => _thirdStage;
-        set => _thirdStage = value;
-    }
-
     private bool _itemUsed = false;
     
     void Start()
@@ -64,6 +55,7 @@ public class SoundItem : MonoBehaviour
             {
                 _itemText.gameObject.SetActive(false);
                 _useButtonText.gameObject.SetActive(false);
+                _soundRangeCollider.SetActive(true);
                 
                 _itemUsed = true;
             }

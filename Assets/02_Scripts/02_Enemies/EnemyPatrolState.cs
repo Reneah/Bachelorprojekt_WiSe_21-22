@@ -5,23 +5,28 @@ using UnityEngine.AI;
 
 public class EnemyPatrolState : IEnemyState
 {
-    public IEnemyState Execute(EnemyController _enemy)
+    public IEnemyState Execute(EnemyController enemy)
     {
-        if (_enemy.CanSeePlayer)
+        if (enemy.CanSeePlayer)
         {
             return EnemyController.EnemyChaseState;
         }
+
+        if (enemy.SoundNoticed)
+        {
+            return EnemyController.EnemyInvestigationState;
+        }
         
-        _enemy.UpdatePatrolBehaviour();
+        enemy.UpdatePatrolBehaviour();
         return this;
     }
 
-    public void Enter(EnemyController _enemy)
+    public void Enter(EnemyController enemy)
     {
-        _enemy.StartPatrolBehaviour();
+        enemy.StartPatrolBehaviour();
     }
 
-    public void Exit(EnemyController _enemy)
+    public void Exit(EnemyController enemy)
     {
         
     }

@@ -12,6 +12,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../UEGP3/UEGP3Unity/Assets/Code/PlayerSystem/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyInvestigationState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
@@ -41,10 +42,11 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/FieldOfViewEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyInvestigationState.cs" />
       </list>
     </option>
   </component>
@@ -107,6 +109,7 @@
       <workItem from="1634918222997" duration="5000" />
       <workItem from="1635154065712" duration="6344000" />
       <workItem from="1635164804292" duration="4825000" />
+      <workItem from="1635183708542" duration="5357000" />
     </task>
     <servers />
   </component>
@@ -119,9 +122,9 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="778" y="221" key="RiderGenerateDialog" timestamp="1634907116457">
+    <state x="778" y="221" key="RiderGenerateDialog" timestamp="1635187601780">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1634907116457" />
+    <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1635187601780" />
   </component>
 </project>
