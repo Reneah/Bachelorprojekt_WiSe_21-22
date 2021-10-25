@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -119,6 +120,8 @@ public class EnemyController : MonoBehaviour
     }
     
     #endregion
+    
+    
     
     void Start()
     {
@@ -273,4 +276,27 @@ public class EnemyController : MonoBehaviour
     }
     
     #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // before goes into the stages the enemy checks the obstacles (Raycast) if it is hearable and if the stage has to go down
+        // maybe instead of using bools I should take floats (1-3) to be im code more flexible
+        
+        if (other.CompareTag("Sound"))
+        {
+            if(other.GetComponent<SoundItem>().FirstStage);
+            {
+                // use first Stage Enemy Behaviour
+            }
+            if(other.GetComponent<SoundItem>().SecondStage);
+            {
+                // use second Stage Enemy Behaviour
+            }
+            if(other.GetComponent<SoundItem>().ThirdStage);
+            {
+                // use third Stage Enemy Behaviour
+            }
+        }
+
+    }
 }
