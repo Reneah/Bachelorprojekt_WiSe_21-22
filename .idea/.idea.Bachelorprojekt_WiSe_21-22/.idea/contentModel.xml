@@ -11,9 +11,9 @@
       <e p="Assets" t="Include">
         <e p="02_Scripts" t="Include">
           <e p="01_Player" t="Include">
+            <e p="CollectItem.cs" t="Include" />
             <e p="IPlayerState.cs" t="Include" />
             <e p="PlayerAnimationHandler.cs" t="Include" />
-            <e p="PlayerCollectItemState.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerHideState.cs" t="Include" />
             <e p="PlayerIdleState.cs" t="Include" />
