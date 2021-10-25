@@ -172,7 +172,6 @@ public class EnemyController : MonoBehaviour
         return Vector3.Distance(transform.position, _player.transform.position) <= _catchDistance;
     }
     
-
     #region PatrolBehaviour
     
     private void SetUpPatrolBehaviour()
