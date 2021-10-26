@@ -24,15 +24,13 @@ public class EnemyChaseState : IEnemyState
             enemy.RotateToPlayer();
             _reminderTime -= Time.deltaTime;
 
+            // if the enemy still doesn't see the player, the search mode will be activated 
             if (_reminderTime <= 0)
             {
                 _reminderTime = 2;
                 return EnemyController.EnemySearchState;
             }
-            // set short reminder of the player like the last position
-            // if the enemy still doesn't see the player, the search mode will be activated 
         }
-   
         
         if (enemy.CatchPlayer() && enemy.CanSeePlayer)
         {
