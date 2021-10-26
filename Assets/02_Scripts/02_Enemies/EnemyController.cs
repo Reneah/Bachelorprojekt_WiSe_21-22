@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using untitledProject;
@@ -67,6 +68,12 @@ public class EnemyController : MonoBehaviour
         set => _patrolling = value;
     }
     
+    public float PatrolSpeed
+    {
+        get => _patrolSpeed;
+        set => _patrolSpeed = value;
+    }
+    
     #endregion
     
     #region FieldOfViewVariables
@@ -122,8 +129,55 @@ public class EnemyController : MonoBehaviour
     
     #endregion
 
+    [Header("Investigation Behaviour")] 
+    [Tooltip("the enemy run speed to the sound event point at the first sound stage")]
+    [SerializeField] private float _firstStageRunSpeed;
+    [Tooltip("the enemy run speed to the sound event point at the second sound stage")]
+    [SerializeField] private float _secondStageRunSpeed;
+    [Tooltip("the enemy run speed to the sound event point at the third sound stage")]
+    [SerializeField] private float _thirdStageRunSpeed;
+    [Tooltip("the enemy run speed when he goes from point to point")]
+    [SerializeField] private float _searchSpeed;
+     List<Transform> _searchWaypoints = new List<Transform>();
+     private int _searchWaypointCounter = 0;
+     private bool _finishChecking = false;
+     private float _nearestWaypoint;
+     private Transform _closestWaypoint;
+     private float _waypointDistance;
+
+     public bool FinishChecking
+     {
+         get => _finishChecking;
+         set => _finishChecking = value;
+     }
+
+     public float FirstStageRunSpeed
+    {
+        get => _firstStageRunSpeed;
+        set => _firstStageRunSpeed = value;
+    }
+
+    public float SecondStageRunSpeed
+    {
+        get => _secondStageRunSpeed;
+        set => _secondStageRunSpeed = value;
+    }
+
+    public float ThirdStageRunSpeed
+    {
+        get => _thirdStageRunSpeed;
+        set => _thirdStageRunSpeed = value;
+    }
+
     private bool _soundNoticed = false;
     private int _soundBehaviourStage = 0;
+    private Transform _soundEventPosition;
+
+    public Transform SoundEventPosition
+    {
+        get => _soundEventPosition;
+        set => _soundEventPosition = value;
+    }
 
     public bool SoundNoticed
     {
@@ -311,18 +365,80 @@ public class EnemyController : MonoBehaviour
                     _soundItemScript.Stage = 0;
                     return;
                 }
-                
             }
 
             if(_soundItemScript.Stage <= 3)
             {
                 Debug.Log("Stage");
                 _soundBehaviourStage = _soundItemScript.Stage;
+                _soundEventPosition = _soundItemScript.transform;
                 _soundNoticed = true;
             }
             
             // deactivate the sound collider
             other.GetComponent<Collider>().gameObject.SetActive(false);
         }
+        
+        // if the enemy get in a new room the new search points will be selected
+        if (other.CompareTag("SearchPoints"))
+        {
+            _searchWaypoints.Clear();
+            
+            foreach (Transform waypoints in other.transform)
+            {
+                // have to delete the list after using
+                _searchWaypoints.Add(waypoints);
+            }
+        }
     }
+    
+    #region Search Behaviour
+    
+    public void StartSearchBehaviour()
+    {
+        _agent.speed = _searchSpeed;
+        
+        if (_searchWaypoints.Count == 0)
+        {
+            _finishChecking = true;
+            return;
+        }
+        
+        _nearestWaypoint = Mathf.Infinity;
+        foreach (Transform waypoint in _searchWaypoints)
+        {
+             _waypointDistance = Vector3.Distance(waypoint.transform.position, transform.position);
+            if (_waypointDistance <= _nearestWaypoint)
+            {
+                _nearestWaypoint = _waypointDistance;
+                _closestWaypoint = waypoint;
+            }
+        }
+        
+        _agent.SetDestination(_closestWaypoint.position);
+        //kick out the waypoint which was already used
+        _searchWaypoints.Remove(_closestWaypoint); 
+    }
+    
+    public void UpdateSearchBehaviour()
+    {
+        if (Vector3.Distance(transform.position, _closestWaypoint.position) <= _stopDistance && !_reachedWaypoint)
+        {
+            _reachedWaypoint = true;
+        }
+
+        if (_reachedWaypoint)
+        {
+            //plays investigation animation, after it or certain time he will go to the next point nearby
+            _standingCooldown -= Time.deltaTime;
+            
+            if (_standingCooldown <= 0)
+            {
+                StartSearchBehaviour();
+                _standingCooldown = _dwellingTimer;
+                _reachedWaypoint = false;
+            }
+        }
+    }
+    #endregion
 }

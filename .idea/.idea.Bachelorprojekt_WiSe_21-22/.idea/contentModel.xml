@@ -28,6 +28,7 @@
             <e p="EnemyPatrolState.cs" t="Include" />
             <e p="EnemySearchState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
+            <e p="PlayerNearDetection.cs" t="Include" />
             <e p="SoundItem.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
           </e>

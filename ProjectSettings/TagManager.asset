@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sound
   - Wall
+  - SearchPoints
   layers:
   - Default
   - TransparentFX

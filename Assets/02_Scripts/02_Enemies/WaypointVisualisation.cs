@@ -8,11 +8,15 @@ public class WaypointVisualisation : MonoBehaviour
     [Tooltip("the sphere size of the waypoint")]
    [SerializeField] float wayPointsSize;
 
+    [Tooltip(" the color of the waypoints and ways")]
+    [SerializeField] private Color32 _wayColor;
+
     private void OnDrawGizmos()
     {        
         for (int i = 0; i < transform.childCount; i++)
         {
             // draws the waypoints and the way between the points
+            Gizmos.color = _wayColor;
             Gizmos.DrawSphere(transform.GetChild(i).position, wayPointsSize);
             Gizmos.DrawLine(transform.GetChild(GetWaypoints(i)).position, transform.GetChild(GetWaypoints(i + 1)).position);
         }
