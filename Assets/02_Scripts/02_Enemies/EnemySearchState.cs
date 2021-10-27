@@ -10,20 +10,23 @@ public class EnemySearchState : IEnemyState
         {
             return EnemyController.EnemyChaseState;
         }
-        else
+
+        if (enemy.FinishChecking)
         {
-            return EnemyController.EnemyPatrolState;
+            return  EnemyController.EnemyPatrolState;
         }
+        
+        enemy.UpdateSearchBehaviour();
         return this;
     }
 
     public void Enter(EnemyController enemy)
     {
-   
+        enemy.StartSearchBehaviour();
     }
 
     public void Exit(EnemyController enemy)
     {
-
+        enemy.FinishChecking = false;
     }
 }

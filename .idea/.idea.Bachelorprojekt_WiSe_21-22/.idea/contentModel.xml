@@ -11,9 +11,9 @@
       <e p="Assets" t="Include">
         <e p="02_Scripts" t="Include">
           <e p="01_Player" t="Include">
+            <e p="CollectItem.cs" t="Include" />
             <e p="IPlayerState.cs" t="Include" />
             <e p="PlayerAnimationHandler.cs" t="Include" />
-            <e p="PlayerCollectItemState.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerHideState.cs" t="Include" />
             <e p="PlayerIdleState.cs" t="Include" />
@@ -24,9 +24,12 @@
             <e p="EnemyChaseState.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyIdleState.cs" t="Include" />
+            <e p="EnemyInvestigationState.cs" t="Include" />
             <e p="EnemyPatrolState.cs" t="Include" />
             <e p="EnemySearchState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
+            <e p="PlayerNearDetection.cs" t="Include" />
+            <e p="SoundItem.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
           </e>
           <e p="Editor" t="Include">

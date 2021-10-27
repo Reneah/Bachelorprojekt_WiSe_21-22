@@ -12,16 +12,18 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../UEGP3/UEGP3Unity/Assets/Code/PlayerSystem/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyInvestigationState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PlayerNearDetection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/Patrolling.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/InGameMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/MainMenu.cs" />
@@ -37,11 +39,16 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/IEnemyState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/FieldOfViewEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyInvestigationState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PlayerNearDetection.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
       </list>
     </option>
   </component>
@@ -102,6 +109,10 @@
       <workItem from="1634838855496" duration="5787000" />
       <workItem from="1634905050053" duration="11188000" />
       <workItem from="1634918222997" duration="5000" />
+      <workItem from="1635154065712" duration="6344000" />
+      <workItem from="1635164804292" duration="4825000" />
+      <workItem from="1635183708542" duration="5357000" />
+      <workItem from="1635253601831" duration="14509000" />
     </task>
     <servers />
   </component>
@@ -114,9 +125,28 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="778" y="221" key="RiderGenerateDialog" timestamp="1634907116457">
+    <state x="778" y="221" key="RiderGenerateDialog" timestamp="1635187601780">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1634907116457" />
+    <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1635187601780" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyInvestigationState.cs</url>
+          <line>53</line>
+          <properties documentPath="C:\Users\Chris\Documents\Unity Projekte\Bachelorprojekt_WiSe_21-22\Assets\02_Scripts\02_Enemies\EnemyInvestigationState.cs" initialLine="57">
+            <startOffsets>
+              <option value="1858" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1859" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
