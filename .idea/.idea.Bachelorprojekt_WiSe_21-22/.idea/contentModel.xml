@@ -48,9 +48,6 @@
           </e>
         </e>
         <e p="03_ArtAssets" t="Include">
-          <e p="02_Enemies" t="Include">
-            <e p="Placeholder.txt" t="Include" />
-          </e>
           <e p="03_Environment" t="Include">
             <e p="Placeholder.txt" t="Include" />
           </e>
