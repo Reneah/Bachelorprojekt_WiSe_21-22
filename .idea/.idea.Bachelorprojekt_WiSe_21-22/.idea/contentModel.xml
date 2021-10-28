@@ -21,12 +21,13 @@
             <e p="PlayerRunState.cs" t="Include" />
           </e>
           <e p="02_Enemies" t="Include">
+            <e p="EnemyAnimationHandler.cs" t="Include" />
             <e p="EnemyChaseState.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyIdleState.cs" t="Include" />
-            <e p="EnemyInvestigationState.cs" t="Include" />
             <e p="EnemyPatrolState.cs" t="Include" />
             <e p="EnemySearchState.cs" t="Include" />
+            <e p="EnemySoundInvestigationState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
             <e p="PlayerNearDetection.cs" t="Include" />
             <e p="SoundItem.cs" t="Include" />

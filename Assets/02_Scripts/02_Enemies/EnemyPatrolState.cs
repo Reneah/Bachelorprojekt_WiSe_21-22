@@ -14,7 +14,7 @@ public class EnemyPatrolState : IEnemyState
 
         if (enemy.SoundNoticed)
         {
-            return EnemyController.EnemyInvestigationState;
+            return EnemyController.EnemySoundInvestigationState;
         }
         
         enemy.UpdatePatrolBehaviour();
@@ -23,11 +23,12 @@ public class EnemyPatrolState : IEnemyState
 
     public void Enter(EnemyController enemy)
     {
+        enemy.AnimationHandler.SetSpeed(enemy.PatrolSpeed);
         enemy.StartPatrolBehaviour();
     }
 
     public void Exit(EnemyController enemy)
     {
-        
+        enemy.SoundNoticed = false;
     }
 }
