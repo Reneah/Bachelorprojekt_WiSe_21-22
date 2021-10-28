@@ -116,14 +116,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _patrolling: 1
-  _catchDistance: 0.4
-  _chaseSpeed: 2
+  _catchDistance: 0.8
+  _chaseSpeed: 4
   _patrollingRoute: {fileID: 0}
-  _dwellingTimer: 1
+  _dwellingTimer: 2
   _stopDistance: 0.5
-  _patrolSpeed: 1
-  _radius: 3
-  _angle: 54
+  _patrolSpeed: 1.5
+  _radius: 8
+  _angle: 55
   _targetMask:
     serializedVersion: 2
     m_Bits: 128
@@ -133,10 +133,10 @@ MonoBehaviour:
   delay: 0.2
   _enemyHead: {fileID: 2515264596294580544}
   _obstacleRaycastTransform: {fileID: 2515264595301918613}
-  _firstStageRunSpeed: 1
+  _firstStageRunSpeed: 1.5
   _secondStageRunSpeed: 2
-  _thirdStageRunSpeed: 3
-  _searchSpeed: 2
+  _thirdStageRunSpeed: 2.5
+  _searchSpeed: 3
 --- !u!195 &2515264594566652786
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -186,8 +186,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2515264594975913127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.17}
-  m_LocalScale: {x: 7.93379, y: 1.6, z: 5.661514}
+  m_LocalPosition: {x: -0.05912537, y: 0, z: 0.7127697}
+  m_LocalScale: {x: 9.248419, y: 1.6, z: 6.79778}
   m_Children: []
   m_Father: {fileID: 2515264594566652785}
   m_RootOrder: 4
