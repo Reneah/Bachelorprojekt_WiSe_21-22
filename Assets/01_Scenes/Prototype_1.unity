@@ -559,10 +559,11 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 320
   delay: 0.2
-  _enemyHead: {fileID: 442607353}
+  _enemyHead: {fileID: 162477267}
   _obstacleRaycastTransform: {fileID: 2075181494}
+  _lookPositionAtSpotted: {fileID: 554321534}
   _firstStageRunSpeed: 1
   _secondStageRunSpeed: 2.1
   _thirdStageRunSpeed: 3
@@ -620,6 +621,11 @@ CapsuleCollider:
   m_Height: 2.0005093
   m_Direction: 1
   m_Center: {x: 0, y: 0.50025403, z: 0}
+--- !u!4 &162477267 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3321919801592875672, guid: fc09167bffaf53843a80e0c41faad90d, type: 3}
+  m_PrefabInstance: {fileID: 415576316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &170171480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1047,7 @@ MonoBehaviour:
   delay: 0.2
   _enemyHead: {fileID: 2071683576}
   _obstacleRaycastTransform: {fileID: 1043087149}
+  _lookPositionAtSpotted: {fileID: 0}
   _firstStageRunSpeed: 1
   _secondStageRunSpeed: 2
   _thirdStageRunSpeed: 3
@@ -1975,6 +1982,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547618060}
   m_CullTransparentMesh: 1
+--- !u!1 &554321533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 554321534}
+  m_Layer: 7
+  m_Name: EnemyLookPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &554321534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554321533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.349, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1578956088}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &637781355
 GameObject:
   m_ObjectHideFlags: 0
@@ -3527,7 +3564,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1e-45, y: 5.986096e-38, z: -1.6193236e-10, w: -7.064015e-24}
+  m_BoundingSphereOverride: {x: 0, y: 1.256e-42, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5361,7 +5398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemText: {fileID: 470053575}
   _useButtonText: {fileID: 1237658845}
-  stage: 1
+  stage: 2
   _soundRangeCollider: {fileID: 878515679}
 --- !u!54 &1942963087
 Rigidbody:
@@ -5957,7 +5994,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1e-45}
+  m_BoundingSphereOverride: {x: 0, y: 32629760, z: 4.5905e-41, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
