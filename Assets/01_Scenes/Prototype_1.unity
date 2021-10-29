@@ -4272,10 +4272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73523d3a50cd9d9438f2ace86ddcf0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 3
-  _smoothSpeed: 10
-  _smoothRotation: 10
-  _sprintSpeed: 5
+  _movementSpeed: 1.5
+  _smoothSpeed: 50
+  _smoothRotation: 5
+  _sprintSpeed: 3
   _terminalVelocity: 10
   _gravityModifier: 1.5
   _jumpHeight: 1
