@@ -13,7 +13,7 @@ public class EnemySearchState : IEnemyState
 
         if (enemy.FinishChecking)
         {
-            return  EnemyController.EnemyPatrolState;
+            return EnemyController.EnemyPatrolState;
         }
         
         enemy.UpdateSearchBehaviour();
@@ -22,6 +22,7 @@ public class EnemySearchState : IEnemyState
 
     public void Enter(EnemyController enemy)
     {
+        enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
         enemy.StartSearchBehaviour();
     }
 

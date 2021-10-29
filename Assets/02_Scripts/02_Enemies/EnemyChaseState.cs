@@ -35,6 +35,7 @@ public class EnemyChaseState : IEnemyState
         if (enemy.CatchPlayer() && enemy.CanSeePlayer)
         {
             Debug.Log("GAME OVER");
+            enemy.AnimationHandler.FinalHit();
             enemy.Player.gameObject.SetActive(false);
         }
         

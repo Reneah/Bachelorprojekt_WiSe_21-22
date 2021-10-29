@@ -7,20 +7,50 @@ public class PlayerAnimationHandler : MonoBehaviour
 {
     private static readonly int MovementSpeed = Animator.StringToHash("MovementSpeed");
 
-    private Animator playerAnimator;
-    private PlayerController playerController;
+    private Animator _playerAnimator;
+    private PlayerController _playerController;
+    private static readonly int Jump = Animator.StringToHash("Jump");
+    private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
+    private static readonly int VerticalVelocity = Animator.StringToHash("VerticalVelocity");
 
     void Start()
     {
-        playerAnimator = GetComponent<Animator>();
-        playerController = FindObjectOfType<PlayerController>();
+        _playerAnimator = GetComponent<Animator>();
+        _playerController = FindObjectOfType<PlayerController>();
     }
     
     /// <summary>
-    /// sets the speed of the run animation and decides to play the run or idle animation
+    /// Set the players velocities.
     /// </summary>
-    public void SetSpeed(float movementSpeed)
+    /// <param name="movementSpeed">Players movement speed</param>
+    /// <param name="verticalVelocity">Players vertical velocity</param>
+    public void SetSpeeds(float movementSpeed, float verticalVelocity)
     {
-        playerAnimator.SetFloat(MovementSpeed, movementSpeed);
+        _playerAnimator.SetFloat(MovementSpeed, movementSpeed);
+        _playerAnimator.SetFloat(VerticalVelocity, verticalVelocity);
     }
+
+    /// <summary>
+    /// Triggers the animator jump trigger
+    /// </summary>
+    public void DoJump()
+    {
+        _playerAnimator.SetTrigger(Jump);
+    }
+
+    public void ResetJumpTrigger()
+    {
+        _playerAnimator.ResetTrigger(Jump);
+    }
+    
+    /// <summary>
+    /// Tells the player whether the player is grounded or not
+    /// </summary>
+    /// <param name="grounded"></param>
+    public void SetGrounded(bool grounded)
+    {
+        _playerAnimator.SetBool(IsGrounded, grounded);
+    }
+    
+    
 }

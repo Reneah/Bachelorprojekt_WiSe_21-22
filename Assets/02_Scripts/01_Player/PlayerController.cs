@@ -34,7 +34,13 @@ namespace untitledProject
         private float _verticalAxis;
         private float _horizontalAxis;
         private float _currentVerticalVelocity;
-        
+
+        public float CurrentVerticalVelocity
+        {
+            get => _currentVerticalVelocity;
+            set => _currentVerticalVelocity = value;
+        }
+
         private CharacterController _characterController;
         private PlayerAnimationHandler _playerAnimationHandler;
         
@@ -47,6 +53,7 @@ namespace untitledProject
         // Use formula: Mathf.Sqrt(h * (-2) * g)
         private float JumpVelocity => Mathf.Sqrt(_jumpHeight * -2 * Physics.gravity.y);
         private bool _isJumping = false;
+        private bool _resetVerticalVelocity = false;
         public bool IsJumping
         {
             get => _isJumping;
@@ -95,6 +102,9 @@ namespace untitledProject
                 _currentState = playerState;
                 _currentState.Enter(this);
             }
+            
+            GroundCheck();
+            _playerAnimationHandler.SetGrounded(IsGrounded);
         }
 
         public void MovementExecution()
@@ -109,13 +119,13 @@ namespace untitledProject
         /// </summary>
         public void Move()
         {
-            _playerAnimationHandler.SetSpeed(_currentForwardVelocity);
             // Clamp velocity to reach no more than our defined terminal velocity
             _currentVerticalVelocity = Mathf.Clamp(_currentVerticalVelocity, -_terminalVelocity, JumpVelocity);
 
             // use this bool to prevent the player control about the the speed during the jump
             if (!_isJumping)
             {
+                _resetVerticalVelocity = true;
                 bool sprint = Input.GetKey(KeyCode.LeftShift);
                 targetSpeed = (sprint? _sprintSpeed : _movementSpeed) * _moveDirection.magnitude;
             }
@@ -124,8 +134,8 @@ namespace untitledProject
             _currentForwardVelocity = Mathf.SmoothDamp(_currentForwardVelocity, targetSpeed, ref _refVelocity, _smoothSpeed * Time.deltaTime);
             Vector3 velocity = new Vector3(_moveDirection.x * _currentForwardVelocity, _currentVerticalVelocity, _moveDirection.z * _currentForwardVelocity) + new Vector3(0, Gravity(), 0);
             _characterController.Move(velocity * Time.deltaTime);
-
-            _playerAnimationHandler.SetSpeed(_currentForwardVelocity);
+            
+            _playerAnimationHandler.SetSpeeds(_currentForwardVelocity, _currentVerticalVelocity);
         }
 
         private void MovementDirection()
@@ -153,7 +163,6 @@ namespace untitledProject
         /// </summary>
         private float Gravity()
         {
-            _isGrounded = Physics.CheckSphere(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask);
             if (!_isGrounded)
             {
                 _currentVerticalVelocity += Physics.gravity.y * _gravityModifier * Time.deltaTime;
@@ -164,21 +173,25 @@ namespace untitledProject
 
         public void GroundCheck()
         {
-            // Check if we are grounded, if so reset gravity
+            // Check if we are grounded
             _isGrounded = Physics.CheckSphere(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask);
+
+            if (_isGrounded & _resetVerticalVelocity)
+            {
+                // Reset current vertical velocity
+                _currentVerticalVelocity = 0;
+                _playerAnimationHandler.ResetJumpTrigger();
+                _resetVerticalVelocity = false;
+            }
         }
         
         public void Jump()
         {
             GroundCheck();
-            if (_isGrounded)
-            {
-                // Reset current vertical velocity
-                _currentVerticalVelocity = 0f;
-            }
+  
             if (_isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
-                //_playerAnimationHandler.DoJump();
+                _playerAnimationHandler.DoJump();
                 _currentVerticalVelocity = JumpVelocity;
             }
         }

@@ -24,13 +24,21 @@ public class EnemyController : MonoBehaviour
         set => _player = value;
     }
 
+    private EnemyAnimationHandler _animationHandler;
+
+    public EnemyAnimationHandler AnimationHandler
+    {
+        get => _animationHandler;
+        set => _animationHandler = value;
+    }
+
     // the current state of the player
     private IEnemyState _currentState;
     public static readonly EnemyPatrolState EnemyPatrolState = new EnemyPatrolState();
     public static readonly EnemyIdleState EnemyIdleState = new EnemyIdleState();
     public static readonly EnemyChaseState EnemyChaseState = new EnemyChaseState();
     public static readonly EnemySearchState EnemySearchState = new EnemySearchState();
-    public static readonly EnemyInvestigationState EnemyInvestigationState = new EnemyInvestigationState();
+    public static readonly EnemySoundInvestigationState EnemySoundInvestigationState = new EnemySoundInvestigationState();
 
     [Header("Start Behaviour")] 
     [SerializeField] private bool _patrolling;
@@ -145,6 +153,12 @@ public class EnemyController : MonoBehaviour
      private Transform _closestWaypoint;
      private float _waypointDistance;
 
+     public float SearchSpeed
+     {
+         get => _searchSpeed;
+         set => _searchSpeed = value;
+     }
+
      public bool FinishChecking
      {
          get => _finishChecking;
@@ -197,6 +211,7 @@ public class EnemyController : MonoBehaviour
         _currentState = EnemyIdleState;
 
         _agent = GetComponent<NavMeshAgent>();
+        _animationHandler = GetComponent<EnemyAnimationHandler>();
         _player = FindObjectOfType<PlayerController>();
         
         SetUpPatrolBehaviour();
@@ -229,7 +244,7 @@ public class EnemyController : MonoBehaviour
         _agent.isStopped = false;
         _agent.SetDestination(_player.transform.position);
         _agent.speed = _chaseSpeed;
-        //_enemyAnimationController.RunAnimation();
+        _animationHandler.SetSpeed(_chaseSpeed);
     }
 
     public void HeadRotationTowardsPlayer()
@@ -270,6 +285,7 @@ public class EnemyController : MonoBehaviour
 
         if (_reachedWaypoint)
         {
+            _animationHandler.SetSpeed(0);
             _standingCooldown -= Time.deltaTime;
 
             if (_standingCooldown <= 0)
@@ -279,6 +295,7 @@ public class EnemyController : MonoBehaviour
                 _standingCooldown = _dwellingTimer;
                 _agent.SetDestination(_waypoints[_waypointsCounter].position);
                 _reachedWaypoint = false;
+                _animationHandler.SetSpeed(_patrolSpeed);
             }
         }
     }
@@ -369,7 +386,6 @@ public class EnemyController : MonoBehaviour
 
             if(_soundItemScript.Stage <= 3)
             {
-                Debug.Log("Stage");
                 _soundBehaviourStage = _soundItemScript.Stage;
                 _soundEventPosition = _soundItemScript.transform;
                 _soundNoticed = true;
@@ -396,9 +412,7 @@ public class EnemyController : MonoBehaviour
     
     public void StartSearchBehaviour()
     {
-        _agent.speed = _searchSpeed;
-        
-        if (_searchWaypoints.Count == 0)
+        if (_searchWaypoints.Count <= 0)
         {
             _finishChecking = true;
             return;
@@ -416,27 +430,29 @@ public class EnemyController : MonoBehaviour
         }
         
         _agent.SetDestination(_closestWaypoint.position);
-        //kick out the waypoint which was already used
-        _searchWaypoints.Remove(_closestWaypoint); 
     }
     
     public void UpdateSearchBehaviour()
     {
         if (Vector3.Distance(transform.position, _closestWaypoint.position) <= _stopDistance && !_reachedWaypoint)
         {
+            _animationHandler.SetSpeed(0);
             _reachedWaypoint = true;
         }
 
         if (_reachedWaypoint)
         {
+            //kick out the waypoint which was already used
+            _searchWaypoints.Remove(_closestWaypoint); 
+            
             //plays investigation animation, after it or certain time he will go to the next point nearby
             _standingCooldown -= Time.deltaTime;
             
             if (_standingCooldown <= 0)
             {
-                StartSearchBehaviour();
                 _standingCooldown = _dwellingTimer;
                 _reachedWaypoint = false;
+                StartSearchBehaviour();
             }
         }
     }
