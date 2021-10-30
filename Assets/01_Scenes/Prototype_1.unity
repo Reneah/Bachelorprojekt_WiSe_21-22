@@ -3747,6 +3747,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d6d7d418fc79fe64db7e2f19751d620d, type: 2}
+    - target: {fileID: 5866666021909216657, guid: fc09167bffaf53843a80e0c41faad90d, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc09167bffaf53843a80e0c41faad90d, type: 3}
 --- !u!1 &1343641623
@@ -4277,8 +4281,8 @@ MonoBehaviour:
   _smoothRotation: 5
   _sprintSpeed: 3
   _terminalVelocity: 10
-  _gravityModifier: 1.5
-  _jumpHeight: 1
+  _gravityModifier: 1
+  _jumpHeight: 0.5
   _groundCheckRadius: 0.2
   _groundLayerMask:
     serializedVersion: 2
