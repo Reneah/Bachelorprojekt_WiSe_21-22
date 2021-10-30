@@ -102,6 +102,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform _enemyHead;
     [Tooltip("the raycast position to know obstacles")] 
     [SerializeField] private Transform _obstacleRaycastTransform;
+    [Tooltip("the look position when the player is spotted")]
+    [SerializeField] private Transform _lookPositionAtSpotted;
+
+    public Transform LookPositionAtSpotted
+    {
+        get => _lookPositionAtSpotted;
+        set => _lookPositionAtSpotted = value;
+    }
 
     public Transform ObstacleRaycastTransform
     {
@@ -146,7 +154,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _thirdStageRunSpeed;
     [Tooltip("the enemy run speed when he goes from point to point")]
     [SerializeField] private float _searchSpeed;
-     List<Transform> _searchWaypoints = new List<Transform>();
+    List<Transform> _searchWaypoints = new List<Transform>();
      private int _searchWaypointCounter = 0;
      private bool _finishChecking = false;
      private float _nearestWaypoint;
@@ -249,8 +257,8 @@ public class EnemyController : MonoBehaviour
 
     public void HeadRotationTowardsPlayer()
     {
-        Vector3 lookToPlayer = (_player.transform.position - EnemyHead.position).normalized;
-        EnemyHead.rotation = Quaternion.Slerp(EnemyHead.rotation,Quaternion.LookRotation(lookToPlayer), Time.deltaTime * 5);
+       // Vector3 lookToPlayer = (_player.transform.position - EnemyHead.position).normalized;
+       // EnemyHead.rotation = Quaternion.Slerp(EnemyHead.rotation,Quaternion.LookRotation(lookToPlayer), Time.deltaTime * 5);
     }
     
     public bool CatchPlayer()
@@ -328,6 +336,7 @@ public class EnemyController : MonoBehaviour
         {
             // there is only one player in the game, so the array can be set to 0
             Transform target = rangeChecks[0].transform;
+            target.position = new Vector3 (target.position.x, 1.3f, target.position.z);
             // the direction from the enemy to the player
             Vector3 directionToTarget = (target.position - _enemyHead.position).normalized;
 
