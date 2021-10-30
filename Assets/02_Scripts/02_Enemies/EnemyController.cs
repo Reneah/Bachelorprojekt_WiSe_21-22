@@ -335,17 +335,17 @@ public class EnemyController : MonoBehaviour
         if (rangeChecks.Length != 0)
         {
             // there is only one player in the game, so the array can be set to 0
-            Transform target = rangeChecks[0].transform;
-            target.position = new Vector3 (target.position.x, 1.3f, target.position.z);
+            Vector3 target = rangeChecks[0].transform.position;
+            target = new Vector3 (target.x, 1.3f, target.z);
             // the direction from the enemy to the player
-            Vector3 directionToTarget = (target.position - _enemyHead.position).normalized;
+            Vector3 directionToTarget = (target - _enemyHead.position).normalized;
 
             // checks if the player is in the angle in front of the enemy
             bool playerIsVisible = Vector3.Angle(_enemyHead.forward, directionToTarget) < _angle / 2;
             if (playerIsVisible)
             {
                 // the distance from the enemy to the player
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+                float distanceToTarget = Vector3.Distance(transform.position, target);
                 
                 // check if there is a obstacle in the way to see the player
                 bool obstructedView = Physics.Raycast(_obstacleRaycastTransform.position, directionToTarget, distanceToTarget, obstructionMask);
