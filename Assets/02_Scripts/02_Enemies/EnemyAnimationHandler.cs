@@ -92,7 +92,7 @@ public class EnemyAnimationHandler : MonoBehaviour
         if (_enemyController.CanSeePlayer)
         {
             _enemyAnimator.SetLookAtWeight(_headRotationWeight);
-            _enemyAnimator.SetLookAtPosition(_playerController.transform.position);
+            _enemyAnimator.SetLookAtPosition(_enemyController.LookPositionAtSpotted.position);
         }
 
     }
