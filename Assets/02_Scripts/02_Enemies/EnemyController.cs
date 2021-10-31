@@ -437,7 +437,7 @@ public class EnemyController : MonoBehaviour
                 _closestWaypoint = waypoint;
             }
         }
-        
+        _animationHandler.SetSpeed(_searchSpeed);
         _agent.SetDestination(_closestWaypoint.position);
     }
     
