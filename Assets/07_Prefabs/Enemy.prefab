@@ -673,7 +673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3104135126782882996}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.01, z: 0.0020659065}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6958195730867115906}
@@ -1484,8 +1484,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7429465333654895883}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8534596, y: 0.263336, z: 0.60687214}
+  m_LocalPosition: {x: 0.33333334, y: 0.6666667, z: 0.8333334}
+  m_LocalScale: {x: 1.2845452, y: 1.22, z: 1.22}
   m_Children: []
   m_Father: {fileID: 6958195730867115906}
   m_RootOrder: 3
@@ -1713,9 +1713,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7771993092534111544}
-  m_LocalRotation: {x: -0, y: 0.71729916, z: -0, w: 0.69676536}
-  m_LocalPosition: {x: -4.8122244, y: -0.223, z: 1.8776}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 3224622319023896342}
   - {fileID: 8687396434822227003}
@@ -1725,7 +1725,7 @@ Transform:
   - {fileID: 7429465334465209964}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 91.664, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3922730873535106552
 Animator:
   serializedVersion: 3
@@ -1772,28 +1772,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _patrolling: 1
-  _catchDistance: 0.5
-  _chaseSpeed: 2.1
+  _catchDistance: 0.8
+  _chaseSpeed: 4
   _patrollingRoute: {fileID: 0}
   _dwellingTimer: 2
-  _stopDistance: 0.8
-  _patrolSpeed: 1
-  _radius: 7
-  _angle: 54
+  _stopDistance: 1.5
+  _patrolSpeed: 1.5
+  _radius: 8
+  _angle: 55
   _targetMask:
     serializedVersion: 2
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 65
   delay: 0.2
-  _enemyHead: {fileID: 3962297759695652097}
+  _enemyHead: {fileID: 7429465334465209964}
   _obstacleRaycastTransform: {fileID: 7429465333900099875}
   _lookPositionAtSpotted: {fileID: 0}
-  _firstStageRunSpeed: 1
-  _secondStageRunSpeed: 2.1
-  _thirdStageRunSpeed: 3
-  _searchSpeed: 2.1
+  _firstStageRunSpeed: 1.5
+  _secondStageRunSpeed: 2
+  _thirdStageRunSpeed: 2.5
+  _searchSpeed: 3
 --- !u!114 &7429465334143328889
 MonoBehaviour:
   m_ObjectHideFlags: 0
