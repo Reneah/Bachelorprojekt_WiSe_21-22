@@ -102,6 +102,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform _enemyHead;
     [Tooltip("the raycast position to know obstacles")] 
     [SerializeField] private Transform _obstacleRaycastTransform;
+    [Tooltip("the look position when the player is spotted")]
+    [SerializeField] private Transform _lookPositionAtSpotted;
+
+    public Transform LookPositionAtSpotted
+    {
+        get => _lookPositionAtSpotted;
+        set => _lookPositionAtSpotted = value;
+    }
 
     public Transform ObstacleRaycastTransform
     {
@@ -146,7 +154,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _thirdStageRunSpeed;
     [Tooltip("the enemy run speed when he goes from point to point")]
     [SerializeField] private float _searchSpeed;
-     List<Transform> _searchWaypoints = new List<Transform>();
+    List<Transform> _searchWaypoints = new List<Transform>();
      private int _searchWaypointCounter = 0;
      private bool _finishChecking = false;
      private float _nearestWaypoint;
@@ -249,8 +257,8 @@ public class EnemyController : MonoBehaviour
 
     public void HeadRotationTowardsPlayer()
     {
-        Vector3 lookToPlayer = (_player.transform.position - EnemyHead.position).normalized;
-        EnemyHead.rotation = Quaternion.Slerp(EnemyHead.rotation,Quaternion.LookRotation(lookToPlayer), Time.deltaTime * 5);
+       // Vector3 lookToPlayer = (_player.transform.position - EnemyHead.position).normalized;
+       // EnemyHead.rotation = Quaternion.Slerp(EnemyHead.rotation,Quaternion.LookRotation(lookToPlayer), Time.deltaTime * 5);
     }
     
     public bool CatchPlayer()
@@ -327,16 +335,17 @@ public class EnemyController : MonoBehaviour
         if (rangeChecks.Length != 0)
         {
             // there is only one player in the game, so the array can be set to 0
-            Transform target = rangeChecks[0].transform;
+            Vector3 target = rangeChecks[0].transform.position;
+            target = new Vector3 (target.x, 1.3f, target.z);
             // the direction from the enemy to the player
-            Vector3 directionToTarget = (target.position - _enemyHead.position).normalized;
+            Vector3 directionToTarget = (target - _enemyHead.position).normalized;
 
             // checks if the player is in the angle in front of the enemy
             bool playerIsVisible = Vector3.Angle(_enemyHead.forward, directionToTarget) < _angle / 2;
             if (playerIsVisible)
             {
                 // the distance from the enemy to the player
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+                float distanceToTarget = Vector3.Distance(transform.position, target);
                 
                 // check if there is a obstacle in the way to see the player
                 bool obstructedView = Physics.Raycast(_obstacleRaycastTransform.position, directionToTarget, distanceToTarget, obstructionMask);
@@ -428,7 +437,7 @@ public class EnemyController : MonoBehaviour
                 _closestWaypoint = waypoint;
             }
         }
-        
+        _animationHandler.SetSpeed(_searchSpeed);
         _agent.SetDestination(_closestWaypoint.position);
     }
     
