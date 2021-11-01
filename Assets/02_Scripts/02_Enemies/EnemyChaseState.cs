@@ -32,7 +32,7 @@ public class EnemyChaseState : IEnemyState
             }
         }
         
-        if (enemy.CatchPlayer() && enemy.CanSeePlayer)
+        if (enemy.CatchPlayer())
         {
             Debug.Log("GAME OVER");
             enemy.AnimationHandler.FinalHit();
