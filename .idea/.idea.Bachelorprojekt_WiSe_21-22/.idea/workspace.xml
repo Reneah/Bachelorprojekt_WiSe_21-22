@@ -54,8 +54,9 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" />
       </list>
     </option>
   </component>
@@ -131,6 +132,7 @@
       <workItem from="1635497137677" duration="2246000" />
       <workItem from="1635754151007" duration="10941000" />
       <workItem from="1635778399671" duration="5060000" />
+      <workItem from="1635845499159" duration="3812000" />
     </task>
     <servers />
   </component>
@@ -147,9 +149,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1635187601780" />
-    <state x="675" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1635512195540">
-      <screen x="0" y="0" width="1970" height="1152" />
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1635845838604">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1635845838604" />
     <state x="675" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1635512195540" />
   </component>
 </project>
