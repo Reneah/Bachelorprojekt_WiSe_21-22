@@ -392,6 +392,7 @@ public class EnemyController : MonoBehaviour
             
             if (_spottedTime >= _secondsToSpott || distance <= _spottedDistance)
             {
+                _spottedBar.fillAmount = 1;
                 _playerSpotted = true;
             }
         }
