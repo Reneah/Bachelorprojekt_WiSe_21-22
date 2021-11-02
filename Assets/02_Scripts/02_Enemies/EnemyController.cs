@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using untitledProject;
 
 public class EnemyController : MonoBehaviour
@@ -87,23 +88,66 @@ public class EnemyController : MonoBehaviour
     #region FieldOfViewVariables
     
     [Header("FieldOfView")]
-    [Tooltip("the radius of the view field")]
-    [SerializeField] private float _radius;
-    [Tooltip("the angle of the view field")]
-    [Range(0,360)]
-    [SerializeField] private float _angle;
-    [Tooltip("the mask for the registration of the player in the view field")]
+ //   [Tooltip("the radius of the view field")]
+  //  [SerializeField] private float _radius;
+ //   [Tooltip("the angle of the view field")]
+  //  [Range(0,360)]
+   // [SerializeField] private float _angle;
+    //[Tooltip("the mask for the registration of the player in the view field")]
     [SerializeField] private LayerMask _targetMask;
     [Tooltip("the mask for the registration of the obstacle in the view field")]
     [SerializeField] private LayerMask obstructionMask;
-    [Tooltip("determine the wait time in seconds for every view field check")]
-    [SerializeField] float delay = 0.2f;
+   // [Tooltip("determine the wait time in seconds for every view field check")]
+    //[SerializeField] float delay = 0.2f;
     [Tooltip("the enemy head Transform to have the origin for the view field")]
     [SerializeField] private Transform _enemyHead;
     [Tooltip("the raycast position to know obstacles")] 
     [SerializeField] private Transform _obstacleRaycastTransform;
     [Tooltip("the look position when the player is spotted")]
     [SerializeField] private Transform _lookPositionAtSpotted;
+
+    [Tooltip("the delay time that the player get spotted in the view field")]
+    [Range(0,10)]
+    [SerializeField] private float _secondsToSpott;
+    private float _spottedTime = 0;
+    [SerializeField] private Image _spottedBar;
+    [Tooltip("the distance where you get spotted instantly")]
+    [SerializeField] private float _spottedDistance;
+    [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
+    [SerializeField] private float _lastChanceTime;
+
+    public float LastChanceTime
+    {
+        get => _lastChanceTime;
+        set => _lastChanceTime = value;
+    }
+
+    private bool _playerSpotted = false;
+    private bool _seesObject = false;
+
+    public bool SeesObject
+    {
+        get => _seesObject;
+        set => _seesObject = value;
+    }
+
+    public bool PlayerSpotted
+    {
+        get => _playerSpotted;
+        set => _playerSpotted = value;
+    }
+
+    public float SpottedTime
+    {
+        get => _spottedTime;
+        set => _spottedTime = value;
+    }
+
+    public Image SpottedBar
+    {
+        get => _spottedBar;
+        set => _spottedBar = value;
+    }
 
     public Transform LookPositionAtSpotted
     {
@@ -130,7 +174,7 @@ public class EnemyController : MonoBehaviour
         get => _canSeePlayer;
         set => _canSeePlayer = value;
     }
-    
+    /*
     public float Radius
     {
         get => _radius;
@@ -143,9 +187,23 @@ public class EnemyController : MonoBehaviour
         set => _angle = value;
     }
     
+    */
+
+    public LayerMask TargetMask
+    {
+        get => _targetMask;
+        set => _targetMask = value;
+    }
+
+    public LayerMask ObstructionMask
+    {
+        get => obstructionMask;
+        set => obstructionMask = value;
+    }
+    
     #endregion
 
-    [Header("Investigation Behaviour")] 
+    [Header("Investigation Behaviour")]
     [Tooltip("the enemy run speed to the sound event point at the first sound stage")]
     [SerializeField] private float _firstStageRunSpeed;
     [Tooltip("the enemy run speed to the sound event point at the second sound stage")]
@@ -223,7 +281,7 @@ public class EnemyController : MonoBehaviour
         _player = FindObjectOfType<PlayerController>();
         
         SetUpPatrolBehaviour();
-        StartCoroutine(FOVRoutine());
+        //StartCoroutine(FOVRoutine());
     }
     
     void Update()
@@ -235,6 +293,8 @@ public class EnemyController : MonoBehaviour
             _currentState = enemyState;
             _currentState.Enter(this);
         }
+
+        PlayerDetected();
     }
     
     /// <summary>
@@ -310,6 +370,43 @@ public class EnemyController : MonoBehaviour
     
     #endregion
 
+    // should do a void update method, which the bar will go dynamically back and forth
+    // Then it will go automatically back and don't have the problem to set back the bar
+    // but the player will be instantly spotted until the patrol state kicks in
+
+    public void PlayerDetected()
+    {
+        if (_seesObject)
+        {
+            float distance = Vector3.Distance(transform.position, _player.transform.position);
+
+            if (_spottedTime <= _secondsToSpott)
+            {
+                _spottedTime += Time.deltaTime;
+                _spottedBar.fillAmount = _spottedTime;
+            }
+            
+            if (_spottedTime >= _secondsToSpott || distance <= _spottedDistance)
+            {
+                _playerSpotted = true;
+            }
+        }
+        else
+        {
+            if (_spottedTime > 0)
+            {
+                _spottedTime -= Time.deltaTime;
+                _spottedBar.fillAmount = _spottedTime;
+            }
+
+            if (_spottedTime <= 0)
+            {
+                _spottedTime = 0;
+                _spottedBar.fillAmount = 0;
+            }
+        }
+    }
+/*
     #region FieldOfViewBehaviour
     
     /// <summary>
@@ -370,7 +467,7 @@ public class EnemyController : MonoBehaviour
     }
     
     #endregion
-
+*/
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Sound"))
@@ -430,7 +527,7 @@ public class EnemyController : MonoBehaviour
         _nearestWaypoint = Mathf.Infinity;
         foreach (Transform waypoint in _searchWaypoints)
         {
-             _waypointDistance = Vector3.Distance(waypoint.transform.position, transform.position);
+             _waypointDistance = Vector3.Distance(waypoint.transform.position, _player.transform.position);
             if (_waypointDistance <= _nearestWaypoint)
             {
                 _nearestWaypoint = _waypointDistance;
