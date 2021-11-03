@@ -10,7 +10,7 @@ public class FadeOut : MonoBehaviour
     [SerializeField] private Image _fadeImage;
     [Tooltip("the time how long the fade image needs to fade in and out")]
     [SerializeField] private float _fadeTime;
-
+    
     void Start()
     {
         Color _color = _fadeImage.color;
