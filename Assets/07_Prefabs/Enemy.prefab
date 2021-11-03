@@ -816,7 +816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3104135126782882996}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.01, z: 0.0020659065}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6958195730867115906}
@@ -2004,7 +2004,7 @@ Transform:
   m_GameObject: {fileID: 7771993092534111544}
   m_LocalRotation: {x: 0, y: 0.7172999, z: 0, w: 0.6967646}
   m_LocalPosition: {x: -4.8122244, y: -0.223, z: 1.8776}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 3224622319023896342}
   - {fileID: 8687396434822227003}
@@ -2014,7 +2014,7 @@ Transform:
   - {fileID: 1721336523870544597}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 91.664, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3922730873535106552
 Animator:
   serializedVersion: 3
@@ -2079,6 +2079,7 @@ MonoBehaviour:
   _secondsToSpott: 1
   _spottedBar: {fileID: 0}
   _spottedDistance: 0
+  _lastChanceTime: 0
   _firstStageRunSpeed: 1
   _secondStageRunSpeed: 2.1
   _thirdStageRunSpeed: 3

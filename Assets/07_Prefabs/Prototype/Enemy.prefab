@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2515264594566652796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.431, y: 0.065, z: 0.904}
-  m_LocalScale: {x: 0.2151455, y: 0.32917, z: 0.21438512}
+  m_LocalScale: {x: 0.6999999, y: 0.7, z: 0.6999999}
   m_Children:
   - {fileID: 2515264595198276934}
   - {fileID: 2515264596357007968}
@@ -133,6 +133,7 @@ MonoBehaviour:
   delay: 0.2
   _enemyHead: {fileID: 2515264596294580544}
   _obstacleRaycastTransform: {fileID: 2515264595301918613}
+  _lookPositionAtSpotted: {fileID: 0}
   _firstStageRunSpeed: 1.5
   _secondStageRunSpeed: 2
   _thirdStageRunSpeed: 2.5
