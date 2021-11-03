@@ -30,11 +30,6 @@ public class SceneChange : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            ChangeScene();
-        }
-        
         bool _completeFadeIn = _fadeImage.color.a >= 0.99f;
         if (_completeFadeIn)
         {
