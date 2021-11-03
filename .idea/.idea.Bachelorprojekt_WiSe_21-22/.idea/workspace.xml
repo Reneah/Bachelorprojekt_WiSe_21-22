@@ -61,9 +61,9 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/ScenePersistent.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" />
       </list>
     </option>
   </component>
@@ -140,7 +140,8 @@
       <workItem from="1635754151007" duration="10941000" />
       <workItem from="1635778399671" duration="5060000" />
       <workItem from="1635845499159" duration="3812000" />
-      <workItem from="1635932273133" duration="987000" />
+      <workItem from="1635932273133" duration="1405000" />
+      <workItem from="1635938990296" duration="687000" />
     </task>
     <servers />
   </component>
