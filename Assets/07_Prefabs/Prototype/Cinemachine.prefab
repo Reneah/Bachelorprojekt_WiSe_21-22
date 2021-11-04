@@ -56,7 +56,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 100
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_TrackedObjectOffset: {x: 0, y: -1, z: 1}
   m_LookaheadTime: 0.5
   m_LookaheadSmoothing: 20
-  m_LookaheadIgnoreY: 0
+  m_LookaheadIgnoreY: 1
   m_HorizontalDamping: 20
   m_VerticalDamping: 20
   m_ScreenX: 0.5
