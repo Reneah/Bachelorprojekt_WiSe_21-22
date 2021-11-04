@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using untitledProject;
 
 public class SceneChange : MonoBehaviour
 {
@@ -21,11 +22,15 @@ public class SceneChange : MonoBehaviour
     [Tooltip("the next scene name that should be loaded")]
     [SerializeField] private string _nextSceneName;
     private float _fadeStayCooldown = 0;
+
+    private PlayerController _playerController;
     
     void Start()
     {
         _fadeImage.fillAmount = 0;
         _fadeStayCooldown = _fadeStayTime;
+
+        _playerController = FindObjectOfType<PlayerController>();
     }
     
     void Update()
@@ -37,7 +42,7 @@ public class SceneChange : MonoBehaviour
             {
                 _text.DOFade(0, _textFadeTime);
 
-                if (_text.color.a <= 0)
+                if (_text.color.a <= 0.001f)
                 {
                     SceneManager.LoadScene(_nextSceneName);
                 }
@@ -52,6 +57,8 @@ public class SceneChange : MonoBehaviour
 
     public void ChangeScene()
     {
+        _playerController.PlayerAnimationHandler.SetSpeeds(0,0);
+        _playerController.enabled = false;
         _fadeImage.DOFade(1, _fadeTime);
     }
 }

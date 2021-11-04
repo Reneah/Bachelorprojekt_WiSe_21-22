@@ -44,6 +44,12 @@ namespace untitledProject
         private CharacterController _characterController;
         private PlayerAnimationHandler _playerAnimationHandler;
         
+        public PlayerAnimationHandler PlayerAnimationHandler
+        {
+            get => _playerAnimationHandler;
+            set => _playerAnimationHandler = value;
+        }
+
         [Header("Jump Settings")]
         [Tooltip("Maximum falling velocity the player can reach")] [Range(1f, 15f)] 
         [SerializeField] private float _terminalVelocity = 10f;

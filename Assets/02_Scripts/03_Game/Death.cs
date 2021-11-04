@@ -8,9 +8,14 @@ using untitledProject;
 
 public class Death : MonoBehaviour
 {
+    [Tooltip("the parent of the death scene to activate and deactivate the menu")]
     [SerializeField] private GameObject _deathScene;
     private PlayerController _player;
     private bool _enemyCatchedPlayer;
+    [Tooltip("the scene that should be restarted when the player is dead")]
+    [SerializeField] private string _reloadSceneName;
+    [Tooltip("the name of the main menu scene")]
+    [SerializeField] private string _mainMenuName;
 
     public bool EnemyCatchedPlayer
     {
@@ -50,7 +55,7 @@ public class Death : MonoBehaviour
         Time.timeScale = 1;
         //_player.enabled = true;
         _deathScene.SetActive(false);
-        SceneManager.LoadScene("01_Scenes/LevelDesign/GameWorld_BesiegedKeep_2");
+        SceneManager.LoadScene(_reloadSceneName);
     }
 
     public void MainMenu()
@@ -58,7 +63,7 @@ public class Death : MonoBehaviour
         Time.timeScale = 1;
        // _player.enabled = true;
         _deathScene.SetActive(false);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(_mainMenuName);
     }
 
     public void CloseGame()

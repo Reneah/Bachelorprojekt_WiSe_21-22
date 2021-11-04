@@ -21,6 +21,10 @@ public class CollectItem : MonoBehaviour
     [SerializeField] private bool _key;
     [Tooltip("has to be picked up by the player as a quest item")] 
     [SerializeField] private bool _backpack;
+    [Tooltip("has to be picked up by the player as a quest item")] 
+    [SerializeField] private bool _parchment;
+    [Tooltip("has to be interacted with by the player as a quest task")] 
+    [SerializeField] private bool _secretPassage;
 
     public bool Key
     {
@@ -33,6 +37,8 @@ public class CollectItem : MonoBehaviour
     
     private bool _keyCollected = false;
     private bool _backpackCollected = false;
+    private bool _parchmentCollected = false;
+    private bool _secretPassageOpened = false;
 
     private float _vanishTime;
     private bool _itemCollected = false;
@@ -92,6 +98,18 @@ public class CollectItem : MonoBehaviour
                 else if(_backpack)
                 {
                     _backpackCollected = true;
+                    _sceneChange.ChangeScene();
+                    _playerController.enabled = false;
+                }
+                else if(_parchment)
+                {
+                    _parchmentCollected = true;
+                    _sceneChange.ChangeScene();
+                    _playerController.enabled = false;
+                }
+                else if(_secretPassage)
+                {
+                    _secretPassageOpened = true;
                     _sceneChange.ChangeScene();
                     _playerController.enabled = false;
                 }

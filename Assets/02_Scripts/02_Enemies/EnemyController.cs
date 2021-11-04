@@ -350,6 +350,7 @@ public class EnemyController : MonoBehaviour
     
     public void UpdatePatrolBehaviour()
     {
+        Debug.Log(Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position));
         if (Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position) <= _stopDistance && !_reachedWaypoint)
         {
             _reachedWaypoint = true;
