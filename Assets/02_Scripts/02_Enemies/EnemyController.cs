@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
         get => _animationHandler;
         set => _animationHandler = value;
     }
-
+    
     // the current state of the player
     private IEnemyState _currentState;
     public static readonly EnemyPatrolState EnemyPatrolState = new EnemyPatrolState();
@@ -203,6 +203,8 @@ public class EnemyController : MonoBehaviour
     
     #endregion
 
+    #region SearchVariables
+    
     [Header("Investigation Behaviour")]
     [Tooltip("the enemy run speed to the sound event point at the first sound stage")]
     [SerializeField] private float _firstStageRunSpeed;
@@ -270,6 +272,8 @@ public class EnemyController : MonoBehaviour
         get => _soundBehaviourStage;
         set => _soundBehaviourStage = value;
     }
+    
+    #endregion
 
     void Start()
     {
@@ -346,6 +350,7 @@ public class EnemyController : MonoBehaviour
     
     public void UpdatePatrolBehaviour()
     {
+        Debug.Log(Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position));
         if (Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position) <= _stopDistance && !_reachedWaypoint)
         {
             _reachedWaypoint = true;

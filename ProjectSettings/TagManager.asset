@@ -7,6 +7,7 @@ TagManager:
   - Sound
   - Wall
   - SearchPoints
+  - Death
   layers:
   - Default
   - TransparentFX

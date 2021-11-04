@@ -22,8 +22,8 @@ public class ScenePersistent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MusicVolume = 0;
-        SoundVolume = 1;
+       // MusicVolume = 0;
+       // SoundVolume = 1;
         
         _loadingscene = SceneManager.GetActiveScene();
         DontDestroyOnLoad(this);
@@ -32,14 +32,14 @@ public class ScenePersistent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _loadingscene = SceneManager.GetActiveScene();
+       // _loadingscene = SceneManager.GetActiveScene();
         
-        if (_loadingscene == SceneManager.GetSceneByName("Play") && _loaded || _loadingscene == SceneManager.GetSceneByName("MainMenu") && _loaded)
-        {
-            FindObjectOfType<Options>().MusicSlider.value = MusicVolume;
-            FindObjectOfType<Options>().AudioMixer.SetFloat("volume", MusicVolume);
-            FindObjectOfType<InGameMenu>().SoundSlider.value = SoundVolume;
-            _loaded = false;
-        }
+        //if (_loadingscene == SceneManager.GetSceneByName("Play") && _loaded || _loadingscene == SceneManager.GetSceneByName("MainMenu") && _loaded)
+        //{
+         //   FindObjectOfType<Options>().MusicSlider.value = MusicVolume;
+           // FindObjectOfType<Options>().AudioMixer.SetFloat("volume", MusicVolume);
+            //FindObjectOfType<InGameMenu>().SoundSlider.value = SoundVolume;
+            //_loaded = false;
+        //}
     }
 }
