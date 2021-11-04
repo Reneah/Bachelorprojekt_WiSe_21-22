@@ -3,22 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using untitledProject;
 
 public class CollectItem : MonoBehaviour
 { 
     [Header("Item UI")]
     [Tooltip("shows the collectable item")]
-   [SerializeField] private TextMeshProUGUI _itemCollectableText;
+    [SerializeField] private TextMeshProUGUI _itemCollectableText;
     [Tooltip("shows the current button to use")]
-   [SerializeField] private TextMeshProUGUI _useButtonText;
+    [SerializeField] private TextMeshProUGUI _useButtonText;
     [Tooltip("shows, that it is in the possession of the player")] 
     [SerializeField] private GameObject _ItemImage;
 
     [Header("Choose the ONE Item which will be represented")] 
     [Tooltip("the key to open doors")] 
     [SerializeField] private bool _key;
-    [Tooltip("can be thrown to distract the enemy")] 
-    [SerializeField] private bool _rocks;
+    [Tooltip("has to be picked up by the player as a quest item")] 
+    [SerializeField] private bool _backpack;
+    [Tooltip("has to be picked up by the player as a quest item")] 
+    [SerializeField] private bool _parchment;
+    [Tooltip("has to be interacted with by the player as a quest task")] 
+    [SerializeField] private bool _secretPassage;
 
     public bool Key
     {
@@ -30,10 +36,15 @@ public class CollectItem : MonoBehaviour
     private float _textVanishTime;
     
     private bool _keyCollected = false;
-    private bool _rocksCollected = false;
+    private bool _backpackCollected = false;
+    private bool _parchmentCollected = false;
+    private bool _secretPassageOpened = false;
 
     private float _vanishTime;
     private bool _itemCollected = false;
+
+    private SceneChange _sceneChange;
+    private PlayerController _playerController;
     
     void Start()
     {
@@ -42,6 +53,8 @@ public class CollectItem : MonoBehaviour
         _useButtonText.gameObject.SetActive(false);
         _itemCollectableText.gameObject.SetActive(false);
         _ItemImage.SetActive(false);
+        _sceneChange = FindObjectOfType<SceneChange>();
+        _playerController = FindObjectOfType<PlayerController>();
     }
     
     void Update()
@@ -75,18 +88,31 @@ public class CollectItem : MonoBehaviour
                 _itemCollectableText.gameObject.SetActive(false);
                 _useButtonText.gameObject.SetActive(false);
                 _ItemImage.SetActive(true);
+                _itemCollected = true;
+                gameObject.SetActive(false);
 
                 if (_key)
                 {
                     _keyCollected = true;
                 }
-                else if(_rocks)
+                else if(_backpack)
                 {
-                    _rocksCollected = true;
+                    _backpackCollected = true;
+                    _sceneChange.ChangeScene();
+                    _playerController.enabled = false;
                 }
-                
-                _itemCollected = true;
-                gameObject.SetActive(false);
+                else if(_parchment)
+                {
+                    _parchmentCollected = true;
+                    _sceneChange.ChangeScene();
+                    _playerController.enabled = false;
+                }
+                else if(_secretPassage)
+                {
+                    _secretPassageOpened = true;
+                    _sceneChange.ChangeScene();
+                    _playerController.enabled = false;
+                }
             }
         }
     }
