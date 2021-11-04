@@ -95,5 +95,11 @@ public class EnemyAnimationHandler : MonoBehaviour
             _enemyAnimator.SetLookAtPosition(_enemyController.LookPositionAtSpotted.position);
         }
 
+        if (_enemyController.GuardBehaviour)
+        {
+            _enemyAnimator.SetLookAtWeight(_headRotationWeight);
+            _enemyAnimator.SetLookAtPosition(_enemyController.CurrentLookpoint.transform.position);
+        }
+
     }
 }

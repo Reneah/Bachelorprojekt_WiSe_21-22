@@ -24,6 +24,7 @@
             <e p="EnemyAnimationHandler.cs" t="Include" />
             <e p="EnemyChaseState.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
+            <e p="EnemyGuardState.cs" t="Include" />
             <e p="EnemyIdleState.cs" t="Include" />
             <e p="EnemyPatrolState.cs" t="Include" />
             <e p="EnemySearchState.cs" t="Include" />

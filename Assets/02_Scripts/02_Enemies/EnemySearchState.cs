@@ -13,6 +13,11 @@ public class EnemySearchState : IEnemyState
 
         if (enemy.FinishChecking)
         {
+            if (enemy.Guarding)
+            {
+                return EnemyController.EnemyGuardState;
+            }
+            
             return EnemyController.EnemyPatrolState;
         }
         
