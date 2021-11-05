@@ -85,12 +85,6 @@ public class CollectItem : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                _itemCollectableText.gameObject.SetActive(false);
-                _useButtonText.gameObject.SetActive(false);
-                _ItemImage.SetActive(true);
-                _itemCollected = true;
-                gameObject.SetActive(false);
-
                 if (_key)
                 {
                     _keyCollected = true;
@@ -109,10 +103,20 @@ public class CollectItem : MonoBehaviour
                 }
                 else if(_secretPassage)
                 {
+                    if (!_keyCollected)
+                    { //This seems to cause issues, as you can't pick up with the secret door even when you have collected the key
+                        return;
+                    }
                     _secretPassageOpened = true;
                     _sceneChange.ChangeScene();
                     _playerController.enabled = false;
                 }
+                
+                _itemCollectableText.gameObject.SetActive(false);
+                _useButtonText.gameObject.SetActive(false);
+                _ItemImage.SetActive(true);
+                _itemCollected = true;
+                gameObject.SetActive(false);
             }
         }
     }
