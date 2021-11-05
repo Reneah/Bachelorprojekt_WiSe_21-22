@@ -288,6 +288,8 @@ public class EnemyController : MonoBehaviour
     [Header("Guard Behaviour")]
     [Tooltip("the time to switch between the looking points")]
     [SerializeField] private float _switchLookTime;
+    [Tooltip("the speed how fast the invisible agent is moving")]
+    [SerializeField] private float _lookSwitchSpeed;
     [Tooltip("the route where the enemy should look")]
     [SerializeField] private GameObject _lookingRoute;
     [Tooltip("the point where the enemy is guarding")]
@@ -470,9 +472,9 @@ public class EnemyController : MonoBehaviour
     
     public void UpdateGuardBehaviour()
     {
-        _currentLookPosition.position = Vector3.MoveTowards(_currentLookPosition.transform.position, _currentLookpoint.transform.position, Time.deltaTime * 3);
+        _currentLookPosition.position = Vector3.MoveTowards(_currentLookPosition.transform.position, _currentLookpoint.transform.position, Time.deltaTime * _lookSwitchSpeed);
 
-        if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookpoint.transform.position ) <= 0.5f && !_reachedLookpoint)
+        if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookpoint.transform.position ) <= _stopGuardpointDistance && !_reachedLookpoint)
         {
             _reachedLookpoint = true;
         }
@@ -487,7 +489,6 @@ public class EnemyController : MonoBehaviour
                 _lookPointcounter %= _lookingRoute.transform.childCount;
                 _lookCooldown = _switchLookTime;
                 _currentLookpoint = _lookpoints[_lookPointcounter].transform;
-                // next destination 
                 _reachedLookpoint = false;
             }
         }
