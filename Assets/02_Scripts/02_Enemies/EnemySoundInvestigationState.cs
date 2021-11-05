@@ -41,6 +41,11 @@ public class EnemySoundInvestigationState : IEnemyState
                 {
                     enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                     enemy.AnimationHandler.ResetInvestigatePoint();
+
+                    if (enemy.Guarding)
+                    {
+                        return EnemyController.EnemyGuardState;
+                    }
                     
                     return EnemyController.EnemyPatrolState;
                 }
@@ -63,6 +68,11 @@ public class EnemySoundInvestigationState : IEnemyState
                     enemy.AnimationHandler.FinishedLookingAnimation = false;
                     enemy.AnimationHandler.ResetInvestigatePoint();
                     enemy.AnimationHandler.ResetLookingAround();
+                    
+                    if (enemy.Guarding)
+                    {
+                        return EnemyController.EnemyGuardState;
+                    }
                     
                     return EnemyController.EnemyPatrolState;
                 }

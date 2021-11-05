@@ -11,6 +11,11 @@ public class EnemyIdleState : IEnemyState
             return EnemyController.EnemyPatrolState;
         }
         
+        if (enemy.Guarding)
+        {
+            return EnemyController.EnemyGuardState;
+        }
+        
         return this;
     }
 
