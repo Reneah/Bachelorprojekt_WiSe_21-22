@@ -60,13 +60,13 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" />
       </list>
     </option>
   </component>
@@ -148,6 +148,7 @@
       <workItem from="1635953836447" duration="2747000" />
       <workItem from="1636035021585" duration="1311000" />
       <workItem from="1636053027937" duration="6202000" />
+      <workItem from="1636100807621" duration="11387000" />
     </task>
     <servers />
   </component>

@@ -297,7 +297,14 @@ public class EnemyController : MonoBehaviour
     [Tooltip("the rotation of the enemy body when he is guarding")]
     [SerializeField] private Transform _desiredBodyRotation;
 
+    [SerializeField] private Transform _currentLookPosition;
     [SerializeField] private float _smoothBodyRotation;
+
+    public Transform CurrentLookPosition
+    {
+        get => _currentLookPosition;
+        set => _currentLookPosition = value;
+    }
 
     public float SmoothBodyRotation
     {
@@ -325,17 +332,17 @@ public class EnemyController : MonoBehaviour
     }
     
     // the list of the enemy waypoints
-    List<Transform> _lookpoints = new List<Transform>();
+    private List<Transform> _lookpoints = new List<Transform>();
     private float _lookCooldown = 0;
     private int _lookPointcounter = 0;
     private bool _reachedLookpoint = false;
     private bool _guardBehaviour = false;
     private Transform _currentLookpoint;
 
-    public Transform CurrentLookpoint
+    public List<Transform> Lookpoints
     {
-        get => _currentLookpoint;
-        set => _currentLookpoint = value;
+        get => _lookpoints;
+        set => _lookpoints = value;
     }
     
     public bool GuardBehaviour
@@ -356,6 +363,7 @@ public class EnemyController : MonoBehaviour
         _player = FindObjectOfType<PlayerController>();
         
         SetUpPatrolBehaviour();
+        SetUpGuardBehaviour();
         //StartCoroutine(FOVRoutine());
     }
     
@@ -368,8 +376,10 @@ public class EnemyController : MonoBehaviour
             _currentState = enemyState;
             _currentState.Enter(this);
         }
-
+        
         PlayerDetected();
+        
+        //_enemyHead.transform.rotation = Quaternion.Euler( new Vector3(_currentLookpoint.transform.position.x, _currentLookpoint.transform.position.y, _currentLookpoint.transform.position.z));
     }
     
     /// <summary>
@@ -421,7 +431,6 @@ public class EnemyController : MonoBehaviour
     
     public void UpdatePatrolBehaviour()
     {
-        Debug.Log(Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position));
         if (Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position) <= _stopDistance && !_reachedWaypoint)
         {
             _reachedWaypoint = true;
@@ -446,7 +455,7 @@ public class EnemyController : MonoBehaviour
     
     #endregion
     
-    public void StartGuardBehaviour()
+    public void SetUpGuardBehaviour()
     {
         _lookCooldown = _switchLookTime;
         
@@ -456,25 +465,29 @@ public class EnemyController : MonoBehaviour
         }
         
         _currentLookpoint = _lookpoints[_lookPointcounter].transform;
+        _currentLookPosition.transform.position = _currentLookpoint.transform.position;
     }
     
     public void UpdateGuardBehaviour()
     {
-        if (Vector3.Dot(transform.forward, _lookpoints[_lookPointcounter].transform.position - transform.position) <= 0.99f && !_reachedLookpoint)
+        _currentLookPosition.position = Vector3.MoveTowards(_currentLookPosition.transform.position, _currentLookpoint.transform.position, Time.deltaTime * 3);
+
+        if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookpoint.transform.position ) <= 0.5f && !_reachedLookpoint)
         {
             _reachedLookpoint = true;
         }
-
+        
         if (_reachedLookpoint)
         {
             _lookCooldown -= Time.deltaTime;
-
+            
             if (_lookCooldown <= 0)
             {
                 _lookPointcounter++;
                 _lookPointcounter %= _lookingRoute.transform.childCount;
                 _lookCooldown = _switchLookTime;
                 _currentLookpoint = _lookpoints[_lookPointcounter].transform;
+                // next destination 
                 _reachedLookpoint = false;
             }
         }
