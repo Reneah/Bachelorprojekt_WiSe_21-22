@@ -44,7 +44,7 @@ public class EnemyChaseState : IEnemyState
         {
             enemy.Player.GetComponent<Death>().EnemyCatchedPlayer = true;
             enemy.AnimationHandler.FinalHit();
-            enemy.Player.gameObject.SetActive(false);
+            enemy.Player.PlayerAnimationHandler.PlayerDeath();
         }
         
         return this;
