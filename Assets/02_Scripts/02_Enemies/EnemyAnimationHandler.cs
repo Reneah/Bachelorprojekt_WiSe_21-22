@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using untitledProject;
 
@@ -12,9 +13,15 @@ public class EnemyAnimationHandler : MonoBehaviour
     private EnemyController _enemyController;
     private PlayerController _playerController;
 
-    private float _headRotationWeight = 1;
+    private float _headRotationWeight = 0;
     private bool _finishedInvestigationAnimation = false;
     private bool _finishedLookingAnimation = false;
+
+    public float HeadRotationWeight
+    {
+        get => _headRotationWeight;
+        set => _headRotationWeight = value;
+    }
 
     public bool FinishedLookingAnimation
     {
@@ -39,7 +46,15 @@ public class EnemyAnimationHandler : MonoBehaviour
         _enemyController = GetComponent<EnemyController>();
         _playerController = FindObjectOfType<PlayerController>();
     }
-    
+
+    private void Update()
+    {
+        if (_enemyController.GuardBehaviour)
+        {
+            _headRotationWeight += Time.deltaTime;
+        }
+    }
+
     /// <summary>
     /// sets the speed of the run animation and decides to play the run or idle animation
     /// </summary>
@@ -92,7 +107,13 @@ public class EnemyAnimationHandler : MonoBehaviour
         if (_enemyController.CanSeePlayer)
         {
             _enemyAnimator.SetLookAtWeight(_headRotationWeight);
-            _enemyAnimator.SetLookAtPosition(_playerController.transform.position);
+            _enemyAnimator.SetLookAtPosition(_enemyController.LookPositionAtSpotted.position);
+        }
+
+        if (_enemyController.GuardBehaviour)
+        {
+            _enemyAnimator.SetLookAtWeight(_headRotationWeight);
+            _enemyAnimator.SetLookAtPosition(_enemyController.CurrentLookPosition.transform.position);
         }
 
     }

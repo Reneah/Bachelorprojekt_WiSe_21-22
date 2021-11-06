@@ -8,7 +8,7 @@ public class FieldOfViewEditor : Editor
 {
    private void OnSceneGUI()
    {
-      // the reference of the FieldOfView script
+     /* // the reference of the FieldOfView script
       EnemyController fov = (EnemyController) target;
       // the color of the circle of the enemy vision range
       Handles.color = Color.white;
@@ -28,8 +28,9 @@ public class FieldOfViewEditor : Editor
       if (fov.CanSeePlayer)
       {
          Handles.color = Color.green;
-         Handles.DrawLine(fov.ObstacleRaycastTransform.position, fov.Player.transform.position);
+         Handles.DrawLine(fov.ObstacleRaycastTransform.position, fov.LookPositionAtSpotted.position);
       }
+      */
    }
 
    /// <summary>

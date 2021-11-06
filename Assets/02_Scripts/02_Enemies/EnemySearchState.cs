@@ -13,6 +13,11 @@ public class EnemySearchState : IEnemyState
 
         if (enemy.FinishChecking)
         {
+            if (enemy.Guarding)
+            {
+                return EnemyController.EnemyGuardState;
+            }
+            
             return EnemyController.EnemyPatrolState;
         }
         
@@ -22,6 +27,9 @@ public class EnemySearchState : IEnemyState
 
     public void Enter(EnemyController enemy)
     {
+        // lost the sight of the player
+        enemy.SpottedBar.fillAmount = 0;
+
         enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
         enemy.StartSearchBehaviour();
     }

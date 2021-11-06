@@ -24,14 +24,22 @@
             <e p="EnemyAnimationHandler.cs" t="Include" />
             <e p="EnemyChaseState.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
+            <e p="EnemyGuardState.cs" t="Include" />
             <e p="EnemyIdleState.cs" t="Include" />
             <e p="EnemyPatrolState.cs" t="Include" />
             <e p="EnemySearchState.cs" t="Include" />
             <e p="EnemySoundInvestigationState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
             <e p="PlayerNearDetection.cs" t="Include" />
+            <e p="SeesPlayer.cs" t="Include" />
             <e p="SoundItem.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
+          </e>
+          <e p="03_Game" t="Include">
+            <e p="CinemachineFadeOutObjects.cs" t="Include" />
+            <e p="Death.cs" t="Include" />
+            <e p="FadeOut.cs" t="Include" />
+            <e p="SceneChange.cs" t="Include" />
           </e>
           <e p="Editor" t="Include">
             <e p="FieldOfViewEditor.cs" t="Include" />
