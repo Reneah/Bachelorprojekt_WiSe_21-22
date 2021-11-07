@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/01_Scenes/LevelDesign/GameWorld_BesiegedKeep_2.unity
     guid: fa64086a602287d4fbcae85ec9eef2b9
   - enabled: 1
-    path: Assets/01_Scenes/LevelDesign/GameWorld_BesiegedKeep_3.unity
+    path: Assets/01_Scenes/LevelDesign/Archive/GameWorld_BesiegedKeep_3_OLD.unity
     guid: fc83875038d094041b9b77d9411e07af
   m_configObjects: {}
