@@ -26,19 +26,20 @@ public class CollectItem : MonoBehaviour
     [Tooltip("has to be interacted with by the player as a quest task")] 
     [SerializeField] private bool _secretPassage;
 
-    public bool Key
+    // Bela: Don't see why this should be needed.
+    /*public bool Key
     {
         get => _key;
         set => _key = value;
-    }
+    }*/
 
     //[SerializeField]
     private float _textVanishTime;
     
-    private bool _keyCollected = false;
-    private bool _backpackCollected = false;
-    private bool _parchmentCollected = false;
-    private bool _secretPassageOpened = false;
+    private static bool _keyCollected = false;
+    private static bool _backpackCollected = false;
+    private static bool _parchmentCollected = false;
+    private static bool _secretPassageOpened = false;
 
     private float _vanishTime;
     private bool _itemCollected = false;
