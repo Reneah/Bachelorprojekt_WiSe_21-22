@@ -21,14 +21,22 @@ public class EnemyChaseState : IEnemyState
 
         if (!enemy.CanSeePlayer)
         {
-            enemy.Agent.SetDestination(enemy.Player.transform.position);
+            
             _reminderTime -= Time.deltaTime;
 
+            if (_reminderTime > 0)
+            {
+                enemy.Agent.SetDestination(enemy.Player.transform.position);
+            }
+            
             // if the enemy still doesn't see the player, the search mode will be activated 
             if (_reminderTime <= 0)
             {
-                _reminderTime = 1;
-                return EnemyController.EnemySearchState;
+                if (Vector3.Distance(enemy.transform.position, enemy.Agent.pathEndPosition) <= 0.5f)
+                {
+                    _reminderTime = 1;
+                    return EnemyController.EnemySearchState;
+                }
             }
         }
         
@@ -36,7 +44,7 @@ public class EnemyChaseState : IEnemyState
         {
             enemy.Player.GetComponent<Death>().EnemyCatchedPlayer = true;
             enemy.AnimationHandler.FinalHit();
-            enemy.Player.gameObject.SetActive(false);
+            enemy.Player.PlayerAnimationHandler.PlayerDeath();
         }
         
         return this;

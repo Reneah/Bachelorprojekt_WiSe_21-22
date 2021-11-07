@@ -12,6 +12,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
     private static readonly int VerticalVelocity = Animator.StringToHash("VerticalVelocity");
+    private static readonly int Death = Animator.StringToHash("Death");
 
     void Start()
     {
@@ -50,6 +51,11 @@ public class PlayerAnimationHandler : MonoBehaviour
     public void SetGrounded(bool grounded)
     {
         _playerAnimator.SetBool(IsGrounded, grounded);
+    }
+
+    public void PlayerDeath()
+    {
+        _playerAnimator.SetTrigger(Death);
     }
     
     

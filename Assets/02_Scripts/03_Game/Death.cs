@@ -17,6 +17,8 @@ public class Death : MonoBehaviour
     [Tooltip("the name of the main menu scene")]
     [SerializeField] private string _mainMenuName;
 
+    private PlayerAnimationHandler _playerAnimationHandler;
+
     public bool EnemyCatchedPlayer
     {
         get => _enemyCatchedPlayer;
@@ -27,14 +29,16 @@ public class Death : MonoBehaviour
     {
         _deathScene.SetActive(false);
         _player = GetComponent<PlayerController>();
+
+        _playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
     }
 
     private void Update()
     {
         if (EnemyCatchedPlayer)
         {
-            Time.timeScale = 0;
-           // _player.enabled = false;
+            _playerAnimationHandler.PlayerDeath();
+            _player.enabled = false;
             _deathScene.SetActive(true);
             _enemyCatchedPlayer = false;
         }
@@ -44,24 +48,22 @@ public class Death : MonoBehaviour
     {
         if (other.CompareTag("Death"))
         {
-            Time.timeScale = 0;
-            //_player.enabled = false;
+            _playerAnimationHandler.PlayerDeath();
+            _player.enabled = false;
             _deathScene.SetActive(true);
         }
     }
 
     public void Restart()
     {
-        Time.timeScale = 1;
-        //_player.enabled = true;
+        _player.enabled = true;
         _deathScene.SetActive(false);
         SceneManager.LoadScene(_reloadSceneName);
     }
 
     public void MainMenu()
     {
-        Time.timeScale = 1;
-       // _player.enabled = true;
+        _player.enabled = true;
         _deathScene.SetActive(false);
         SceneManager.LoadScene(_mainMenuName);
     }
