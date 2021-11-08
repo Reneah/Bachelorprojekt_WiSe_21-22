@@ -26,19 +26,20 @@ public class CollectItem : MonoBehaviour
     [Tooltip("has to be interacted with by the player as a quest task")] 
     [SerializeField] private bool _secretPassage;
 
-    public bool Key
+    // Bela: Don't see why this should be needed.
+    /*public bool Key
     {
         get => _key;
         set => _key = value;
-    }
+    }*/
 
     //[SerializeField]
     private float _textVanishTime;
     
-    private bool _keyCollected = false;
-    private bool _backpackCollected = false;
-    private bool _parchmentCollected = false;
-    private bool _secretPassageOpened = false;
+    private static bool _keyCollected = false;
+    private static bool _backpackCollected = false;
+    private static bool _parchmentCollected = false;
+    private static bool _secretPassageOpened = false;
 
     private float _vanishTime;
     private bool _itemCollected = false;
@@ -85,12 +86,6 @@ public class CollectItem : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                _itemCollectableText.gameObject.SetActive(false);
-                _useButtonText.gameObject.SetActive(false);
-                _ItemImage.SetActive(true);
-                _itemCollected = true;
-                gameObject.SetActive(false);
-
                 if (_key)
                 {
                     _keyCollected = true;
@@ -109,10 +104,20 @@ public class CollectItem : MonoBehaviour
                 }
                 else if(_secretPassage)
                 {
+                    if (!_keyCollected)
+                    { //This seems to cause issues, as you can't pick up with the secret door even when you have collected the key
+                        return;
+                    }
                     _secretPassageOpened = true;
                     _sceneChange.ChangeScene();
                     _playerController.enabled = false;
                 }
+                
+                _itemCollectableText.gameObject.SetActive(false);
+                _useButtonText.gameObject.SetActive(false);
+                _ItemImage.SetActive(true);
+                _itemCollected = true;
+                gameObject.SetActive(false);
             }
         }
     }
