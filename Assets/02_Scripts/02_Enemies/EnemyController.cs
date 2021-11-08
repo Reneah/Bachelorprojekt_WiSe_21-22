@@ -363,9 +363,16 @@ public class EnemyController : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _animationHandler = GetComponent<EnemyAnimationHandler>();
         _player = FindObjectOfType<PlayerController>();
-        
-        SetUpPatrolBehaviour();
-        SetUpGuardBehaviour();
+
+        if (_patrolling)
+        {
+            SetUpPatrolBehaviour(); 
+        }
+        else if(_guarding)
+        {
+            SetUpGuardBehaviour(); 
+        }
+
         //StartCoroutine(FOVRoutine());
     }
     
