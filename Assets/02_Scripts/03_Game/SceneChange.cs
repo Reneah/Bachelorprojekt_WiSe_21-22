@@ -24,6 +24,7 @@ public class SceneChange : MonoBehaviour
     private float _fadeStayCooldown = 0;
 
     private PlayerController _playerController;
+    private GameObject _questManager;
     
     void Start()
     {
@@ -31,6 +32,7 @@ public class SceneChange : MonoBehaviour
         _fadeStayCooldown = _fadeStayTime;
 
         _playerController = FindObjectOfType<PlayerController>();
+        _questManager = GameObject.Find("QuestManager");
     }
     
     void Update()
@@ -59,6 +61,8 @@ public class SceneChange : MonoBehaviour
     {
         _playerController.PlayerAnimationHandler.SetSpeeds(0,0);
         _playerController.enabled = false;
+        // Deactivate QuestManager parent object, this is a temporary solution so it doesn't overlap with the narrative text
+        _questManager.SetActive(false);
         _fadeImage.DOFade(1, _fadeTime);
     }
 }

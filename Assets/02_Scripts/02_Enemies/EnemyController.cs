@@ -40,11 +40,19 @@ public class EnemyController : MonoBehaviour
     public static readonly EnemyChaseState EnemyChaseState = new EnemyChaseState();
     public static readonly EnemySearchState EnemySearchState = new EnemySearchState();
     public static readonly EnemySoundInvestigationState EnemySoundInvestigationState = new EnemySoundInvestigationState();
+    public static readonly EnemyGuardState EnemyGuardState = new EnemyGuardState();
 
-    [Header("Start Behaviour")] 
+    [Header("Choose ONE of the Behaviour")] 
     [SerializeField] private bool _patrolling;
-
-    [Header("Chase Behaviour")] 
+    [SerializeField] private bool _guarding;
+    
+    public bool Guarding
+    {
+        get => _guarding;
+        set => _guarding = value;
+    }
+    
+    [Header("Chase Behaviour")]
     [Tooltip("set the distance to catch the player")]
     [SerializeField] private float _catchDistance = 2;
     [Tooltip("the speed which the enemy will chase the player")]
@@ -275,6 +283,78 @@ public class EnemyController : MonoBehaviour
     
     #endregion
 
+    #region GuardVariables
+
+    [Header("Guard Behaviour")]
+    [Tooltip("the time to switch between the looking points")]
+    [SerializeField] private float _switchLookTime;
+    [Tooltip("the speed how fast the invisible agent is moving")]
+    [SerializeField] private float _lookSwitchSpeed;
+    [Tooltip("the route where the enemy should look")]
+    [SerializeField] private GameObject _lookingRoute;
+    [Tooltip("the point where the enemy is guarding")]
+    [SerializeField] private Transform _guardPoint;
+    [Tooltip("the distance to stop when reaching the guard point")]
+    [SerializeField] private float _stopGuardpointDistance = 0.5f;
+    [Tooltip("the rotation of the enemy body when he is guarding")]
+    [SerializeField] private Transform _desiredBodyRotation;
+
+    [SerializeField] private Transform _currentLookPosition;
+    [SerializeField] private float _smoothBodyRotation;
+
+    public Transform CurrentLookPosition
+    {
+        get => _currentLookPosition;
+        set => _currentLookPosition = value;
+    }
+
+    public float SmoothBodyRotation
+    {
+        get => _smoothBodyRotation;
+        set => _smoothBodyRotation = value;
+    }
+
+    public Transform DesiredBodyRotation
+    {
+        get => _desiredBodyRotation;
+        set => _desiredBodyRotation = value;
+    }
+
+
+    public float StopGuardpointDistance
+    {
+        get => _stopGuardpointDistance;
+        set => _stopGuardpointDistance = value;
+    }
+
+    public Transform GuardPoint
+    {
+        get => _guardPoint;
+        set => _guardPoint = value;
+    }
+    
+    // the list of the enemy waypoints
+    private List<Transform> _lookpoints = new List<Transform>();
+    private float _lookCooldown = 0;
+    private int _lookPointcounter = 0;
+    private bool _reachedLookpoint = false;
+    private bool _guardBehaviour = false;
+    private Transform _currentLookpoint;
+
+    public List<Transform> Lookpoints
+    {
+        get => _lookpoints;
+        set => _lookpoints = value;
+    }
+    
+    public bool GuardBehaviour
+    {
+        get => _guardBehaviour;
+        set => _guardBehaviour = value;
+    }
+
+    #endregion
+
     void Start()
     {
         // start state machine with LookAroundState
@@ -283,8 +363,16 @@ public class EnemyController : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _animationHandler = GetComponent<EnemyAnimationHandler>();
         _player = FindObjectOfType<PlayerController>();
-        
-        SetUpPatrolBehaviour();
+
+        if (_patrolling)
+        {
+            SetUpPatrolBehaviour(); 
+        }
+        else if(_guarding)
+        {
+            SetUpGuardBehaviour(); 
+        }
+
         //StartCoroutine(FOVRoutine());
     }
     
@@ -297,8 +385,10 @@ public class EnemyController : MonoBehaviour
             _currentState = enemyState;
             _currentState.Enter(this);
         }
-
+        
         PlayerDetected();
+        
+        //_enemyHead.transform.rotation = Quaternion.Euler( new Vector3(_currentLookpoint.transform.position.x, _currentLookpoint.transform.position.y, _currentLookpoint.transform.position.z));
     }
     
     /// <summary>
@@ -350,7 +440,6 @@ public class EnemyController : MonoBehaviour
     
     public void UpdatePatrolBehaviour()
     {
-        Debug.Log(Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position));
         if (Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position) <= _stopDistance && !_reachedWaypoint)
         {
             _reachedWaypoint = true;
@@ -374,6 +463,43 @@ public class EnemyController : MonoBehaviour
     }
     
     #endregion
+    
+    public void SetUpGuardBehaviour()
+    {
+        _lookCooldown = _switchLookTime;
+        
+        foreach (Transform lookpoints in _lookingRoute.transform)
+        {
+            _lookpoints.Add(lookpoints);
+        }
+        
+        _currentLookpoint = _lookpoints[_lookPointcounter].transform;
+        _currentLookPosition.transform.position = _currentLookpoint.transform.position;
+    }
+    
+    public void UpdateGuardBehaviour()
+    {
+        _currentLookPosition.position = Vector3.MoveTowards(_currentLookPosition.transform.position, _currentLookpoint.transform.position, Time.deltaTime * _lookSwitchSpeed);
+
+        if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookpoint.transform.position ) <= _stopGuardpointDistance && !_reachedLookpoint)
+        {
+            _reachedLookpoint = true;
+        }
+        
+        if (_reachedLookpoint)
+        {
+            _lookCooldown -= Time.deltaTime;
+            
+            if (_lookCooldown <= 0)
+            {
+                _lookPointcounter++;
+                _lookPointcounter %= _lookingRoute.transform.childCount;
+                _lookCooldown = _switchLookTime;
+                _currentLookpoint = _lookpoints[_lookPointcounter].transform;
+                _reachedLookpoint = false;
+            }
+        }
+    }
 
     // should do a void update method, which the bar will go dynamically back and forth
     // Then it will go automatically back and don't have the problem to set back the bar
