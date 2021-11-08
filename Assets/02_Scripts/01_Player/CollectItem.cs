@@ -36,10 +36,10 @@ public class CollectItem : MonoBehaviour
     //[SerializeField]
     private float _textVanishTime;
     
-    private static bool _keyCollected = false;
-    private static bool _backpackCollected = false;
-    private static bool _parchmentCollected = false;
-    private static bool _secretPassageOpened = false;
+    public static bool _keyCollected = false;
+    public static bool _backpackCollected = false;
+    public static bool _parchmentCollected = false;
+    public static bool _secretPassageOpened = false;
 
     private float _vanishTime;
     private bool _itemCollected = false;

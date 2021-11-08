@@ -19,6 +19,8 @@ public class Death : MonoBehaviour
 
     private PlayerAnimationHandler _playerAnimationHandler;
 
+    private bool _escape = true;
+
     public bool EnemyCatchedPlayer
     {
         get => _enemyCatchedPlayer;
@@ -35,6 +37,8 @@ public class Death : MonoBehaviour
 
     private void Update()
     {
+        PauseMenu();
+        
         if (EnemyCatchedPlayer)
         {
             _playerAnimationHandler.PlayerDeath();
@@ -72,5 +76,24 @@ public class Death : MonoBehaviour
     {
         Time.timeScale = 1;
         Application.Quit();
+    }
+
+    public void PauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_escape)
+            {
+                _deathScene.SetActive(true);
+                _escape = false;
+            }
+            else
+            {
+                _deathScene.SetActive(false);
+                _escape = true;
+            }
+        }
+
+ 
     }
 }
