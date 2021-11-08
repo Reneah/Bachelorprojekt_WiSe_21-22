@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using untitledProject;
@@ -42,6 +43,13 @@ namespace untitledProject
         }
 
         private CharacterController _characterController;
+
+        public CharacterController CharacterController
+        {
+            get => _characterController;
+            set => _characterController = value;
+        }
+
         private PlayerAnimationHandler _playerAnimationHandler;
         
         public PlayerAnimationHandler PlayerAnimationHandler
@@ -74,6 +82,7 @@ namespace untitledProject
         [SerializeField] private Transform _groundCheckTransform;
         private RaycastHit hit;
         private bool _isGrounded;
+        private bool _useGroundCheck;
 
         public bool IsGrounded
         {
@@ -179,27 +188,41 @@ namespace untitledProject
 
         public void GroundCheck()
         {
-            // Check if we are grounded
-            _isGrounded = Physics.CheckSphere(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask);
-
-            if (_isGrounded & _resetVerticalVelocity)
+            
+            if (_useGroundCheck)
+            {
+                // Check if we are grounded
+                _isGrounded = Physics.CheckSphere(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask);
+            }
+            
+            if (_isGrounded && _resetVerticalVelocity)
             {
                 // Reset current vertical velocity
                 _currentVerticalVelocity = 0;
                 _playerAnimationHandler.ResetJumpTrigger();
                 _resetVerticalVelocity = false;
+                _useGroundCheck = false;
+            }
+
+            if (_currentVerticalVelocity <= 1)
+            {
+                _useGroundCheck = true;
             }
         }
         
         public void Jump()
         {
-            GroundCheck();
-  
             if (_isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
                 _playerAnimationHandler.DoJump();
                 _currentVerticalVelocity = JumpVelocity;
             }
+        }
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(_groundCheckTransform.position, _groundCheckRadius);
         }
     }
 }

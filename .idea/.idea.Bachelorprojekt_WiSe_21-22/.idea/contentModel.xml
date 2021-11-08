@@ -43,6 +43,7 @@
             <e p="IntroScene.cs" t="Include" />
             <e p="QuestManager.cs" t="Include" />
             <e p="SceneChange.cs" t="Include" />
+            <e p="WallCheck.cs" t="Include" />
           </e>
           <e p="Editor" t="Include">
             <e p="FieldOfViewEditor.cs" t="Include" />
