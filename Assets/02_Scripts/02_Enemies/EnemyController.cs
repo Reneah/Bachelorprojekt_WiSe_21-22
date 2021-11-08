@@ -387,8 +387,6 @@ public class EnemyController : MonoBehaviour
         }
         
         PlayerDetected();
-        
-        //_enemyHead.transform.rotation = Quaternion.Euler( new Vector3(_currentLookpoint.transform.position.x, _currentLookpoint.transform.position.y, _currentLookpoint.transform.position.z));
     }
     
     /// <summary>
