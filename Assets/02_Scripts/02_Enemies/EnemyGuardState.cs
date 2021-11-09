@@ -29,9 +29,8 @@ public class EnemyGuardState : IEnemyState
         
         if (_reachedGuardpoint)
         {
-            _desiredDirection = Quaternion.Slerp(enemy.transform.rotation, Quaternion.LookRotation(enemy.DesiredBodyRotation.position), enemy.SmoothBodyRotation * Time.deltaTime);
-            _desiredDirection.y = 0;
-             enemy.transform.rotation = _desiredDirection;
+            _desiredDirection = Quaternion.Slerp(enemy.transform.rotation, enemy.DesiredBodyRotation.rotation, enemy.SmoothBodyRotation * Time.deltaTime);
+            enemy.transform.rotation = _desiredDirection;
              
             enemy.UpdateGuardBehaviour();
         }

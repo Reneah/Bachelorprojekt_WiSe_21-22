@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/Archive/GameWorld_BesiegedKeep_3_OLD.unity
     guid: fc83875038d094041b9b77d9411e07af
+  - enabled: 1
+    path: Assets/01_Scenes/IntroScene.unity
+    guid: 72a19aaa0ce5140489f3eb18d2b0689b
+  - enabled: 1
+    path: Assets/01_Scenes/LevelDesign/GameWorld_BesiegedKeep_3.unity
+    guid: e33b23e89f8ba7840b199fc63ba08ef0
   m_configObjects: {}
