@@ -41,7 +41,7 @@ public class EnemySoundInvestigationState : IEnemyState
                 {
                     enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                     enemy.AnimationHandler.ResetInvestigatePoint();
-
+                    
                     if (enemy.Guarding)
                     {
                         return EnemyController.EnemyGuardState;
