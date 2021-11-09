@@ -1920,12 +1920,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _patrolling: 1
   _guarding: 0
-  _catchDistance: 0.5
+  _catchDistance: 0.85
   _chaseSpeed: 4
   _patrollingRoute: {fileID: 0}
-  _dwellingTimer: 2
+  _dwellingTimer: 5
   _stopDistance: 0.8
-  _patrolSpeed: 3
+  _patrolSpeed: 2
   _targetMask:
     serializedVersion: 2
     m_Bits: 128
