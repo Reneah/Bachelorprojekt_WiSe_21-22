@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeImage: {fileID: 3421040221049713779}
   _text: {fileID: 3421040220874471095}
-  _textFadeTime: 2
-  _fadeTime: 1
-  _fadeStayTime: 3
+  _textFadeTime: 3
+  _fadeTime: 3
+  _fadeStayTime: 30
   _nextSceneName: 
