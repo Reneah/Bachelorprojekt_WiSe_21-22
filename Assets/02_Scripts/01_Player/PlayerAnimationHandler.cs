@@ -13,6 +13,16 @@ public class PlayerAnimationHandler : MonoBehaviour
     private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
     private static readonly int VerticalVelocity = Animator.StringToHash("VerticalVelocity");
     private static readonly int Death = Animator.StringToHash("Death");
+    private static readonly int Throw = Animator.StringToHash("Throw");
+
+    // checks if the throw animation is at the end
+    private bool _runningThrowAnimation = false;
+
+    public bool RunningThrowAnimation
+    {
+        get => _runningThrowAnimation;
+        set => _runningThrowAnimation = value;
+    }
 
     void Start()
     {
@@ -56,6 +66,19 @@ public class PlayerAnimationHandler : MonoBehaviour
     public void PlayerDeath()
     {
         _playerAnimator.SetTrigger(Death);
+    }
+
+    public void PlayerThrow()
+    {
+        _playerAnimator.SetTrigger(Throw);
+    }
+
+    /// <summary>
+    /// Animation Event
+    /// </summary>
+    public void EndThrowAnimation()
+    {
+        _runningThrowAnimation = true;
     }
     
     

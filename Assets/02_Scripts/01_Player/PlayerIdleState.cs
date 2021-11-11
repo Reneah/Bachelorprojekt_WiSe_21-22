@@ -20,6 +20,11 @@ namespace untitledProject
                 player.Jump();
                 return PlayerController.PlayerJumpState;
             }
+
+            if (player.PlayerThrowTrigger.Throwstate)
+            {
+                return PlayerController.PlayerThrowState;
+            }
             
             player.MovementExecution();
             return this;

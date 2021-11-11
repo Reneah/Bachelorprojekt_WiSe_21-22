@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - SearchPoints
   - Death
+  - NoisyItem
   layers:
   - Default
   - TransparentFX

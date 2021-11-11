@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -90,11 +91,21 @@ namespace untitledProject
             set => _isGrounded = value;
         }
 
+        // get the script to have the bool value to use it in the states
+        private PlayerThrowTrigger _playerThrowTrigger;
+
+        public PlayerThrowTrigger PlayerThrowTrigger
+        {
+            get => _playerThrowTrigger;
+            set => _playerThrowTrigger = value;
+        }
+
         // the current state of the player
         private IPlayerState _currentState;
         public static readonly PlayerIdleState PlayerIdleState = new PlayerIdleState();
         public static readonly PlayerRunState PlayerRunState = new PlayerRunState();
         public static readonly PlayerJumpState PlayerJumpState =  new PlayerJumpState();
+        public static readonly PlayerThrowState PlayerThrowState =  new PlayerThrowState();
         
         private void Awake()
         {
@@ -106,6 +117,7 @@ namespace untitledProject
         {
             _playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
             _characterController = GetComponent<CharacterController>();
+            _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
         }
         
         private void Update()
@@ -218,7 +230,7 @@ namespace untitledProject
                 _currentVerticalVelocity = JumpVelocity;
             }
         }
-
+        
         public void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;
