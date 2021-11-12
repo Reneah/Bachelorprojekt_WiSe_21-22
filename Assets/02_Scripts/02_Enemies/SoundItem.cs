@@ -23,6 +23,27 @@ public class SoundItem : MonoBehaviour
     [Header("Sound Collider")]
     [Tooltip("the collider, which shows the sound range of the item")]
     [SerializeField] private GameObject _soundRangeCollider;
+    
+    [SerializeField] private bool _reusable;
+
+    public bool Reusable
+    {
+        get => _reusable;
+        set => _reusable = value;
+    }
+
+    private bool _reuseItem;
+
+    // deactivate the sound collider after a fixed time
+    private float _deactivationTime = 0.1f;
+
+    public GameObject SoundRangeCollider
+    {
+        get => _soundRangeCollider;
+        set => _soundRangeCollider = value;
+    }
+
+    private PlayerThrowTrigger _playerThrowTrigger;
 
     public int Stage
     {
@@ -31,17 +52,50 @@ public class SoundItem : MonoBehaviour
     }
     
     private bool _itemUsed = false;
-    
+
+    public bool ItemUsed
+    {
+        get => _itemUsed;
+        set => _itemUsed = value;
+    }
+
     void Start()
     {
         _useButtonText.gameObject.SetActive(false);
         _itemText.gameObject.SetActive(false);
+        _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
+
+        _reuseItem = _reusable;
     }
-    
+
+    private void Update()
+    {
+        if (_itemUsed)
+        {
+            _deactivationTime -= Time.deltaTime;
+
+            if (_deactivationTime <= 0)
+            {
+                if (_reusable)
+                {
+                    _soundRangeCollider.SetActive(false);
+                    _itemUsed = false;
+                }
+                else
+                {
+                    _soundRangeCollider.SetActive(false);
+                    Destroy(this);
+                }
+
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")  && !_itemUsed)
         {
+            _playerThrowTrigger.Close = true;
             _itemText.gameObject.SetActive(true);
             _useButtonText.gameObject.SetActive(true);
         }
@@ -56,6 +110,7 @@ public class SoundItem : MonoBehaviour
                 _itemText.gameObject.SetActive(false);
                 _useButtonText.gameObject.SetActive(false);
                 _soundRangeCollider.SetActive(true);
+                _playerThrowTrigger.CloseText.gameObject.SetActive(false);
                 
                 _itemUsed = true;
             }
@@ -68,6 +123,7 @@ public class SoundItem : MonoBehaviour
         {
             if (other.CompareTag("Player") && !_itemUsed)
             {
+                _playerThrowTrigger.Close = false;
                 _useButtonText.gameObject.SetActive(false);
                 _itemText.gameObject.SetActive(false);
             }

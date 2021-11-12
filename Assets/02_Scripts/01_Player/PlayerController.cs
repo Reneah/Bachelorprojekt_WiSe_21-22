@@ -200,7 +200,6 @@ namespace untitledProject
 
         public void GroundCheck()
         {
-            
             if (_useGroundCheck)
             {
                 // Check if we are grounded
