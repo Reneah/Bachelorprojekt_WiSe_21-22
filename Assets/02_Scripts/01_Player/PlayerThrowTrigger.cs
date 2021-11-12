@@ -61,10 +61,8 @@ public class PlayerThrowTrigger : MonoBehaviour
         set => _close = value;
     }
 
-    private void Start()
-    {
-       
-    }
+    Ray ray;
+    RaycastHit _hitMouse;
 
     private void Update()
     {
@@ -102,8 +100,9 @@ public class PlayerThrowTrigger : MonoBehaviour
             _closeText.gameObject.SetActive(false);
             
             Debug.DrawRay(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position * Vector3.Distance(_soundItem.transform.position, transform.position));
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position, out hit, Vector3.Distance(_soundItem.transform.position, transform.position)))
+            if (Physics.Raycast(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position, out hit, Vector3.Distance(_soundItem.transform.position, transform.position)) && Physics.Raycast(ray, out _hitMouse))
             {
                 // if something is blocking the trajectory
                 if (hit.collider.CompareTag("Wall"))

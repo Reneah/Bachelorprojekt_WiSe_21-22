@@ -71,9 +71,9 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
       </list>
     </option>
   </component>
@@ -174,6 +174,7 @@
       <workItem from="1636458525474" duration="860000" />
       <workItem from="1636634437111" duration="15946000" />
       <workItem from="1636695905527" duration="11609000" />
+      <workItem from="1636719744867" duration="2474000" />
     </task>
     <servers />
   </component>
