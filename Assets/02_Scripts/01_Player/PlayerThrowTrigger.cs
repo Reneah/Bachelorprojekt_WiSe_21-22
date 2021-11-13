@@ -16,11 +16,9 @@ public class PlayerThrowTrigger : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _notThrowableText;
     [Tooltip("the origin of the raycast to signalize the obstacles in the trajectory")] 
     [SerializeField] private Transform _inWayRaycastPosition;
-    [Tooltip("Text, that the player is close to the noisy item to activate it per hand")]
-    [SerializeField] private TextMeshProUGUI _closeText;
     [Tooltip("the name of the marker to show the current usable noisy item ")]
     [SerializeField] private string _usableMarkerName;
-
+    [Tooltip("modify the text position at the mouse position")]
     [SerializeField] private Vector2 _textOffset;
 
     // signalize the noisy item that it can be activated
@@ -33,15 +31,9 @@ public class PlayerThrowTrigger : MonoBehaviour
         get => _soundItem;
         set => _soundItem = value;
     }
-
-    public TextMeshProUGUI CloseText
-    {
-        get => _closeText;
-        set => _closeText = value;
-    }
     
     // the player is able to throw
-    private bool _inRange = false;
+    private bool _throwAvailable = false;
     
     // shows if the throw state is activated or not
     private bool _throwstate;
@@ -74,7 +66,6 @@ public class PlayerThrowTrigger : MonoBehaviour
         {
             _throwableText.gameObject.SetActive(false);
             _notThrowableText.gameObject.SetActive(false);
-            _closeText.gameObject.SetActive(false);
             _usableMarker.SetActive(false);
         }
     }
@@ -84,50 +75,57 @@ public class PlayerThrowTrigger : MonoBehaviour
         // update the UI position all the time
         _throwableText.transform.position =  new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         _notThrowableText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
-        _closeText.transform.position = new Vector3(_textOffset.x + 40, _textOffset.y, 0) + Input.mousePosition;
         
         // if the player is near the noisy item, he is able to activate it per hand and doesn't need to throw
         if (_close)
         {
             _usableMarker.SetActive(true);
-            _closeText.gameObject.SetActive(true);
             _throwableText.gameObject.SetActive(false);
             _notThrowableText.gameObject.SetActive(false);
         }
         
-        if (_inRange && !_close)
+        if (_throwAvailable && !_close)
         {
-            _closeText.gameObject.SetActive(false);
-            
             Debug.DrawRay(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position * Vector3.Distance(_soundItem.transform.position, transform.position));
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position, out hit, Vector3.Distance(_soundItem.transform.position, transform.position)) && Physics.Raycast(ray, out _hitMouse))
-            {
-                // if something is blocking the trajectory
-                if (hit.collider.CompareTag("Wall"))
+
+            Physics.Raycast(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position, out hit, Vector3.Distance(_soundItem.transform.position, transform.position));
+            
+            _usableMarker.SetActive(true);
+            
+                // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
+                if(Physics.Raycast(ray, out _hitMouse, Mathf.Infinity, LayerMask.GetMask("NoisyItem")))
                 {
-                    _usableMarker.SetActive(true);
-                    _throwableText.gameObject.SetActive(false);
-                    _notThrowableText.gameObject.SetActive(true);
+                    // if something is blocking the trajectory
+                    if (hit.collider.CompareTag("Wall"))
+                    {
+                        _usableMarker.SetActive(true);
+                        _throwableText.gameObject.SetActive(false);
+                        _notThrowableText.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        _throwableText.gameObject.SetActive(true);
+                        _usableMarker.SetActive(true);
+                        _notThrowableText.gameObject.SetActive(false);
+
+                        // this should be actually in the state so that it can't be used again when the item can be used again
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            _usableMarker.SetActive(false);
+                            _throwstate = true;
+                            _throwableText.gameObject.SetActive(false);
+                            _notThrowableText.gameObject.SetActive(false);
+                            _throwAvailable = false;
+                        }
+                    } 
                 }
                 else
                 {
-                    _throwableText.gameObject.SetActive(true);
-                    _usableMarker.SetActive(true);
+                    _throwableText.gameObject.SetActive(false);
                     _notThrowableText.gameObject.SetActive(false);
-
-                    // this should be actually in the state so that it can't be used again when the item can be used again
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        _usableMarker.SetActive(false);
-                        _throwstate = true;
-                        _throwableText.gameObject.SetActive(false);
-                        _notThrowableText.gameObject.SetActive(false);
-                        _inRange = false;
-                    }
                 }
-            }
         }
     }
     
@@ -145,7 +143,7 @@ public class PlayerThrowTrigger : MonoBehaviour
                 }
             }
             
-            _inRange = true;
+            _throwAvailable = true;
         }
     }
 
@@ -156,7 +154,7 @@ public class PlayerThrowTrigger : MonoBehaviour
             _throwableText.gameObject.SetActive(false);
             _notThrowableText.gameObject.SetActive(false);
             _usableMarker.SetActive(false);
-            _inRange = false;
+            _throwAvailable = false;
         }
     }
 }

@@ -20,6 +20,9 @@ public class SoundItem : MonoBehaviour
     [Range(1,3)]
     [SerializeField] private int stage;
 
+   // [Tooltip("modify the text position at the mouse position")]
+     private Vector2 _textOffset;
+
     [Header("Sound Collider")]
     [Tooltip("the collider, which shows the sound range of the item")]
     [SerializeField] private GameObject _soundRangeCollider;
@@ -70,6 +73,10 @@ public class SoundItem : MonoBehaviour
 
     private void Update()
     {
+        _textOffset.x = 270;
+        _textOffset.y = -60;
+        _useButtonText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        
         if (_itemUsed)
         {
             _deactivationTime -= Time.deltaTime;
@@ -110,8 +117,7 @@ public class SoundItem : MonoBehaviour
                 _itemText.gameObject.SetActive(false);
                 _useButtonText.gameObject.SetActive(false);
                 _soundRangeCollider.SetActive(true);
-                _playerThrowTrigger.CloseText.gameObject.SetActive(false);
-                
+
                 _itemUsed = true;
             }
         }

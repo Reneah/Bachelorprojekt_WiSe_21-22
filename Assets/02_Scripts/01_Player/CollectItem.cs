@@ -15,6 +15,8 @@ public class CollectItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _useButtonText;
     [Tooltip("shows, that it is in the possession of the player")] 
     [SerializeField] private GameObject _ItemImage;
+    [Tooltip("modify the text position at the mouse position")]
+    [SerializeField] private Vector2 _textOffset;
 
     [Header("Choose the ONE Item which will be represented")] 
     [Tooltip("the key to open doors")] 
@@ -25,14 +27,7 @@ public class CollectItem : MonoBehaviour
     [SerializeField] private bool _parchment;
     [Tooltip("has to be interacted with by the player as a quest task")] 
     [SerializeField] private bool _secretPassage;
-
-    // Bela: Don't see why this should be needed.
-    /*public bool Key
-    {
-        get => _key;
-        set => _key = value;
-    }*/
-
+    
     //[SerializeField]
     private float _textVanishTime;
     
@@ -47,6 +42,8 @@ public class CollectItem : MonoBehaviour
     private SceneChange _sceneChange;
     private PlayerController _playerController;
     
+
+    
     void Start()
     {
         _vanishTime = _textVanishTime;
@@ -60,6 +57,8 @@ public class CollectItem : MonoBehaviour
     
     void Update()
     {
+        _useButtonText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        
         if (_itemCollected)
         {
             _vanishTime -= Time.deltaTime;
