@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7768714486499010612}
   - component: {fileID: 3508386912708484426}
   - component: {fileID: 8755277944153660459}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crenel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

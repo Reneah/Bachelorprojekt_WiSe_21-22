@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8262978020905095968}
   - component: {fileID: 9170172633957464692}
   - component: {fileID: 3628932712983307560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall_Windowed_High
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -989,6 +989,10 @@ PrefabInstance:
       value: Crenel
       objectReference: {fileID: 0}
     - target: {fileID: 666373320624778762, guid: 8f5bcb8e303e1574982f52be63e5a077, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 666373320624778762, guid: 8f5bcb8e303e1574982f52be63e5a077, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1238,6 +1242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Window
       objectReference: {fileID: 0}
+    - target: {fileID: 1378117982895233927, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2763470805131964523, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1286,6 +1294,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4690464004033984047, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4916068184829538151, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1301,6 +1313,10 @@ PrefabInstance:
     - target: {fileID: 7112862620412631977, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240398150703863870, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
