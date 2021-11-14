@@ -20,6 +20,22 @@ public class PlayerThrowTrigger : MonoBehaviour
     [SerializeField] private string _usableMarkerName;
     [Tooltip("modify the text position at the mouse position")]
     [SerializeField] private Vector2 _textOffset;
+    [Tooltip("the rotation speed towards the throw target")]
+    [SerializeField] private float _rotationSpeed;
+    [Tooltip("wait to throw during rotation towards the target")]
+    [SerializeField] public float _waitToThrowDuringRotation;
+
+    public float RotationSpeed
+    {
+        get => _rotationSpeed;
+        set => _rotationSpeed = value;
+    }
+
+    public float WaitToThrowDuringRotation
+    {
+        get => _waitToThrowDuringRotation;
+        set => _waitToThrowDuringRotation = value;
+    }
 
     // signalize the noisy item that it can be activated
     private GameObject _usableMarker;

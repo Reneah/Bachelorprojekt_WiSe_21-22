@@ -59,21 +59,21 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LookAgentVisualization.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LookAgentVisualization1.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PointVisualization.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
       </list>
     </option>
   </component>
@@ -177,6 +177,7 @@
       <workItem from="1636719744867" duration="2474000" />
       <workItem from="1636806767001" duration="1171000" />
       <workItem from="1636825110045" duration="5620000" />
+      <workItem from="1636912977806" duration="7919000" />
     </task>
     <servers />
   </component>
@@ -261,10 +262,10 @@
       <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state x="669" y="235" key="run.anything.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1635953837811" />
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1636660981633">
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1636919788504">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1636660981633" />
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1636919788504" />
     <state x="675" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1636297809418" />
   </component>
 </project>

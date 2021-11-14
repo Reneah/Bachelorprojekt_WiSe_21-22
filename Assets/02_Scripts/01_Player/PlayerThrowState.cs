@@ -6,23 +6,31 @@ using untitledProject;
 
 public class PlayerThrowState : IPlayerState
 {
-    // This bool prevents multiple execution of the Vector3.Dot if Condition
+    // this bool prevents multiple execution of the Vector3.Dot if Condition
     private bool _reachedThrowDirection = false;
+
+    // based on the rotation speed, this time has to be modified to get the right time to throw
+    private float _activateThrowAnimationTime;
+
+    // activate and deactivate the cooldown to run not all the time
+    private bool _activateCooldown = true;
     
     public IPlayerState Execute(PlayerController player)
     {
-        // MAYBE: adjustable angle to throw the itm
-        
         // rotate to the destined location
-        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(player.PlayerThrowTrigger.SoundItem.transform.position - player.transform.position), Time.deltaTime * 5);
+        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(player.PlayerThrowTrigger.SoundItem.transform.position - player.transform.position), Time.deltaTime * player.PlayerThrowTrigger.RotationSpeed);
 
-       // Debug.Log(Vector3.Dot(player.transform.TransformDirection(player.transform.forward),  player.PlayerThrowTrigger.NoiseItemPosition.position - player.transform.position));
+        if (_activateCooldown)
+        {
+            _activateThrowAnimationTime -= Time.deltaTime;
+        }
         
         // when the player rotated to the throw direction, the animation will be played
-        bool throwDirection = Vector3.Dot(player.transform.TransformDirection(player.transform.forward), player.PlayerThrowTrigger.SoundItem.transform.position - player.transform.position) <= -1;
-        if ( throwDirection && !_reachedThrowDirection)
+        if (_activateThrowAnimationTime <= 0 && !_reachedThrowDirection)
         {
+            _activateCooldown = false;
             _reachedThrowDirection = true;
+            _activateThrowAnimationTime = player.PlayerThrowTrigger.WaitToThrowDuringRotation;
             player.PlayerAnimationHandler.PlayerThrow();
         }
 
@@ -31,15 +39,8 @@ public class PlayerThrowState : IPlayerState
         if (player.PlayerAnimationHandler.RunningThrowAnimation)
         {
             player.PlayerThrowTrigger.SoundItem.SoundRangeCollider.SetActive(true);
-            if (player.PlayerThrowTrigger.SoundItem.Reusable)
-            {
-                player.PlayerThrowTrigger.SoundItem.ItemUsed = false;
-            }
-            else
-            {
-                player.PlayerThrowTrigger.SoundItem.ItemUsed = true;
-            }
-
+            player.PlayerThrowTrigger.SoundItem.ItemUsed = true;
+            
             return PlayerController.PlayerIdleState;
         }
         
@@ -48,7 +49,7 @@ public class PlayerThrowState : IPlayerState
 
     public void Enter(PlayerController player)
     {
-        
+        _activateThrowAnimationTime = player.PlayerThrowTrigger.WaitToThrowDuringRotation;
     }
 
     public void Exit(PlayerController player)
@@ -56,5 +57,6 @@ public class PlayerThrowState : IPlayerState
         player.PlayerThrowTrigger.Throwstate = false;
         player.PlayerAnimationHandler.RunningThrowAnimation = false;
         _reachedThrowDirection = false;
+        _activateCooldown = true;
     }
 }

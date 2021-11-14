@@ -38,7 +38,7 @@ public class SoundItem : MonoBehaviour
     private bool _reuseItem;
 
     // deactivate the sound collider after a fixed time
-    private float _deactivationTime = 0.1f;
+    private float _deactivationTime = 0.3f;
 
     public GameObject SoundRangeCollider
     {
@@ -67,8 +67,7 @@ public class SoundItem : MonoBehaviour
         _useButtonText.gameObject.SetActive(false);
         _itemText.gameObject.SetActive(false);
         _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
-
-        _reuseItem = _reusable;
+        
     }
 
     private void Update()
@@ -85,6 +84,7 @@ public class SoundItem : MonoBehaviour
             {
                 if (_reusable)
                 {
+                    _deactivationTime = 0.3f;
                     _soundRangeCollider.SetActive(false);
                     _itemUsed = false;
                 }
@@ -97,17 +97,7 @@ public class SoundItem : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player")  && !_itemUsed)
-        {
-            _playerThrowTrigger.Close = true;
-            _itemText.gameObject.SetActive(true);
-            _useButtonText.gameObject.SetActive(true);
-        }
-    }
-
+    
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player")  && !_itemUsed)
@@ -119,7 +109,12 @@ public class SoundItem : MonoBehaviour
                 _soundRangeCollider.SetActive(true);
 
                 _itemUsed = true;
+                return;
             }
+            
+            _playerThrowTrigger.Close = true;
+            _itemText.gameObject.SetActive(true);
+            _useButtonText.gameObject.SetActive(true);
         }
     }
 
