@@ -74,6 +74,7 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
       </list>
     </option>
   </component>
@@ -178,6 +179,7 @@
       <workItem from="1636806767001" duration="1171000" />
       <workItem from="1636825110045" duration="5620000" />
       <workItem from="1636912977806" duration="7919000" />
+      <workItem from="1636965572069" duration="2903000" />
     </task>
     <servers />
   </component>

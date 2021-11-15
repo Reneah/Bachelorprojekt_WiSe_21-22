@@ -9,6 +9,7 @@ TagManager:
   - SearchPoints
   - Death
   - NoisyItem
+  - Stones
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Player
   - Wall
   - NoisyItem
-  - 
+  - Stones
   - 
   - 
   - 
