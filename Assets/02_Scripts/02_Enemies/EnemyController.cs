@@ -363,9 +363,16 @@ public class EnemyController : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _animationHandler = GetComponent<EnemyAnimationHandler>();
         _player = FindObjectOfType<PlayerController>();
-        
-        SetUpPatrolBehaviour();
-        SetUpGuardBehaviour();
+
+        if (_patrolling)
+        {
+            SetUpPatrolBehaviour(); 
+        }
+        else if(_guarding)
+        {
+            SetUpGuardBehaviour(); 
+        }
+
         //StartCoroutine(FOVRoutine());
     }
     
@@ -380,8 +387,6 @@ public class EnemyController : MonoBehaviour
         }
         
         PlayerDetected();
-        
-        //_enemyHead.transform.rotation = Quaternion.Euler( new Vector3(_currentLookpoint.transform.position.x, _currentLookpoint.transform.position.y, _currentLookpoint.transform.position.z));
     }
     
     /// <summary>

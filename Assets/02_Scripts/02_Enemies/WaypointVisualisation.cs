@@ -8,7 +8,7 @@ public class WaypointVisualisation : MonoBehaviour
     [Tooltip("the sphere size of the waypoint")]
    [SerializeField] float wayPointsSize;
 
-    [Tooltip(" the color of the waypoints and ways")]
+    [Tooltip("the color of the waypoints and ways")]
     [SerializeField] private Color32 _wayColor;
 
     private void OnDrawGizmos()

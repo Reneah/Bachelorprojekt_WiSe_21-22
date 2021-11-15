@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01_Scenes/MainMenu.unity
-    guid: 70ca2a9916e5f8c4dbbe71d2d5ea29ef
+    path: Assets/01_Scenes/IntroScene.unity
+    guid: 72a19aaa0ce5140489f3eb18d2b0689b
   - enabled: 1
-    path: Assets/01_Scenes/LevelDesign/GameWorld_BesiegedKeep_1.unity
+    path: Assets/01_Scenes/LevelDesign/Prototype/GameWorld_BesiegedKeep_1.unity
     guid: 3580a019300971e4ca58ff0e3f11dcc6
   - enabled: 1
-    path: Assets/01_Scenes/LevelDesign/GameWorld_BesiegedKeep_2.unity
+    path: Assets/01_Scenes/LevelDesign/Prototype/GameWorld_BesiegedKeep_2.unity
     guid: fa64086a602287d4fbcae85ec9eef2b9
   - enabled: 1
-    path: Assets/01_Scenes/Archive/GameWorld_BesiegedKeep_3_OLD.unity
-    guid: fc83875038d094041b9b77d9411e07af
+    path: Assets/01_Scenes/LevelDesign/Prototype/GameWorld_BesiegedKeep_3.unity
+    guid: e33b23e89f8ba7840b199fc63ba08ef0
   m_configObjects: {}

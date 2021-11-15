@@ -28,7 +28,9 @@
             <e p="EnemySearchState.cs" t="Include" />
             <e p="EnemySoundInvestigationState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
+            <e p="LookAgentVisualization.cs" t="Include" />
             <e p="PlayerNearDetection.cs" t="Include" />
+            <e p="PointVisualization.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
             <e p="SoundItem.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
@@ -38,7 +40,9 @@
             <e p="Death.cs" t="Include" />
             <e p="FadeOut.cs" t="Include" />
             <e p="IntroScene.cs" t="Include" />
+            <e p="QuestManager.cs" t="Include" />
             <e p="SceneChange.cs" t="Include" />
+            <e p="WallCheck.cs" t="Include" />
           </e>
           <e p="Editor" t="Include">
             <e p="FieldOfViewEditor.cs" t="Include" />
