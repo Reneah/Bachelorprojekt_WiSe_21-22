@@ -50,6 +50,7 @@ public class PlayerThrowState : IPlayerState
     public void Enter(PlayerController player)
     {
         _activateThrowAnimationTime = player.PlayerThrowTrigger.WaitToThrowDuringRotation;
+        player.CollectStones.StoneUsed();
     }
 
     public void Exit(PlayerController player)

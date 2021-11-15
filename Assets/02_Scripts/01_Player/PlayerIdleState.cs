@@ -21,7 +21,7 @@ namespace untitledProject
                 return PlayerController.PlayerJumpState;
             }
 
-            if (player.PlayerThrowTrigger.Throwstate)
+            if (player.PlayerThrowTrigger.Throwstate && player.CollectStones.StonesCounter > 0)
             {
                 return PlayerController.PlayerThrowState;
             }

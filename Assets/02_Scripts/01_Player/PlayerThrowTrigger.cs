@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using untitledProject;
 
-
-//NOTE: usable marker has to get of every single noisy item
-// NOTE: need from the noisy item "itemUsed" to deactivated it
 public class PlayerThrowTrigger : MonoBehaviour
 {
     [Header("Throwing Rocks")]
@@ -25,6 +23,8 @@ public class PlayerThrowTrigger : MonoBehaviour
     [Tooltip("wait to throw during rotation towards the target")]
     [SerializeField] public float _waitToThrowDuringRotation;
 
+    private CollectStones _collectStones;
+    
     public float RotationSpeed
     {
         get => _rotationSpeed;
@@ -37,7 +37,7 @@ public class PlayerThrowTrigger : MonoBehaviour
         set => _waitToThrowDuringRotation = value;
     }
 
-    // signalize the noisy item that it can be activated
+    // signalize that the noisy item can be activated
     private GameObject _usableMarker;
     
     private SoundItem _soundItem;
@@ -70,7 +70,11 @@ public class PlayerThrowTrigger : MonoBehaviour
     }
 
     Ray ray;
-    RaycastHit _hitMouse;
+
+    private void Start()
+    {
+        _collectStones = FindObjectOfType<CollectStones>();
+    }
 
     private void Update()
     {
@@ -100,47 +104,54 @@ public class PlayerThrowTrigger : MonoBehaviour
             _notThrowableText.gameObject.SetActive(false);
         }
         
-        if (_throwAvailable && !_close)
+        if (!_close)
         {
+            // when the player goes from the close distance to the throw distance and is not able to throw, it has to be set off
+            _usableMarker.SetActive(false);
+            
             Debug.DrawRay(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position * Vector3.Distance(_soundItem.transform.position, transform.position));
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             Physics.Raycast(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position, out hit, Vector3.Distance(_soundItem.transform.position, transform.position));
             
-            _usableMarker.SetActive(true);
-            
                 // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
-                if(Physics.Raycast(ray, out _hitMouse, Mathf.Infinity, LayerMask.GetMask("NoisyItem")))
+                if(Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("NoisyItem")))
                 {
-                    // if something is blocking the trajectory
-                    if (hit.collider.CompareTag("Wall"))
+                    _notThrowableText.gameObject.SetActive(true);
+                    
+                    if (_throwAvailable && _collectStones.StonesCounter > 0)
                     {
                         _usableMarker.SetActive(true);
-                        _throwableText.gameObject.SetActive(false);
-                        _notThrowableText.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        _throwableText.gameObject.SetActive(true);
-                        _usableMarker.SetActive(true);
-                        _notThrowableText.gameObject.SetActive(false);
-
-                        // this should be actually in the state so that it can't be used again when the item can be used again
-                        if (Input.GetMouseButtonDown(0))
+                        
+                        // if something is blocking the trajectory
+                        if (hit.collider.CompareTag("Wall"))
                         {
-                            _usableMarker.SetActive(false);
-                            _throwstate = true;
                             _throwableText.gameObject.SetActive(false);
-                            _notThrowableText.gameObject.SetActive(false);
-                            _throwAvailable = false;
+                            _notThrowableText.gameObject.SetActive(true);
                         }
-                    } 
+                        else
+                        {
+                            _throwableText.gameObject.SetActive(true);
+                            _notThrowableText.gameObject.SetActive(false);
+
+                            // this should be actually in the state so that it can't be used again when the item can be used again
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                _usableMarker.SetActive(false);
+                                _throwstate = true;
+                                _throwableText.gameObject.SetActive(false);
+                                _notThrowableText.gameObject.SetActive(false);
+                                _throwAvailable = false;
+                            }
+                        } 
+                    }
                 }
                 else
                 {
                     _throwableText.gameObject.SetActive(false);
                     _notThrowableText.gameObject.SetActive(false);
+                    _usableMarker.SetActive(false);
                 }
         }
     }

@@ -36,13 +36,7 @@ namespace untitledProject
         private float _verticalAxis;
         private float _horizontalAxis;
         private float _currentVerticalVelocity;
-
-        public float CurrentVerticalVelocity
-        {
-            get => _currentVerticalVelocity;
-            set => _currentVerticalVelocity = value;
-        }
-
+        
         private CharacterController _characterController;
 
         public CharacterController CharacterController
@@ -57,6 +51,14 @@ namespace untitledProject
         {
             get => _playerAnimationHandler;
             set => _playerAnimationHandler = value;
+        }
+
+        private CollectStones _collectStones;
+
+        public CollectStones CollectStones
+        {
+            get => _collectStones;
+            set => _collectStones = value;
         }
 
         [Header("Jump Settings")]
@@ -118,6 +120,7 @@ namespace untitledProject
             _playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
             _characterController = GetComponent<CharacterController>();
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
+            _collectStones = FindObjectOfType<CollectStones>();
         }
         
         private void Update()
