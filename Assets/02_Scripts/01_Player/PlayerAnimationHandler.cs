@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DarkTonic.MasterAudio;
 using UnityEngine;
 using untitledProject;
 
@@ -79,6 +80,16 @@ public class PlayerAnimationHandler : MonoBehaviour
     public void EndThrowAnimation()
     {
         _runningThrowAnimation = true;
+    }
+
+    public void PlayerQuietFootsteps()
+    {
+        MasterAudio.PlaySound("PlayerQuietFootsteps");
+    }
+    
+    public void PlayerHeavyFootsteps()
+    {
+        MasterAudio.PlaySound("PlayerLoudFootsteps");
     }
     
     

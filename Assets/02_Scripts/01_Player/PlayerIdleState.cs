@@ -27,6 +27,7 @@ namespace untitledProject
             }
             
             player.MovementExecution();
+            
             return this;
         }
     
