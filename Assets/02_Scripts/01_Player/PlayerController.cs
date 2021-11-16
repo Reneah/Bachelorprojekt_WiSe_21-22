@@ -26,6 +26,12 @@ namespace untitledProject
         private Vector3 _moveDirection;
         private float targetSpeed;
 
+        public float CurrentForwardVelocity
+        {
+            get => _currentForwardVelocity;
+            set => _currentForwardVelocity = value;
+        }
+
         public Vector3 MoveDirection
         {
             get => _moveDirection;
