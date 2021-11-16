@@ -20,8 +20,14 @@ namespace untitledProject
                 player.Jump();
                 return PlayerController.PlayerJumpState;
             }
+
+            if (player.PlayerThrowTrigger.Throwstate && player.CollectStones.StonesCounter > 0)
+            {
+                return PlayerController.PlayerThrowState;
+            }
             
             player.MovementExecution();
+            
             return this;
         }
     

@@ -96,17 +96,10 @@ public class EnemyController : MonoBehaviour
     #region FieldOfViewVariables
     
     [Header("FieldOfView")]
- //   [Tooltip("the radius of the view field")]
-  //  [SerializeField] private float _radius;
- //   [Tooltip("the angle of the view field")]
-  //  [Range(0,360)]
-   // [SerializeField] private float _angle;
-    //[Tooltip("the mask for the registration of the player in the view field")]
+
     [SerializeField] private LayerMask _targetMask;
     [Tooltip("the mask for the registration of the obstacle in the view field")]
     [SerializeField] private LayerMask obstructionMask;
-   // [Tooltip("determine the wait time in seconds for every view field check")]
-    //[SerializeField] float delay = 0.2f;
     [Tooltip("the enemy head Transform to have the origin for the view field")]
     [SerializeField] private Transform _enemyHead;
     [Tooltip("the raycast position to know obstacles")] 
@@ -536,68 +529,7 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-/*
-    #region FieldOfViewBehaviour
-    
-    /// <summary>
-    /// checks the field of view every given seconds whether the player is in or not. This safe some performance
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator FOVRoutine()
-    {
-        WaitForSeconds wait = new WaitForSeconds(delay);
 
-        while (true)
-        {
-            yield return wait;
-            FieldOfViewCheck();
-        }
-    }
-
-    private void FieldOfViewCheck()
-    {
-        // checks if the player is in the radius of the enemy
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, _radius, _targetMask);
-
-        if (rangeChecks.Length != 0)
-        {
-            // there is only one player in the game, so the array can be set to 0
-            Vector3 target = rangeChecks[0].transform.position;
-            target = new Vector3 (target.x, 1.3f, target.z);
-            // the direction from the enemy to the player
-            Vector3 directionToTarget = (target - _enemyHead.position).normalized;
-
-            // checks if the player is in the angle in front of the enemy
-            bool playerIsVisible = Vector3.Angle(_enemyHead.forward, directionToTarget) < _angle / 2;
-            if (playerIsVisible)
-            {
-                // the distance from the enemy to the player
-                float distanceToTarget = Vector3.Distance(transform.position, target);
-                
-                // check if there is a obstacle in the way to see the player
-                bool obstructedView = Physics.Raycast(_obstacleRaycastTransform.position, directionToTarget, distanceToTarget, obstructionMask);
-                if (!obstructedView)
-                {
-                    _canSeePlayer = true;
-                }
-                else
-                {
-                    _canSeePlayer = false;
-                }
-            }
-            else
-            {
-                _canSeePlayer = false;
-            }
-        }
-        else if(_canSeePlayer)
-        {
-            _canSeePlayer = false;
-        }
-    }
-    
-    #endregion
-*/
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Sound"))
@@ -610,7 +542,6 @@ public class EnemyController : MonoBehaviour
 
             if (hit.collider.CompareTag("Wall"))
             {
-                Debug.Log("Stage: 0");
                 _soundItemScript.Stage--;
 
                 if (_soundItemScript.Stage <= 0)
@@ -625,10 +556,15 @@ public class EnemyController : MonoBehaviour
                 _soundBehaviourStage = _soundItemScript.Stage;
                 _soundEventPosition = _soundItemScript.transform;
                 _soundNoticed = true;
+                _spottedBar.fillAmount = 1;
             }
-            
-            // deactivate the sound collider
-            other.GetComponent<Collider>().gameObject.SetActive(false);
+        }
+
+        if (other.CompareTag("FootSteps"))
+        {
+            _soundNoticed = true;
+            _soundBehaviourStage = 3;
+            _soundEventPosition = _player.transform;
         }
         
         // if the enemy get in a new room the new search points will be selected
