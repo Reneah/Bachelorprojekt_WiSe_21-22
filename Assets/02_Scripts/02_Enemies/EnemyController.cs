@@ -626,9 +626,6 @@ public class EnemyController : MonoBehaviour
                 _soundEventPosition = _soundItemScript.transform;
                 _soundNoticed = true;
             }
-            
-            // deactivate the sound collider
-            other.GetComponent<Collider>().gameObject.SetActive(false);
         }
         
         // if the enemy get in a new room the new search points will be selected
