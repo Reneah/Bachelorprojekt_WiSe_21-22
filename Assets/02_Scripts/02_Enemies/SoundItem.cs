@@ -20,9 +20,33 @@ public class SoundItem : MonoBehaviour
     [Range(1,3)]
     [SerializeField] private int stage;
 
+   // [Tooltip("modify the text position at the mouse position")]
+     private Vector2 _textOffset;
+
     [Header("Sound Collider")]
     [Tooltip("the collider, which shows the sound range of the item")]
     [SerializeField] private GameObject _soundRangeCollider;
+    
+    [SerializeField] private bool _reusable;
+
+    public bool Reusable
+    {
+        get => _reusable;
+        set => _reusable = value;
+    }
+
+    private bool _reuseItem;
+
+    // deactivate the sound collider after a fixed time
+    private float _deactivationTime = 0.3f;
+
+    public GameObject SoundRangeCollider
+    {
+        get => _soundRangeCollider;
+        set => _soundRangeCollider = value;
+    }
+
+    private PlayerThrowTrigger _playerThrowTrigger;
 
     public int Stage
     {
@@ -31,22 +55,49 @@ public class SoundItem : MonoBehaviour
     }
     
     private bool _itemUsed = false;
-    
+
+    public bool ItemUsed
+    {
+        get => _itemUsed;
+        set => _itemUsed = value;
+    }
+
     void Start()
     {
         _useButtonText.gameObject.SetActive(false);
         _itemText.gameObject.SetActive(false);
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player")  && !_itemUsed)
-        {
-            _itemText.gameObject.SetActive(true);
-            _useButtonText.gameObject.SetActive(true);
-        }
+        _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
+        
     }
 
+    private void Update()
+    {
+        _textOffset.x = 270;
+        _textOffset.y = -60;
+        _useButtonText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        
+        if (_itemUsed)
+        {
+            _deactivationTime -= Time.deltaTime;
+
+            if (_deactivationTime <= 0)
+            {
+                if (_reusable)
+                {
+                    _deactivationTime = 0.3f;
+                    _soundRangeCollider.SetActive(false);
+                    _itemUsed = false;
+                }
+                else
+                {
+                    _soundRangeCollider.SetActive(false);
+                    Destroy(this);
+                }
+
+            }
+        }
+    }
+    
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player")  && !_itemUsed)
@@ -56,9 +107,14 @@ public class SoundItem : MonoBehaviour
                 _itemText.gameObject.SetActive(false);
                 _useButtonText.gameObject.SetActive(false);
                 _soundRangeCollider.SetActive(true);
-                
+
                 _itemUsed = true;
+                return;
             }
+            
+            _playerThrowTrigger.Close = true;
+            _itemText.gameObject.SetActive(true);
+            _useButtonText.gameObject.SetActive(true);
         }
     }
 
@@ -68,6 +124,7 @@ public class SoundItem : MonoBehaviour
         {
             if (other.CompareTag("Player") && !_itemUsed)
             {
+                _playerThrowTrigger.Close = false;
                 _useButtonText.gameObject.SetActive(false);
                 _itemText.gameObject.SetActive(false);
             }

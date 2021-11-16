@@ -12,6 +12,7 @@
         <e p="02_Scripts" t="Include">
           <e p="01_Player" t="Include">
             <e p="CollectItem.cs" t="Include" />
+            <e p="CollectStones.cs" t="Include" />
             <e p="IPlayerState.cs" t="Include" />
             <e p="PlayerAnimationHandler.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
@@ -19,6 +20,9 @@
             <e p="PlayerIdleState.cs" t="Include" />
             <e p="PlayerJumpState.cs" t="Include" />
             <e p="PlayerRunState.cs" t="Include" />
+            <e p="PlayerThrowState.cs" t="Include" />
+            <e p="PlayerThrowTrigger.cs" t="Include" />
+            <e p="StonePile.cs" t="Include" />
           </e>
           <e p="02_Enemies" t="Include">
             <e p="EnemyAnimationHandler.cs" t="Include" />
