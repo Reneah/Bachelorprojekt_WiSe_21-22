@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9018195724708033176}
   - component: {fileID: 9018195724708033177}
   - component: {fileID: 9018195724708033182}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrokenArchLarge
   m_TagString: Untagged
   m_Icon: {fileID: 0}

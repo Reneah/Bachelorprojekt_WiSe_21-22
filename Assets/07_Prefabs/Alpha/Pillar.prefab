@@ -6228,7 +6228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8503633498350710296}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7603,7 +7603,7 @@ GameObject:
   - component: {fileID: 8086920089586979076}
   - component: {fileID: 602457663333126772}
   - component: {fileID: 2533174882673001779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomPillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
