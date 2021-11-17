@@ -1,0 +1,75 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class QuestManager : MonoBehaviour
+{
+    private bool _questStage1complete;
+    private bool _questStage2complete;
+    private bool _questStage3complete;
+    private bool _questStage4complete;
+
+    private TextMeshProUGUI _quest1Text;
+    private TextMeshProUGUI _quest2Text;
+    private TextMeshProUGUI _quest3Text;
+    private TextMeshProUGUI _quest4Text;
+    private TextMeshProUGUI _quest5Text;
+
+    //Bela: Could be worth making it a Singelton and use DoNotDestroyOnLoad
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _quest1Text = GameObject.Find("Quest1Text").GetComponent<TextMeshProUGUI>();
+        _quest2Text = GameObject.Find("Quest2Text").GetComponent<TextMeshProUGUI>();
+        _quest3Text = GameObject.Find("Quest3Text").GetComponent<TextMeshProUGUI>();
+        _quest4Text = GameObject.Find("Quest4Text").GetComponent<TextMeshProUGUI>();
+        _quest5Text = GameObject.Find("Quest5Text").GetComponent<TextMeshProUGUI>();
+
+        _quest3Text.enabled = false;
+        _quest4Text.enabled = false;
+        _quest5Text.enabled = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (CollectItem._backpackCollected && !_questStage1complete)
+        {
+            _questStage1complete = true;
+            
+            // activate next quest text, "Meet up with Drustan back at the front gate."
+            _quest3Text.enabled = true;
+            // activate crossed out resolved quest text, "Find a backpack."
+            _quest2Text.fontStyle = FontStyles.Strikethrough;
+        }
+        else if (CollectItem._parchmentCollected && !_questStage2complete)
+        {
+            _questStage2complete = true;
+            
+            // activate next quest text "Find the hidden key under the throne."
+            _quest4Text.enabled = true;
+            // activate crossed out resolved quest text "Meet up with Drustan back at the front gate."
+            _quest3Text.fontStyle = FontStyles.Strikethrough;
+        }
+        else if (CollectItem._keyCollected && !_questStage3complete)
+        {
+            _questStage3complete = true;
+            
+            // activate next quest text "Find the secret passage."
+            _quest5Text.enabled = true;
+            // activate crossed out resolved quest text "Find the hidden key under the throne."
+            _quest4Text.fontStyle = FontStyles.Strikethrough;
+        }
+        else if (CollectItem._secretPassageOpened && !_questStage4complete)
+        {
+            _questStage4complete = true;
+            
+            // activate crossed out resolved quest text "Find the secret passage."
+            _quest5Text.fontStyle = FontStyles.Strikethrough;
+            // activate crossed out resolved quest text "Escape the keep unharmed."
+            _quest1Text.fontStyle = FontStyles.Strikethrough;
+        }
+    }
+}

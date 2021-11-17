@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DarkTonic.MasterAudio;
 using UnityEngine;
 using untitledProject;
 
@@ -7,30 +8,89 @@ public class PlayerAnimationHandler : MonoBehaviour
 {
     private static readonly int MovementSpeed = Animator.StringToHash("MovementSpeed");
 
-    private Animator playerAnimator;
-    private PlayerController playerController;
+    private Animator _playerAnimator;
+    private PlayerController _playerController;
+    private static readonly int Jump = Animator.StringToHash("Jump");
+    private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
+    private static readonly int VerticalVelocity = Animator.StringToHash("VerticalVelocity");
+    private static readonly int Death = Animator.StringToHash("Death");
+    private static readonly int Throw = Animator.StringToHash("Throw");
+
+    // checks if the throw animation is at the end
+    private bool _runningThrowAnimation = false;
+
+    public bool RunningThrowAnimation
+    {
+        get => _runningThrowAnimation;
+        set => _runningThrowAnimation = value;
+    }
 
     void Start()
     {
-        playerAnimator = GetComponent<Animator>();
-        playerController = FindObjectOfType<PlayerController>();
+        _playerAnimator = GetComponent<Animator>();
+        _playerController = FindObjectOfType<PlayerController>();
     }
     
     /// <summary>
-    /// sets the speed of the run animation and decides to play the run or idle animation
+    /// Set the players velocities.
     /// </summary>
-    public void SetSpeed(float movementSpeed)
+    /// <param name="movementSpeed">Players movement speed</param>
+    /// <param name="verticalVelocity">Players vertical velocity</param>
+    public void SetSpeeds(float movementSpeed, float verticalVelocity)
     {
-        playerAnimator.SetFloat(MovementSpeed, movementSpeed);
+        _playerAnimator.SetFloat(MovementSpeed, movementSpeed);
+        _playerAnimator.SetFloat(VerticalVelocity, verticalVelocity);
     }
 
-    public void StopPlayerMovement()
+    /// <summary>
+    /// Triggers the animator jump trigger
+    /// </summary>
+    public void DoJump()
     {
-        playerController.StopPlayerMovement();
+        _playerAnimator.SetTrigger(Jump);
     }
-        
-    public void ContinuePlayerMovement()
+
+    public void ResetJumpTrigger()
     {
-        playerController.ContinuePlayerMovement();
+        _playerAnimator.ResetTrigger(Jump);
     }
+    
+    /// <summary>
+    /// Tells the player whether the player is grounded or not
+    /// </summary>
+    /// <param name="grounded"></param>
+    public void SetGrounded(bool grounded)
+    {
+        _playerAnimator.SetBool(IsGrounded, grounded);
+    }
+
+    public void PlayerDeath()
+    {
+        _playerAnimator.SetTrigger(Death);
+    }
+
+    public void PlayerThrow()
+    {
+        _playerAnimator.SetTrigger(Throw);
+    }
+
+    /// <summary>
+    /// Animation Event
+    /// </summary>
+    public void EndThrowAnimation()
+    {
+        _runningThrowAnimation = true;
+    }
+
+    public void PlayerQuietFootsteps()
+    {
+        MasterAudio.PlaySound("PlayerQuietFootsteps");
+    }
+    
+    public void PlayerHeavyFootsteps()
+    {
+        MasterAudio.PlaySound("PlayerLoudFootsteps");
+    }
+    
+    
 }
