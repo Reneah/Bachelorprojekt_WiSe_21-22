@@ -54,11 +54,8 @@
             <e p="WallCheck.cs" t="Include" />
           </e>
           <e p="04_Menu" t="Include">
-            <e p="ChangeCursorColor.cs" t="Include" />
-            <e p="ChangeOptionsColor.cs" t="Include" />
             <e p="InGameMenu.cs" t="Include" />
             <e p="MainMenu.cs" t="Include" />
-            <e p="Menu.cs" t="Include" />
             <e p="Options.cs" t="Include" />
             <e p="ScenePersistent.cs" t="Include" />
             <e p="ShowFramerate.cs" t="Include" />
