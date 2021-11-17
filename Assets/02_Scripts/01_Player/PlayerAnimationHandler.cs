@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DarkTonic.MasterAudio;
 using UnityEngine;
@@ -29,8 +30,16 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         _playerAnimator = GetComponent<Animator>();
         _playerController = FindObjectOfType<PlayerController>();
+        
+        
     }
-    
+
+    private void Update()
+    {
+        //Debug.Log(_playerAnimator.GetBoneTransform(HumanBodyBones.LeftLowerLeg).position.y);
+        
+    }
+
     /// <summary>
     /// Set the players velocities.
     /// </summary>
@@ -82,14 +91,20 @@ public class PlayerAnimationHandler : MonoBehaviour
         _runningThrowAnimation = true;
     }
 
-    public void PlayerQuietFootsteps()
+    public void PlayerQuietFootsteps(AnimationEvent animationEvent)
     {
-        MasterAudio.PlaySound("PlayerQuietFootsteps");
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            MasterAudio.PlaySound("PlayerQuietFootsteps");
+        }
     }
     
-    public void PlayerHeavyFootsteps()
+    public void PlayerHeavyFootsteps(AnimationEvent animationEvent)
     {
-        MasterAudio.PlaySound("PlayerLoudFootsteps");
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            MasterAudio.PlaySound("PlayerLoudFootsteps");
+        }
     }
     
     
