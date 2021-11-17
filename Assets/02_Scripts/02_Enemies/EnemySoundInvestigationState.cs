@@ -13,8 +13,6 @@ public class EnemySoundInvestigationState : IEnemyState
     
     public IEnemyState Execute(EnemyController enemy)
     {
-        Debug.Log(_currentSoundStage);
-        Debug.Log(enemy.SoundBehaviourStage);
         // when the player should use the same sound again, the stage will be increased and the enemy will be more aggressive
         if (_currentSoundStage < enemy.SoundBehaviourStage)
         {
