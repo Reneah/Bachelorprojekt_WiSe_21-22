@@ -6,14 +6,12 @@ using UnityEngine;
 
 public class SoundItem : MonoBehaviour
 { 
-    [Header("Item UI")]
-    [Tooltip("shows the usable item")]
-   [SerializeField] private TextMeshProUGUI _itemText;
+    [Header("Item")]
     [Tooltip("shows the current button to use")]
-   [SerializeField] private TextMeshProUGUI _useButtonText;
-
-
-    [Header("Choose the ONE Stage which will be represented")]
+    [SerializeField] private TextMeshProUGUI _useButtonText;
+    [SerializeField] private bool _reusable;
+    
+    [Header("Sound Stage")]
     [Tooltip("First Stage: the enemy will walk to the point of interest" +
              " Second Stage: the enemy will run to the point of interest" +
              " Third Stage: the enemy runs to the point of interest, knows that the player is nearby and start searching")]
@@ -27,8 +25,6 @@ public class SoundItem : MonoBehaviour
     [Tooltip("the collider, which shows the sound range of the item")]
     [SerializeField] private GameObject _soundRangeCollider;
     
-    [SerializeField] private bool _reusable;
-
     public bool Reusable
     {
         get => _reusable;
@@ -65,7 +61,6 @@ public class SoundItem : MonoBehaviour
     void Start()
     {
         _useButtonText.gameObject.SetActive(false);
-        _itemText.gameObject.SetActive(false);
         _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
         
     }
@@ -104,7 +99,6 @@ public class SoundItem : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                _itemText.gameObject.SetActive(false);
                 _useButtonText.gameObject.SetActive(false);
                 _soundRangeCollider.SetActive(true);
 
@@ -113,7 +107,6 @@ public class SoundItem : MonoBehaviour
             }
             
             _playerThrowTrigger.Close = true;
-            _itemText.gameObject.SetActive(true);
             _useButtonText.gameObject.SetActive(true);
         }
     }
@@ -126,7 +119,6 @@ public class SoundItem : MonoBehaviour
             {
                 _playerThrowTrigger.Close = false;
                 _useButtonText.gameObject.SetActive(false);
-                _itemText.gameObject.SetActive(false);
             }
         }
     }
