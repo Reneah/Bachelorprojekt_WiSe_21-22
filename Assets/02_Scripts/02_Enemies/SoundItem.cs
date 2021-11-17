@@ -137,7 +137,6 @@ public class SoundItem : MonoBehaviour
                     _soundRangeCollider.SetActive(false);
                     Destroy(this);
                 }
-
             }
         }
     }
