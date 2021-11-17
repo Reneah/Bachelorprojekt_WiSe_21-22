@@ -16,7 +16,7 @@ public class SoundItem : MonoBehaviour
              " Second Stage: the enemy will run to the point of interest" +
              " Third Stage: the enemy runs to the point of interest, knows that the player is nearby and start searching")]
     [Range(1,3)]
-    [SerializeField] private int stage;
+    [SerializeField] private int _stage;
 
    // [Tooltip("modify the text position at the mouse position")]
      private Vector2 _textOffset;
@@ -44,10 +44,19 @@ public class SoundItem : MonoBehaviour
 
     private PlayerThrowTrigger _playerThrowTrigger;
 
+    // when the player is able to reuse the sound, the alert stage of the enemy rise
+    private bool _oneTimeUsed = false;
+
+    public bool OneTimeUsed
+    {
+        get => _oneTimeUsed;
+        set => _oneTimeUsed = value;
+    }
+
     public int Stage
     {
-        get => stage;
-        set => stage = value;
+        get => _stage;
+        set => _stage = value;
     }
     
     private bool _itemUsed = false;
@@ -57,6 +66,8 @@ public class SoundItem : MonoBehaviour
         get => _itemUsed;
         set => _itemUsed = value;
     }
+
+    private bool _itemUsable = false;
 
     void Start()
     {
@@ -70,7 +81,44 @@ public class SoundItem : MonoBehaviour
         _textOffset.x = 270;
         _textOffset.y = -60;
         _useButtonText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
-        
+
+        ItemActivation();
+        ItemExecution();
+    }
+
+    private void ItemActivation()
+    {
+        if (_itemUsable)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (_oneTimeUsed)
+                {
+                    _stage++;
+
+                    if (_stage >= 3)
+                    {
+                        _stage = 3;
+                    }
+                }
+            
+                _useButtonText.gameObject.SetActive(false);
+                _soundRangeCollider.SetActive(true);
+
+                _itemUsed = true;
+                return;
+            }
+            
+            _playerThrowTrigger.Close = true;
+            _useButtonText.gameObject.SetActive(true);
+        }
+    }
+    
+    /// <summary>
+    /// decides if the item can be reused or not after a certain time
+    /// </summary>
+    private void ItemExecution()
+    {
         if (_itemUsed)
         {
             _deactivationTime -= Time.deltaTime;
@@ -82,6 +130,7 @@ public class SoundItem : MonoBehaviour
                     _deactivationTime = 0.3f;
                     _soundRangeCollider.SetActive(false);
                     _itemUsed = false;
+                    _oneTimeUsed = true;
                 }
                 else
                 {
@@ -95,19 +144,9 @@ public class SoundItem : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player")  && !_itemUsed)
+        if (other.CompareTag("Player") && !_itemUsed)
         {
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                _useButtonText.gameObject.SetActive(false);
-                _soundRangeCollider.SetActive(true);
-
-                _itemUsed = true;
-                return;
-            }
-            
-            _playerThrowTrigger.Close = true;
-            _useButtonText.gameObject.SetActive(true);
+            _itemUsable = true;
         }
     }
 
@@ -117,6 +156,7 @@ public class SoundItem : MonoBehaviour
         {
             if (other.CompareTag("Player") && !_itemUsed)
             {
+                _itemUsable = false;
                 _playerThrowTrigger.Close = false;
                 _useButtonText.gameObject.SetActive(false);
             }
