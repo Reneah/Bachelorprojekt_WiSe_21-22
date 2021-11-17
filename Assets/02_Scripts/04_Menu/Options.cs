@@ -13,7 +13,6 @@ namespace DA.Menu
 {
     public class Options : MonoBehaviour
     {
-        [Header("AudioSettings")]
         [Tooltip("The Music Audio Mixer")]
         [SerializeField] private AudioMixer _audioMixer;
 
@@ -61,7 +60,16 @@ namespace DA.Menu
             get => _musicSlider;
             set => _musicSlider = value;
         }
-
+        
+        [SerializeField] private Slider _soundSlider;
+    
+        public Slider SoundSlider
+        {
+            get => _soundSlider;
+            set => _soundSlider = value;
+        }
+        
+        
         private ScenePersistent _scenePersistent;
 
         private void Start()
@@ -197,6 +205,12 @@ namespace DA.Menu
                 QualitySettings.vSyncCount = 0;
             }
 
+        }
+        
+        public void ChangeSoundVolume()
+        {
+            ScenePersistent.SoundVolume = _soundSlider.value;
+            //MasterAudio.MasterVolumeLevel = _soundSlider.value;
         }
 
         /// <summary>
