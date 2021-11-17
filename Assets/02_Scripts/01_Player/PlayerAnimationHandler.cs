@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DarkTonic.MasterAudio;
 using UnityEngine;
 using untitledProject;
 
@@ -13,13 +15,31 @@ public class PlayerAnimationHandler : MonoBehaviour
     private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
     private static readonly int VerticalVelocity = Animator.StringToHash("VerticalVelocity");
     private static readonly int Death = Animator.StringToHash("Death");
+    private static readonly int Throw = Animator.StringToHash("Throw");
+
+    // checks if the throw animation is at the end
+    private bool _runningThrowAnimation = false;
+
+    public bool RunningThrowAnimation
+    {
+        get => _runningThrowAnimation;
+        set => _runningThrowAnimation = value;
+    }
 
     void Start()
     {
         _playerAnimator = GetComponent<Animator>();
         _playerController = FindObjectOfType<PlayerController>();
+        
+        
     }
-    
+
+    private void Update()
+    {
+        //Debug.Log(_playerAnimator.GetBoneTransform(HumanBodyBones.LeftLowerLeg).position.y);
+        
+    }
+
     /// <summary>
     /// Set the players velocities.
     /// </summary>
@@ -56,6 +76,35 @@ public class PlayerAnimationHandler : MonoBehaviour
     public void PlayerDeath()
     {
         _playerAnimator.SetTrigger(Death);
+    }
+
+    public void PlayerThrow()
+    {
+        _playerAnimator.SetTrigger(Throw);
+    }
+
+    /// <summary>
+    /// Animation Event
+    /// </summary>
+    public void EndThrowAnimation()
+    {
+        _runningThrowAnimation = true;
+    }
+
+    public void PlayerQuietFootsteps(AnimationEvent animationEvent)
+    {
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            MasterAudio.PlaySound("PlayerQuietFootsteps");
+        }
+    }
+    
+    public void PlayerHeavyFootsteps(AnimationEvent animationEvent)
+    {
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            MasterAudio.PlaySound("PlayerLoudFootsteps");
+        }
     }
     
     
