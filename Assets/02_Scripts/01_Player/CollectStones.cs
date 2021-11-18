@@ -16,8 +16,8 @@ public class CollectStones : MonoBehaviour
     [SerializeField] private Vector2 _textOffset;
     [Tooltip("the amount of stones that can be collected")]
     [SerializeField] private float _maxStoneAmount;
-    [Tooltip("signalize that the stones can be collected")]
-    [SerializeField] private GameObject _usebleMarker;
+
+    private GameObject _usebleMarker;
     
     private float _stonesCounter = 0;
     private bool _stonesCollectible = false;
@@ -32,7 +32,10 @@ public class CollectStones : MonoBehaviour
     void Start()
     {
         _stonesAmountText.text = "Stones: " + _stonesCounter;
-        _usebleMarker.SetActive(false);
+        
+        // just create a new GameObject to not be null. Otherwise, the usable marker will not dissappear.
+        // the randomness doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
+        _usebleMarker = new GameObject();
     }
     
     void Update()
@@ -98,6 +101,8 @@ public class CollectStones : MonoBehaviour
         {
             _stones = other.gameObject;
             _stonesCollectible = true;
+            
+            _usebleMarker = other.transform.GetChild(0).gameObject;
         }
     }
 

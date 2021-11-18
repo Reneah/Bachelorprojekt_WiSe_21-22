@@ -33,7 +33,6 @@ public class WallCheck : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position + raycastOffset, Vector3.down, out hit, 8))
             {
-                Debug.Log(_angle);
                 _angle = Vector3.Angle(hit.normal, Vector3.up);
 
                 // on which area the wall check works is limited so that the player can move properly at the specific situations

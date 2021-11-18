@@ -53,18 +53,15 @@
             <e p="SceneChange.cs" t="Include" />
             <e p="WallCheck.cs" t="Include" />
           </e>
-          <e p="Editor" t="Include">
-            <e p="FieldOfViewEditor.cs" t="Include" />
-          </e>
-          <e p="Menu" t="Include">
-            <e p="ChangeCursorColor.cs" t="Include" />
-            <e p="ChangeOptionsColor.cs" t="Include" />
+          <e p="04_Menu" t="Include">
             <e p="InGameMenu.cs" t="Include" />
             <e p="MainMenu.cs" t="Include" />
-            <e p="Menu.cs" t="Include" />
             <e p="Options.cs" t="Include" />
             <e p="ScenePersistent.cs" t="Include" />
             <e p="ShowFramerate.cs" t="Include" />
+          </e>
+          <e p="Editor" t="Include">
+            <e p="FieldOfViewEditor.cs" t="Include" />
           </e>
         </e>
         <e p="03_ArtAssets" t="Include">
@@ -86,6 +83,13 @@
         <e p="06_Technical" t="Include">
           <e p="Shader" t="Include">
             <e p="Placeholder.txt" t="Include" />
+          </e>
+        </e>
+        <e p="07_Prefabs" t="Include">
+          <e p="Alpha" t="Include">
+            <e p="Items" t="Include">
+              <e p="Placeholder.txt" t="Include" />
+            </e>
           </e>
         </e>
         <e p="Art Assets" t="Include">

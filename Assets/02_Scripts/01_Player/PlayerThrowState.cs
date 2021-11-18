@@ -39,6 +39,17 @@ public class PlayerThrowState : IPlayerState
         if (player.PlayerAnimationHandler.RunningThrowAnimation)
         {
             player.PlayerThrowTrigger.SoundItem.SoundRangeCollider.SetActive(true);
+
+            // if the item was already used the item stage will be increased
+            if (player.PlayerThrowTrigger.SoundItem.OneTimeUsed)
+            {
+                player.PlayerThrowTrigger.SoundItem.Stage++;
+
+                if (player.PlayerThrowTrigger.SoundItem.Stage >= 3)
+                {
+                    player.PlayerThrowTrigger.SoundItem.Stage = 3;
+                }
+            }
             player.PlayerThrowTrigger.SoundItem.ItemUsed = true;
             
             return PlayerController.PlayerIdleState;

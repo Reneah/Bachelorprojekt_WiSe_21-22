@@ -491,11 +491,7 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-
-    // should do a void update method, which the bar will go dynamically back and forth
-    // Then it will go automatically back and don't have the problem to set back the bar
-    // but the player will be instantly spotted until the patrol state kicks in
-
+    
     public void PlayerDetected()
     {
         if (_seesObject)
