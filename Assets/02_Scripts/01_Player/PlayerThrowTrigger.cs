@@ -104,9 +104,9 @@ public class PlayerThrowTrigger : MonoBehaviour
         // if the player is near the noisy item, he is able to activate it per hand and doesn't need to throw
         if (_close)
         {
-            _usableMarker.SetActive(true);
             _throwableText.gameObject.SetActive(false);
             _notThrowableText.gameObject.SetActive(false);
+            _usableMarker.SetActive(false);
         }
         
         if (!_close)
