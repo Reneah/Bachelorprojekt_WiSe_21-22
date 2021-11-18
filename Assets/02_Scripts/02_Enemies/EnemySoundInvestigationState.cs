@@ -13,25 +13,6 @@ public class EnemySoundInvestigationState : IEnemyState
     
     public IEnemyState Execute(EnemyController enemy)
     {
-        // when the player should use the same sound again, the stage will be increased and the enemy will be more aggressive
-        if (_currentSoundStage < enemy.SoundBehaviourStage)
-        {
-            
-            if (enemy.SoundBehaviourStage <= 2)
-            {
-                enemy.Agent.speed = enemy.SecondStageRunSpeed;
-                enemy.AnimationHandler.SetSpeed(enemy.SecondStageRunSpeed);
-                enemy.Agent.SetDestination(enemy.SoundEventPosition.position);
-            }
-            if (enemy.SoundBehaviourStage >= 3)
-            {
-                enemy.Agent.speed = enemy.ThirdStageRunSpeed;
-                enemy.AnimationHandler.SetSpeed(enemy.ThirdStageRunSpeed);
-                enemy.Agent.SetDestination(enemy.SoundEventPosition.position);
-            }
-
-            _currentSoundStage = enemy.SoundBehaviourStage;
-        }
         
         if (enemy.CanSeePlayer)
         {
@@ -43,10 +24,12 @@ public class EnemySoundInvestigationState : IEnemyState
             return EnemyController.EnemyChaseState;
         }
         
+        UpdateSearchStage(enemy);
+        
         // the distance between the sound event and the enemy
         float distance = Vector3.Distance(enemy.SoundEventPosition.position, enemy.transform.position);
 
-        if (distance <= 1)
+        if (distance <= 1 || enemy.Agent.isStopped)
         {
             // prevent that the walking animation will be played
             enemy.AnimationHandler.SetSpeed(0);
@@ -62,9 +45,10 @@ public class EnemySoundInvestigationState : IEnemyState
                 
                 if (enemy.AnimationHandler.FinishedInvestigationAnimation)
                 {
-                    enemy.AnimationHandler.FinishedInvestigationAnimation = false;
-                    enemy.AnimationHandler.ResetInvestigatePoint();
                     
+                    enemy.AnimationHandler.ResetInvestigatePoint();
+                    enemy.AnimationHandler.FinishedInvestigationAnimation = false;
+
                     if (enemy.Guarding)
                     {
                         return EnemyController.EnemyGuardState;
@@ -125,6 +109,8 @@ public class EnemySoundInvestigationState : IEnemyState
 
     public void Enter(EnemyController enemy)
     {
+        enemy.SoundNoticed = false;
+        
         _currentSoundStage = enemy.SoundBehaviourStage;
         
         if (enemy.SoundBehaviourStage == 1)
@@ -151,4 +137,28 @@ public class EnemySoundInvestigationState : IEnemyState
     {
         _animationActivated = false;
     }
+    
+    private void UpdateSearchStage(EnemyController enemy)
+    {
+        // when the player should use the same sound again, the stage will be increased and the enemy will be more aggressive
+        if (_currentSoundStage < enemy.SoundBehaviourStage)
+        {
+            
+            if (enemy.SoundBehaviourStage <= 2)
+            {
+                enemy.Agent.speed = enemy.SecondStageRunSpeed;
+                enemy.AnimationHandler.SetSpeed(enemy.SecondStageRunSpeed);
+                enemy.Agent.SetDestination(enemy.SoundEventPosition.position);
+            }
+            if (enemy.SoundBehaviourStage >= 3)
+            {
+                enemy.Agent.speed = enemy.ThirdStageRunSpeed;
+                enemy.AnimationHandler.SetSpeed(enemy.ThirdStageRunSpeed);
+                enemy.Agent.SetDestination(enemy.SoundEventPosition.position);
+            }
+
+            _currentSoundStage = enemy.SoundBehaviourStage;
+        }
+    }
+    
 }
