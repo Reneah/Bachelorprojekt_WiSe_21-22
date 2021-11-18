@@ -45,9 +45,10 @@ public class EnemySoundInvestigationState : IEnemyState
                 
                 if (enemy.AnimationHandler.FinishedInvestigationAnimation)
                 {
-                    enemy.AnimationHandler.FinishedInvestigationAnimation = false;
-                    enemy.AnimationHandler.ResetInvestigatePoint();
                     
+                    enemy.AnimationHandler.ResetInvestigatePoint();
+                    enemy.AnimationHandler.FinishedInvestigationAnimation = false;
+
                     if (enemy.Guarding)
                     {
                         return EnemyController.EnemyGuardState;
@@ -108,6 +109,8 @@ public class EnemySoundInvestigationState : IEnemyState
 
     public void Enter(EnemyController enemy)
     {
+        enemy.SoundNoticed = false;
+        
         _currentSoundStage = enemy.SoundBehaviourStage;
         
         if (enemy.SoundBehaviourStage == 1)
