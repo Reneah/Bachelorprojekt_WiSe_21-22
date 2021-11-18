@@ -74,6 +74,11 @@ public class PlayerThrowTrigger : MonoBehaviour
     private void Start()
     {
         _collectStones = FindObjectOfType<CollectStones>();
+        
+        // just find a random sound item and new GameObject to not be null. Otherwise, there will be errors
+        // the randomness and new GameObject creation doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
+        _soundItem = FindObjectOfType<SoundItem>();
+        _usableMarker = new GameObject();
     }
 
     private void Update()
@@ -99,16 +104,13 @@ public class PlayerThrowTrigger : MonoBehaviour
         // if the player is near the noisy item, he is able to activate it per hand and doesn't need to throw
         if (_close)
         {
-            _usableMarker.SetActive(true);
             _throwableText.gameObject.SetActive(false);
             _notThrowableText.gameObject.SetActive(false);
+            _usableMarker.SetActive(false);
         }
         
         if (!_close)
         {
-            // when the player goes from the close distance to the throw distance and is not able to throw, it has to be set off
-            _usableMarker.SetActive(false);
-            
             Debug.DrawRay(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position * Vector3.Distance(_soundItem.transform.position, transform.position));
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -141,7 +143,6 @@ public class PlayerThrowTrigger : MonoBehaviour
                                 _usableMarker.SetActive(false);
                                 _throwstate = true;
                                 _throwableText.gameObject.SetActive(false);
-                                _notThrowableText.gameObject.SetActive(false);
                                 _throwAvailable = false;
                             }
                         } 
