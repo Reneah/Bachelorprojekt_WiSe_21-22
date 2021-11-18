@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour
         set => _guarding = value;
     }
 
-    #region Chase Behaviour
+    #region ChaseBehaviour
 
     [Header("Chase Behaviour")]
     [Tooltip("set the distance to catch the player")]
@@ -238,6 +238,14 @@ public class EnemyController : MonoBehaviour
      private int _currentSoundStage = 0;
      // prevent that the animation will be activated permanently in Update
      private bool _animationActivated = false;
+     // update the agent destination of the enemy when the footsteps were heard
+     private bool _heardFootsteps = false;
+
+     public bool HeardFootsteps
+     {
+         get => _heardFootsteps;
+         set => _heardFootsteps = value;
+     }
 
      public bool AnimationActivated
      {
@@ -615,6 +623,7 @@ public class EnemyController : MonoBehaviour
             _soundBehaviourStage = 3;
             _soundEventPosition = _player.transform;
             _animationActivated = false;
+            _heardFootsteps = true;
         }
         
         // if the enemy get in a new room the new search points will be selected

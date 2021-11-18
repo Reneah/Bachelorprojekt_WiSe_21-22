@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Configuration;
 using UnityEngine;
 
-//BUG: At Footsteps the soundevent Location will be updated but not the agent destination, thus the enemy can get stuck and the distance can't get under 1
 public class EnemySoundInvestigationState : IEnemyState
 {
     public IEnemyState Execute(EnemyController enemy)
@@ -23,6 +22,9 @@ public class EnemySoundInvestigationState : IEnemyState
         
         if (enemy.DistanceToSoundEvent() <= 1)
         {
+            // stop the method "UpdateSearchStage" to not set a new agent destination or animation speed
+            enemy.HeardFootsteps = false;
+            
             // prevent that the walking animation will be played
             enemy.AnimationHandler.SetSpeed(0);
             
@@ -128,12 +130,14 @@ public class EnemySoundInvestigationState : IEnemyState
     public void Exit(EnemyController enemy)
     {
         enemy.AnimationActivated = false;
+        enemy.HeardFootsteps = false;
     }
     
     private void UpdateSearchStage(EnemyController enemy)
     {
         // when the player should use the same sound again, the stage will be increased and the enemy will be more aggressive
-        if (enemy.CurrentSoundStage < enemy.SoundBehaviourStage)
+        // when the footsteps of the player were heard, the destination will be updated
+        if (enemy.CurrentSoundStage < enemy.SoundBehaviourStage || enemy.HeardFootsteps)
         {
             if (enemy.SoundBehaviourStage == 2)
             {
@@ -147,7 +151,7 @@ public class EnemySoundInvestigationState : IEnemyState
                 enemy.AnimationHandler.SetSpeed(enemy.ThirdStageRunSpeed);
                 enemy.Agent.SetDestination(enemy.SoundEventPosition.position);
             }
-
+            
             enemy.CurrentSoundStage = enemy.SoundBehaviourStage;
         }
     }
