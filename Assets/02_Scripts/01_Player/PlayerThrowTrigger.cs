@@ -23,7 +23,17 @@ public class PlayerThrowTrigger : MonoBehaviour
     [Tooltip("wait to throw during rotation towards the target")]
     [SerializeField] public float _waitToThrowDuringRotation;
 
+    [SerializeField] private Transform _lastThrowPositionObject;
+
     private CollectStones _collectStones;
+    
+    private bool _playerThrew = false;
+
+    public bool PlayerThrew
+    {
+        get => _playerThrew;
+        set => _playerThrew = value;
+    }
     
     public float RotationSpeed
     {
@@ -67,6 +77,15 @@ public class PlayerThrowTrigger : MonoBehaviour
     {
         get => _close;
         set => _close = value;
+    }
+
+    // is for the enemy to know where to search after investigation the noisy item
+    private Transform _throwPosition;
+
+    public Transform ThrowPosition
+    {
+        get => _throwPosition;
+        set => _throwPosition = value;
     }
 
     Ray ray;
@@ -144,6 +163,8 @@ public class PlayerThrowTrigger : MonoBehaviour
                                 _throwstate = true;
                                 _throwableText.gameObject.SetActive(false);
                                 _throwAvailable = false;
+                                _throwPosition = Instantiate(_lastThrowPositionObject, transform.position, Quaternion.identity);
+                                _playerThrew = true;
                             }
                         } 
                     }

@@ -49,6 +49,15 @@ public class SoundItem : MonoBehaviour
 
     // when the player is able to reuse the sound, the alert stage of the enemy rise
     private bool _oneTimeUsed = false;
+    
+    [Tooltip("the waypoints the enemy will run down when the player activating the item in close distance")]
+    [SerializeField] private Transform[] _closeNoisyItemWaypoints;
+
+    public Transform[] CloseNoisyItemWaypoints
+    {
+        get => _closeNoisyItemWaypoints;
+        set => _closeNoisyItemWaypoints = value;
+    }
 
     public bool OneTimeUsed
     {
@@ -106,6 +115,7 @@ public class SoundItem : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    _playerThrowTrigger.PlayerThrew = false;
                     if (_oneTimeUsed)
                     {
                         _stage++;

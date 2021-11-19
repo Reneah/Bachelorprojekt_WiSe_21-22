@@ -42,13 +42,8 @@ public class EnemySoundInvestigationState : IEnemyState
                     
                     enemy.AnimationHandler.ResetInvestigatePoint();
                     enemy.AnimationHandler.FinishedInvestigationAnimation = false;
-
-                    if (enemy.Guarding)
-                    {
-                        return EnemyController.EnemyGuardState;
-                    }
                     
-                    return EnemyController.EnemyPatrolState;
+                    return EnemyController.EnemyNoisyItemSearchState;
                 }
                 
             }
@@ -70,12 +65,7 @@ public class EnemySoundInvestigationState : IEnemyState
                     enemy.AnimationHandler.ResetInvestigatePoint();
                     enemy.AnimationHandler.ResetLookingAround();
                     
-                    if (enemy.Guarding)
-                    {
-                        return EnemyController.EnemyGuardState;
-                    }
-                    
-                    return EnemyController.EnemyPatrolState;
+                    return EnemyController.EnemyNoisyItemSearchState;
                 }
             }
             
@@ -93,7 +83,7 @@ public class EnemySoundInvestigationState : IEnemyState
                     enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                     enemy.AnimationHandler.ResetInvestigatePoint();
                     
-                    return EnemyController.EnemySearchState;
+                    return EnemyController.EnemyNoisyItemSearchState;
                 }
             }
 
