@@ -218,6 +218,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _thirdStageRunSpeed;
     [Tooltip("the enemy run speed when he goes from point to point")]
     [SerializeField] private float _searchSpeed;
+    [SerializeField] private int _waypointCounter; 
     List<Transform> _searchWaypoints = new List<Transform>();
      private int _searchWaypointCounter = 0;
      private bool _finishChecking = false;
@@ -232,6 +233,12 @@ public class EnemyController : MonoBehaviour
      private bool _heardFootsteps = false;
      // get all waypoints in the search area again
      private bool _resetSearchWaypoints = false;
+     
+     public bool ResetSearchWaypoints
+     {
+         get => _resetSearchWaypoints;
+         set => _resetSearchWaypoints = value;
+     }
 
      public bool HeardFootsteps
      {
@@ -385,20 +392,30 @@ public class EnemyController : MonoBehaviour
     }
 
     #endregion
-    
+
+     private int _waypointAmount;
     List<Transform> _noisyItemSearchPoints = new List<Transform>();
+    List<Transform> _noisyItemSelectedPoints = new List<Transform>();
     // how many nearest searchpoints of the throw position should be used
     private int _noisyItemWaypointsCounter;
     // the amount of the waypoints that the enemy has when the player activates the noisy item in close range
     private int _usuableWaypointsAmount = 1;
+    private int _usuableWaypointsRangeAmount = 1;
     private Transform _currentCloseNoisyItemWaypoint;
     private bool _resetNoisyItemWaypoints = false;
+
+
+    public bool ResetNoisyItemWaypoints
+    {
+        get => _resetNoisyItemWaypoints;
+        set => _resetNoisyItemWaypoints = value;
+    }
 
     void Start()
     {
         // start state machine with LookAroundState
         _currentState = EnemyIdleState;
-
+        
         _agent = GetComponent<NavMeshAgent>();
         _animationHandler = GetComponent<EnemyAnimationHandler>();
         _player = FindObjectOfType<PlayerController>();
@@ -412,6 +429,7 @@ public class EnemyController : MonoBehaviour
             SetUpGuardBehaviour(); 
         }
 
+        _waypointAmount = _waypointCounter;
         // the dwelling time at a waypoint
         _standingCooldown = _dwellingTimer;
     }
@@ -583,7 +601,6 @@ public class EnemyController : MonoBehaviour
             if (_spottedTime <= 0)
             {
                 _spottedTime = 0;
-                _spottedBar.fillAmount = 0;
             }
         }
     }
@@ -595,7 +612,7 @@ public class EnemyController : MonoBehaviour
             _soundItemScript = other.GetComponentInParent<SoundItem>();
             
             // the amount of the waypoints when the player activated the noisy item in close range
-            _usuableWaypointsAmount = _soundItemScript.CloseNoisyItemWaypoints.Length;
+            _usuableWaypointsAmount = Random.Range(1,_soundItemScript.CloseNoisyItemWaypoints.Length);
             
             float _distance = Vector3.Distance(transform.position, other.transform.position);
             
@@ -666,6 +683,7 @@ public class EnemyController : MonoBehaviour
             if (_resetNoisyItemWaypoints)
             {
                 _noisyItemSearchPoints.Clear();
+                _noisyItemSelectedPoints.Clear();
                 
                 foreach (Transform waypoints in other.transform)
                 {
@@ -738,17 +756,9 @@ public class EnemyController : MonoBehaviour
     #endregion
     
     #region SearchNoisyItemBehaviour
-    
-    public void StartSearchNoisyItemBehaviour()
-    {
-        if (_noisyItemWaypointsCounter >= 3 || _usuableWaypointsAmount <= 0)
-        {
-            _finishChecking = true;
-            _noisyItemWaypointsCounter = 0;
-            _resetNoisyItemWaypoints = true;
-            return;
-        }
 
+    public void PrepareSearchNoisyItemBehaviour()
+    {
         if (_player.PlayerThrowTrigger.PlayerThrew)
         {
             _nearestWaypoint = Mathf.Infinity;
@@ -757,11 +767,43 @@ public class EnemyController : MonoBehaviour
                 _waypointDistance = Vector3.Distance(waypoint.transform.position, _player.PlayerThrowTrigger.ThrowPosition.transform.position);
                 if (_waypointDistance <= _nearestWaypoint)
                 {
-                    _nearestWaypoint = _waypointDistance;
                     _closestWaypoint = waypoint;
+                    _nearestWaypoint = _waypointDistance;
                 }
             }
-            _agent.SetDestination(_closestWaypoint.position);
+            if (_waypointAmount > 0)
+            {
+                _noisyItemSelectedPoints.Add(_closestWaypoint);
+                _noisyItemSearchPoints.Remove(_closestWaypoint);
+                _waypointAmount--;
+                PrepareSearchNoisyItemBehaviour();
+
+                if (_waypointAmount <= 1)
+                {
+                    _waypointAmount = 3;
+                }
+            }
+            
+            _usuableWaypointsRangeAmount = Random.Range(1, _noisyItemSelectedPoints.Count);
+        }
+        
+    }
+    
+    public void StartSearchNoisyItemBehaviour()
+    {
+        if (_usuableWaypointsAmount <= 0 || _usuableWaypointsRangeAmount <= 0)
+        {
+            _waypointAmount = 3;
+            _finishChecking = true;
+            _resetNoisyItemWaypoints = true;
+            return;
+        }
+
+        if (_player.PlayerThrowTrigger.PlayerThrew)
+        {
+            _currentCloseNoisyItemWaypoint = _noisyItemSelectedPoints[Random.Range(0, _noisyItemSelectedPoints.Count)];
+            _agent.SetDestination(_currentCloseNoisyItemWaypoint.position);
+            _usuableWaypointsRangeAmount--;
         }
 
         if (!_player.PlayerThrowTrigger.PlayerThrew)
@@ -786,7 +828,7 @@ public class EnemyController : MonoBehaviour
 
         if (_player.PlayerThrowTrigger.PlayerThrew)
         {
-            if ( Vector3.Distance(transform.position, _closestWaypoint.position) <= _stopDistance && !_reachedWaypoint)
+            if ( Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
             {
                 _animationHandler.SetSpeed(0);
                 _reachedWaypoint = true;
@@ -795,9 +837,6 @@ public class EnemyController : MonoBehaviour
         
         if (_reachedWaypoint)
         {
-            //kick out the waypoint which was already used
-            _noisyItemSearchPoints.Remove(_closestWaypoint); 
-            
             //plays investigation animation, after it or certain time he will go to the next point nearby
             _standingCooldown -= Time.deltaTime;
             

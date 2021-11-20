@@ -13,6 +13,7 @@ public class EnemyNoisyItemSearchState : IEnemyState
         
         if (enemy.CanSeePlayer)
         {
+            enemy.ResetNoisyItemWaypoints = true;
             return EnemyController.EnemyChaseState;
         }
 
@@ -32,9 +33,7 @@ public class EnemyNoisyItemSearchState : IEnemyState
 
     public void Enter(EnemyController enemy)
     {
-        // lost the sight of the player
-        enemy.SpottedBar.fillAmount = 0;
-        
+        enemy.PrepareSearchNoisyItemBehaviour();
         enemy.StartSearchNoisyItemBehaviour();
     }
 
