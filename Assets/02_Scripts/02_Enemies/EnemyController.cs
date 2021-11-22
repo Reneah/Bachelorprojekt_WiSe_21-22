@@ -47,7 +47,9 @@ public class EnemyController : MonoBehaviour
     public static readonly EnemyNoisyItemSearchState EnemyNoisyItemSearchState = new EnemyNoisyItemSearchState();
 
     [Header("Choose ONE of the Behaviour")] 
+    [Tooltip("the main task of the enemy is patrolling")]
     [SerializeField] private bool _patrolling;
+    [Tooltip("the main task of the enemy is guarding")]
     [SerializeField] private bool _guarding;
 
     public bool Guarding
@@ -160,13 +162,7 @@ public class EnemyController : MonoBehaviour
         get => _spottedTime;
         set => _spottedTime = value;
     }
-
-    public Image SpottedBar
-    {
-        get => _spottedBar;
-        set => _spottedBar = value;
-    }
-
+    
     public Transform LookPositionAtSpotted
     {
         get => _lookPositionAtSpotted;
@@ -193,12 +189,6 @@ public class EnemyController : MonoBehaviour
         set => _canSeePlayer = value;
     }
     
-    public LayerMask TargetMask
-    {
-        get => _targetMask;
-        set => _targetMask = value;
-    }
-
     public LayerMask ObstructionMask
     {
         get => obstructionMask;
@@ -218,6 +208,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _thirdStageRunSpeed;
     [Tooltip("the enemy run speed when he goes from point to point")]
     [SerializeField] private float _searchSpeed;
+    [Tooltip("how many close waypoints of the throw position can be chosen to search after the player")]
     [SerializeField] private int _waypointCounter; 
     List<Transform> _searchWaypoints = new List<Transform>();
      private int _searchWaypointCounter = 0;
@@ -233,6 +224,22 @@ public class EnemyController : MonoBehaviour
      private bool _heardFootsteps = false;
      // get all waypoints in the search area again
      private bool _resetSearchWaypoints = false;
+     
+     private int _waypointAmount;
+     List<Transform> _noisyItemSearchPoints = new List<Transform>();
+     List<Transform> _noisyItemSelectedPoints = new List<Transform>();
+     // the amount of the waypoints that the enemy has when the player activates the noisy item in close range
+     private int _usuableWaypointsAmount = 1;
+     private int _usuableWaypointsRangeAmount = 1;
+     private Transform _currentCloseNoisyItemWaypoint;
+     private bool _resetNoisyItemWaypoints = false;
+
+
+     public bool ResetNoisyItemWaypoints
+     {
+         get => _resetNoisyItemWaypoints;
+         set => _resetNoisyItemWaypoints = value;
+     }
      
      public bool ResetSearchWaypoints
      {
@@ -392,25 +399,7 @@ public class EnemyController : MonoBehaviour
     }
 
     #endregion
-
-     private int _waypointAmount;
-    List<Transform> _noisyItemSearchPoints = new List<Transform>();
-    List<Transform> _noisyItemSelectedPoints = new List<Transform>();
-    // how many nearest searchpoints of the throw position should be used
-    private int _noisyItemWaypointsCounter;
-    // the amount of the waypoints that the enemy has when the player activates the noisy item in close range
-    private int _usuableWaypointsAmount = 1;
-    private int _usuableWaypointsRangeAmount = 1;
-    private Transform _currentCloseNoisyItemWaypoint;
-    private bool _resetNoisyItemWaypoints = false;
-
-
-    public bool ResetNoisyItemWaypoints
-    {
-        get => _resetNoisyItemWaypoints;
-        set => _resetNoisyItemWaypoints = value;
-    }
-
+    
     void Start()
     {
         // start state machine with LookAroundState
@@ -571,6 +560,8 @@ public class EnemyController : MonoBehaviour
     }
     
     #endregion
+
+    #region SpottedBar
     
     public void PlayerDetected()
     {
@@ -604,7 +595,9 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-
+    
+    #endregion
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Sound"))
@@ -635,7 +628,6 @@ public class EnemyController : MonoBehaviour
                 _soundBehaviourStage = _soundItemScript.Stage;
                 _soundEventPosition = _soundItemScript.transform;
                 _soundNoticed = true;
-                _spottedBar.fillAmount = 1;
             }
         }
 
@@ -646,6 +638,7 @@ public class EnemyController : MonoBehaviour
             _soundEventPosition = _player.transform;
             _animationActivated = false;
             _heardFootsteps = true;
+            _spottedBar.fillAmount = 1;
         }
         
         // if the enemy get in a new room the new search points will be selected
@@ -842,7 +835,6 @@ public class EnemyController : MonoBehaviour
             
             if (_standingCooldown <= 0)
             {
-                _noisyItemWaypointsCounter++;
                 _standingCooldown = _dwellingTimer;
                 _reachedWaypoint = false;
                 StartSearchNoisyItemBehaviour();

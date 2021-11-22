@@ -20,8 +20,10 @@ public class EnemySoundInvestigationState : IEnemyState
         UpdateSearchStage(enemy);
         enemy.DistanceToSoundEvent();
         
-        if (enemy.DistanceToSoundEvent() <= 1)
+        if (enemy.DistanceToSoundEvent() <= 1 || EnemyShareInformation.ReachedNoisyItem)
         {
+            EnemyShareInformation.ReachedNoisyItem = true;
+            
             // stop the method "UpdateSearchStage" to not set a new agent destination or animation speed
             enemy.HeardFootsteps = false;
             
@@ -39,7 +41,6 @@ public class EnemySoundInvestigationState : IEnemyState
                 
                 if (enemy.AnimationHandler.FinishedInvestigationAnimation)
                 {
-                    
                     enemy.AnimationHandler.ResetInvestigatePoint();
                     enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                     
@@ -83,7 +84,7 @@ public class EnemySoundInvestigationState : IEnemyState
                     enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                     enemy.AnimationHandler.ResetInvestigatePoint();
                     
-                    return EnemyController.EnemyNoisyItemSearchState;
+                    return EnemyController.EnemySearchState;
                 }
             }
 
@@ -121,6 +122,7 @@ public class EnemySoundInvestigationState : IEnemyState
     {
         enemy.AnimationActivated = false;
         enemy.HeardFootsteps = false;
+        EnemyShareInformation.ReachedNoisyItem = false;
     }
     
     private void UpdateSearchStage(EnemyController enemy)

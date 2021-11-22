@@ -36,6 +36,7 @@
             <e p="EnemyNoisyItemSearchState.cs" t="Include" />
             <e p="EnemyPatrolState.cs" t="Include" />
             <e p="EnemySearchState.cs" t="Include" />
+            <e p="EnemyShareInformation.cs" t="Include" />
             <e p="EnemySoundInvestigationState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
             <e p="LookAgentVisualization.cs" t="Include" />
