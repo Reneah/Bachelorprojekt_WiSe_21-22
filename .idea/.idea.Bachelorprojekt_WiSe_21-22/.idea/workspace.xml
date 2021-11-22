@@ -23,7 +23,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PlayerNearDetection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AD3EAA08-78D9-4CBE-8E45-F9C494D71647/19/1670f7e6/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" root0="FORCE_HIGHLIGHTING" />
@@ -38,9 +37,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/Options.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/MainMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/InGameMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerHideState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerCollectItemState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/IEnemyState.cs" />
@@ -75,7 +71,6 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
@@ -91,6 +86,8 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" />
       </list>
     </option>
   </component>
@@ -211,6 +208,8 @@
       <workItem from="1637266485825" duration="2028000" />
       <workItem from="1637268748940" duration="19000" />
       <workItem from="1637582331284" duration="2648000" />
+      <workItem from="1637587854854" duration="3868000" />
+      <workItem from="1637604706717" duration="605000" />
     </task>
     <servers />
   </component>

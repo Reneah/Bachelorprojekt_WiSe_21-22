@@ -29,9 +29,18 @@ public class CollectItem : MonoBehaviour
     [SerializeField] private bool _parchment;
     [Tooltip("has to be interacted with by the player as a quest task")] 
     [SerializeField] private bool _secretPassage;
-
+    
     private bool _itemCollectible;
     
+    // a raycast in another script hits the collectable to activate the UI & functionalities
+    private bool _hitCollectable;
+
+    public bool HitCollectable
+    {
+        get => _hitCollectable;
+        set => _hitCollectable = value;
+    }
+
     //[SerializeField]
     private float _textVanishTime;
     
@@ -61,10 +70,7 @@ public class CollectItem : MonoBehaviour
         _collectibleText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         _negativeText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit _hit;
-
-        if (Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("CollectibleItem")))
+        if (_hitCollectable)
         {
             if (!_itemCollectible)
             {
