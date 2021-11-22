@@ -19,23 +19,25 @@
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/Scripts/Singleton/MasterAudio.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PlayerNearDetection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AD3EAA08-78D9-4CBE-8E45-F9C494D71647/19/1670f7e6/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LookAgentVisualization.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/Patrolling.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/InGameMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/Options.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/InGameMenu.cs" />
@@ -48,14 +50,11 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerJumpState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/ViewCone.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/FieldOfViewEditor.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/ScenePersistent.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/PickUpItemTrigger.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" />
@@ -67,7 +66,6 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerStepsSound.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu1.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu1.cs" />
@@ -77,13 +75,22 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
       </list>
     </option>
   </component>
@@ -203,7 +210,7 @@
       <workItem from="1637249198414" duration="8778000" />
       <workItem from="1637266485825" duration="2028000" />
       <workItem from="1637268748940" duration="19000" />
-      <workItem from="1637583162997" duration="613000" />
+      <workItem from="1637582331284" duration="2648000" />
     </task>
     <servers />
   </component>
@@ -296,18 +303,18 @@
     </state>
     <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1637268622293" />
     <state width="1822" height="323" key="GridCell.Tab.3.right/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305622" />
-    <state x="778" y="221" key="RiderGenerateDialog" timestamp="1636634466863">
+    <state x="778" y="221" key="RiderGenerateDialog" timestamp="1637323083601">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1636634466863" />
+    <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1637323083601" />
     <state x="669" y="235" key="run.anything.popup" timestamp="1635953837811">
       <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state x="669" y="235" key="run.anything.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1635953837811" />
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1637253370722">
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1637571951099">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1637253370722" />
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1637571951099" />
     <state x="675" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1636297809418" />
   </component>
 </project>

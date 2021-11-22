@@ -13,7 +13,7 @@ public class EnemyAnimationHandler : MonoBehaviour
     private EnemyController _enemyController;
     private PlayerController _playerController;
 
-    private float _headRotationWeight = 0;
+    private float _headRotationWeight = 1;
     private bool _finishedInvestigationAnimation = false;
     private bool _finishedLookingAnimation = false;
 
@@ -46,15 +46,7 @@ public class EnemyAnimationHandler : MonoBehaviour
         _enemyController = GetComponent<EnemyController>();
         _playerController = FindObjectOfType<PlayerController>();
     }
-
-    private void Update()
-    {
-        if (_enemyController.GuardBehaviour)
-        {
-            _headRotationWeight += Time.deltaTime;
-        }
-    }
-
+    
     /// <summary>
     /// sets the speed of the run animation and decides to play the run or idle animation
     /// </summary>
