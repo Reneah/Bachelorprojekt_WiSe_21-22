@@ -97,7 +97,7 @@ public class SoundItem : MonoBehaviour
 
         if (Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("NoisyItem")))
         {
-            if (_itemUsed && !_itemUsable)
+            if (_itemUsed && _itemUsable)
             {
                 _negativeText.gameObject.SetActive(true);
             }
@@ -154,7 +154,7 @@ public class SoundItem : MonoBehaviour
                 {
                     _deactivationTime = 0.3f;
                     _soundRangeCollider.SetActive(false);
-                    _itemUsable = true;
+                    _itemUsable = false;
                     _itemUsed = false;
                     _oneTimeUsed = true;
                 }
