@@ -43,9 +43,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.5694697, b: 0, a: 1}
-  m_Intensity: 8
+  m_Intensity: 4
   m_Range: 5
-  m_SpotAngle: 64
+  m_SpotAngle: 72.90508
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -82,10 +82,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -109,7 +109,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6624028855796300487
 Transform:
@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6394618306638331873}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.014472961, y: 0.33200002, z: 0.10700035}
+  m_LocalPosition: {x: 0.014472961, y: 0.663, z: 0.537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6624028855796300487}
@@ -220,8 +220,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.5137255, b: 0.07058824, a: 1}
-  m_Intensity: 7
-  m_Range: 5.64
+  m_Intensity: 4
+  m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

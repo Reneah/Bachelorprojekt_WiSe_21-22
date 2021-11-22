@@ -45,19 +45,32 @@ public class EnemyController : MonoBehaviour
     [Header("Choose ONE of the Behaviour")] 
     [SerializeField] private bool _patrolling;
     [SerializeField] private bool _guarding;
-    
+
     public bool Guarding
     {
         get => _guarding;
         set => _guarding = value;
     }
-    
+
+    #region ChaseBehaviour
+
     [Header("Chase Behaviour")]
     [Tooltip("set the distance to catch the player")]
     [SerializeField] private float _catchDistance = 2;
     [Tooltip("the speed which the enemy will chase the player")]
     [SerializeField] private float _chaseSpeed;
+    // give the enemy the chance to chase the player again
+    // otherwise at a quick turn of the player, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
+    private float _reminderTime = 0;
+    
+    public float ReminderTime
+    {
+        get => _reminderTime;
+        set => _reminderTime = value;
+    }
 
+    #endregion
+    
     #region PatrolVariables
     
     [Header("Patrol Skill")]
@@ -221,6 +234,30 @@ public class EnemyController : MonoBehaviour
      private float _nearestWaypoint;
      private Transform _closestWaypoint;
      private float _waypointDistance;
+     // the current sound state of the item to update the behaviour of the enemy
+     private int _currentSoundStage = 0;
+     // prevent that the animation will be activated permanently in Update
+     private bool _animationActivated = false;
+     // update the agent destination of the enemy when the footsteps were heard
+     private bool _heardFootsteps = false;
+
+     public bool HeardFootsteps
+     {
+         get => _heardFootsteps;
+         set => _heardFootsteps = value;
+     }
+
+     public bool AnimationActivated
+     {
+         get => _animationActivated;
+         set => _animationActivated = value;
+     }
+
+     public int CurrentSoundStage
+     {
+         get => _currentSoundStage;
+         set => _currentSoundStage = value;
+     }
 
      public float SearchSpeed
      {
@@ -291,9 +328,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _stopGuardpointDistance = 0.5f;
     [Tooltip("the rotation of the enemy body when he is guarding")]
     [SerializeField] private Transform _desiredBodyRotation;
-
+    [Tooltip("the look agent to look in specific directions over time")]
     [SerializeField] private Transform _currentLookPosition;
+    [Tooltip("smooth the rotation towards the desired Body Rotation")]
     [SerializeField] private float _smoothBodyRotation;
+    private bool _reachedGuardpoint = false;
+    private Quaternion _desiredDirection;
+    
+    public bool ReachedGuardpoint
+    {
+        get => _reachedGuardpoint;
+        set => _reachedGuardpoint = value;
+    }
 
     public Transform CurrentLookPosition
     {
@@ -454,6 +500,8 @@ public class EnemyController : MonoBehaviour
     }
     
     #endregion
+
+    #region GuardBehaviour
     
     public void SetUpGuardBehaviour()
     {
@@ -491,6 +539,19 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+
+    public bool GuardPointDistance()
+    {
+        return Vector3.Distance(transform.position, _guardPoint.transform.position) <= StopGuardpointDistance;
+    }
+
+    public void DesiredStandingLookDirection()
+    {
+        _desiredDirection = Quaternion.Slerp(transform.rotation, DesiredBodyRotation.rotation, SmoothBodyRotation * Time.deltaTime);
+        transform.rotation = _desiredDirection;
+    }
+    
+    #endregion
     
     public void PlayerDetected()
     {
@@ -561,6 +622,8 @@ public class EnemyController : MonoBehaviour
             _soundNoticed = true;
             _soundBehaviourStage = 3;
             _soundEventPosition = _player.transform;
+            _animationActivated = false;
+            _heardFootsteps = true;
         }
         
         // if the enemy get in a new room the new search points will be selected
@@ -574,6 +637,14 @@ public class EnemyController : MonoBehaviour
                 _searchWaypoints.Add(waypoints);
             }
         }
+    }
+    /// <summary>
+    /// the distance between the sound event and the enemy
+    /// </summary>
+    /// <returns></returns>
+    public float DistanceToSoundEvent()
+    {
+        return Vector3.Distance(SoundEventPosition.position, transform.position);
     }
     
     #region Search Behaviour

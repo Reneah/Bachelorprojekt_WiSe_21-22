@@ -7,8 +7,11 @@ using UnityEngine;
 public class SoundItem : MonoBehaviour
 { 
     [Header("Item")]
-    [Tooltip("shows the current button to use")]
-    [SerializeField] private TextMeshProUGUI _useButtonText;
+    [Tooltip("the item text that will show up when the player is in range, hovers over the item and when it is available")]
+    [SerializeField] private TextMeshProUGUI _collectibleText;
+    [Tooltip("the item text that will show up when the player hovers over the item and it is not available")]
+    [SerializeField] private TextMeshProUGUI _negativeText;
+    [SerializeField] private GameObject _usebleMarker;
     [SerializeField] private bool _reusable;
     
     [Header("Sound Stage")]
@@ -71,7 +74,7 @@ public class SoundItem : MonoBehaviour
 
     void Start()
     {
-        _useButtonText.gameObject.SetActive(false);
+        _collectibleText.gameObject.SetActive(false);
         _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
         
     }
@@ -80,7 +83,8 @@ public class SoundItem : MonoBehaviour
     {
         _textOffset.x = 270;
         _textOffset.y = -60;
-        _useButtonText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        _collectibleText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        _negativeText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
 
         ItemActivation();
         ItemExecution();
@@ -88,29 +92,50 @@ public class SoundItem : MonoBehaviour
 
     private void ItemActivation()
     {
-        if (_itemUsable)
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit _hit;
+
+        if (Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("NoisyItem")))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (_itemUsed && _itemUsable)
             {
-                if (_oneTimeUsed)
-                {
-                    _stage++;
-
-                    if (_stage >= 3)
-                    {
-                        _stage = 3;
-                    }
-                }
-            
-                _useButtonText.gameObject.SetActive(false);
-                _soundRangeCollider.SetActive(true);
-
-                _itemUsed = true;
-                return;
+                _negativeText.gameObject.SetActive(true);
             }
             
-            _playerThrowTrigger.Close = true;
-            _useButtonText.gameObject.SetActive(true);
+            else if (!_itemUsed && _itemUsable)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (_oneTimeUsed)
+                    {
+                        _stage++;
+
+                        if (_stage >= 3)
+                        {
+                            _stage = 3;
+                        }
+                    }
+            
+                    _usebleMarker.SetActive(false);
+                    _collectibleText.gameObject.SetActive(false);
+                    _soundRangeCollider.SetActive(true);
+
+                    _itemUsable = false;
+                    _itemUsed = true;
+                    return;
+                }
+                
+                _usebleMarker.SetActive(true);
+                _collectibleText.gameObject.SetActive(true);
+                _negativeText.gameObject.SetActive(false);
+                _playerThrowTrigger.Close = true;
+            }
+        }
+        else
+        {
+            _collectibleText.gameObject.SetActive(false);
+            _negativeText.gameObject.SetActive(false);
+            _usebleMarker.SetActive(false);
         }
     }
     
@@ -129,11 +154,13 @@ public class SoundItem : MonoBehaviour
                 {
                     _deactivationTime = 0.3f;
                     _soundRangeCollider.SetActive(false);
+                    _itemUsable = false;
                     _itemUsed = false;
                     _oneTimeUsed = true;
                 }
                 else
                 {
+                    _negativeText.gameObject.SetActive(false);
                     _soundRangeCollider.SetActive(false);
                     Destroy(this);
                 }
@@ -157,7 +184,8 @@ public class SoundItem : MonoBehaviour
             {
                 _itemUsable = false;
                 _playerThrowTrigger.Close = false;
-                _useButtonText.gameObject.SetActive(false);
+                _collectibleText.gameObject.SetActive(false);
+                _usebleMarker.SetActive(false);
             }
         }
     }
