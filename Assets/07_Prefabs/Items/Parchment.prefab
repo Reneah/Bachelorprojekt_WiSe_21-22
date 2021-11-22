@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1102452243475783751}
   - component: {fileID: 1102452243475783750}
   - component: {fileID: 1102452243475783772}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Parchment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
