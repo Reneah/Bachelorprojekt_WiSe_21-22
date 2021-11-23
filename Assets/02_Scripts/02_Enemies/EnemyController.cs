@@ -626,7 +626,7 @@ public class EnemyController : MonoBehaviour
             if(_soundItemScript.Stage <= 3)
             {
                 _soundBehaviourStage = _soundItemScript.Stage;
-                _soundEventPosition = _soundItemScript.transform;
+                _soundEventPosition = _soundItemScript.OffsetOrigin.transform;
                 _soundNoticed = true;
             }
         }

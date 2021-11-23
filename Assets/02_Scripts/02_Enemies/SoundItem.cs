@@ -13,6 +13,14 @@ public class SoundItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _negativeText;
     [SerializeField] private GameObject _usebleMarker;
     [SerializeField] private bool _reusable;
+    [Tooltip("the offset of the noisy item origin so that the enemy is able to reach the item")]
+    [SerializeField] private GameObject _offsetOrigin;
+    
+    public GameObject OffsetOrigin
+    {
+        get => _offsetOrigin;
+        set => _offsetOrigin = value;
+    }
     
     [Header("Sound Stage")]
     [Tooltip("First Stage: the enemy will walk to the point of interest" +
