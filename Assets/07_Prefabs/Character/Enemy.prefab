@@ -1943,7 +1943,7 @@ MonoBehaviour:
   _secondStageRunSpeed: 2.5
   _thirdStageRunSpeed: 3
   _searchSpeed: 2
-  _waypointCounter: 0
+  _waypointCounter: 2
   _switchLookTime: 6
   _lookSwitchSpeed: 3
   _lookingRoute: {fileID: 0}
