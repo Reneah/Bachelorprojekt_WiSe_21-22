@@ -210,7 +210,7 @@ namespace untitledProject
 
                 if (_playerAnimationHandler.PlayerAnimator.GetBool("Flee"))
                 {
-                    targetSpeed = _fleeSpeed * _moveDirection.magnitude;
+                    //targetSpeed = _fleeSpeed * _moveDirection.magnitude;
                 }
                 
             }
