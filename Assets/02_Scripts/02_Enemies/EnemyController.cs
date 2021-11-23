@@ -773,7 +773,7 @@ public class EnemyController : MonoBehaviour
 
                 if (_waypointAmount <= 1)
                 {
-                    _waypointAmount = 3;
+                    _waypointAmount = _waypointCounter;
                 }
             }
             
