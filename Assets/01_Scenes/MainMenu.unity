@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17125,7 +17125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1746109209
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26698,6 +26698,18 @@ PrefabInstance:
     - target: {fileID: 9113414238629353085, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240078249718, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: musicPlaylists.Array.data[0].MusicSettings.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5417c79ced1d94c45b5ff9c03f8952b1, type: 3}
+    - target: {fileID: 9113414240078249718, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: musicPlaylists.Array.data[0].MusicSettings.Array.data[0].volume
+      value: 0.17782794
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240078249718, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: musicPlaylists.Array.data[0].MusicSettings.Array.data[0].songName
+      value: szegvari_dark-thriller-castle-atmo-orchestral-drone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}

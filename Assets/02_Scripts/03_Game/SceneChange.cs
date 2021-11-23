@@ -22,10 +22,13 @@ public class SceneChange : MonoBehaviour
     [Tooltip("the next scene name that should be loaded")]
     [SerializeField] private string _nextSceneName;
     private float _fadeStayCooldown = 0;
+    [Tooltip("skip the text")]
+    [SerializeField] private GameObject _skipButton;
 
     private PlayerController _playerController;
     private GameObject _questManager;
     private GameObject _playtestingHints;
+    private GameObject _stoneUI;
     
     void Start()
     {
@@ -35,6 +38,9 @@ public class SceneChange : MonoBehaviour
         _playerController = FindObjectOfType<PlayerController>();
         _questManager = GameObject.Find("QuestManager");
         _playtestingHints = GameObject.Find("SomePlaytestingInfos");
+        _stoneUI = GameObject.Find("StoneUI");
+        
+        _skipButton.SetActive(false);
     }
     
     void Update()
@@ -42,6 +48,8 @@ public class SceneChange : MonoBehaviour
         bool _completeFadeIn = _fadeImage.color.a >= 0.99f;
         if (_completeFadeIn)
         {
+            _skipButton.SetActive(true);
+            
             if (_fadeStayCooldown <= 0)
             {
                 _text.DOFade(0, _textFadeTime);
@@ -66,6 +74,12 @@ public class SceneChange : MonoBehaviour
         // Deactivate QuestManager parent object, this is a temporary solution so it doesn't overlap with the narrative text
         _questManager.SetActive(false);
         _playtestingHints.SetActive(false);
+        _stoneUI.SetActive(false);
         _fadeImage.DOFade(1, _fadeTime);
+    }
+
+    public void Skip()
+    {
+        _fadeStayCooldown = 0;
     }
 }
