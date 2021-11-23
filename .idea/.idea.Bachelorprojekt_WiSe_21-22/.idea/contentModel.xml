@@ -13,6 +13,7 @@
       <e p="Assets" t="Include">
         <e p="02_Scripts" t="Include">
           <e p="01_Player" t="Include">
+            <e p="CollectibleItemRaycast.cs" t="Include" />
             <e p="CollectItem.cs" t="Include" />
             <e p="CollectStones.cs" t="Include" />
             <e p="IPlayerState.cs" t="Include" />

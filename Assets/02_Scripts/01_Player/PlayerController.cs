@@ -92,6 +92,14 @@ namespace untitledProject
         private RaycastHit hit;
         private bool _isGrounded;
         private bool _useGroundCheck;
+        
+        [Header("Slope Settings")] 
+        [Tooltip("the force to the ground at the character")]
+        [SerializeField]
+        private float _slopeForce;
+        [Tooltip("the length at which the slope force should take action")]
+        [SerializeField]
+        private float _slopeForceRayLength;
 
         public bool IsGrounded
         {
@@ -127,6 +135,9 @@ namespace untitledProject
             _characterController = GetComponent<CharacterController>();
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
             _collectStones = FindObjectOfType<CollectStones>();
+
+            _characterController.material.staticFriction = 0;
+            _characterController.material.dynamicFriction = 0;
         }
         
         private void Update()
@@ -223,11 +234,33 @@ namespace untitledProject
                 _resetVerticalVelocity = false;
                 _useGroundCheck = false;
             }
+            
+            // if the character is not moving horizontal to the ground, the slope will be activated to hold the character down
+            if ((_verticalAxis != 0 || _horizontalAxis != 0) && OnSlope() && _isGrounded)
+            {
+                _characterController.Move(Vector3.down * _characterController.height / 2 * (_slopeForce * Time.deltaTime)); 
+            }
 
             if (_currentVerticalVelocity <= 1)
             {
                 _useGroundCheck = true;
             }
+        }
+        
+        /// <summary>
+        /// decides when to activate the slope to hold the player down at not horizontal surfaces
+        /// </summary>
+        /// <returns></returns>
+        private bool OnSlope()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, _characterController.height / 2 * _slopeForceRayLength))
+            {
+                // if the character is not horizontal relative to Vector3.up then the character will be dragged to the ground to don't take off
+                if (hit.normal != Vector3.up)
+                    return true;
+            }
+            return false;
         }
         
         public void Jump()

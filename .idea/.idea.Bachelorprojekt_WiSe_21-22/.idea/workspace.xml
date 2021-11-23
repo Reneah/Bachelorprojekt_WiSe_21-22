@@ -14,33 +14,28 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/Scripts/Singleton/MasterAudio.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PlayerNearDetection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AD3EAA08-78D9-4CBE-8E45-F9C494D71647/19/1670f7e6/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LookAgentVisualization.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PlayerNearDetection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/Scripts/Singleton/MasterAudio.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Menus/Options.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/MainMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/InGameMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerHideState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerCollectItemState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/IEnemyState.cs" />
@@ -61,7 +56,6 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LookAgentVisualization.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LookAgentVisualization1.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PointVisualization.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
@@ -75,12 +69,10 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
@@ -88,7 +80,13 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
       </list>
     </option>
   </component>
@@ -208,11 +206,11 @@
       <workItem from="1637249198414" duration="8778000" />
       <workItem from="1637266485825" duration="2028000" />
       <workItem from="1637268748940" duration="19000" />
-      <workItem from="1637322562706" duration="16870000" />
-      <workItem from="1637350077466" duration="102000" />
-      <workItem from="1637423274996" duration="10215000" />
-      <workItem from="1637435132834" duration="171000" />
-      <workItem from="1637565299821" duration="8150000" />
+      <workItem from="1637582331284" duration="2648000" />
+      <workItem from="1637587854854" duration="3868000" />
+      <workItem from="1637604706717" duration="605000" />
+      <workItem from="1637651401878" duration="1657000" />
+      <workItem from="1637674295211" duration="2172000" />
     </task>
     <servers />
   </component>
@@ -313,10 +311,10 @@
       <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state x="669" y="235" key="run.anything.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1635953837811" />
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1637571951099">
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1637652319765">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1637571951099" />
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1637652319765" />
     <state x="675" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1636297809418" />
   </component>
 </project>
