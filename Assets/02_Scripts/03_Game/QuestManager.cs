@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
@@ -17,6 +19,20 @@ public class QuestManager : MonoBehaviour
     private TextMeshProUGUI _quest5Text;
 
     //Bela: Could be worth making it a Singelton and use DoNotDestroyOnLoad
+    
+    /// <summary>
+    /// Variables for quest panel movement
+    /// </summary>
+    bool isDown = true;
+    [SerializeField]
+    RectTransform questPanel;
+    bool isCompleted;
+    [SerializeField]
+    Image buttonImage;
+    [SerializeField] float buttonAnimationDuration = 0.3f;
+    [SerializeField] float panelAnimationDuration = 0.7f;
+    [SerializeField] private float upPositionValue = 263;
+    [SerializeField] private float downPositionValue = -22;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +46,7 @@ public class QuestManager : MonoBehaviour
         _quest3Text.enabled = false;
         _quest4Text.enabled = false;
         _quest5Text.enabled = false;
+        
     }
 
     // Update is called once per frame
@@ -70,6 +87,49 @@ public class QuestManager : MonoBehaviour
             _quest5Text.fontStyle = FontStyles.Strikethrough;
             // activate crossed out resolved quest text "Escape the keep unharmed."
             _quest1Text.fontStyle = FontStyles.Strikethrough;
+        }
+    }
+    
+    public void MoveQuestPanelDown()
+    {
+        if (!isDown)
+        {
+            DOTween.Sequence()
+                .Append(questPanel.DOAnchorPosY(downPositionValue, panelAnimationDuration)).Append(buttonImage.transform.DOScaleY(-1f, buttonAnimationDuration)).AppendCallback(() =>
+                {
+                    isCompleted = true;
+                    Debug.Log(isCompleted);
+
+
+                    if (isCompleted)
+                    {
+
+                        isCompleted = false;
+                        isDown = true;
+                    }
+                });
+        }
+    }
+    
+    public void MoveQuestPanelUp()
+    {
+        if (isDown)
+        {
+
+            DOTween.Sequence()
+                .Append(questPanel.DOAnchorPosY(upPositionValue, panelAnimationDuration)).Append(buttonImage.transform.DOScaleY(1f, buttonAnimationDuration)).AppendCallback(() =>
+                {
+                    Debug.Log("OnComplete tween");
+                    isCompleted = true;
+                    Debug.Log(isCompleted);
+
+                    if (isCompleted)
+                    {
+
+                        isCompleted = false;
+                        isDown = false;
+                    }
+                });
         }
     }
 }
