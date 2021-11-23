@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private bool _patrolling;
     [Tooltip("the main task of the enemy is guarding")]
     [SerializeField] private bool _guarding;
-
+    
     public bool Guarding
     {
         get => _guarding;
@@ -421,6 +421,7 @@ public class EnemyController : MonoBehaviour
         _waypointAmount = _waypointCounter;
         // the dwelling time at a waypoint
         _standingCooldown = _dwellingTimer;
+        
     }
     
     void Update()
@@ -579,6 +580,8 @@ public class EnemyController : MonoBehaviour
             {
                 _spottedBar.fillAmount = 1;
                 _playerSpotted = true;
+                
+                _player.PlayerAnimationHandler.PlayerFlee(true);
             }
         }
         else

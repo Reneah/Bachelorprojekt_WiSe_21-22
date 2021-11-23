@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DarkTonic.MasterAudio;
 using TMPro;
 using UnityEngine;
 
@@ -167,12 +168,14 @@ public class SoundItem : MonoBehaviour
                     _itemUsable = false;
                     _itemUsed = false;
                     _oneTimeUsed = true;
+                    MasterAudio.PlaySound("ShatterVase");
                 }
                 else
                 {
                     _negativeText.gameObject.SetActive(false);
                     _soundRangeCollider.SetActive(false);
                     Destroy(this);
+                    MasterAudio.PlaySound("ShatterVase");
                 }
             }
         }

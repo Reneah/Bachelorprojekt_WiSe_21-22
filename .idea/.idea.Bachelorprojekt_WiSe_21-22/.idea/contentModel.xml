@@ -76,9 +76,6 @@
           <e p="Placeholder.txt" t="Include" />
         </e>
         <e p="05_Audio" t="Include">
-          <e p="01_Music" t="Include">
-            <e p="Placeholder.txt" t="Include" />
-          </e>
           <e p="02_SFX" t="Include">
             <e p="Placeholder.txt" t="Include" />
           </e>
