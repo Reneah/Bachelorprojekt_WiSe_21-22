@@ -14,7 +14,7 @@ public class CollectItem : MonoBehaviour
     [Tooltip("modify the text position at the mouse position")]
     [SerializeField] private Vector2 _textOffset;
     [Tooltip("the item text that will show up when the player is in range, hovers over the item and when it is available")]
-    [SerializeField] private TextMeshProUGUI _collectiobleText;
+    [SerializeField] private TextMeshProUGUI _collectibleText;
     [Tooltip("the item text that will show up when the player hovers over the item and it is not available")]
     [SerializeField] private TextMeshProUGUI _negativeText;
     [Tooltip("signalize that the stones can be collected")]
@@ -29,9 +29,18 @@ public class CollectItem : MonoBehaviour
     [SerializeField] private bool _parchment;
     [Tooltip("has to be interacted with by the player as a quest task")] 
     [SerializeField] private bool _secretPassage;
-
+    
     private bool _itemCollectible;
     
+    // a raycast in another script hits the collectable to activate the UI & functionalities
+    private bool _hitCollectable;
+
+    public bool HitCollectable
+    {
+        get => _hitCollectable;
+        set => _hitCollectable = value;
+    }
+
     //[SerializeField]
     private float _textVanishTime;
     
@@ -50,7 +59,7 @@ public class CollectItem : MonoBehaviour
     {
         _vanishTime = _textVanishTime;
         
-        _collectiobleText.gameObject.SetActive(false);
+        _collectibleText.gameObject.SetActive(false);
         _ItemImage.SetActive(false);
         _sceneChange = FindObjectOfType<SceneChange>();
         _playerController = FindObjectOfType<PlayerController>();
@@ -58,13 +67,10 @@ public class CollectItem : MonoBehaviour
     
     void Update()
     {
-        _collectiobleText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        _collectibleText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         _negativeText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit _hit;
-
-        if (Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("CollectibleItem")))
+        if (_hitCollectable)
         {
             if (!_itemCollectible)
             {
@@ -74,7 +80,7 @@ public class CollectItem : MonoBehaviour
             else if (_itemCollectible)
             {
                 _usebleMarker.SetActive(true);
-                _collectiobleText.gameObject.SetActive(true);
+                _collectibleText.gameObject.SetActive(true);
                 _negativeText.gameObject.SetActive(false);
                 
                 if (Input.GetKey(KeyCode.Mouse0))
@@ -108,7 +114,7 @@ public class CollectItem : MonoBehaviour
                         _playerController.enabled = false;
                     }
                 
-                    _collectiobleText.gameObject.SetActive(false);
+                    _collectibleText.gameObject.SetActive(false);
                     _ItemImage.SetActive(true);
                     _itemCollected = true;
                     gameObject.SetActive(false);
@@ -117,7 +123,7 @@ public class CollectItem : MonoBehaviour
         }
         else
         {
-            _collectiobleText.gameObject.SetActive(false);
+            _collectibleText.gameObject.SetActive(false);
             _negativeText.gameObject.SetActive(false);
             _usebleMarker.SetActive(false);
         }
@@ -137,7 +143,7 @@ public class CollectItem : MonoBehaviour
     {
         if (other.CompareTag("Player")  && !_itemCollected)
         {
-            _collectiobleText.gameObject.SetActive(true);
+            _collectibleText.gameObject.SetActive(true);
         }
     }
 
@@ -155,7 +161,7 @@ public class CollectItem : MonoBehaviour
         {
             if (other.CompareTag("Player") && !_itemCollected)
             {
-                _collectiobleText.gameObject.SetActive(false);
+                _collectibleText.gameObject.SetActive(false);
                 _itemCollectible = false;
             }
         }

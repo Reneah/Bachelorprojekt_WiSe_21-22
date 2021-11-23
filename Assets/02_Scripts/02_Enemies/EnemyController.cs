@@ -6,10 +6,13 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using untitledProject;
+using Random = UnityEngine.Random;
+
 
 public class EnemyController : MonoBehaviour
 {
     private NavMeshAgent _agent;
+    private SoundItem _soundItemScript;
 
     public NavMeshAgent Agent
     {
@@ -41,23 +44,39 @@ public class EnemyController : MonoBehaviour
     public static readonly EnemySearchState EnemySearchState = new EnemySearchState();
     public static readonly EnemySoundInvestigationState EnemySoundInvestigationState = new EnemySoundInvestigationState();
     public static readonly EnemyGuardState EnemyGuardState = new EnemyGuardState();
+    public static readonly EnemyNoisyItemSearchState EnemyNoisyItemSearchState = new EnemyNoisyItemSearchState();
 
     [Header("Choose ONE of the Behaviour")] 
+    [Tooltip("the main task of the enemy is patrolling")]
     [SerializeField] private bool _patrolling;
+    [Tooltip("the main task of the enemy is guarding")]
     [SerializeField] private bool _guarding;
-    
+
     public bool Guarding
     {
         get => _guarding;
         set => _guarding = value;
     }
-    
+
+    #region ChaseBehaviour
+
     [Header("Chase Behaviour")]
     [Tooltip("set the distance to catch the player")]
     [SerializeField] private float _catchDistance = 2;
     [Tooltip("the speed which the enemy will chase the player")]
     [SerializeField] private float _chaseSpeed;
+    // give the enemy the chance to chase the player again
+    // otherwise at a quick turn of the player, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
+    private float _reminderTime = 0;
+    
+    public float ReminderTime
+    {
+        get => _reminderTime;
+        set => _reminderTime = value;
+    }
 
+    #endregion
+    
     #region PatrolVariables
     
     [Header("Patrol Skill")]
@@ -143,13 +162,7 @@ public class EnemyController : MonoBehaviour
         get => _spottedTime;
         set => _spottedTime = value;
     }
-
-    public Image SpottedBar
-    {
-        get => _spottedBar;
-        set => _spottedBar = value;
-    }
-
+    
     public Transform LookPositionAtSpotted
     {
         get => _lookPositionAtSpotted;
@@ -175,27 +188,7 @@ public class EnemyController : MonoBehaviour
         get => _canSeePlayer;
         set => _canSeePlayer = value;
     }
-    /*
-    public float Radius
-    {
-        get => _radius;
-        set => _radius = value;
-    }
     
-    public float Angle
-    {
-        get => _angle;
-        set => _angle = value;
-    }
-    
-    */
-
-    public LayerMask TargetMask
-    {
-        get => _targetMask;
-        set => _targetMask = value;
-    }
-
     public LayerMask ObstructionMask
     {
         get => obstructionMask;
@@ -215,12 +208,62 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _thirdStageRunSpeed;
     [Tooltip("the enemy run speed when he goes from point to point")]
     [SerializeField] private float _searchSpeed;
+    [Tooltip("how many close waypoints of the throw position can be chosen to search after the player")]
+    [SerializeField] private int _waypointCounter; 
     List<Transform> _searchWaypoints = new List<Transform>();
      private int _searchWaypointCounter = 0;
      private bool _finishChecking = false;
      private float _nearestWaypoint;
      private Transform _closestWaypoint;
      private float _waypointDistance;
+     // the current sound state of the item to update the behaviour of the enemy
+     private int _currentSoundStage = 0;
+     // prevent that the animation will be activated permanently in Update
+     private bool _animationActivated = false;
+     // update the agent destination of the enemy when the footsteps were heard
+     private bool _heardFootsteps = false;
+     // get all waypoints in the search area again
+     private bool _resetSearchWaypoints = false;
+     
+     private int _waypointAmount;
+     List<Transform> _noisyItemSearchPoints = new List<Transform>();
+     List<Transform> _noisyItemSelectedPoints = new List<Transform>();
+     // the amount of the waypoints that the enemy has when the player activates the noisy item in close range
+     private int _usuableWaypointsAmount = 1;
+     private int _usuableWaypointsRangeAmount = 1;
+     private Transform _currentCloseNoisyItemWaypoint;
+     private bool _resetNoisyItemWaypoints = false;
+
+
+     public bool ResetNoisyItemWaypoints
+     {
+         get => _resetNoisyItemWaypoints;
+         set => _resetNoisyItemWaypoints = value;
+     }
+     
+     public bool ResetSearchWaypoints
+     {
+         get => _resetSearchWaypoints;
+         set => _resetSearchWaypoints = value;
+     }
+
+     public bool HeardFootsteps
+     {
+         get => _heardFootsteps;
+         set => _heardFootsteps = value;
+     }
+
+     public bool AnimationActivated
+     {
+         get => _animationActivated;
+         set => _animationActivated = value;
+     }
+
+     public int CurrentSoundStage
+     {
+         get => _currentSoundStage;
+         set => _currentSoundStage = value;
+     }
 
      public float SearchSpeed
      {
@@ -291,9 +334,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _stopGuardpointDistance = 0.5f;
     [Tooltip("the rotation of the enemy body when he is guarding")]
     [SerializeField] private Transform _desiredBodyRotation;
-
+    [Tooltip("the look agent to look in specific directions over time")]
     [SerializeField] private Transform _currentLookPosition;
+    [Tooltip("smooth the rotation towards the desired Body Rotation")]
     [SerializeField] private float _smoothBodyRotation;
+    private bool _reachedGuardpoint = false;
+    private Quaternion _desiredDirection;
+    
+    public bool ReachedGuardpoint
+    {
+        get => _reachedGuardpoint;
+        set => _reachedGuardpoint = value;
+    }
 
     public Transform CurrentLookPosition
     {
@@ -347,12 +399,12 @@ public class EnemyController : MonoBehaviour
     }
 
     #endregion
-
+    
     void Start()
     {
         // start state machine with LookAroundState
         _currentState = EnemyIdleState;
-
+        
         _agent = GetComponent<NavMeshAgent>();
         _animationHandler = GetComponent<EnemyAnimationHandler>();
         _player = FindObjectOfType<PlayerController>();
@@ -366,7 +418,9 @@ public class EnemyController : MonoBehaviour
             SetUpGuardBehaviour(); 
         }
 
-        //StartCoroutine(FOVRoutine());
+        _waypointAmount = _waypointCounter;
+        // the dwelling time at a waypoint
+        _standingCooldown = _dwellingTimer;
     }
     
     void Update()
@@ -454,6 +508,8 @@ public class EnemyController : MonoBehaviour
     }
     
     #endregion
+
+    #region GuardBehaviour
     
     public void SetUpGuardBehaviour()
     {
@@ -492,10 +548,21 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // should do a void update method, which the bar will go dynamically back and forth
-    // Then it will go automatically back and don't have the problem to set back the bar
-    // but the player will be instantly spotted until the patrol state kicks in
+    public bool GuardPointDistance()
+    {
+        return Vector3.Distance(transform.position, _guardPoint.transform.position) <= StopGuardpointDistance;
+    }
 
+    public void DesiredStandingLookDirection()
+    {
+        _desiredDirection = Quaternion.Slerp(transform.rotation, DesiredBodyRotation.rotation, SmoothBodyRotation * Time.deltaTime);
+        transform.rotation = _desiredDirection;
+    }
+    
+    #endregion
+
+    #region SpottedBar
+    
     public void PlayerDetected()
     {
         if (_seesObject)
@@ -525,29 +592,34 @@ public class EnemyController : MonoBehaviour
             if (_spottedTime <= 0)
             {
                 _spottedTime = 0;
-                _spottedBar.fillAmount = 0;
             }
         }
     }
-
+    
+    #endregion
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Sound"))
         {
-            SoundItem _soundItemScript = other.GetComponentInParent<SoundItem>();
+            _soundItemScript = other.GetComponentInParent<SoundItem>();
+            
+            // the amount of the waypoints when the player activated the noisy item in close range
+            _usuableWaypointsAmount = Random.Range(1,_soundItemScript.CloseNoisyItemWaypoints.Length);
+            
             float _distance = Vector3.Distance(transform.position, other.transform.position);
             
             RaycastHit hit;
             Physics.Raycast(other.transform.position, transform.position - other.transform.position, out hit, _distance);
 
-            if (hit.collider.CompareTag("Wall"))
+          //  if (hit.collider.CompareTag("Wall"))
             {
-                _soundItemScript.Stage--;
+          //      _soundItemScript.Stage--;
 
                 if (_soundItemScript.Stage <= 0)
                 {
-                    _soundItemScript.Stage = 0;
-                    return;
+              //      _soundItemScript.Stage = 0;
+                //    return;
                 }
             }
 
@@ -556,7 +628,6 @@ public class EnemyController : MonoBehaviour
                 _soundBehaviourStage = _soundItemScript.Stage;
                 _soundEventPosition = _soundItemScript.transform;
                 _soundNoticed = true;
-                _spottedBar.fillAmount = 1;
             }
         }
 
@@ -565,19 +636,65 @@ public class EnemyController : MonoBehaviour
             _soundNoticed = true;
             _soundBehaviourStage = 3;
             _soundEventPosition = _player.transform;
+            _animationActivated = false;
+            _heardFootsteps = true;
+            _spottedBar.fillAmount = 1;
         }
         
         // if the enemy get in a new room the new search points will be selected
         if (other.CompareTag("SearchPoints"))
         {
             _searchWaypoints.Clear();
+            _noisyItemSearchPoints.Clear();
             
             foreach (Transform waypoints in other.transform)
             {
-                // have to delete the list after using
                 _searchWaypoints.Add(waypoints);
+                _noisyItemSearchPoints.Add(waypoints);
             }
         }
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // if the enemy used the points in the room all points will be added again because they will be deleted during the search mode
+        if (other.CompareTag("SearchPoints"))
+        {
+            if (_resetSearchWaypoints)
+            {
+                _searchWaypoints.Clear();
+                
+                foreach (Transform waypoints in other.transform)
+                {
+                    _searchWaypoints.Add(waypoints);
+                }
+
+                _resetSearchWaypoints = false;
+            }
+            
+            if (_resetNoisyItemWaypoints)
+            {
+                _noisyItemSearchPoints.Clear();
+                _noisyItemSelectedPoints.Clear();
+                
+                foreach (Transform waypoints in other.transform)
+                {
+                    _noisyItemSearchPoints.Add(waypoints);
+                }
+
+                _resetNoisyItemWaypoints = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// the distance between the sound event and the enemy
+    /// </summary>
+    /// <returns></returns>
+    public float DistanceToSoundEvent()
+    {
+        return Vector3.Distance(SoundEventPosition.position, transform.position);
     }
     
     #region Search Behaviour
@@ -586,6 +703,7 @@ public class EnemyController : MonoBehaviour
     {
         if (_searchWaypoints.Count <= 0)
         {
+            _resetSearchWaypoints = true;
             _finishChecking = true;
             return;
         }
@@ -625,6 +743,101 @@ public class EnemyController : MonoBehaviour
                 _standingCooldown = _dwellingTimer;
                 _reachedWaypoint = false;
                 StartSearchBehaviour();
+            }
+        }
+    }
+    #endregion
+    
+    #region SearchNoisyItemBehaviour
+
+    public void PrepareSearchNoisyItemBehaviour()
+    {
+        if (_player.PlayerThrowTrigger.PlayerThrew)
+        {
+            _nearestWaypoint = Mathf.Infinity;
+            foreach (Transform waypoint in _noisyItemSearchPoints)
+            {
+                _waypointDistance = Vector3.Distance(waypoint.transform.position, _player.PlayerThrowTrigger.ThrowPosition.transform.position);
+                if (_waypointDistance <= _nearestWaypoint)
+                {
+                    _closestWaypoint = waypoint;
+                    _nearestWaypoint = _waypointDistance;
+                }
+            }
+            if (_waypointAmount > 0)
+            {
+                _noisyItemSelectedPoints.Add(_closestWaypoint);
+                _noisyItemSearchPoints.Remove(_closestWaypoint);
+                _waypointAmount--;
+                PrepareSearchNoisyItemBehaviour();
+
+                if (_waypointAmount <= 1)
+                {
+                    _waypointAmount = _waypointCounter;
+                }
+            }
+            
+            _usuableWaypointsRangeAmount = Random.Range(1, _noisyItemSelectedPoints.Count);
+        }
+        
+    }
+    
+    public void StartSearchNoisyItemBehaviour()
+    {
+        if (_usuableWaypointsAmount <= 0 || _usuableWaypointsRangeAmount <= 0)
+        {
+            _waypointAmount = 3;
+            _finishChecking = true;
+            _resetNoisyItemWaypoints = true;
+            return;
+        }
+
+        if (_player.PlayerThrowTrigger.PlayerThrew)
+        {
+            _currentCloseNoisyItemWaypoint = _noisyItemSelectedPoints[Random.Range(0, _noisyItemSelectedPoints.Count)];
+            _agent.SetDestination(_currentCloseNoisyItemWaypoint.position);
+            _usuableWaypointsRangeAmount--;
+        }
+
+        if (!_player.PlayerThrowTrigger.PlayerThrew)
+        {
+            _currentCloseNoisyItemWaypoint = _soundItemScript.CloseNoisyItemWaypoints[Random.Range(0, _soundItemScript.CloseNoisyItemWaypoints.Length)];
+            _agent.SetDestination(_currentCloseNoisyItemWaypoint.position);
+            _usuableWaypointsAmount--;
+        }
+        
+
+        _animationHandler.SetSpeed(_firstStageRunSpeed);
+    }
+    
+    public void UpdateSearchNoisyItemBehaviour()
+    {
+        // have to separate the if condition because when the enemy get the waypoints of the close activation at the noisy item, the "_closestWaypoint" will be null
+        if (!_player.PlayerThrowTrigger.PlayerThrew && Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
+        {
+            _animationHandler.SetSpeed(0);
+            _reachedWaypoint = true;
+        }
+
+        if (_player.PlayerThrowTrigger.PlayerThrew)
+        {
+            if ( Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
+            {
+                _animationHandler.SetSpeed(0);
+                _reachedWaypoint = true;
+            }
+        }
+        
+        if (_reachedWaypoint)
+        {
+            //plays investigation animation, after it or certain time he will go to the next point nearby
+            _standingCooldown -= Time.deltaTime;
+            
+            if (_standingCooldown <= 0)
+            {
+                _standingCooldown = _dwellingTimer;
+                _reachedWaypoint = false;
+                StartSearchNoisyItemBehaviour();
             }
         }
     }

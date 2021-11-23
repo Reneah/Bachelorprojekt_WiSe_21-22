@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class EnemySoundInvestigationState : IEnemyState
 {
-    // prevent that the animation will be activated permanently in Update
-    private bool _animationActivated = false;
-    
     public IEnemyState Execute(EnemyController enemy)
     {
         if (enemy.CanSeePlayer)
@@ -20,34 +17,34 @@ public class EnemySoundInvestigationState : IEnemyState
             return EnemyController.EnemyChaseState;
         }
         
-        // the distance between the sound event and the enemy
-        float distance = Vector3.Distance(enemy.SoundEventPosition.position, enemy.transform.position);
-
-        if (distance <= 1)
+        UpdateSearchStage(enemy);
+        enemy.DistanceToSoundEvent();
+        
+        if (enemy.DistanceToSoundEvent() <= 1 || EnemyShareInformation.ReachedNoisyItem)
         {
+            EnemyShareInformation.ReachedNoisyItem = true;
+            
+            // stop the method "UpdateSearchStage" to not set a new agent destination or animation speed
+            enemy.HeardFootsteps = false;
+            
             // prevent that the walking animation will be played
             enemy.AnimationHandler.SetSpeed(0);
             
             if (enemy.SoundBehaviourStage == 1)
             {
                 // plays the investigation animation & when the Animation is finished, the enemy will patrol again
-                if (!_animationActivated)
+                if (!enemy.AnimationActivated)
                 {
                     enemy.AnimationHandler.InvestigatePoint();
-                    _animationActivated = true;
+                    enemy.AnimationActivated = true;
                 }
                 
                 if (enemy.AnimationHandler.FinishedInvestigationAnimation)
                 {
-                    enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                     enemy.AnimationHandler.ResetInvestigatePoint();
+                    enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                     
-                    if (enemy.Guarding)
-                    {
-                        return EnemyController.EnemyGuardState;
-                    }
-                    
-                    return EnemyController.EnemyPatrolState;
+                    return EnemyController.EnemyNoisyItemSearchState;
                 }
                 
             }
@@ -55,11 +52,11 @@ public class EnemySoundInvestigationState : IEnemyState
             if (enemy.SoundBehaviourStage == 2)
             {
                 // play the investigation animation, when the Animation is finished, the enemy looks around and then goes back to patrolling 
-                if (!_animationActivated)
+                if (!enemy.AnimationActivated)
                 {
                     enemy.AnimationHandler.InvestigatePoint();
                     enemy.AnimationHandler.LookingAround();
-                    _animationActivated = true;
+                    enemy.AnimationActivated = true;
                 }
 
                 if (enemy.AnimationHandler.FinishedLookingAnimation)
@@ -69,22 +66,17 @@ public class EnemySoundInvestigationState : IEnemyState
                     enemy.AnimationHandler.ResetInvestigatePoint();
                     enemy.AnimationHandler.ResetLookingAround();
                     
-                    if (enemy.Guarding)
-                    {
-                        return EnemyController.EnemyGuardState;
-                    }
-                    
-                    return EnemyController.EnemyPatrolState;
+                    return EnemyController.EnemyNoisyItemSearchState;
                 }
             }
             
             if (enemy.SoundBehaviourStage == 3)
             {
                 // play the investigation animation, when the Animation is finished, the enemy goes in search mode for the player
-                if (!_animationActivated)
+                if (!enemy.AnimationActivated)
                 {
                     enemy.AnimationHandler.InvestigatePoint();
-                    _animationActivated = true;
+                    enemy.AnimationActivated = true;
                 }
                 
                 if (enemy.AnimationHandler.FinishedInvestigationAnimation)
@@ -102,6 +94,10 @@ public class EnemySoundInvestigationState : IEnemyState
 
     public void Enter(EnemyController enemy)
     {
+        enemy.SoundNoticed = false;
+        
+        enemy.CurrentSoundStage = enemy.SoundBehaviourStage;
+        
         if (enemy.SoundBehaviourStage == 1)
         {
             enemy.Agent.speed = enemy.FirstStageRunSpeed;
@@ -124,6 +120,32 @@ public class EnemySoundInvestigationState : IEnemyState
 
     public void Exit(EnemyController enemy)
     {
-        _animationActivated = false;
+        enemy.AnimationActivated = false;
+        enemy.HeardFootsteps = false;
+        EnemyShareInformation.ReachedNoisyItem = false;
     }
+    
+    private void UpdateSearchStage(EnemyController enemy)
+    {
+        // when the player should use the same sound again, the stage will be increased and the enemy will be more aggressive
+        // when the footsteps of the player were heard, the destination will be updated
+        if (enemy.CurrentSoundStage < enemy.SoundBehaviourStage || enemy.HeardFootsteps)
+        {
+            if (enemy.SoundBehaviourStage == 2)
+            {
+                enemy.Agent.speed = enemy.SecondStageRunSpeed;
+                enemy.AnimationHandler.SetSpeed(enemy.SecondStageRunSpeed);
+                enemy.Agent.SetDestination(enemy.SoundEventPosition.position);
+            }
+            if (enemy.SoundBehaviourStage >= 3)
+            {
+                enemy.Agent.speed = enemy.ThirdStageRunSpeed;
+                enemy.AnimationHandler.SetSpeed(enemy.ThirdStageRunSpeed);
+                enemy.Agent.SetDestination(enemy.SoundEventPosition.position);
+            }
+            
+            enemy.CurrentSoundStage = enemy.SoundBehaviourStage;
+        }
+    }
+    
 }

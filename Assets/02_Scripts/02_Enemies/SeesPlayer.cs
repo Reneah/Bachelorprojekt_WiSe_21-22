@@ -14,7 +14,7 @@ public class SeesPlayer : MonoBehaviour
 
             // there is only one player in the game, so the array can be set to 0
             Vector3 target = other.transform.position;
-            target = new Vector3 (target.x, 2.5f, target.z);
+            target = new Vector3 (target.x, 1.5f, target.z);
             
             // the direction from the enemy to the player
             Vector3 directionToTarget = (target - _enemyController.EnemyHead.position).normalized;

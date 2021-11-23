@@ -13,6 +13,7 @@
       <e p="Assets" t="Include">
         <e p="02_Scripts" t="Include">
           <e p="01_Player" t="Include">
+            <e p="CollectibleItemRaycast.cs" t="Include" />
             <e p="CollectItem.cs" t="Include" />
             <e p="CollectStones.cs" t="Include" />
             <e p="IPlayerState.cs" t="Include" />
@@ -33,8 +34,10 @@
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyGuardState.cs" t="Include" />
             <e p="EnemyIdleState.cs" t="Include" />
+            <e p="EnemyNoisyItemSearchState.cs" t="Include" />
             <e p="EnemyPatrolState.cs" t="Include" />
             <e p="EnemySearchState.cs" t="Include" />
+            <e p="EnemyShareInformation.cs" t="Include" />
             <e p="EnemySoundInvestigationState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
             <e p="LookAgentVisualization.cs" t="Include" />
@@ -54,11 +57,8 @@
             <e p="WallCheck.cs" t="Include" />
           </e>
           <e p="04_Menu" t="Include">
-            <e p="ChangeCursorColor.cs" t="Include" />
-            <e p="ChangeOptionsColor.cs" t="Include" />
             <e p="InGameMenu.cs" t="Include" />
             <e p="MainMenu.cs" t="Include" />
-            <e p="Menu.cs" t="Include" />
             <e p="Options.cs" t="Include" />
             <e p="ScenePersistent.cs" t="Include" />
             <e p="ShowFramerate.cs" t="Include" />
