@@ -26,6 +26,7 @@ public class SceneChange : MonoBehaviour
     private PlayerController _playerController;
     private GameObject _questManager;
     private GameObject _playtestingHints;
+    private GameObject _stoneUI;
     
     void Start()
     {
@@ -35,6 +36,7 @@ public class SceneChange : MonoBehaviour
         _playerController = FindObjectOfType<PlayerController>();
         _questManager = GameObject.Find("QuestManager");
         _playtestingHints = GameObject.Find("SomePlaytestingInfos");
+        _stoneUI = GameObject.Find("StoneUI");
     }
     
     void Update()
@@ -66,6 +68,7 @@ public class SceneChange : MonoBehaviour
         // Deactivate QuestManager parent object, this is a temporary solution so it doesn't overlap with the narrative text
         _questManager.SetActive(false);
         _playtestingHints.SetActive(false);
+        _stoneUI.SetActive(false);
         _fadeImage.DOFade(1, _fadeTime);
     }
 }
