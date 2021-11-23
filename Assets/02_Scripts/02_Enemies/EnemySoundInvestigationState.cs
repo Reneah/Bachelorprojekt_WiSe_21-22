@@ -20,8 +20,10 @@ public class EnemySoundInvestigationState : IEnemyState
         UpdateSearchStage(enemy);
         enemy.DistanceToSoundEvent();
         
-        if (enemy.DistanceToSoundEvent() <= 1)
+        if (enemy.DistanceToSoundEvent() <= 1 || EnemyShareInformation.ReachedNoisyItem)
         {
+            EnemyShareInformation.ReachedNoisyItem = true;
+            
             // stop the method "UpdateSearchStage" to not set a new agent destination or animation speed
             enemy.HeardFootsteps = false;
             
@@ -39,16 +41,10 @@ public class EnemySoundInvestigationState : IEnemyState
                 
                 if (enemy.AnimationHandler.FinishedInvestigationAnimation)
                 {
-                    
                     enemy.AnimationHandler.ResetInvestigatePoint();
                     enemy.AnimationHandler.FinishedInvestigationAnimation = false;
-
-                    if (enemy.Guarding)
-                    {
-                        return EnemyController.EnemyGuardState;
-                    }
                     
-                    return EnemyController.EnemyPatrolState;
+                    return EnemyController.EnemyNoisyItemSearchState;
                 }
                 
             }
@@ -70,12 +66,7 @@ public class EnemySoundInvestigationState : IEnemyState
                     enemy.AnimationHandler.ResetInvestigatePoint();
                     enemy.AnimationHandler.ResetLookingAround();
                     
-                    if (enemy.Guarding)
-                    {
-                        return EnemyController.EnemyGuardState;
-                    }
-                    
-                    return EnemyController.EnemyPatrolState;
+                    return EnemyController.EnemyNoisyItemSearchState;
                 }
             }
             
@@ -131,6 +122,7 @@ public class EnemySoundInvestigationState : IEnemyState
     {
         enemy.AnimationActivated = false;
         enemy.HeardFootsteps = false;
+        EnemyShareInformation.ReachedNoisyItem = false;
     }
     
     private void UpdateSearchStage(EnemyController enemy)

@@ -62,7 +62,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Jumping Down
-  m_Speed: 1
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5673418451087737411}
@@ -461,9 +461,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.10870156
+  m_TransitionDuration: 0.13365653
   m_TransitionOffset: 0
-  m_ExitTime: 0.3794508
+  m_ExitTime: 0.54147315
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -483,19 +483,19 @@ AnimatorStateMachine:
     m_Position: {x: 50, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9027309875145005672}
-    m_Position: {x: -280, y: 220, z: 0}
+    m_Position: {x: -280, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7096688861970419153}
-    m_Position: {x: 50, y: 430, z: 0}
+    m_Position: {x: -10, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3010600979817086289}
-    m_Position: {x: -280, y: 480, z: 0}
+    m_Position: {x: -290, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8293534862503867601}
-    m_Position: {x: 310, y: 220, z: 0}
+    m_Position: {x: 340, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -226354499407994165}
-    m_Position: {x: 30, y: 670, z: 0}
+    m_Position: {x: 350, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3881431576819456705}
     m_Position: {x: -230, y: 70, z: 0}

@@ -8,6 +8,7 @@ public class EnemySearchState : IEnemyState
     {
         if (enemy.CanSeePlayer)
         {
+            enemy.ResetSearchWaypoints = true;
             return EnemyController.EnemyChaseState;
         }
 
@@ -27,9 +28,6 @@ public class EnemySearchState : IEnemyState
 
     public void Enter(EnemyController enemy)
     {
-        // lost the sight of the player
-        enemy.SpottedBar.fillAmount = 0;
-
         enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
         enemy.StartSearchBehaviour();
     }
