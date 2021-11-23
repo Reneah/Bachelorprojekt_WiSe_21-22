@@ -1923,7 +1923,7 @@ MonoBehaviour:
   _catchDistance: 0.85
   _chaseSpeed: 4
   _patrollingRoute: {fileID: 0}
-  _dwellingTimer: 5
+  _dwellingTimer: 6.5
   _stopDistance: 0.8
   _patrolSpeed: 2
   _targetMask:
@@ -1939,10 +1939,11 @@ MonoBehaviour:
   _spottedBar: {fileID: 0}
   _spottedDistance: 3
   _lastChanceTime: 1
-  _firstStageRunSpeed: 1
-  _secondStageRunSpeed: 2.1
+  _firstStageRunSpeed: 2
+  _secondStageRunSpeed: 2.5
   _thirdStageRunSpeed: 3
-  _searchSpeed: 2.1
+  _searchSpeed: 2
+  _waypointCounter: 0
   _switchLookTime: 6
   _lookSwitchSpeed: 3
   _lookingRoute: {fileID: 0}
