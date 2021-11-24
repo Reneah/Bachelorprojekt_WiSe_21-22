@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -26728,6 +26728,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2047261568}
     m_Modifications:
+    - target: {fileID: 145502970382376193, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.70794576
+      objectReference: {fileID: 0}
+    - target: {fileID: 978270042889445092, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.70794576
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866955098341139043, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.70794576
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062074263582823504, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: frames
+      value: 4744
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072010611391941172, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.70794576
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768250468702142240, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.70794576
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921601407647719814, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.70794576
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962902501142816434, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.70794576
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001058728446395241, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.70794576
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414238535873441, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414238576133897, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
+      objectReference: {fileID: 0}
     - target: {fileID: 9113414238629353058, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -26776,17 +26820,85 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9113414240078249718, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
-      propertyPath: musicPlaylists.Array.data[0].MusicSettings.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 5417c79ced1d94c45b5ff9c03f8952b1, type: 3}
-    - target: {fileID: 9113414240078249718, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
-      propertyPath: musicPlaylists.Array.data[0].MusicSettings.Array.data[0].volume
-      value: 0.17782794
+    - target: {fileID: 9113414238816850683, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
       objectReference: {fileID: 0}
-    - target: {fileID: 9113414240078249718, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
-      propertyPath: musicPlaylists.Array.data[0].MusicSettings.Array.data[0].songName
-      value: szegvari_dark-thriller-castle-atmo-orchestral-drone
+    - target: {fileID: 9113414238921252392, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414239005224255, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414239096141075, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414239267566769, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414239446080582, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414239539014650, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414239735276064, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414239770214443, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414239893130074, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414239915680192, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240151486704, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: frames
+      value: 13269
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240182353232, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240328336001, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: frames
+      value: 7562
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240348396437, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240375492830, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240392731501, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240414920324, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240451594129, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240475211640, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: m_Volume
+      value: 0.56234133
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
