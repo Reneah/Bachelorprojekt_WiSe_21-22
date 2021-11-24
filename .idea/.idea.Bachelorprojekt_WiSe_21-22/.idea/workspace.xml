@@ -65,7 +65,6 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Options.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyChaseState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
@@ -86,6 +85,7 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
       </list>
     </option>
   </component>
@@ -210,6 +210,7 @@
       <workItem from="1637604706717" duration="605000" />
       <workItem from="1637651401878" duration="9431000" />
       <workItem from="1637668426877" duration="2240000" />
+      <workItem from="1637786383569" duration="300000" />
     </task>
     <servers />
   </component>

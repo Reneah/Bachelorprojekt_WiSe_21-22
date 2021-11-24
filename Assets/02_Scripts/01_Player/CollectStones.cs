@@ -24,8 +24,8 @@ public class CollectStones : MonoBehaviour
     private float _stonesCounter = 0;
     private bool _stonesCollectible = false;
     private GameObject _stones;
-    private bool _stonesActive;
-    private bool _UIdisplayed;
+    private static bool _stonesActive;
+    private static bool _UIdisplayed;
 
     public float StonesCounter
     {
@@ -71,6 +71,7 @@ public class CollectStones : MonoBehaviour
                 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    _stonesActive = true;
                     _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount;
                     
                     // if max amount reached, return
