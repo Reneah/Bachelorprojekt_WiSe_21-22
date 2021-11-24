@@ -5235,8 +5235,8 @@ MonoBehaviour:
     MusicSettings:
     - alias: 
       audLocation: 0
-      clip: {fileID: 8300000, guid: e0cb2372f3ef4724095ef98ad17dd520, type: 3}
-      songName: Heidi Intro
+      clip: {fileID: 8300000, guid: 5417c79ced1d94c45b5ff9c03f8952b1, type: 3}
+      songName: szegvari_dark-thriller-castle-atmo-orchestral-drone
       resourceFileName: 
       volume: 0.31622776
       pitch: 1
