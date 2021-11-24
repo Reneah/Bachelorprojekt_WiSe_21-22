@@ -4425,7 +4425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ItemImage: {fileID: 0}
   _textOffset: {x: 130, y: -40}
-  _collectiobleText: {fileID: 0}
+  _collectibleText: {fileID: 0}
   _negativeText: {fileID: 0}
   _usebleMarker: {fileID: 5050900069585843629}
   _key: 0
@@ -4519,7 +4519,7 @@ GameObject:
   - component: {fileID: 2986318237376019503}
   - component: {fileID: 5500204158763010115}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Point Light_Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
