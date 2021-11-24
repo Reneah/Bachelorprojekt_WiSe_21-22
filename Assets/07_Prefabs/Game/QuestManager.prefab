@@ -187,8 +187,8 @@ MonoBehaviour:
   buttonImage: {fileID: 5106005557620977886}
   buttonAnimationDuration: 0.3
   panelAnimationDuration: 0.7
-  upPositionValue: 263
-  downPositionValue: -22
+  upPositionValue: 257
+  downPositionValue: 63
 --- !u!1 &2282628711396430909
 GameObject:
   m_ObjectHideFlags: 0
