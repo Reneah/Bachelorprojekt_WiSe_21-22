@@ -16,12 +16,16 @@ public class CollectStones : MonoBehaviour
     [SerializeField] private Vector2 _textOffset;
     [Tooltip("the amount of stones that can be collected")]
     [SerializeField] private float _maxStoneAmount;
+    [Tooltip("The GO of the stones UI element and text")]
+    [SerializeField] private GameObject _stonesUIelements;
 
     private GameObject _usebleMarker;
     
     private float _stonesCounter = 0;
     private bool _stonesCollectible = false;
     private GameObject _stones;
+    private bool _stonesActive;
+    private bool _UIdisplayed;
 
     public float StonesCounter
     {
@@ -40,6 +44,12 @@ public class CollectStones : MonoBehaviour
     
     void Update()
     {
+        if (_stonesActive && !_UIdisplayed)
+        {
+            _stonesUIelements.SetActive(true);
+            _UIdisplayed = true;
+        }
+        
         _stoneText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         _negativeStoneText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         
