@@ -98,8 +98,6 @@ public class QuestManager : MonoBehaviour
                 .Append(questPanel.DOAnchorPosY(downPositionValue, panelAnimationDuration)).Append(buttonImage.transform.DOScaleY(-1f, buttonAnimationDuration)).AppendCallback(() =>
                 {
                     isCompleted = true;
-                    Debug.Log(isCompleted);
-
 
                     if (isCompleted)
                     {
@@ -119,9 +117,7 @@ public class QuestManager : MonoBehaviour
             DOTween.Sequence()
                 .Append(questPanel.DOAnchorPosY(upPositionValue, panelAnimationDuration)).Append(buttonImage.transform.DOScaleY(1f, buttonAnimationDuration)).AppendCallback(() =>
                 {
-                    Debug.Log("OnComplete tween");
                     isCompleted = true;
-                    Debug.Log(isCompleted);
 
                     if (isCompleted)
                     {
