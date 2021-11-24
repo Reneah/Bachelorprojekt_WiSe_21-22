@@ -4727,7 +4727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &349055839
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19949,7 +19949,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1975931276
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25342,7 +25342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &8292312096446126244
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25835,6 +25835,7 @@ MonoBehaviour:
   _controlsPage: {fileID: 8292312096100597605}
   _fadeImage: {fileID: 8292312096342760185}
   _cursorTexture: {fileID: 0}
+  _introSceneName: IntroScene
 --- !u!224 &8292312096604416526
 RectTransform:
   m_ObjectHideFlags: 0

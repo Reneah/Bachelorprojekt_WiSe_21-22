@@ -21,7 +21,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Image _fadeImage;
     [SerializeField] private Texture2D _cursorTexture;
 
+    [SerializeField] private string _introSceneName;
+
     private bool _openMenu = false;
+    
+    private bool _fadeIn = false;
     
     private void Start()
     {
@@ -35,15 +39,21 @@ public class MainMenu : MonoBehaviour
        //MasterAudio.StopAllOfSound("Forest");
        //MasterAudio.StopAllOfSound("Wind");
        
-      // _fadeImage.DOFade(0, 3);
+       _fadeImage.DOFade(0, 3);
         
     }
 
     private void Update()
     {
-       // if (_fadeImage.color.a >= 1)
+        if (_fadeImage.color.a <= 0.95f)
         {
-            //SceneManager.LoadScene("Start");
+            _fadeIn = true;
+        }
+        
+
+        if (_fadeImage.color.a >= 1 && _fadeIn)
+        {
+            SceneManager.LoadScene(_introSceneName);
             
             //MasterAudio.ChangePlaylistByName("Start");
             //MasterAudio.StopAllOfSound("Forest");
