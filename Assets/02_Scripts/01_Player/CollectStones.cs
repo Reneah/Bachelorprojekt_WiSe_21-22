@@ -31,7 +31,7 @@ public class CollectStones : MonoBehaviour
 
     void Start()
     {
-        _stonesAmountText.text = "Stones: " + _stonesCounter;
+        _stonesAmountText.text = _stonesCounter.ToString();
         
         // just create a new GameObject to not be null. Otherwise, the usable marker will not dissappear.
         // the randomness doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
@@ -70,7 +70,7 @@ public class CollectStones : MonoBehaviour
                         _stonesCounter = _maxStoneAmount;
                     }
                     
-                    _stonesAmountText.text = "Stones: " + _stonesCounter;
+                    _stonesAmountText.text = _stonesCounter.ToString();
                     _stones.SetActive(false);
                     _stonesCollectible = false;
                 }
@@ -92,7 +92,7 @@ public class CollectStones : MonoBehaviour
             return;
         }
         _stonesCounter--;
-        _stonesAmountText.text = "Stones: " + _stonesCounter;
+        _stonesAmountText.text = _stonesCounter.ToString();
     }
     
     private void OnTriggerStay(Collider other)
