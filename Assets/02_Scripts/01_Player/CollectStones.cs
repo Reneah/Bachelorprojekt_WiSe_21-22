@@ -24,8 +24,8 @@ public class CollectStones : MonoBehaviour
     private float _stonesCounter = 0;
     private bool _stonesCollectible = false;
     private GameObject _stones;
-    private static bool _stonesActive;
-    private static bool _UIdisplayed;
+    public static bool _stonesActive;
+    public static bool _UIdisplayed;
 
     public float StonesCounter
     {
