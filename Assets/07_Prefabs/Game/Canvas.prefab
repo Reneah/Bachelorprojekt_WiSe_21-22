@@ -4743,7 +4743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150, y: 100}
+  m_AnchoredPosition: {x: 127.2, y: 138.3}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1740935178341855558
@@ -5610,11 +5610,13 @@ MonoBehaviour:
   m_text: 'Playtesting Hints:
 
 
-    - Be careful when climbing over debris. If you
-    slip, you could be injured. (red cubes = danger)
+    - Be careful when climbing or jumping over debris.
+    If you slip, you could be injured and your journey will end.
 
-    - You can shatter a vase
-    to lure them away, if they are in the way. Timing might be key.'
+
+    - Enemies
+    can be distracted by shattering vases. If you have rocks, try throwing from a
+    distance. Timing is key either way.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
   m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
@@ -7133,19 +7135,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104206607299350292, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3104206607299350292, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_characterSpacing
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3304886091771716531, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3304886091771716531, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_characterSpacing
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4344594181122484400, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_Pivot.x
@@ -7233,19 +7235,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4600460294552525789, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4600460294552525789, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_characterSpacing
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4771950770494435290, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4771950770494435290, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_characterSpacing
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5106005556606956985, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7253,11 +7255,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6508235131053452222, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6508235131053452222, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_characterSpacing
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9085503706712848516, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
       propertyPath: m_AnchoredPosition.y

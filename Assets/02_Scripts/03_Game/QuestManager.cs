@@ -60,7 +60,6 @@ public class QuestManager : MonoBehaviour
             _quest3Text.enabled = true;
             // activate crossed out resolved quest text, "Find a backpack."
             _quest2Text.fontStyle = FontStyles.Strikethrough;
-            _quest2Text.fontStyle = FontStyles.Bold;
         }
         else if (CollectItem._parchmentCollected && !_questStage2complete)
         {
@@ -70,7 +69,6 @@ public class QuestManager : MonoBehaviour
             _quest4Text.enabled = true;
             // activate crossed out resolved quest text "Meet up with Drustan back at the front gate."
             _quest3Text.fontStyle = FontStyles.Strikethrough;
-            _quest3Text.fontStyle = FontStyles.Bold;
         }
         else if (CollectItem._keyCollected && !_questStage3complete)
         {
@@ -80,7 +78,6 @@ public class QuestManager : MonoBehaviour
             _quest5Text.enabled = true;
             // activate crossed out resolved quest text "Find the hidden key under the throne."
             _quest4Text.fontStyle = FontStyles.Strikethrough;
-            _quest4Text.fontStyle = FontStyles.Bold;
         }
         else if (CollectItem._secretPassageOpened && !_questStage4complete)
         {
@@ -88,10 +85,8 @@ public class QuestManager : MonoBehaviour
             
             // activate crossed out resolved quest text "Find the secret passage."
             _quest5Text.fontStyle = FontStyles.Strikethrough;
-            _quest5Text.fontStyle = FontStyles.Bold;
             // activate crossed out resolved quest text "Escape the keep unharmed."
             _quest1Text.fontStyle = FontStyles.Strikethrough;
-            _quest1Text.fontStyle = FontStyles.Bold;
         }
     }
     
