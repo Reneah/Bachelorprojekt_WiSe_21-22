@@ -14,7 +14,7 @@ public class EnemySoundInvestigationState : IEnemyState
             enemy.AnimationHandler.ResetInvestigatePoint();
             enemy.AnimationHandler.ResetLookingAround();
             
-            return EnemyController.EnemyChaseState;
+            return EnemyController.EnemyVisionChaseState;
         }
         
         UpdateSearchStage(enemy);

@@ -9,7 +9,12 @@ public class EnemySearchState : IEnemyState
         if (enemy.CanSeePlayer)
         {
             enemy.ResetSearchWaypoints = true;
-            return EnemyController.EnemyChaseState;
+            return EnemyController.EnemyVisionChaseState;
+        }
+        
+        if (enemy.SoundNoticed)
+        {
+            return EnemyController.EnemySoundInvestigationState;
         }
 
         if (enemy.FinishChecking)

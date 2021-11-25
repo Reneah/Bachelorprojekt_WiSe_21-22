@@ -8,7 +8,7 @@ public class EnemyGuardState : IEnemyState
     {
         if (enemy.CanSeePlayer)
         {
-            return EnemyController.EnemyChaseState;
+            return EnemyController.EnemyVisionChaseState;
         }
 
         if (enemy.SoundNoticed)
@@ -44,7 +44,6 @@ public class EnemyGuardState : IEnemyState
 
     public void Exit(EnemyController enemy)
     {
-        enemy.AnimationHandler.HeadRotationWeight = 0;
         enemy.GuardBehaviour = false;
         enemy.ReachedGuardpoint = false;
     }
