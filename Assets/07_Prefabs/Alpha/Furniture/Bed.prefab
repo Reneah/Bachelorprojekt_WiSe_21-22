@@ -810,7 +810,7 @@ GameObject:
   - component: {fileID: 3592612330139418053}
   - component: {fileID: 3592612330139418050}
   - component: {fileID: 3592612330139418051}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 3592612330491737736}
   - component: {fileID: 3592612330491737737}
   - component: {fileID: 3592612330491737782}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Blanket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
