@@ -115,7 +115,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278255369
-  m_fontColor: {r: 0.033675432, g: 1, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278255400
-  m_fontColor: {r: 0.15860271, g: 1, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.79607844, g: 0.16862746, b: 0.16862746, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.79607844, g: 0.16862746, b: 0.16862746, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1470,7 +1470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &664005806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2357,7 +2357,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.79607844, g: 0.16862746, b: 0.16862746, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2974,7 +2974,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.7924528, g: 0.16746168, b: 0.16746168, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3623,7 +3623,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.79607844, g: 0.16862746, b: 0.16862746, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4253,7 +4253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291, y: -185.99998}
+  m_AnchoredPosition: {x: -200, y: -185.99998}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3610840247398248795
@@ -4572,7 +4572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6837791045158664816}
   m_Layer: 5
-  m_Name: PlayerSpottedScale_PW2
+  m_Name: PlayerSpottedScale_HG2.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4821,7 +4821,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.79607844, g: 0.16862746, b: 0.16862746, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4914,7 +4914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291, y: -185.99998}
+  m_AnchoredPosition: {x: -10, y: -185.99998}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6231112778420089368
@@ -5200,7 +5200,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -200, y: -137.09999}
+  m_AnchoredPosition: {x: -100, y: -137.09999}
   m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1910889831211943118
@@ -5439,7 +5439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 743335913572630836}
   m_Layer: 5
-  m_Name: PlayerSpottedScale_E3
+  m_Name: PlayerSpottedScale_HG2.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5808,7 +5808,7 @@ GameObject:
   - component: {fileID: 9068638432017429243}
   - component: {fileID: 6406685350005527303}
   m_Layer: 5
-  m_Name: Bar_E3
+  m_Name: Bar_HG2.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6129,7 +6129,7 @@ GameObject:
   - component: {fileID: 7900788084160064830}
   - component: {fileID: 6863141855918589387}
   m_Layer: 5
-  m_Name: Bar_T_S_1
+  m_Name: Bar_PG2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6279,7 +6279,7 @@ GameObject:
   - component: {fileID: 2437714885362258255}
   - component: {fileID: 8530003877468230279}
   m_Layer: 5
-  m_Name: Bar_T_S_2
+  m_Name: Bar_HG2.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6675,7 +6675,7 @@ GameObject:
   - component: {fileID: 8326112846563293515}
   - component: {fileID: 7139505700260463235}
   m_Layer: 5
-  m_Name: Bar_M3
+  m_Name: Bar_CG2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6937,7 +6937,7 @@ GameObject:
   - component: {fileID: 3040767197117288838}
   - component: {fileID: 9139370663887719991}
   m_Layer: 5
-  m_Name: Bar_B3
+  m_Name: Bar_PR2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7281,16 +7281,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3421040220874471095, guid: 5df3a6f9368aecb45bfe6e68bb8546f2, type: 3}
       propertyPath: m_text
-      value: 'When Edward picked up the backpack and swung it onto his back, he heard
-        the shattering of wood, as the door to the upper level of the keep was broken
-        down. He realised it meant the battlements had fallen. Quick footfalls of
-        metal boots and the shouts of enemies echoed through the great hall, as the
-        first intruders set foot into the inner keep.
-
-        Getting back to the
-        front gate, to meet up with Drustan, had suddenly become a much more dangerous
-        undertaking. Edward tried his best to suppress his fear and waited for the
-        right moment to sneak past his enemies...'
+      value: Edward approached the front gate to find a parchment pinned to the wood
+        by a dagger. Drustan's words were a hurried scribble and spoke of the defenses
+        wavering and the battlements about to fall. A mention of a secret passage
+        in the cellar gave Edward the guidance he so desperately needed. The key
+        was hidden under the throne in a secret compartment. To get the key and locate
+        the secret passage in the cellar would be Edward's last hope of survival.
+        He turned around once more and almost felt the overbearing presence of the
+        enemy forces penetrating each corner of the keep as time went on. The window
+        of opportunity was surely closing...
       objectReference: {fileID: 0}
     - target: {fileID: 3421040220874471095, guid: 5df3a6f9368aecb45bfe6e68bb8546f2, type: 3}
       propertyPath: m_fontSize
@@ -7354,7 +7353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3421040221526630527, guid: 5df3a6f9368aecb45bfe6e68bb8546f2, type: 3}
       propertyPath: _nextSceneName
-      value: GameWorld_BesiegedKeep_2
+      value: GameWorld_BesiegedKeep_3
       objectReference: {fileID: 0}
     - target: {fileID: 3421040221526632320, guid: 5df3a6f9368aecb45bfe6e68bb8546f2, type: 3}
       propertyPath: m_Pivot.x

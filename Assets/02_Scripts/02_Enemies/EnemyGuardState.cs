@@ -35,7 +35,7 @@ public class EnemyGuardState : IEnemyState
     public void Enter(EnemyController enemy)
     {
         // only when the enemy enters the patrol or guard mode, the enemy will stop to see the player instantly, because he lost the orientation of him
-        enemy.SpottedTime = 0;
+        enemy.SpotTime = 0;
         enemy.PlayerSpotted = false;
         
         enemy.Agent.SetDestination(enemy.GuardPoint.transform.position);

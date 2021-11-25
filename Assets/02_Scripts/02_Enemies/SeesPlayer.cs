@@ -28,12 +28,12 @@ public class SeesPlayer : MonoBehaviour
             if (obstructedView)
             {
                 _enemyController.CanSeePlayer = false; 
-                _enemyController.SeesObject = false;
+                _enemyController.UseSpottedBar = false;
             }
 
             if (!obstructedView)
             {
-                _enemyController.SeesObject = true;
+                _enemyController.UseSpottedBar = true;
             }
             
             if(!obstructedView && _enemyController.PlayerSpotted)
@@ -50,7 +50,7 @@ public class SeesPlayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _enemyController.CanSeePlayer = false;
-            _enemyController.SeesObject = false;
+            _enemyController.UseSpottedBar = false;
         }
     }
 }

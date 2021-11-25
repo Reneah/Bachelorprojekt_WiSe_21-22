@@ -10,7 +10,6 @@ public class EnemyVisionChaseState : IEnemyState
         if (enemy.CanSeePlayer)
         {
             enemy.ReminderTime = enemy.LastChanceTime;
-            enemy.HeadRotationTowardsPlayer();
             enemy.ChasePlayer();
         }
 
