@@ -8,36 +8,25 @@ using UnityEngine.UI;
 using untitledProject;
 using Random = UnityEngine.Random;
 
-
 public class EnemyController : MonoBehaviour
 {
     private NavMeshAgent _agent;
+    public NavMeshAgent Agent => _agent;
+    
+    // need this script to get the information of the sound activation
     private SoundItem _soundItemScript;
 
-    public NavMeshAgent Agent
-    {
-        get => _agent;
-        set => _agent = value;
-    }
-
+    // need this script to get the transform information and some methods of the player
     private PlayerController _player;
-
-    public PlayerController Player
-    {
-        get => _player;
-        set => _player = value;
-    }
+    public PlayerController Player => _player;
 
     private EnemyAnimationHandler _animationHandler;
+    public EnemyAnimationHandler AnimationHandler => _animationHandler;
 
-    public EnemyAnimationHandler AnimationHandler
-    {
-        get => _animationHandler;
-        set => _animationHandler = value;
-    }
-    
-    // the current state of the player
+    // the current state of the enemy
     private IEnemyState _currentState;
+    
+    // the different states of the enemy
     public static readonly EnemyPatrolState EnemyPatrolState = new EnemyPatrolState();
     public static readonly EnemyIdleState EnemyIdleState = new EnemyIdleState();
     public static readonly EnemyVisionChaseState EnemyVisionChaseState = new EnemyVisionChaseState();
@@ -46,12 +35,12 @@ public class EnemyController : MonoBehaviour
     public static readonly EnemyGuardState EnemyGuardState = new EnemyGuardState();
     public static readonly EnemyNoisyItemSearchState EnemyNoisyItemSearchState = new EnemyNoisyItemSearchState();
 
-    [Header("Choose ONE of the Behaviour")] 
-    [Tooltip("the main task of the enemy is patrolling")]
-    [SerializeField] private bool _patrolling;
-    [Tooltip("the main task of the enemy is guarding")]
+    [Header("Main Behaviour")]
+    [Tooltip("the main task of the enemy is guarding - Patrolling will be not available")]
     [SerializeField] private bool _guarding;
-    
+    [Tooltip("the main task of the enemy is patrolling - Guarding will be not available")]
+    [SerializeField] private bool _patrolling;
+
     public bool Guarding
     {
         get => _guarding;
@@ -62,11 +51,13 @@ public class EnemyController : MonoBehaviour
 
     [Header("Chase Behaviour")]
     [Tooltip("set the distance to catch the player")]
+    [Range(0.5f, 5)]
     [SerializeField] private float _catchDistance = 2;
     [Tooltip("the speed which the enemy will chase the player")]
+    [Range(1,10)]
     [SerializeField] private float _chaseSpeed;
     // give the enemy the chance to chase the player again
-    // otherwise at a quick turn of the player, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
+    // otherwise at a quick turn of the player or other situations, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
     private float _reminderTime = 0;
     
     public float ReminderTime
@@ -79,24 +70,27 @@ public class EnemyController : MonoBehaviour
     
     #region PatrolVariables
     
-    [Header("Patrol Skill")]
+    [Header("Patrol Behaviour")]
     [Tooltip("the parent of the waypoints")]
     [SerializeField] private GameObject _patrollingRoute;
     [Tooltip("the time which the enemy is standing at a waypoint")]
+    [Range(0,10)]
     [SerializeField] private float _dwellingTimer = 1;
+    [Range(0,5)]
     [Tooltip("the distance where the enemy will stop when arriving at a waypoint")]
     [SerializeField] private float _stopDistance = 0.5f;
     [Tooltip("the patrol speed of the enemy")] 
+    [Range(0,10)]
     [SerializeField] private float _patrolSpeed;
     
-    // determines the current waypoint of the enemy
-    private int _waypointsCounter = 0;
+    // determines the current patrol points of the enemy
+    private int _patrolPointsCounter = 0;
     // activates the dwelling time when arriving a waypoint
     private bool _reachedWaypoint = false;
     // the time which the enemy is standing at a waypoint
     private float _standingCooldown = 0;
-    // the list of the enemy waypoints
-    List<Transform> _waypoints = new List<Transform>();
+    // the list of the enemy patrol points
+    List<Transform> _patrolPoints = new List<Transform>();
     
     public bool Patrolling
     {
@@ -115,26 +109,28 @@ public class EnemyController : MonoBehaviour
     #region FieldOfViewVariables
     
     [Header("FieldOfView")]
-
-    [SerializeField] private LayerMask _targetMask;
     [Tooltip("the mask for the registration of the obstacle in the view field")]
-    [SerializeField] private LayerMask obstructionMask;
+    [SerializeField] private LayerMask _obstructionMask;
     [Tooltip("the enemy head Transform to have the origin for the view field")]
     [SerializeField] private Transform _enemyHead;
     [Tooltip("the raycast position to know obstacles")] 
     [SerializeField] private Transform _obstacleRaycastTransform;
     [Tooltip("the look position when the player is spotted")]
     [SerializeField] private Transform _lookPositionAtSpotted;
-
     [Tooltip("the delay time that the player get spotted in the view field")]
     [Range(0,10)]
     [SerializeField] private float _secondsToSpott;
-    private float _spottedTime = 0;
     [SerializeField] private Image _spottedBar;
     [Tooltip("the distance where you get spotted instantly")]
     [SerializeField] private float _spottedDistance;
     [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
     [SerializeField] private float _lastChanceTime;
+    
+    // the time to spot the enemy when he is in the view field
+    private float _spotTime = 0;
+    
+    // determines if the enemy is able to see the player or not, but he is not spotted
+    private bool _canSeePlayer = false;
 
     public float LastChanceTime
     {
@@ -142,13 +138,15 @@ public class EnemyController : MonoBehaviour
         set => _lastChanceTime = value;
     }
 
+    // determines if the player is spotted or not
     private bool _playerSpotted = false;
-    private bool _seesObject = false;
+    // the player is in sight and the spotTime can start to manipulate the bar
+    private bool _useSpottedBar = false;
 
-    public bool SeesObject
+    public bool UseSpottedBar
     {
-        get => _seesObject;
-        set => _seesObject = value;
+        get => _useSpottedBar;
+        set => _useSpottedBar = value;
     }
 
     public bool PlayerSpotted
@@ -157,10 +155,10 @@ public class EnemyController : MonoBehaviour
         set => _playerSpotted = value;
     }
 
-    public float SpottedTime
+    public float SpotTime
     {
-        get => _spottedTime;
-        set => _spottedTime = value;
+        get => _spotTime;
+        set => _spotTime = value;
     }
     
     public Transform LookPositionAtSpotted
@@ -180,8 +178,6 @@ public class EnemyController : MonoBehaviour
         get => _enemyHead;
         set => _enemyHead = value;
     }
-
-    private bool _canSeePlayer = false;
     
     public bool CanSeePlayer
     {
@@ -191,24 +187,29 @@ public class EnemyController : MonoBehaviour
     
     public LayerMask ObstructionMask
     {
-        get => obstructionMask;
-        set => obstructionMask = value;
+        get => _obstructionMask;
+        set => _obstructionMask = value;
     }
     
     #endregion
 
-    #region SearchVariables
+    #region Investigation Behaviour
     
     [Header("Investigation Behaviour")]
     [Tooltip("the enemy run speed to the sound event point at the first sound stage")]
+    [Range(1, 5)]
     [SerializeField] private float _firstStageRunSpeed;
+    [Range(2, 7)]
     [Tooltip("the enemy run speed to the sound event point at the second sound stage")]
     [SerializeField] private float _secondStageRunSpeed;
+    [Range(2.5f, 10)]
     [Tooltip("the enemy run speed to the sound event point at the third sound stage")]
     [SerializeField] private float _thirdStageRunSpeed;
+    [Range(1,10)]
     [Tooltip("the enemy run speed when he goes from point to point")]
     [SerializeField] private float _searchSpeed;
     [Tooltip("how many close waypoints of the throw position can be chosen to search after the player")]
+    [Range(1,5)]
     [SerializeField] private int _waypointCounter; 
     List<Transform> _searchWaypoints = new List<Transform>();
      private int _searchWaypointCounter = 0;
@@ -340,7 +341,25 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _smoothBodyRotation;
     private bool _reachedGuardpoint = false;
     private Quaternion _desiredDirection;
-    
+
+    public float SwitchLookTime
+    {
+        get => _switchLookTime;
+        set => _switchLookTime = value;
+    }
+
+    public float LookSwitchSpeed
+    {
+        get => _lookSwitchSpeed;
+        set => _lookSwitchSpeed = value;
+    }
+
+    public GameObject LookingRoute
+    {
+        get => _lookingRoute;
+        set => _lookingRoute = value;
+    }
+
     public bool ReachedGuardpoint
     {
         get => _reachedGuardpoint;
@@ -454,12 +473,6 @@ public class EnemyController : MonoBehaviour
         _agent.speed = _chaseSpeed;
         _animationHandler.SetSpeed(_chaseSpeed);
     }
-
-    public void HeadRotationTowardsPlayer()
-    {
-       // Vector3 lookToPlayer = (_player.transform.position - EnemyHead.position).normalized;
-       // EnemyHead.rotation = Quaternion.Slerp(EnemyHead.rotation,Quaternion.LookRotation(lookToPlayer), Time.deltaTime * 5);
-    }
     
     public bool CatchPlayer()
     {
@@ -474,19 +487,19 @@ public class EnemyController : MonoBehaviour
         
         foreach (Transform waypoints in _patrollingRoute.transform)
         {
-            _waypoints.Add(waypoints);
+            _patrolPoints.Add(waypoints);
         }
     }
     
     public void StartPatrolBehaviour()
     {
         _agent.speed = _patrolSpeed;
-        _agent.SetDestination(_waypoints[_waypointsCounter].position);
+        _agent.SetDestination(_patrolPoints[_patrolPointsCounter].position);
     }
     
     public void UpdatePatrolBehaviour()
     {
-        if (Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position) <= _stopDistance && !_reachedWaypoint)
+        if (Vector3.Distance(transform.position, _patrolPoints[_patrolPointsCounter].transform.position) <= _stopDistance && !_reachedWaypoint)
         {
             _reachedWaypoint = true;
         }
@@ -498,10 +511,10 @@ public class EnemyController : MonoBehaviour
 
             if (_standingCooldown <= 0)
             {
-                _waypointsCounter++;
-                _waypointsCounter %= _patrollingRoute.transform.childCount;
+                _patrolPointsCounter++;
+                _patrolPointsCounter %= _patrollingRoute.transform.childCount;
                 _standingCooldown = _dwellingTimer;
-                _agent.SetDestination(_waypoints[_waypointsCounter].position);
+                _agent.SetDestination(_patrolPoints[_patrolPointsCounter].position);
                 _reachedWaypoint = false;
                 _animationHandler.SetSpeed(_patrolSpeed);
             }
@@ -566,17 +579,17 @@ public class EnemyController : MonoBehaviour
     
     public void PlayerDetected()
     {
-        if (_seesObject)
+        if (_useSpottedBar)
         {
             float distance = Vector3.Distance(transform.position, _player.transform.position);
 
-            if (_spottedTime <= _secondsToSpott)
+            if (_spotTime <= _secondsToSpott)
             {
-                _spottedTime += Time.deltaTime;
-                _spottedBar.fillAmount = _spottedTime;
+                _spotTime += Time.deltaTime;
+                _spottedBar.fillAmount = _spotTime;
             }
             
-            if (_spottedTime >= _secondsToSpott || distance <= _spottedDistance)
+            if (_spotTime >= _secondsToSpott || distance <= _spottedDistance)
             {
                 _spottedBar.fillAmount = 1;
                 _playerSpotted = true;
@@ -586,15 +599,15 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            if (_spottedTime > 0)
+            if (_spotTime > 0)
             {
-                _spottedTime -= Time.deltaTime;
-                _spottedBar.fillAmount = _spottedTime;
+                _spotTime -= Time.deltaTime;
+                _spottedBar.fillAmount = _spotTime;
             }
 
-            if (_spottedTime <= 0)
+            if (_spotTime <= 0)
             {
-                _spottedTime = 0;
+                _spotTime = 0;
             }
         }
     }
