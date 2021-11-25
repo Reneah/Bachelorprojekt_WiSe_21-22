@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
     private IEnemyState _currentState;
     public static readonly EnemyPatrolState EnemyPatrolState = new EnemyPatrolState();
     public static readonly EnemyIdleState EnemyIdleState = new EnemyIdleState();
-    public static readonly EnemyChaseState EnemyChaseState = new EnemyChaseState();
+    public static readonly EnemyVisionChaseState EnemyVisionChaseState = new EnemyVisionChaseState();
     public static readonly EnemySearchState EnemySearchState = new EnemySearchState();
     public static readonly EnemySoundInvestigationState EnemySoundInvestigationState = new EnemySoundInvestigationState();
     public static readonly EnemyGuardState EnemyGuardState = new EnemyGuardState();
@@ -537,7 +537,7 @@ public class EnemyController : MonoBehaviour
         if (_reachedLookpoint)
         {
             _lookCooldown -= Time.deltaTime;
-            
+
             if (_lookCooldown <= 0)
             {
                 _lookPointcounter++;
@@ -697,7 +697,7 @@ public class EnemyController : MonoBehaviour
     /// <returns></returns>
     public float DistanceToSoundEvent()
     {
-        return Vector3.Distance(SoundEventPosition.position, transform.position);
+        return Vector3.Distance(_agent.pathEndPosition, transform.position);
     }
     
     #region Search Behaviour
