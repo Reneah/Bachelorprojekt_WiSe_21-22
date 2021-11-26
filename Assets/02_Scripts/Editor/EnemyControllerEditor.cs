@@ -8,9 +8,11 @@ using UnityEngine.PlayerLoop;
 [CustomEditor(typeof(EnemyController))]
 public class EnemyControllerEditor : Editor
 {
+    // behaviour variables
     private SerializedProperty _patrolling;
     private SerializedProperty _guarding;
     
+    // guard variables
     private SerializedProperty _lookingRoute;
     private SerializedProperty _switchLookTime;
     private SerializedProperty _guardPoint;
@@ -20,14 +22,17 @@ public class EnemyControllerEditor : Editor
     private SerializedProperty _currentLookPosition;
     private SerializedProperty _smoothBodyRotation;
 
+    // patrol variables
     private SerializedProperty _patrollingRoute;
     private SerializedProperty _dwellingTimer;
     private SerializedProperty _stopDistance;
     private SerializedProperty _patrolSpeed;
     
+    // chase variables
     private SerializedProperty _catchDistance;
     private SerializedProperty _chaseSpeed;
     
+    // Field Of View variables
     private SerializedProperty _obstructionMask;
     private SerializedProperty _enemyHead;
     private SerializedProperty _obstacleRaycastTransform;
@@ -38,6 +43,7 @@ public class EnemyControllerEditor : Editor
     private SerializedProperty _lastChanceTime;
     private SerializedProperty _spottedTime;
     
+    // Investigation variables
     private SerializedProperty _firstStageRunSpeed;
     private SerializedProperty _secondStageRunSpeed;
     private SerializedProperty _thirdStageRunSpeed;
@@ -46,6 +52,7 @@ public class EnemyControllerEditor : Editor
 
     private void OnEnable()
     {
+        // behaviour variables
         _patrolling = serializedObject.FindProperty("_patrolling");
         _guarding = serializedObject.FindProperty("_guarding");
         
@@ -59,7 +66,7 @@ public class EnemyControllerEditor : Editor
         _currentLookPosition = serializedObject.FindProperty("_currentLookPosition");
         _smoothBodyRotation = serializedObject.FindProperty("_smoothBodyRotation");
         
-        //patrol variables
+        // patrol variables
         _patrollingRoute = serializedObject.FindProperty("_patrollingRoute");
         _dwellingTimer = serializedObject.FindProperty("_dwellingTimer");
         _stopDistance = serializedObject.FindProperty("_stopDistance");
@@ -95,13 +102,16 @@ public class EnemyControllerEditor : Editor
 
         using (new EditorGUI.DisabledScope(enemyController.Patrolling))
         {
+            // behaviour variable
             EditorGUILayout.PropertyField(_guarding);
         }
         
         using (new EditorGUI.DisabledScope(enemyController.Guarding))
         {
+            // behaviour variable
             EditorGUILayout.PropertyField(_patrolling);
             
+            // patrol variables
             EditorGUILayout.PropertyField(_patrollingRoute);
             EditorGUILayout.PropertyField(_dwellingTimer);
             EditorGUILayout.PropertyField(_stopDistance);
@@ -110,6 +120,7 @@ public class EnemyControllerEditor : Editor
         
         using (new EditorGUI.DisabledScope(enemyController.Patrolling))
         {
+            // guard variables
             EditorGUILayout.PropertyField(_switchLookTime);
             EditorGUILayout.PropertyField(_desiredBodyRotation);
             EditorGUILayout.PropertyField(_currentLookPosition);
@@ -120,9 +131,11 @@ public class EnemyControllerEditor : Editor
             EditorGUILayout.PropertyField(_guardPoint);
         }
         
+        // chase variables
         EditorGUILayout.PropertyField(_catchDistance);
         EditorGUILayout.PropertyField(_chaseSpeed);
         
+        // Field Of View variables
         EditorGUILayout.PropertyField(_obstructionMask);
         EditorGUILayout.PropertyField(_enemyHead);
         EditorGUILayout.PropertyField(_obstacleRaycastTransform);
@@ -132,6 +145,7 @@ public class EnemyControllerEditor : Editor
         EditorGUILayout.PropertyField(_spottedDistance);
         EditorGUILayout.PropertyField(_lastChanceTime);
         
+        // Investigation variables
         EditorGUILayout.PropertyField(_firstStageRunSpeed);
         EditorGUILayout.PropertyField(_secondStageRunSpeed);
         EditorGUILayout.PropertyField(_thirdStageRunSpeed);
