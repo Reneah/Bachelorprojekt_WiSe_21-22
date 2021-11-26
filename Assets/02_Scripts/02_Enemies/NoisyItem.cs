@@ -5,7 +5,7 @@ using DarkTonic.MasterAudio;
 using TMPro;
 using UnityEngine;
 
-public class SoundItem : MonoBehaviour
+public class NoisyItem : MonoBehaviour
 { 
     [Header("Item")]
     [Tooltip("the item text that will show up when the player is in range, hovers over the item and when it is available")]

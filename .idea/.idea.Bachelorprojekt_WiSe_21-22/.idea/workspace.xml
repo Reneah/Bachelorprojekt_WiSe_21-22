@@ -25,7 +25,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PlayerNearDetection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SoundItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/Scripts/Singleton/MasterAudio.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
@@ -217,6 +217,7 @@
       <workItem from="1637828607976" duration="10390000" />
       <workItem from="1637840507191" duration="54000" />
       <workItem from="1637914393674" duration="5197000" />
+      <workItem from="1637928268013" duration="3573000" />
     </task>
     <servers />
   </component>

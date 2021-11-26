@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent Agent => _agent;
     
     // need this script to get the information of the sound activation
-    private SoundItem _soundItemScript;
+    private NoisyItem _noisyItemScript;
 
     // need this script to get the transform information and some methods of the player
     private PlayerController _player;
@@ -613,37 +613,41 @@ public class EnemyController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        // when the enemy hears a sound, he will investigate it 
         if (other.CompareTag("Sound"))
         {
-            _soundItemScript = other.GetComponentInParent<SoundItem>();
+            // get the current noisy item script of the item
+            _noisyItemScript = other.GetComponentInParent<NoisyItem>();
             
-            // the amount of the waypoints when the player activated the noisy item in close range
-            _usuableWaypointsAmount = Random.Range(1,_soundItemScript.CloseNoisyItemWaypoints.Length);
+            // the amount of the waypoints fo the enemy when the player activated the noisy item in close range
+            _usuableWaypointsAmount = Random.Range(1,_noisyItemScript.CloseNoisyItemWaypoints.Length);
             
-            float _distance = Vector3.Distance(transform.position, other.transform.position);
+          //  float _distance = Vector3.Distance(transform.position, other.transform.position);
             
-            RaycastHit hit;
-            Physics.Raycast(other.transform.position, transform.position - other.transform.position, out hit, _distance);
+        //    RaycastHit hit;
+         //   Physics.Raycast(other.transform.position, transform.position - other.transform.position, out hit, _distance);
 
           //  if (hit.collider.CompareTag("Wall"))
             {
           //      _soundItemScript.Stage--;
 
-                if (_soundItemScript.Stage <= 0)
+                if (_noisyItemScript.Stage <= 0)
                 {
               //      _soundItemScript.Stage = 0;
                 //    return;
                 }
             }
 
-            if(_soundItemScript.Stage <= 3)
+            // when the sound stage goes from 1 to 3, the sound will be noticed and the enemy will start to run towards it
+            if(_noisyItemScript.Stage <= 3)
             {
-                _soundBehaviourStage = _soundItemScript.Stage;
-                _soundEventPosition = _soundItemScript.OffsetOrigin.transform;
+                _soundBehaviourStage = _noisyItemScript.Stage;
+                _soundEventPosition = _noisyItemScript.OffsetOrigin.transform;
                 _soundNoticed = true;
             }
         }
 
+        // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the sound position
         if (other.CompareTag("FootSteps"))
         {
             _soundNoticed = true;
@@ -654,7 +658,7 @@ public class EnemyController : MonoBehaviour
             _spottedBar.fillAmount = 1;
         }
         
-        // if the enemy get in a new room the new search points will be selected
+        // if the enemy gets in a new room, the old search points will be deleted and the new ones will be selected
         if (other.CompareTag("SearchPoints"))
         {
             _searchWaypoints.Clear();
@@ -671,7 +675,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        // if the enemy used the points in the room all points will be added again because they will be deleted during the search mode
+        // if the enemy used the points in the room, all points will be added again because used points will be deleted during the search mode
         if (other.CompareTag("SearchPoints"))
         {
             if (_resetSearchWaypoints)
@@ -712,8 +716,12 @@ public class EnemyController : MonoBehaviour
     
     #region Search Behaviour
     
+    /// <summary>
+    /// set the closest waypoint based on the player position
+    /// </summary>
     public void StartSearchBehaviour()
     {
+        // when all search points has been used, the enemy goes back to patrolling or guarding
         if (_searchWaypoints.Count <= 0)
         {
             _resetSearchWaypoints = true;
@@ -721,6 +729,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
         
+        // get the current closest point based on the player position
         _closestWaypointDistance = Mathf.Infinity;
         foreach (Transform waypoint in _searchWaypoints)
         {
@@ -735,8 +744,12 @@ public class EnemyController : MonoBehaviour
         _agent.SetDestination(_closestWaypoint.position);
     }
     
+    /// <summary>
+    /// loop through the search points
+    /// </summary>
     public void UpdateSearchBehaviour()
     {
+        // when the current search point position is reached, the standing time will count down and set the next search point
         if (Vector3.Distance(transform.position, _closestWaypoint.position) <= _stopDistance && !_reachedWaypoint)
         {
             _animationHandler.SetSpeed(0);
@@ -748,7 +761,6 @@ public class EnemyController : MonoBehaviour
             //kick out the waypoint which was already used
             _searchWaypoints.Remove(_closestWaypoint); 
             
-            //plays investigation animation, after it or certain time he will go to the next point nearby
             _standingCooldown -= Time.deltaTime;
             
             if (_standingCooldown <= 0)
@@ -763,8 +775,12 @@ public class EnemyController : MonoBehaviour
     
     #region SearchNoisyItemBehaviour
 
+    /// <summary>
+    /// get the closest search points of the throw position of the player
+    /// </summary>
     public void PrepareSearchNoisyItemBehaviour()
     {
+        // when the enemy has thrown a stone, the closest waypoints of the throw position will be selected
         if (_player.PlayerThrowTrigger.PlayerThrew)
         {
             _closestWaypointDistance = Mathf.Infinity;
@@ -777,6 +793,7 @@ public class EnemyController : MonoBehaviour
                     _closestWaypointDistance = _currentwaypointDistance;
                 }
             }
+            // when the fixed waypoints amount is reached, this method will be stopped
             if (_waypointAmount > 0)
             {
                 _noisyItemSelectedPoints.Add(_closestWaypoint);
@@ -784,19 +801,25 @@ public class EnemyController : MonoBehaviour
                 _waypointAmount--;
                 PrepareSearchNoisyItemBehaviour();
 
+                // reset the amount of desired waypoints
                 if (_waypointAmount <= 1)
                 {
                     _waypointAmount = _waypointCounter;
                 }
             }
             
+            // the amount of waypoints that can be used of the selected
             _usuableWaypointsRangeAmount = Random.Range(1, _noisyItemSelectedPoints.Count);
         }
         
     }
     
+    /// <summary>
+    /// select the waypoint where the enemy has to go
+    /// </summary>
     public void StartSearchNoisyItemBehaviour()
     {
+        // when all points were used, the enemy will go back to his routine
         if (_usuableWaypointsAmount <= 0 || _usuableWaypointsRangeAmount <= 0)
         {
             _waypointAmount = 3;
@@ -805,6 +828,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
+        // when the enemy activated the item with a throw, the waypoints near the throw position will be used
         if (_player.PlayerThrowTrigger.PlayerThrew)
         {
             _currentCloseNoisyItemWaypoint = _noisyItemSelectedPoints[Random.Range(0, _noisyItemSelectedPoints.Count)];
@@ -812,38 +836,31 @@ public class EnemyController : MonoBehaviour
             _usuableWaypointsRangeAmount--;
         }
 
+        // when the enemy activated the item in close range, selected waypoints in the inspector will be used
         if (!_player.PlayerThrowTrigger.PlayerThrew)
         {
-            _currentCloseNoisyItemWaypoint = _soundItemScript.CloseNoisyItemWaypoints[Random.Range(0, _soundItemScript.CloseNoisyItemWaypoints.Length)];
+            _currentCloseNoisyItemWaypoint = _noisyItemScript.CloseNoisyItemWaypoints[Random.Range(0, _noisyItemScript.CloseNoisyItemWaypoints.Length)];
             _agent.SetDestination(_currentCloseNoisyItemWaypoint.position);
             _usuableWaypointsAmount--;
         }
         
-
         _animationHandler.SetSpeed(_firstStageRunSpeed);
     }
     
+    /// <summary>
+    /// loop through the noisy item search points
+    /// </summary>
     public void UpdateSearchNoisyItemBehaviour()
     {
-        // have to separate the if condition because when the enemy get the waypoints of the close activation at the noisy item, the "_closestWaypoint" will be null
-        if (!_player.PlayerThrowTrigger.PlayerThrew && Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
+        // when the current search point position is reached, the standing time will count down and set the next search point
+        if (Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
         {
             _animationHandler.SetSpeed(0);
             _reachedWaypoint = true;
         }
-
-        if (_player.PlayerThrowTrigger.PlayerThrew)
-        {
-            if ( Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
-            {
-                _animationHandler.SetSpeed(0);
-                _reachedWaypoint = true;
-            }
-        }
         
         if (_reachedWaypoint)
         {
-            //plays investigation animation, after it or certain time he will go to the next point nearby
             _standingCooldown -= Time.deltaTime;
             
             if (_standingCooldown <= 0)

@@ -41,10 +41,10 @@
             <e p="EnemyVisionChaseState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
             <e p="LookAgentVisualization.cs" t="Include" />
+            <e p="NoisyItem.cs" t="Include" />
             <e p="PlayerNearDetection.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
-            <e p="SoundItem.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
           </e>
           <e p="03_Game" t="Include">

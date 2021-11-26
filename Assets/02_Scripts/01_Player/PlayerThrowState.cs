@@ -18,7 +18,7 @@ public class PlayerThrowState : IPlayerState
     public IPlayerState Execute(PlayerController player)
     {
         // rotate to the destined location
-        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(player.PlayerThrowTrigger.SoundItem.transform.position - player.transform.position), Time.deltaTime * player.PlayerThrowTrigger.RotationSpeed);
+        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(player.PlayerThrowTrigger.NoisyItem.transform.position - player.transform.position), Time.deltaTime * player.PlayerThrowTrigger.RotationSpeed);
 
         if (_activateCooldown)
         {
@@ -38,19 +38,19 @@ public class PlayerThrowState : IPlayerState
         // activate sound
         if (player.PlayerAnimationHandler.RunningThrowAnimation)
         {
-            player.PlayerThrowTrigger.SoundItem.SoundRangeCollider.SetActive(true);
+            player.PlayerThrowTrigger.NoisyItem.SoundRangeCollider.SetActive(true);
 
             // if the item was already used the item stage will be increased
-            if (player.PlayerThrowTrigger.SoundItem.OneTimeUsed)
+            if (player.PlayerThrowTrigger.NoisyItem.OneTimeUsed)
             {
-                player.PlayerThrowTrigger.SoundItem.Stage++;
+                player.PlayerThrowTrigger.NoisyItem.Stage++;
 
-                if (player.PlayerThrowTrigger.SoundItem.Stage >= 3)
+                if (player.PlayerThrowTrigger.NoisyItem.Stage >= 3)
                 {
-                    player.PlayerThrowTrigger.SoundItem.Stage = 3;
+                    player.PlayerThrowTrigger.NoisyItem.Stage = 3;
                 }
             }
-            player.PlayerThrowTrigger.SoundItem.ItemUsed = true;
+            player.PlayerThrowTrigger.NoisyItem.ItemUsed = true;
             
             return PlayerController.PlayerIdleState;
         }
