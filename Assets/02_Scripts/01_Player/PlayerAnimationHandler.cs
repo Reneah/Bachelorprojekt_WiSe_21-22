@@ -16,9 +16,17 @@ public class PlayerAnimationHandler : MonoBehaviour
     private static readonly int VerticalVelocity = Animator.StringToHash("VerticalVelocity");
     private static readonly int Death = Animator.StringToHash("Death");
     private static readonly int Throw = Animator.StringToHash("Throw");
+    private static readonly int Flee = Animator.StringToHash("Flee");
 
     // checks if the throw animation is at the end
     private bool _runningThrowAnimation = false;
+
+
+    public Animator PlayerAnimator
+    {
+        get => _playerAnimator;
+        set => _playerAnimator = value;
+    }
 
     public bool RunningThrowAnimation
     {
@@ -30,16 +38,8 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         _playerAnimator = GetComponent<Animator>();
         _playerController = FindObjectOfType<PlayerController>();
-        
-        
     }
-
-    private void Update()
-    {
-        //Debug.Log(_playerAnimator.GetBoneTransform(HumanBodyBones.LeftLowerLeg).position.y);
-        
-    }
-
+    
     /// <summary>
     /// Set the players velocities.
     /// </summary>
@@ -83,6 +83,11 @@ public class PlayerAnimationHandler : MonoBehaviour
         _playerAnimator.SetTrigger(Throw);
     }
 
+    public void PlayerFlee(bool flee)
+    {
+        _playerAnimator.SetBool(Flee, flee);
+    }
+    
     /// <summary>
     /// Animation Event
     /// </summary>
@@ -96,6 +101,14 @@ public class PlayerAnimationHandler : MonoBehaviour
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
             MasterAudio.PlaySound("PlayerQuietFootsteps");
+        }
+    }
+    
+    public void PlayerMediumFootsteps(AnimationEvent animationEvent)
+    {
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            MasterAudio.PlaySound("PlayerMediumFootsteps");
         }
     }
     

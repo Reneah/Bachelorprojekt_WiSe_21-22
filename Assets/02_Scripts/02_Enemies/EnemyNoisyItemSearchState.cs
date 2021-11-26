@@ -13,7 +13,7 @@ public class EnemyNoisyItemSearchState : IEnemyState
         
         if (enemy.CanSeePlayer)
         {
-            return EnemyController.EnemyChaseState;
+            return EnemyController.EnemyVisionChaseState;
         }
 
         if (enemy.FinishChecking)

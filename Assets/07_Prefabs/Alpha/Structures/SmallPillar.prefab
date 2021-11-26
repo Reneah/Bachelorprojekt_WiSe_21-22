@@ -15,10 +15,10 @@ GameObject:
   - component: {fileID: 4327828796713497839}
   m_Layer: 0
   m_Name: PillarTop
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1862708043239090169
 Transform:
@@ -1288,10 +1288,10 @@ GameObject:
   - component: {fileID: 6224424771028620791}
   m_Layer: 0
   m_Name: PillarBottom
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8838808229826815791
 Transform:
@@ -3281,10 +3281,10 @@ GameObject:
   - component: {fileID: 1323968814440044545}
   m_Layer: 0
   m_Name: PillarBroken
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &583891614132473012
 Transform:
@@ -5570,10 +5570,10 @@ GameObject:
   - component: {fileID: 2874840754485648041}
   m_Layer: 0
   m_Name: SmallPillar
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2874840754485648041
 Transform:

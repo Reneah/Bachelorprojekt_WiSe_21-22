@@ -30,7 +30,6 @@
           </e>
           <e p="02_Enemies" t="Include">
             <e p="EnemyAnimationHandler.cs" t="Include" />
-            <e p="EnemyChaseState.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyGuardState.cs" t="Include" />
             <e p="EnemyIdleState.cs" t="Include" />
@@ -39,12 +38,13 @@
             <e p="EnemySearchState.cs" t="Include" />
             <e p="EnemyShareInformation.cs" t="Include" />
             <e p="EnemySoundInvestigationState.cs" t="Include" />
+            <e p="EnemyVisionChaseState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
             <e p="LookAgentVisualization.cs" t="Include" />
+            <e p="NoisyItem.cs" t="Include" />
             <e p="PlayerNearDetection.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
-            <e p="SoundItem.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
           </e>
           <e p="03_Game" t="Include">
@@ -64,6 +64,7 @@
             <e p="ShowFramerate.cs" t="Include" />
           </e>
           <e p="Editor" t="Include">
+            <e p="EnemyControllerEditor.cs" t="Include" />
             <e p="FieldOfViewEditor.cs" t="Include" />
           </e>
         </e>
@@ -76,9 +77,6 @@
           <e p="Placeholder.txt" t="Include" />
         </e>
         <e p="05_Audio" t="Include">
-          <e p="01_Music" t="Include">
-            <e p="Placeholder.txt" t="Include" />
-          </e>
           <e p="02_SFX" t="Include">
             <e p="Placeholder.txt" t="Include" />
           </e>

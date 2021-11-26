@@ -9,7 +9,7 @@ public class EnemyPatrolState : IEnemyState
     {
         if (enemy.CanSeePlayer)
         {
-            return EnemyController.EnemyChaseState;
+            return EnemyController.EnemyVisionChaseState;
         }
 
         if (enemy.SoundNoticed)
@@ -24,7 +24,7 @@ public class EnemyPatrolState : IEnemyState
     public void Enter(EnemyController enemy)
     {
         // only when the enemy enters the patrol or guard mode, the enemy will stop to see the player instantly, because he lost the orientation of him
-        enemy.SpottedTime = 0;
+        enemy.SpotTime = 0;
         enemy.PlayerSpotted = false;
         
         enemy.AnimationHandler.SetSpeed(enemy.PatrolSpeed);

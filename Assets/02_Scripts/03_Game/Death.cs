@@ -17,6 +17,9 @@ public class Death : MonoBehaviour
     [Tooltip("the name of the main menu scene")]
     [SerializeField] private string _mainMenuName;
 
+    [Tooltip("the parent of the main menu object")]
+    [SerializeField] private GameObject _mainMenuParent;
+
     private PlayerAnimationHandler _playerAnimationHandler;
 
     private bool _escape = true;
@@ -30,8 +33,9 @@ public class Death : MonoBehaviour
     void Start()
     {
         _deathScene.SetActive(false);
+        _mainMenuParent.SetActive(false);
+        
         _player = GetComponent<PlayerController>();
-
         _playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
     }
 
@@ -60,6 +64,10 @@ public class Death : MonoBehaviour
 
     public void Restart()
     {
+        // Temporary addition, so the stones UI display works properly on player death
+        CollectStones._UIdisplayed = false;
+        CollectStones._stonesActive = false;
+        
         _player.enabled = true;
         _deathScene.SetActive(false);
         SceneManager.LoadScene(_reloadSceneName);
@@ -84,12 +92,12 @@ public class Death : MonoBehaviour
         {
             if (_escape)
             {
-                _deathScene.SetActive(true);
+                _mainMenuParent.SetActive(true);
                 _escape = false;
             }
             else
             {
-                _deathScene.SetActive(false);
+                _mainMenuParent.SetActive(false);
                 _escape = true;
             }
         }

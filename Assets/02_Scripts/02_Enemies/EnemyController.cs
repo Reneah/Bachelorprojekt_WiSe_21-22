@@ -8,65 +8,52 @@ using UnityEngine.UI;
 using untitledProject;
 using Random = UnityEngine.Random;
 
-
 public class EnemyController : MonoBehaviour
 {
     private NavMeshAgent _agent;
-    private SoundItem _soundItemScript;
+    public NavMeshAgent Agent => _agent;
+    
+    // need this script to get the information of the sound activation
+    private NoisyItem _noisyItemScript;
 
-    public NavMeshAgent Agent
-    {
-        get => _agent;
-        set => _agent = value;
-    }
-
+    // need this script to get the transform information and some methods of the player
     private PlayerController _player;
-
-    public PlayerController Player
-    {
-        get => _player;
-        set => _player = value;
-    }
+    public PlayerController Player => _player;
 
     private EnemyAnimationHandler _animationHandler;
+    public EnemyAnimationHandler AnimationHandler => _animationHandler;
 
-    public EnemyAnimationHandler AnimationHandler
-    {
-        get => _animationHandler;
-        set => _animationHandler = value;
-    }
-    
-    // the current state of the player
+    // the current state of the enemy
     private IEnemyState _currentState;
+    
+    // the different states of the enemy
     public static readonly EnemyPatrolState EnemyPatrolState = new EnemyPatrolState();
     public static readonly EnemyIdleState EnemyIdleState = new EnemyIdleState();
-    public static readonly EnemyChaseState EnemyChaseState = new EnemyChaseState();
+    public static readonly EnemyVisionChaseState EnemyVisionChaseState = new EnemyVisionChaseState();
     public static readonly EnemySearchState EnemySearchState = new EnemySearchState();
     public static readonly EnemySoundInvestigationState EnemySoundInvestigationState = new EnemySoundInvestigationState();
     public static readonly EnemyGuardState EnemyGuardState = new EnemyGuardState();
     public static readonly EnemyNoisyItemSearchState EnemyNoisyItemSearchState = new EnemyNoisyItemSearchState();
 
-    [Header("Choose ONE of the Behaviour")] 
-    [Tooltip("the main task of the enemy is patrolling")]
-    [SerializeField] private bool _patrolling;
-    [Tooltip("the main task of the enemy is guarding")]
+    [Header("Main Behaviour")]
+    [Tooltip("the main task of the enemy is guarding - Patrolling will be not available")]
     [SerializeField] private bool _guarding;
+    [Tooltip("the main task of the enemy is patrolling - Guarding will be not available")]
+    [SerializeField] private bool _patrolling;
 
-    public bool Guarding
-    {
-        get => _guarding;
-        set => _guarding = value;
-    }
+    public bool Guarding => _guarding;
 
     #region ChaseBehaviour
 
     [Header("Chase Behaviour")]
     [Tooltip("set the distance to catch the player")]
+    [Range(0.5f, 5)]
     [SerializeField] private float _catchDistance = 2;
     [Tooltip("the speed which the enemy will chase the player")]
+    [Range(1,10)]
     [SerializeField] private float _chaseSpeed;
     // give the enemy the chance to chase the player again
-    // otherwise at a quick turn of the player, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
+    // otherwise at a quick turn of the player or other situations, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
     private float _reminderTime = 0;
     
     public float ReminderTime
@@ -79,24 +66,27 @@ public class EnemyController : MonoBehaviour
     
     #region PatrolVariables
     
-    [Header("Patrol Skill")]
+    [Header("Patrol Behaviour")]
     [Tooltip("the parent of the waypoints")]
     [SerializeField] private GameObject _patrollingRoute;
     [Tooltip("the time which the enemy is standing at a waypoint")]
+    [Range(0,10)]
     [SerializeField] private float _dwellingTimer = 1;
+    [Range(0,5)]
     [Tooltip("the distance where the enemy will stop when arriving at a waypoint")]
     [SerializeField] private float _stopDistance = 0.5f;
     [Tooltip("the patrol speed of the enemy")] 
+    [Range(0,10)]
     [SerializeField] private float _patrolSpeed;
     
-    // determines the current waypoint of the enemy
-    private int _waypointsCounter = 0;
+    // determines the current patrol points of the enemy
+    private int _patrolPointsCounter = 0;
     // activates the dwelling time when arriving a waypoint
     private bool _reachedWaypoint = false;
     // the time which the enemy is standing at a waypoint
     private float _standingCooldown = 0;
-    // the list of the enemy waypoints
-    List<Transform> _waypoints = new List<Transform>();
+    // the list of the enemy patrol points
+    List<Transform> _patrolPoints = new List<Transform>();
     
     public bool Patrolling
     {
@@ -115,26 +105,28 @@ public class EnemyController : MonoBehaviour
     #region FieldOfViewVariables
     
     [Header("FieldOfView")]
-
-    [SerializeField] private LayerMask _targetMask;
     [Tooltip("the mask for the registration of the obstacle in the view field")]
-    [SerializeField] private LayerMask obstructionMask;
+    [SerializeField] private LayerMask _obstructionMask;
     [Tooltip("the enemy head Transform to have the origin for the view field")]
     [SerializeField] private Transform _enemyHead;
     [Tooltip("the raycast position to know obstacles")] 
     [SerializeField] private Transform _obstacleRaycastTransform;
     [Tooltip("the look position when the player is spotted")]
     [SerializeField] private Transform _lookPositionAtSpotted;
-
     [Tooltip("the delay time that the player get spotted in the view field")]
     [Range(0,10)]
     [SerializeField] private float _secondsToSpott;
-    private float _spottedTime = 0;
     [SerializeField] private Image _spottedBar;
     [Tooltip("the distance where you get spotted instantly")]
     [SerializeField] private float _spottedDistance;
     [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
     [SerializeField] private float _lastChanceTime;
+    
+    // the time to spot the enemy when he is in the view field
+    private float _spotTime = 0;
+    
+    // determines if the enemy is able to see the player or not, but he is not spotted
+    private bool _canSeePlayer = false;
 
     public float LastChanceTime
     {
@@ -142,13 +134,15 @@ public class EnemyController : MonoBehaviour
         set => _lastChanceTime = value;
     }
 
+    // determines if the player is spotted or not
     private bool _playerSpotted = false;
-    private bool _seesObject = false;
+    // the player is in sight and the spotTime can start to manipulate the bar
+    private bool _useSpottedBar = false;
 
-    public bool SeesObject
+    public bool UseSpottedBar
     {
-        get => _seesObject;
-        set => _seesObject = value;
+        get => _useSpottedBar;
+        set => _useSpottedBar = value;
     }
 
     public bool PlayerSpotted
@@ -157,10 +151,10 @@ public class EnemyController : MonoBehaviour
         set => _playerSpotted = value;
     }
 
-    public float SpottedTime
+    public float SpotTime
     {
-        get => _spottedTime;
-        set => _spottedTime = value;
+        get => _spotTime;
+        set => _spotTime = value;
     }
     
     public Transform LookPositionAtSpotted
@@ -180,8 +174,6 @@ public class EnemyController : MonoBehaviour
         get => _enemyHead;
         set => _enemyHead = value;
     }
-
-    private bool _canSeePlayer = false;
     
     public bool CanSeePlayer
     {
@@ -191,47 +183,61 @@ public class EnemyController : MonoBehaviour
     
     public LayerMask ObstructionMask
     {
-        get => obstructionMask;
-        set => obstructionMask = value;
+        get => _obstructionMask;
+        set => _obstructionMask = value;
     }
     
     #endregion
 
-    #region SearchVariables
+    #region Investigation Behaviour
     
     [Header("Investigation Behaviour")]
     [Tooltip("the enemy run speed to the sound event point at the first sound stage")]
+    [Range(1, 5)]
     [SerializeField] private float _firstStageRunSpeed;
+    [Range(2, 7)]
     [Tooltip("the enemy run speed to the sound event point at the second sound stage")]
     [SerializeField] private float _secondStageRunSpeed;
+    [Range(2.5f, 10)]
     [Tooltip("the enemy run speed to the sound event point at the third sound stage")]
     [SerializeField] private float _thirdStageRunSpeed;
+    [Range(1,10)]
     [Tooltip("the enemy run speed when he goes from point to point")]
     [SerializeField] private float _searchSpeed;
-    [Tooltip("how many close waypoints of the throw position can be chosen to search after the player")]
+    [Range(1,5)]
+    [Tooltip("the max amount of waypoint the enemy will pick around the throw position after checking the noisy item")]
     [SerializeField] private int _waypointCounter; 
+     // the waypoint to to search the player after he is out of sight
     List<Transform> _searchWaypoints = new List<Transform>();
-     private int _searchWaypointCounter = 0;
+     // signalize when the enemy is finish with searching to go back to his routine
      private bool _finishChecking = false;
-     private float _nearestWaypoint;
+     // the closest waypoint to the current position of the throw position or player
+     private float _closestWaypointDistance;
+     // the transform of the closest current waypoint for the enemy
      private Transform _closestWaypoint;
-     private float _waypointDistance;
+     // the current waypoint distance when searching the closest waypoint of the player or throw position
+     private float _currentwaypointDistance;
      // the current sound state of the item to update the behaviour of the enemy
      private int _currentSoundStage = 0;
      // prevent that the animation will be activated permanently in Update
      private bool _animationActivated = false;
      // update the agent destination of the enemy when the footsteps were heard
      private bool _heardFootsteps = false;
-     // get all waypoints in the search area again
+     // get all waypoints in the search area again after using them
      private bool _resetSearchWaypoints = false;
-     
+     // the max amount of waypoint the enemy will pick around the throw position after checking the noisy item
      private int _waypointAmount;
+     // the possible waypoint that the enemy can pick when he investigated the noisy item
      List<Transform> _noisyItemSearchPoints = new List<Transform>();
+     // the closest waypoints of the throw position or near the noisy item
      List<Transform> _noisyItemSelectedPoints = new List<Transform>();
      // the amount of the waypoints that the enemy has when the player activates the noisy item in close range
      private int _usuableWaypointsAmount = 1;
+     // the amount of the waypoints that the enemy has when the player activates the noisy item in long range
      private int _usuableWaypointsRangeAmount = 1;
+     // the current closest waypoint for the enemy when the player activate the item in close range
      private Transform _currentCloseNoisyItemWaypoint;
+     // get all waypoints in the search area again after using them
      private bool _resetNoisyItemWaypoints = false;
 
 
@@ -295,8 +301,11 @@ public class EnemyController : MonoBehaviour
         set => _thirdStageRunSpeed = value;
     }
 
+    // determines if the enemy heard a sound
     private bool _soundNoticed = false;
+    // the current sound stage that influence the enemy behaviour
     private int _soundBehaviourStage = 0;
+    // the position from where the sound came so that the enemy knows where to move
     private Transform _soundEventPosition;
 
     public Transform SoundEventPosition
@@ -338,7 +347,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform _currentLookPosition;
     [Tooltip("smooth the rotation towards the desired Body Rotation")]
     [SerializeField] private float _smoothBodyRotation;
+    // signalize if the enemy reached the guard point to start his look routine
     private bool _reachedGuardpoint = false;
+    // The direction where the enemy should rotate while guarding
     private Quaternion _desiredDirection;
     
     public bool ReachedGuardpoint
@@ -347,50 +358,24 @@ public class EnemyController : MonoBehaviour
         set => _reachedGuardpoint = value;
     }
 
-    public Transform CurrentLookPosition
-    {
-        get => _currentLookPosition;
-        set => _currentLookPosition = value;
-    }
+    public Transform CurrentLookPosition => _currentLookPosition;
+    public float SmoothBodyRotation => _smoothBodyRotation;
+    public Transform DesiredBodyRotation => _desiredBodyRotation;
+    public float StopGuardpointDistance => _stopGuardpointDistance;
+    public Transform GuardPoint => _guardPoint;
 
-    public float SmoothBodyRotation
-    {
-        get => _smoothBodyRotation;
-        set => _smoothBodyRotation = value;
-    }
-
-    public Transform DesiredBodyRotation
-    {
-        get => _desiredBodyRotation;
-        set => _desiredBodyRotation = value;
-    }
-
-
-    public float StopGuardpointDistance
-    {
-        get => _stopGuardpointDistance;
-        set => _stopGuardpointDistance = value;
-    }
-
-    public Transform GuardPoint
-    {
-        get => _guardPoint;
-        set => _guardPoint = value;
-    }
-    
-    // the list of the enemy waypoints
+    // the list of the enemy look points
     private List<Transform> _lookpoints = new List<Transform>();
+    // the cooldown how long the enemy should look on a point
     private float _lookCooldown = 0;
+    // the current look point in the array
     private int _lookPointcounter = 0;
-    private bool _reachedLookpoint = false;
+    // when the current look point was reached, choose the next one 
+    private bool _reachedLookPoint = false;
+    // signalize when the enemy is in guard mode to rotate the head in the desired look position 
     private bool _guardBehaviour = false;
-    private Transform _currentLookpoint;
-
-    public List<Transform> Lookpoints
-    {
-        get => _lookpoints;
-        set => _lookpoints = value;
-    }
+    // The current look point where the enemy has to look at
+    private Transform _currentLookPoint;
     
     public bool GuardBehaviour
     {
@@ -402,13 +387,14 @@ public class EnemyController : MonoBehaviour
     
     void Start()
     {
-        // start state machine with LookAroundState
+        // start state machine with the idle
         _currentState = EnemyIdleState;
         
         _agent = GetComponent<NavMeshAgent>();
         _animationHandler = GetComponent<EnemyAnimationHandler>();
         _player = FindObjectOfType<PlayerController>();
 
+        // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
         if (_patrolling)
         {
             SetUpPatrolBehaviour(); 
@@ -418,9 +404,12 @@ public class EnemyController : MonoBehaviour
             SetUpGuardBehaviour(); 
         }
 
+        // set the max amount of waypoint the enemy will pick around the throw position after checking the noisy item
         _waypointAmount = _waypointCounter;
+        
         // the dwelling time at a waypoint
         _standingCooldown = _dwellingTimer;
+        
     }
     
     void Update()
@@ -437,29 +426,19 @@ public class EnemyController : MonoBehaviour
     }
     
     /// <summary>
-    /// should rotate to the player
+    /// When the enemy is in the chase state, the destination will be the player and the speed will be modified
     /// </summary>
-    public void RotateToPlayer()
-    {
-        Vector3 lookToPlayer = (_player.transform.position - _enemyHead.position).normalized;
-        EnemyHead.rotation = Quaternion.Slerp(EnemyHead.rotation,Quaternion.LookRotation(lookToPlayer), Time.deltaTime * 5);
-        transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(lookToPlayer), Time.deltaTime * 3);
-    }
-    
     public void ChasePlayer()
     {
-        _agent.isStopped = false;
         _agent.SetDestination(_player.transform.position);
         _agent.speed = _chaseSpeed;
         _animationHandler.SetSpeed(_chaseSpeed);
     }
-
-    public void HeadRotationTowardsPlayer()
-    {
-       // Vector3 lookToPlayer = (_player.transform.position - EnemyHead.position).normalized;
-       // EnemyHead.rotation = Quaternion.Slerp(EnemyHead.rotation,Quaternion.LookRotation(lookToPlayer), Time.deltaTime * 5);
-    }
     
+    /// <summary>
+    /// Determines if the player is in catch range to end the game 
+    /// </summary>
+    /// <returns></returns>
     public bool CatchPlayer()
     {
         return Vector3.Distance(transform.position, _player.transform.position) <= _catchDistance;
@@ -467,25 +446,35 @@ public class EnemyController : MonoBehaviour
     
     #region PatrolBehaviour
     
+    /// <summary>
+    /// set the standing cooldown and add the waypoints to the list
+    /// </summary>
     private void SetUpPatrolBehaviour()
     {
         _standingCooldown = _dwellingTimer;
         
         foreach (Transform waypoints in _patrollingRoute.transform)
         {
-            _waypoints.Add(waypoints);
+            _patrolPoints.Add(waypoints);
         }
     }
     
+    /// <summary>
+    /// set the first destination point patrol speed
+    /// </summary>
     public void StartPatrolBehaviour()
     {
         _agent.speed = _patrolSpeed;
-        _agent.SetDestination(_waypoints[_waypointsCounter].position);
+        _agent.SetDestination(_patrolPoints[_patrolPointsCounter].position);
     }
     
+    /// <summary>
+    /// loop through the patrol points 
+    /// </summary>
     public void UpdatePatrolBehaviour()
     {
-        if (Vector3.Distance(transform.position, _waypoints[_waypointsCounter].transform.position) <= _stopDistance && !_reachedWaypoint)
+        // when the enemy reached the current set waypoint, the standing time will count down and set the next patrol point
+        if (Vector3.Distance(transform.position, _patrolPoints[_patrolPointsCounter].transform.position) <= _stopDistance && !_reachedWaypoint)
         {
             _reachedWaypoint = true;
         }
@@ -497,10 +486,10 @@ public class EnemyController : MonoBehaviour
 
             if (_standingCooldown <= 0)
             {
-                _waypointsCounter++;
-                _waypointsCounter %= _patrollingRoute.transform.childCount;
+                _patrolPointsCounter++;
+                _patrolPointsCounter %= _patrollingRoute.transform.childCount;
                 _standingCooldown = _dwellingTimer;
-                _agent.SetDestination(_waypoints[_waypointsCounter].position);
+                _agent.SetDestination(_patrolPoints[_patrolPointsCounter].position);
                 _reachedWaypoint = false;
                 _animationHandler.SetSpeed(_patrolSpeed);
             }
@@ -511,6 +500,9 @@ public class EnemyController : MonoBehaviour
 
     #region GuardBehaviour
     
+    /// <summary>
+    /// set the look cooldown, add the waypoints to the list and set the current look position 
+    /// </summary>
     public void SetUpGuardBehaviour()
     {
         _lookCooldown = _switchLookTime;
@@ -520,39 +512,52 @@ public class EnemyController : MonoBehaviour
             _lookpoints.Add(lookpoints);
         }
         
-        _currentLookpoint = _lookpoints[_lookPointcounter].transform;
-        _currentLookPosition.transform.position = _currentLookpoint.transform.position;
+        _currentLookPoint = _lookpoints[_lookPointcounter].transform;
+        _currentLookPosition.transform.position = _currentLookPoint.transform.position;
     }
     
+    /// <summary>
+    /// loop through the guard points
+    /// </summary>
     public void UpdateGuardBehaviour()
     {
-        _currentLookPosition.position = Vector3.MoveTowards(_currentLookPosition.transform.position, _currentLookpoint.transform.position, Time.deltaTime * _lookSwitchSpeed);
+        // move the look position to the waypoint
+        // the head of the enemy is following the current look position
+        _currentLookPosition.position = Vector3.MoveTowards(_currentLookPosition.transform.position, _currentLookPoint.transform.position, Time.deltaTime * _lookSwitchSpeed);
 
-        if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookpoint.transform.position ) <= _stopGuardpointDistance && !_reachedLookpoint)
+        // when the current look position is reached, the look time will count down and set the next look point
+        if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookPoint.transform.position ) <= _stopGuardpointDistance && !_reachedLookPoint)
         {
-            _reachedLookpoint = true;
+            _reachedLookPoint = true;
         }
         
-        if (_reachedLookpoint)
+        if (_reachedLookPoint)
         {
             _lookCooldown -= Time.deltaTime;
-            
+
             if (_lookCooldown <= 0)
             {
                 _lookPointcounter++;
                 _lookPointcounter %= _lookingRoute.transform.childCount;
                 _lookCooldown = _switchLookTime;
-                _currentLookpoint = _lookpoints[_lookPointcounter].transform;
-                _reachedLookpoint = false;
+                _currentLookPoint = _lookpoints[_lookPointcounter].transform;
+                _reachedLookPoint = false;
             }
         }
     }
 
+    /// <summary>
+    /// the distance to the guard point to start his look routine
+    /// </summary>
+    /// <returns></returns>
     public bool GuardPointDistance()
     {
         return Vector3.Distance(transform.position, _guardPoint.transform.position) <= StopGuardpointDistance;
     }
 
+    /// <summary>
+    /// the desired standing position of the enemy at the guard point
+    /// </summary>
     public void DesiredStandingLookDirection()
     {
         _desiredDirection = Quaternion.Slerp(transform.rotation, DesiredBodyRotation.rotation, SmoothBodyRotation * Time.deltaTime);
@@ -563,35 +568,43 @@ public class EnemyController : MonoBehaviour
 
     #region SpottedBar
     
+    /// <summary>
+    /// Bar control to show how much the player is spotted of the enemy
+    /// </summary>
     public void PlayerDetected()
     {
-        if (_seesObject)
+        // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view field
+        if (_useSpottedBar)
         {
             float distance = Vector3.Distance(transform.position, _player.transform.position);
 
-            if (_spottedTime <= _secondsToSpott)
+            // the time will run and will fill the bar until the player is spotted
+            if (_spotTime <= _secondsToSpott)
             {
-                _spottedTime += Time.deltaTime;
-                _spottedBar.fillAmount = _spottedTime;
+                _spotTime += Time.deltaTime;
+                _spottedBar.fillAmount = _spotTime;
             }
             
-            if (_spottedTime >= _secondsToSpott || distance <= _spottedDistance)
+            // when the player is to close to the enemy or to long in the view field, the enemy get spotted
+            if (_spotTime >= _secondsToSpott || distance <= _spottedDistance)
             {
                 _spottedBar.fillAmount = 1;
                 _playerSpotted = true;
+                
+                _player.PlayerAnimationHandler.PlayerFlee(true);
             }
         }
         else
         {
-            if (_spottedTime > 0)
+            if (_spotTime > 0)
             {
-                _spottedTime -= Time.deltaTime;
-                _spottedBar.fillAmount = _spottedTime;
+                _spotTime -= Time.deltaTime;
+                _spottedBar.fillAmount = _spotTime;
             }
 
-            if (_spottedTime <= 0)
+            if (_spotTime <= 0)
             {
-                _spottedTime = 0;
+                _spotTime = 0;
             }
         }
     }
@@ -600,37 +613,41 @@ public class EnemyController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        // when the enemy hears a sound, he will investigate it 
         if (other.CompareTag("Sound"))
         {
-            _soundItemScript = other.GetComponentInParent<SoundItem>();
+            // get the current noisy item script of the item
+            _noisyItemScript = other.GetComponentInParent<NoisyItem>();
             
-            // the amount of the waypoints when the player activated the noisy item in close range
-            _usuableWaypointsAmount = Random.Range(1,_soundItemScript.CloseNoisyItemWaypoints.Length);
+            // the amount of the waypoints fo the enemy when the player activated the noisy item in close range
+            _usuableWaypointsAmount = Random.Range(1,_noisyItemScript.CloseNoisyItemWaypoints.Length);
             
-            float _distance = Vector3.Distance(transform.position, other.transform.position);
+          //  float _distance = Vector3.Distance(transform.position, other.transform.position);
             
-            RaycastHit hit;
-            Physics.Raycast(other.transform.position, transform.position - other.transform.position, out hit, _distance);
+        //    RaycastHit hit;
+         //   Physics.Raycast(other.transform.position, transform.position - other.transform.position, out hit, _distance);
 
           //  if (hit.collider.CompareTag("Wall"))
             {
           //      _soundItemScript.Stage--;
 
-                if (_soundItemScript.Stage <= 0)
+                if (_noisyItemScript.Stage <= 0)
                 {
               //      _soundItemScript.Stage = 0;
                 //    return;
                 }
             }
 
-            if(_soundItemScript.Stage <= 3)
+            // when the sound stage goes from 1 to 3, the sound will be noticed and the enemy will start to run towards it
+            if(_noisyItemScript.Stage <= 3)
             {
-                _soundBehaviourStage = _soundItemScript.Stage;
-                _soundEventPosition = _soundItemScript.transform;
+                _soundBehaviourStage = _noisyItemScript.Stage;
+                _soundEventPosition = _noisyItemScript.OffsetOrigin.transform;
                 _soundNoticed = true;
             }
         }
 
+        // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the sound position
         if (other.CompareTag("FootSteps"))
         {
             _soundNoticed = true;
@@ -641,7 +658,7 @@ public class EnemyController : MonoBehaviour
             _spottedBar.fillAmount = 1;
         }
         
-        // if the enemy get in a new room the new search points will be selected
+        // if the enemy gets in a new room, the old search points will be deleted and the new ones will be selected
         if (other.CompareTag("SearchPoints"))
         {
             _searchWaypoints.Clear();
@@ -658,7 +675,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        // if the enemy used the points in the room all points will be added again because they will be deleted during the search mode
+        // if the enemy used the points in the room, all points will be added again because used points will be deleted during the search mode
         if (other.CompareTag("SearchPoints"))
         {
             if (_resetSearchWaypoints)
@@ -694,13 +711,17 @@ public class EnemyController : MonoBehaviour
     /// <returns></returns>
     public float DistanceToSoundEvent()
     {
-        return Vector3.Distance(SoundEventPosition.position, transform.position);
+        return Vector3.Distance(_agent.pathEndPosition, transform.position);
     }
     
     #region Search Behaviour
     
+    /// <summary>
+    /// set the closest waypoint based on the player position
+    /// </summary>
     public void StartSearchBehaviour()
     {
+        // when all search points has been used, the enemy goes back to patrolling or guarding
         if (_searchWaypoints.Count <= 0)
         {
             _resetSearchWaypoints = true;
@@ -708,13 +729,14 @@ public class EnemyController : MonoBehaviour
             return;
         }
         
-        _nearestWaypoint = Mathf.Infinity;
+        // get the current closest point based on the player position
+        _closestWaypointDistance = Mathf.Infinity;
         foreach (Transform waypoint in _searchWaypoints)
         {
-             _waypointDistance = Vector3.Distance(waypoint.transform.position, _player.transform.position);
-            if (_waypointDistance <= _nearestWaypoint)
+             _currentwaypointDistance = Vector3.Distance(waypoint.transform.position, _player.transform.position);
+            if (_currentwaypointDistance <= _closestWaypointDistance)
             {
-                _nearestWaypoint = _waypointDistance;
+                _closestWaypointDistance = _currentwaypointDistance;
                 _closestWaypoint = waypoint;
             }
         }
@@ -722,8 +744,12 @@ public class EnemyController : MonoBehaviour
         _agent.SetDestination(_closestWaypoint.position);
     }
     
+    /// <summary>
+    /// loop through the search points
+    /// </summary>
     public void UpdateSearchBehaviour()
     {
+        // when the current search point position is reached, the standing time will count down and set the next search point
         if (Vector3.Distance(transform.position, _closestWaypoint.position) <= _stopDistance && !_reachedWaypoint)
         {
             _animationHandler.SetSpeed(0);
@@ -735,7 +761,6 @@ public class EnemyController : MonoBehaviour
             //kick out the waypoint which was already used
             _searchWaypoints.Remove(_closestWaypoint); 
             
-            //plays investigation animation, after it or certain time he will go to the next point nearby
             _standingCooldown -= Time.deltaTime;
             
             if (_standingCooldown <= 0)
@@ -750,20 +775,25 @@ public class EnemyController : MonoBehaviour
     
     #region SearchNoisyItemBehaviour
 
+    /// <summary>
+    /// get the closest search points of the throw position of the player
+    /// </summary>
     public void PrepareSearchNoisyItemBehaviour()
     {
+        // when the enemy has thrown a stone, the closest waypoints of the throw position will be selected
         if (_player.PlayerThrowTrigger.PlayerThrew)
         {
-            _nearestWaypoint = Mathf.Infinity;
+            _closestWaypointDistance = Mathf.Infinity;
             foreach (Transform waypoint in _noisyItemSearchPoints)
             {
-                _waypointDistance = Vector3.Distance(waypoint.transform.position, _player.PlayerThrowTrigger.ThrowPosition.transform.position);
-                if (_waypointDistance <= _nearestWaypoint)
+                _currentwaypointDistance = Vector3.Distance(waypoint.transform.position, _player.PlayerThrowTrigger.ThrowPosition.transform.position);
+                if (_currentwaypointDistance <= _closestWaypointDistance)
                 {
                     _closestWaypoint = waypoint;
-                    _nearestWaypoint = _waypointDistance;
+                    _closestWaypointDistance = _currentwaypointDistance;
                 }
             }
+            // when the fixed waypoints amount is reached, this method will be stopped
             if (_waypointAmount > 0)
             {
                 _noisyItemSelectedPoints.Add(_closestWaypoint);
@@ -771,19 +801,25 @@ public class EnemyController : MonoBehaviour
                 _waypointAmount--;
                 PrepareSearchNoisyItemBehaviour();
 
+                // reset the amount of desired waypoints
                 if (_waypointAmount <= 1)
                 {
                     _waypointAmount = _waypointCounter;
                 }
             }
             
+            // the amount of waypoints that can be used of the selected
             _usuableWaypointsRangeAmount = Random.Range(1, _noisyItemSelectedPoints.Count);
         }
         
     }
     
+    /// <summary>
+    /// select the waypoint where the enemy has to go
+    /// </summary>
     public void StartSearchNoisyItemBehaviour()
     {
+        // when all points were used, the enemy will go back to his routine
         if (_usuableWaypointsAmount <= 0 || _usuableWaypointsRangeAmount <= 0)
         {
             _waypointAmount = 3;
@@ -792,6 +828,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
+        // when the enemy activated the item with a throw, the waypoints near the throw position will be used
         if (_player.PlayerThrowTrigger.PlayerThrew)
         {
             _currentCloseNoisyItemWaypoint = _noisyItemSelectedPoints[Random.Range(0, _noisyItemSelectedPoints.Count)];
@@ -799,38 +836,31 @@ public class EnemyController : MonoBehaviour
             _usuableWaypointsRangeAmount--;
         }
 
+        // when the enemy activated the item in close range, selected waypoints in the inspector will be used
         if (!_player.PlayerThrowTrigger.PlayerThrew)
         {
-            _currentCloseNoisyItemWaypoint = _soundItemScript.CloseNoisyItemWaypoints[Random.Range(0, _soundItemScript.CloseNoisyItemWaypoints.Length)];
+            _currentCloseNoisyItemWaypoint = _noisyItemScript.CloseNoisyItemWaypoints[Random.Range(0, _noisyItemScript.CloseNoisyItemWaypoints.Length)];
             _agent.SetDestination(_currentCloseNoisyItemWaypoint.position);
             _usuableWaypointsAmount--;
         }
         
-
         _animationHandler.SetSpeed(_firstStageRunSpeed);
     }
     
+    /// <summary>
+    /// loop through the noisy item search points
+    /// </summary>
     public void UpdateSearchNoisyItemBehaviour()
     {
-        // have to separate the if condition because when the enemy get the waypoints of the close activation at the noisy item, the "_closestWaypoint" will be null
-        if (!_player.PlayerThrowTrigger.PlayerThrew && Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
+        // when the current search point position is reached, the standing time will count down and set the next search point
+        if (Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
         {
             _animationHandler.SetSpeed(0);
             _reachedWaypoint = true;
         }
-
-        if (_player.PlayerThrowTrigger.PlayerThrew)
-        {
-            if ( Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
-            {
-                _animationHandler.SetSpeed(0);
-                _reachedWaypoint = true;
-            }
-        }
         
         if (_reachedWaypoint)
         {
-            //plays investigation animation, after it or certain time he will go to the next point nearby
             _standingCooldown -= Time.deltaTime;
             
             if (_standingCooldown <= 0)

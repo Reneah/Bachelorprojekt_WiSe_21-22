@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3628932712983307560}
   m_Layer: 8
   m_Name: Wall_Windowed_High
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -996,6 +996,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 666373320624778762, guid: 8f5bcb8e303e1574982f52be63e5a077, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1200013856285718347, guid: 8f5bcb8e303e1574982f52be63e5a077, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1044,6 +1048,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7768714486499010612, guid: 8f5bcb8e303e1574982f52be63e5a077, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1c8cc60105476b40ae3b9e7208b6e5e, type: 2}
     - target: {fileID: 8755277944153660459, guid: 8f5bcb8e303e1574982f52be63e5a077, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1238,6 +1246,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 486323557526118238, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1c8cc60105476b40ae3b9e7208b6e5e, type: 2}
     - target: {fileID: 1378117982895233927, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
       propertyPath: m_Name
       value: Window
@@ -1249,6 +1261,10 @@ PrefabInstance:
     - target: {fileID: 1378117982895233927, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378117982895233927, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 2763470805131964523, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
       propertyPath: m_RootOrder
@@ -1310,6 +1326,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5744767447249132461, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1c8cc60105476b40ae3b9e7208b6e5e, type: 2}
     - target: {fileID: 6156131684477613178, guid: 63750839291c74e43bfd2ae379972ed8, type: 3}
       propertyPath: m_Mesh
       value: 
