@@ -1,112 +1,111 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
+using Enemy.Controller;
 using UnityEngine;
 using untitledProject;
 
-public class EnemyAnimationHandler : MonoBehaviour
+namespace Enemy.AnimationHandler
 {
-
-
-    private Animator _enemyAnimator;
-    private EnemyController _enemyController;
-    private PlayerController _playerController;
-
-    private float _headRotationWeight = 1;
-    private bool _finishedInvestigationAnimation = false;
-    private bool _finishedLookingAnimation = false;
-
-    public float HeadRotationWeight
+    public class EnemyAnimationHandler : MonoBehaviour
     {
-        get => _headRotationWeight;
-        set => _headRotationWeight = value;
-    }
+        private Animator _enemyAnimator;
+        private EnemyController _enemyController;
+        private PlayerController _playerController;
 
-    public bool FinishedLookingAnimation
-    {
-        get => _finishedLookingAnimation;
-        set => _finishedLookingAnimation = value;
-    }
+        private float _headRotationWeight = 1;
+        private bool _finishedInvestigationAnimation = false;
+        private bool _finishedLookingAnimation = false;
 
-    public bool FinishedInvestigationAnimation
-    {
-        get => _finishedInvestigationAnimation;
-        set => _finishedInvestigationAnimation = value;
-    }
-
-    private static readonly int Investigation = Animator.StringToHash("Investigation");
-    private static readonly int MovementSpeed = Animator.StringToHash("MovementSpeed");
-    private static readonly int Hit = Animator.StringToHash("FinalHit");
-    private static readonly int Looking = Animator.StringToHash("Looking");
-
-    void Start()
-    {
-        _enemyAnimator = GetComponent<Animator>();
-        _enemyController = GetComponent<EnemyController>();
-        _playerController = FindObjectOfType<PlayerController>();
-    }
-    
-    /// <summary>
-    /// sets the speed of the run animation and decides to play the run or idle animation
-    /// </summary>
-    public void SetSpeed(float movementSpeed)
-    {
-        _enemyAnimator.SetFloat(MovementSpeed, movementSpeed);
-    }
-
-    public void InvestigatePoint()
-    {
-        _enemyAnimator.SetTrigger(Investigation);
-    }
-
-    public void ResetInvestigatePoint()
-    {
-        _enemyAnimator.ResetTrigger(Investigation);
-    }
-
-    public void LookingAround()
-    {
-        _enemyAnimator.SetTrigger(Looking);
-    }
-    
-    public void ResetLookingAround()
-    {
-        _enemyAnimator.ResetTrigger(Looking);
-    }
-    
-    public void FinalHit()
-    {
-        _enemyAnimator.SetTrigger(Hit);
-    }
-
-    // animation event
-    public void FinishedInvestigationAnimationClip()
-    {
-        _finishedInvestigationAnimation = true;
-        ResetInvestigatePoint();
-    }
-
-    // animation event
-    public void FinishedLookingAnimationClip()
-    {
-        _finishedLookingAnimation = true;
-        ResetLookingAround();
-    }
-
-    private void OnAnimatorIK(int layerIndex)
-    {
-        if (_enemyController.CanSeePlayer)
+        public float HeadRotationWeight
         {
-            _enemyAnimator.SetLookAtWeight(_headRotationWeight);
-            _enemyAnimator.SetLookAtPosition(_enemyController.LookPositionAtSpotted.position);
+            get => _headRotationWeight;
+            set => _headRotationWeight = value;
         }
 
-        if (_enemyController.GuardBehaviour)
+        public bool FinishedLookingAnimation
         {
-            _enemyAnimator.SetLookAtWeight(_headRotationWeight);
-            _enemyAnimator.SetLookAtPosition(_enemyController.CurrentLookPosition.transform.position);
+            get => _finishedLookingAnimation;
+            set => _finishedLookingAnimation = value;
         }
 
+        public bool FinishedInvestigationAnimation
+        {
+            get => _finishedInvestigationAnimation;
+            set => _finishedInvestigationAnimation = value;
+        }
+
+        private static readonly int Investigation = Animator.StringToHash("Investigation");
+        private static readonly int MovementSpeed = Animator.StringToHash("MovementSpeed");
+        private static readonly int Hit = Animator.StringToHash("FinalHit");
+        private static readonly int Looking = Animator.StringToHash("Looking");
+
+        void Start()
+        {
+            _enemyAnimator = GetComponent<Animator>();
+            _enemyController = GetComponent<EnemyController>();
+            _playerController = FindObjectOfType<PlayerController>();
+        }
+        
+        /// <summary>
+        /// sets the speed of the run animation and decides to play the run or idle animation
+        /// </summary>
+        public void SetSpeed(float movementSpeed)
+        {
+            _enemyAnimator.SetFloat(MovementSpeed, movementSpeed);
+        }
+
+        public void InvestigatePoint()
+        {
+            _enemyAnimator.SetTrigger(Investigation);
+        }
+
+        public void ResetInvestigatePoint()
+        {
+            _enemyAnimator.ResetTrigger(Investigation);
+        }
+
+        public void LookingAround()
+        {
+            _enemyAnimator.SetTrigger(Looking);
+        }
+        
+        public void ResetLookingAround()
+        {
+            _enemyAnimator.ResetTrigger(Looking);
+        }
+        
+        public void FinalHit()
+        {
+            _enemyAnimator.SetTrigger(Hit);
+        }
+
+        // animation event
+        public void FinishedInvestigationAnimationClip()
+        {
+            _finishedInvestigationAnimation = true;
+            ResetInvestigatePoint();
+        }
+
+        // animation event
+        public void FinishedLookingAnimationClip()
+        {
+            _finishedLookingAnimation = true;
+            ResetLookingAround();
+        }
+
+        private void OnAnimatorIK(int layerIndex)
+        {
+            if (_enemyController.CanSeePlayer)
+            {
+                _enemyAnimator.SetLookAtWeight(_headRotationWeight);
+                _enemyAnimator.SetLookAtPosition(_enemyController.LookPositionAtSpotted.position);
+            }
+
+            if (_enemyController.GuardBehaviour)
+            {
+                _enemyAnimator.SetLookAtWeight(_headRotationWeight);
+                _enemyAnimator.SetLookAtPosition(_enemyController.CurrentLookPosition.transform.position);
+            }
+
+        }
     }
+
 }

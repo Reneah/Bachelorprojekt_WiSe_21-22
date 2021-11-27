@@ -1,54 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
+using Enemy.Controller;
 using UnityEngine;
-using untitledProject;
 
-public class EnemyVisionChaseState : IEnemyState
+namespace Enemy.States
 {
-    public IEnemyState Execute(EnemyController enemy)
+    public class EnemyVisionChaseState : IEnemyState
     {
-        if (enemy.CanSeePlayer)
+        public IEnemyState Execute(EnemyController enemy)
         {
-            enemy.ReminderTime = enemy.LastChanceTime;
-            enemy.ChasePlayer();
-        }
-
-        if (!enemy.CanSeePlayer)
-        {
-            enemy.ReminderTime -= Time.deltaTime;
-
-            if (enemy.ReminderTime > 0)
+            if (enemy.CanSeePlayer)
             {
-                enemy.Agent.SetDestination(enemy.Player.transform.position);
+                enemy.ReminderTime = enemy.LastChanceTime;
+                enemy.ChasePlayer();
             }
-            // if the enemy still doesn't see the player, the search mode will be activated 
-            if (enemy.ReminderTime <= 0)
+    
+            if (!enemy.CanSeePlayer)
             {
-                if (Vector3.Distance(enemy.transform.position, enemy.Agent.pathEndPosition) <= 0.5f)
+                enemy.ReminderTime -= Time.deltaTime;
+    
+                if (enemy.ReminderTime > 0)
                 {
-                    enemy.ReminderTime = 1;
-                    return EnemyController.EnemySearchState;
+                    enemy.Agent.SetDestination(enemy.Player.transform.position);
+                }
+                // if the enemy still doesn't see the player, the search mode will be activated 
+                if (enemy.ReminderTime <= 0)
+                {
+                    if (Vector3.Distance(enemy.transform.position, enemy.Agent.pathEndPosition) <= 0.5f)
+                    {
+                        enemy.ReminderTime = 1;
+                        return EnemyController.EnemySearchState;
+                    }
                 }
             }
+            
+            if (enemy.CatchPlayer())
+            {
+                enemy.Player.GetComponent<Death>().EnemyCatchedPlayer = true;
+                enemy.AnimationHandler.FinalHit();
+                enemy.Player.PlayerAnimationHandler.PlayerDeath();
+            }
+            
+            return this;
         }
-        
-        if (enemy.CatchPlayer())
+    
+        public void Enter(EnemyController enemy)
         {
-            enemy.Player.GetComponent<Death>().EnemyCatchedPlayer = true;
-            enemy.AnimationHandler.FinalHit();
-            enemy.Player.PlayerAnimationHandler.PlayerDeath();
+            enemy.ReminderTime = enemy.LastChanceTime;
         }
-        
-        return this;
-    }
-
-    public void Enter(EnemyController enemy)
-    {
-        enemy.ReminderTime = enemy.LastChanceTime;
-    }
-
-    public void Exit(EnemyController enemy)
-    {
-        
+    
+        public void Exit(EnemyController enemy)
+        {
+            
+        }
     }
 }
+
