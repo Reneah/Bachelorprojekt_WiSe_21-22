@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Enemy.Controller;
 
-public interface IEnemyState
+namespace Enemy.States
 {
-    IEnemyState Execute(EnemyController enemy);
-    void Enter(EnemyController enemy);
-    void Exit(EnemyController enemy);
+    public interface IEnemyState
+    {
+        IEnemyState Execute(EnemyController enemy);
+        void Enter(EnemyController enemy);
+        void Exit(EnemyController enemy);
+    }
 }
+
