@@ -45,7 +45,6 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        /*
         if (_fadeImage.color.a <= 0.95f)
         {
             _fadeIn = true;
@@ -59,7 +58,7 @@ public class MainMenu : MonoBehaviour
             //MasterAudio.ChangePlaylistByName("Start");
             //MasterAudio.StopAllOfSound("Forest");
             //MasterAudio.StopAllOfSound("Wind");
-        }*/
+        }
     }
     
     public void GoToOptionPage()
@@ -102,8 +101,7 @@ public class MainMenu : MonoBehaviour
     
     public void StartGame()
     {
-        SceneManager.LoadScene(_introSceneName);
-        //_fadeImage.DOFade(1, 3);
+        _fadeImage.DOFade(1, 3);
     }
 
     public void Exit()
