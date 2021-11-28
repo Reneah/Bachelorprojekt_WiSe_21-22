@@ -1,31 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Enemy.Controller;
 
-public class EnemyIdleState : IEnemyState
+namespace Enemy.States
 {
-    public IEnemyState Execute(EnemyController enemy)
+    public class EnemyIdleState : IEnemyState
     {
-        if (enemy.Patrolling)
+        public IEnemyState Execute(EnemyController enemy)
         {
-            return EnemyController.EnemyPatrolState;
-        }
+            if (enemy.Patrolling)
+            {
+                return EnemyController.EnemyPatrolState;
+            }
         
-        if (enemy.Guarding)
+            if (enemy.Guarding)
+            {
+                return EnemyController.EnemyGuardState;
+            }
+        
+            return this;
+        }
+
+        public void Enter(EnemyController enemy)
         {
-            return EnemyController.EnemyGuardState;
+        
         }
-        
-        return this;
-    }
 
-    public void Enter(EnemyController enemy)
-    {
-        
-    }
-
-    public void Exit(EnemyController enemy)
-    {
+        public void Exit(EnemyController enemy)
+        {
     
+        }
     }
 }
+

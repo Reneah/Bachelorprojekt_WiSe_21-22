@@ -11,6 +11,7 @@ TagManager:
   - NoisyItem
   - Stones
   - FootSteps
+  - ViewCone
   layers:
   - Default
   - TransparentFX
