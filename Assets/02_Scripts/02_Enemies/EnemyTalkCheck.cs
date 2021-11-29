@@ -10,16 +10,16 @@ namespace Enemy.TalkCheck
     {
         [Tooltip("Chance to talk to him at passing the other enemy in percentage")]
         [Range(0,100)]
-        [SerializeField] private float _chanceToTalk;
-        [Tooltip("the distance to stop before the other enemy")]
+        [SerializeField] private int _chanceToTalk;
+        [Tooltip("the distance to stop in front of the other enemy")]
         [Range(1,5)]
         [SerializeField] private float _stopDistance = 0.5f;
         [Tooltip("the time the enemy talk to the other enemy")]
         [Range(3,15)]
         [SerializeField] private float _timeToTalk;
         [Tooltip("smooth the rotation towards the other enemy when talking")]
-        [Range(0.5f,10)]
-        [SerializeField] private float _smoothRoation;
+        [Range(1,10)]
+        [SerializeField] private float _smoothRotation;
         
         private bool _talkable = false;
         public bool Talkable => _talkable;
@@ -58,7 +58,7 @@ namespace Enemy.TalkCheck
                 if (_countDown)
                 {
                     _talkCooldown -= Time.deltaTime;
-                    Quaternion _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_talkableEnemy.transform.position - transform.position), _smoothRoation * Time.deltaTime);
+                    Quaternion _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_talkableEnemy.transform.position - transform.position), _smoothRotation * Time.deltaTime);
                     _enemyController.transform.rotation = _desiredDirection;
 
                     if (_talkCooldown <= 0)
@@ -80,7 +80,7 @@ namespace Enemy.TalkCheck
             {
                 _chanceToSpeak = Random.value;
                 
-                if (_chanceToSpeak <= _chanceToTalk / 100 && EnemyShareInformation.EnemyTalkingNumber <= 2 || !_takeTalkPartner && EnemyShareInformation.EnemyTalkingNumber <= 2)
+                if (_chanceToSpeak <= _chanceToTalk / 100 && EnemyShareInformation.EnemyTalkingNumber <= 2 && !EnemyShareInformation.IsLooting || !_takeTalkPartner && EnemyShareInformation.EnemyTalkingNumber <= 2 && !EnemyShareInformation.IsLooting)
                 {
                     EnemyShareInformation.EnemyTalkingNumber++;
                     

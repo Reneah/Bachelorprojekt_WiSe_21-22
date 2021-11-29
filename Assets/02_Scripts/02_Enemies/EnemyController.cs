@@ -46,6 +46,7 @@ namespace Enemy.Controller
         public static readonly EnemyGuardState EnemyGuardState = new EnemyGuardState();
         public static readonly EnemyNoisyItemSearchState EnemyNoisyItemSearchState = new EnemyNoisyItemSearchState();
         public static readonly EnemyTalkState EnemyTalkState = new EnemyTalkState();
+        public static readonly EnemyLootState EnemyLootState = new EnemyLootState();
 
         [Header("Main Behaviour")]
         [Tooltip("the main task of the enemy is guarding - Patrolling will be not available")]
@@ -396,7 +397,53 @@ namespace Enemy.Controller
         }
 
         #endregion
+
+        #region LootBehaviour
+
+        private float _stopDistanceLootSpot;
+
+        public float StopDistanceLootSpot
+        {
+            get => _stopDistanceLootSpot;
+            set => _stopDistanceLootSpot = value;
+        }
+
+        private float _smoothRotation;
+
+        public float SmoothRotation
+        {
+            get => _smoothRotation;
+            set => _smoothRotation = value;
+        }
+
+        private bool _loot = false;
+
+        public bool Loot
+        {
+            get => _loot;
+            set => _loot = value;
+        }
+
+        private bool _reachedLootSpot = false;
+
+        public bool ReachedLootSpot
+        {
+            get => _reachedLootSpot;
+            set => _reachedLootSpot = value;
+        }
+
+        private Transform _lootSpotTransform;
+
+        public Transform LootSpotTransform
+        {
+            get => _lootSpotTransform;
+            set => _lootSpotTransform = value;
+        }
+
+        #endregion
         
+
+
         void Start()
         {
             // start state machine with the idle

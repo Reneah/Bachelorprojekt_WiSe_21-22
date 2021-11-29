@@ -37,6 +37,7 @@ namespace Enemy.AnimationHandler
         private static readonly int Hit = Animator.StringToHash("FinalHit");
         private static readonly int Looking = Animator.StringToHash("Looking");
         private static readonly int Talk = Animator.StringToHash("Talk");
+        private static readonly int Loot = Animator.StringToHash("Loot");
 
         void Start()
         {
@@ -95,6 +96,11 @@ namespace Enemy.AnimationHandler
         public void TalkToEnemy(bool talk)
         {
             _enemyAnimator.SetBool(Talk, talk);
+        }
+
+        public void LootSpot(bool loot)
+        {
+            _enemyAnimator.SetBool(Loot, loot);
         }
 
         private void OnAnimatorIK(int layerIndex)

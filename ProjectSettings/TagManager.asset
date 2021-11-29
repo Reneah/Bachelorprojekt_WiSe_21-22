@@ -13,6 +13,7 @@ TagManager:
   - FootSteps
   - ViewCone
   - Talkable
+  - Enemy
   layers:
   - Default
   - TransparentFX

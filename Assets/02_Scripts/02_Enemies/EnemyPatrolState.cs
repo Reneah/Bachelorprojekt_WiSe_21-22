@@ -20,6 +20,11 @@ namespace Enemy.States
             {
                 return EnemyController.EnemyTalkState;
             }
+
+            if (enemy.Loot)
+            {
+                return EnemyController.EnemyLootState;
+            }
         
             enemy.UpdatePatrolBehaviour();
             return this;

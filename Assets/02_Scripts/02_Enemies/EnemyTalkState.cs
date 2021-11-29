@@ -7,6 +7,16 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            if (enemy.CanSeePlayer)
+            {
+                return EnemyController.EnemyVisionChaseState;
+            }
+
+            if (enemy.SoundNoticed)
+            {
+                return EnemyController.EnemySoundInvestigationState;
+            }
+            
             if (!enemy.EnemyTalkCheck.Talkable)
             {
                 if (enemy.Patrolling)
