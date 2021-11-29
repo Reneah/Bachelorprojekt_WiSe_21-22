@@ -33,14 +33,18 @@
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyGuardState.cs" t="Include" />
             <e p="EnemyIdleState.cs" t="Include" />
+            <e p="EnemyLootState.cs" t="Include" />
             <e p="EnemyNoisyItemSearchState.cs" t="Include" />
             <e p="EnemyPatrolState.cs" t="Include" />
             <e p="EnemySearchState.cs" t="Include" />
             <e p="EnemyShareInformation.cs" t="Include" />
             <e p="EnemySoundInvestigationState.cs" t="Include" />
+            <e p="EnemyTalkCheck.cs" t="Include" />
+            <e p="EnemyTalkState.cs" t="Include" />
             <e p="EnemyVisionChaseState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
             <e p="LookAgentVisualization.cs" t="Include" />
+            <e p="LootSpot.cs" t="Include" />
             <e p="NoisyItem.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
