@@ -15,6 +15,11 @@ namespace Enemy.States
             {
                 return EnemyController.EnemySoundInvestigationState;
             }
+            
+            if (enemy.EnemyTalkCheck.Talkable)
+            {
+                return EnemyController.EnemyTalkState;
+            }
         
             if (enemy.GuardPointDistance())
             {

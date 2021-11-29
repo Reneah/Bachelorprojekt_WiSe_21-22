@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Enemy.AnimationHandler;
 using Enemy.SoundItem;
 using Enemy.States;
+using Enemy.TalkCheck;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -25,6 +26,14 @@ namespace Enemy.Controller
         private EnemyAnimationHandler _animationHandler;
         public EnemyAnimationHandler AnimationHandler => _animationHandler;
 
+        private EnemyTalkCheck _enemyTalkCheck;
+
+        public EnemyTalkCheck EnemyTalkCheck
+        {
+            get => _enemyTalkCheck;
+            set => _enemyTalkCheck = value;
+        }
+
         // the current state of the enemy
         private IEnemyState _currentState;
         
@@ -36,6 +45,7 @@ namespace Enemy.Controller
         public static readonly EnemySoundInvestigationState EnemySoundInvestigationState = new EnemySoundInvestigationState();
         public static readonly EnemyGuardState EnemyGuardState = new EnemyGuardState();
         public static readonly EnemyNoisyItemSearchState EnemyNoisyItemSearchState = new EnemyNoisyItemSearchState();
+        public static readonly EnemyTalkState EnemyTalkState = new EnemyTalkState();
 
         [Header("Main Behaviour")]
         [Tooltip("the main task of the enemy is guarding - Patrolling will be not available")]
@@ -395,6 +405,7 @@ namespace Enemy.Controller
             _agent = GetComponent<NavMeshAgent>();
             _animationHandler = GetComponent<EnemyAnimationHandler>();
             _player = FindObjectOfType<PlayerController>();
+            _enemyTalkCheck = transform.Find("EnemyTalkCheck").GetComponent<EnemyTalkCheck>();
 
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
             if (_patrolling)

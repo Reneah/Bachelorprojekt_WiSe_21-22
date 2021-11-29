@@ -36,6 +36,7 @@ namespace Enemy.AnimationHandler
         private static readonly int MovementSpeed = Animator.StringToHash("MovementSpeed");
         private static readonly int Hit = Animator.StringToHash("FinalHit");
         private static readonly int Looking = Animator.StringToHash("Looking");
+        private static readonly int Talk = Animator.StringToHash("Talk");
 
         void Start()
         {
@@ -89,6 +90,11 @@ namespace Enemy.AnimationHandler
         {
             _finishedLookingAnimation = true;
             ResetLookingAround();
+        }
+
+        public void TalkToEnemy(bool talk)
+        {
+            _enemyAnimator.SetBool(Talk, talk);
         }
 
         private void OnAnimatorIK(int layerIndex)

@@ -9,6 +9,8 @@ namespace Enemy.ShareInformation
 
         //I need the global information if the player is spotted or not to play the flee animation
         public static bool PlayerIsVisible;
+
+        public static float EnemyTalkingNumber = 0;
     }
 }
 
