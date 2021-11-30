@@ -18,16 +18,19 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
 
-            if (Vector3.Distance(enemy.LootSpotTransform.position, enemy.transform.position) <= enemy.StopDistanceLootSpot)
+            bool reachedLootSpot = Vector3.Distance(enemy.LootSpotTransform.position, enemy.transform.position) <= enemy.StopDistanceLootSpot;
+            if (reachedLootSpot)
             {
                 enemy.ReachedLootSpot = true;
                 enemy.AnimationHandler.LootSpot(true);
                 enemy.Agent.isStopped = true;
                 
+                // rotates the enemy towards the loot spot
                 Quaternion _desiredDirection = Quaternion.Slerp(enemy.transform.rotation, Quaternion.LookRotation(enemy.LootSpotTransform.position - enemy.transform.position), enemy.SmoothRotation * Time.deltaTime);
                 enemy.transform.rotation = _desiredDirection;
             }
             
+            // When the enemy has finished looting, he will go back in the patrol state
             if (!enemy.Loot)
             {
                 enemy.Agent.isStopped = false;

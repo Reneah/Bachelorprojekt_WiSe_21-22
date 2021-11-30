@@ -17,6 +17,7 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
             
+            // When the enemy is finished talking he will go back to his routine
             if (!enemy.EnemyTalkCheck.Talkable)
             {
                 if (enemy.Patrolling)
