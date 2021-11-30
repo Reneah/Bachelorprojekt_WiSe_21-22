@@ -16,6 +16,7 @@ namespace Enemy.LootSpot
         [Tooltip("Every time the spot is looted, the chance will shrink to loot the place again")]
         [Range(1,100)]
         [SerializeField] private int _shrinkLootChance;
+        [Tooltip("the time, how long the enemy is looting at the spot")]
         [Range(1,15)]
         [SerializeField] private float _lootTime;
         [Tooltip("smooth the enemy rotation towards the loot location")]
@@ -25,9 +26,12 @@ namespace Enemy.LootSpot
         [Range(1,5)]
         [SerializeField] private float _stopDistance;
         
+        // the chance that the enemy will loot the spot
         private float _chanceToLoot;
+        // the time, how long the enemy is looting at the spot
         private float _lootCooldown;
 
+        // need this script to communicate with the current enemy nearby
         private EnemyController _enemyController;
 
         void Start()
@@ -37,6 +41,8 @@ namespace Enemy.LootSpot
         
         void Update()
         {
+            // When the enemy reached the loot spot, the time will run how long the enemy will loot
+            // Afterwards the variables will be resetted
             if (_enemyController.ReachedLootSpot)
             {
                 _lootCooldown -= Time.deltaTime;
@@ -54,12 +60,14 @@ namespace Enemy.LootSpot
 
         private void OnTriggerEnter(Collider other)
         {
+            // When the enemy is in range, he has the chance to loot the spot
             if (other.CompareTag("Enemy"))
             {
                 _chanceToLoot = Random.value;
-
+                
                 if (_chanceToLoot <= _lootChance && _lootChance > 0 && !EnemyShareInformation.IsLooting)
                 {
+                    // When the enemy ios looting, no other enemy will get to the spot as well
                     EnemyShareInformation.IsLooting = true;
                     
                     _enemyController = other.GetComponent<EnemyController>();

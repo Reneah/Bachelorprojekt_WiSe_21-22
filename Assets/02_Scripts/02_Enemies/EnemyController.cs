@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace Enemy.Controller
 {
-        public class EnemyController : MonoBehaviour
+    public class EnemyController : MonoBehaviour
     {
         private NavMeshAgent _agent;
         public NavMeshAgent Agent => _agent;
@@ -56,7 +56,7 @@ namespace Enemy.Controller
 
         public bool Guarding => _guarding;
 
-        #region ChaseBehaviour
+        #region ChaseVariables
 
         [Header("Chase Behaviour")]
         [Tooltip("set the distance to catch the player")]
@@ -202,8 +202,8 @@ namespace Enemy.Controller
         
         #endregion
 
-        #region Investigation Behaviour
-        
+        #region InvestigationVariables
+
         [Header("Investigation Behaviour")]
         [Tooltip("the enemy run speed to the sound event point at the first sound stage")]
         [Range(1, 5)]
@@ -398,8 +398,9 @@ namespace Enemy.Controller
 
         #endregion
 
-        #region LootBehaviour
-
+        #region LootVariables
+        
+        // the distance to stop in front of the loot spot
         private float _stopDistanceLootSpot;
 
         public float StopDistanceLootSpot
@@ -408,6 +409,7 @@ namespace Enemy.Controller
             set => _stopDistanceLootSpot = value;
         }
 
+        // smooth the enemy rotation towards the loot location
         private float _smoothRotation;
 
         public float SmoothRotation
@@ -416,6 +418,7 @@ namespace Enemy.Controller
             set => _smoothRotation = value;
         }
 
+        // determines if the enemy is looting to switch the enemy state
         private bool _loot = false;
 
         public bool Loot
@@ -424,6 +427,7 @@ namespace Enemy.Controller
             set => _loot = value;
         }
 
+        // determines if the loot spot is reached to start the loot time
         private bool _reachedLootSpot = false;
 
         public bool ReachedLootSpot
@@ -432,6 +436,7 @@ namespace Enemy.Controller
             set => _reachedLootSpot = value;
         }
 
+        // the position of the loot spot to know the destination for the agent
         private Transform _lootSpotTransform;
 
         public Transform LootSpotTransform
@@ -442,8 +447,6 @@ namespace Enemy.Controller
 
         #endregion
         
-
-
         void Start()
         {
             // start state machine with the idle
