@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using untitledProject;
 
 public class CollectItem : MonoBehaviour
@@ -54,6 +50,7 @@ public class CollectItem : MonoBehaviour
 
     private SceneChange _sceneChange;
     private PlayerController _playerController;
+    private GameObject _enemies;
     
     void Start()
     {
@@ -63,6 +60,7 @@ public class CollectItem : MonoBehaviour
         _ItemImage.SetActive(false);
         _sceneChange = FindObjectOfType<SceneChange>();
         _playerController = FindObjectOfType<PlayerController>();
+        _enemies = GameObject.Find("Enemies");
     }
     
     void Update()
@@ -112,6 +110,7 @@ public class CollectItem : MonoBehaviour
                         _secretPassageOpened = true;
                         _sceneChange.ChangeScene();
                         _playerController.enabled = false;
+                        _enemies.SetActive(false);
                     }
                 
                     _collectibleText.gameObject.SetActive(false);

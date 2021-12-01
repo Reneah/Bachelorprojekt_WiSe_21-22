@@ -175,6 +175,7 @@ MonoBehaviour:
   _stonesAmountText: {fileID: 0}
   _textOffset: {x: 40, y: -40}
   _maxStoneAmount: 5
+  _stonesUIelements: {fileID: 0}
 --- !u!54 &1372273258
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1234,9 +1235,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 1.5
-  _smoothSpeed: 50
+  _smoothSpeed: 20
   _smoothRotation: 5
   _sprintSpeed: 3.5
+  _fleeSpeed: 6
+  _calmDownTime: 3
   _terminalVelocity: 10
   _gravityModifier: 1
   _jumpHeight: 0.4
@@ -1278,6 +1281,7 @@ MonoBehaviour:
   _deathScene: {fileID: 0}
   _reloadSceneName: GameWorld_BesiegedKeep_1
   _mainMenuName: MainMenu
+  _mainMenuParent: {fileID: 0}
 --- !u!114 &1874767273
 MonoBehaviour:
   m_ObjectHideFlags: 0

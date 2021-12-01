@@ -15,10 +15,10 @@ GameObject:
   - component: {fileID: 1011744622343690462}
   m_Layer: 0
   m_Name: TopPillar
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7935459949874571565
 Transform:
@@ -3688,10 +3688,10 @@ GameObject:
   - component: {fileID: 5811824293913397943}
   m_Layer: 0
   m_Name: BrokenPillar
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &5890770851002399214
 Transform:
@@ -5921,10 +5921,10 @@ GameObject:
   - component: {fileID: 8555849082788799383}
   m_Layer: 0
   m_Name: ArchEnd
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4572907379203940098
 Transform:
@@ -6230,10 +6230,10 @@ GameObject:
   - component: {fileID: 8503633498350710296}
   m_Layer: 0
   m_Name: Pillar
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8503633498350710296
 Transform:
@@ -6270,10 +6270,10 @@ GameObject:
   - component: {fileID: 7508096836545800137}
   m_Layer: 0
   m_Name: ArchFull
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2311387457848631330
 Transform:
@@ -7605,10 +7605,10 @@ GameObject:
   - component: {fileID: 2533174882673001779}
   m_Layer: 6
   m_Name: BottomPillar
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9222659395972888722
 Transform:
@@ -10558,10 +10558,10 @@ GameObject:
   - component: {fileID: 7779524452282467192}
   m_Layer: 0
   m_Name: ArchHalf
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1854069557023597345
 Transform:

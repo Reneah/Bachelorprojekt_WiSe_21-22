@@ -64,6 +64,10 @@ public class Death : MonoBehaviour
 
     public void Restart()
     {
+        // Temporary addition, so the stones UI display works properly on player death
+        CollectStones._UIdisplayed = false;
+        CollectStones._stonesActive = false;
+        
         _player.enabled = true;
         _deathScene.SetActive(false);
         SceneManager.LoadScene(_reloadSceneName);

@@ -16,12 +16,16 @@ public class CollectStones : MonoBehaviour
     [SerializeField] private Vector2 _textOffset;
     [Tooltip("the amount of stones that can be collected")]
     [SerializeField] private float _maxStoneAmount;
+    [Tooltip("The GO of the stones UI element and text")]
+    [SerializeField] private GameObject _stonesUIelements;
 
     private GameObject _usebleMarker;
     
     private float _stonesCounter = 0;
     private bool _stonesCollectible = false;
     private GameObject _stones;
+    public static bool _stonesActive;
+    public static bool _UIdisplayed;
 
     public float StonesCounter
     {
@@ -31,7 +35,7 @@ public class CollectStones : MonoBehaviour
 
     void Start()
     {
-        _stonesAmountText.text = "Stones: " + _stonesCounter;
+        _stonesAmountText.text = _stonesCounter.ToString();
         
         // just create a new GameObject to not be null. Otherwise, the usable marker will not dissappear.
         // the randomness doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
@@ -40,6 +44,12 @@ public class CollectStones : MonoBehaviour
     
     void Update()
     {
+        if (_stonesActive && !_UIdisplayed)
+        {
+            _stonesUIelements.SetActive(true);
+            _UIdisplayed = true;
+        }
+        
         _stoneText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         _negativeStoneText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         
@@ -61,6 +71,7 @@ public class CollectStones : MonoBehaviour
                 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    _stonesActive = true;
                     _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount;
                     
                     // if max amount reached, return
@@ -70,7 +81,7 @@ public class CollectStones : MonoBehaviour
                         _stonesCounter = _maxStoneAmount;
                     }
                     
-                    _stonesAmountText.text = "Stones: " + _stonesCounter;
+                    _stonesAmountText.text = _stonesCounter.ToString();
                     _stones.SetActive(false);
                     _stonesCollectible = false;
                 }
@@ -92,7 +103,7 @@ public class CollectStones : MonoBehaviour
             return;
         }
         _stonesCounter--;
-        _stonesAmountText.text = "Stones: " + _stonesCounter;
+        _stonesAmountText.text = _stonesCounter.ToString();
     }
     
     private void OnTriggerStay(Collider other)
