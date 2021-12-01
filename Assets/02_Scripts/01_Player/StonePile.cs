@@ -5,23 +5,11 @@ using UnityEngine;
 public class StonePile : MonoBehaviour
 {
     [Tooltip("the amount of stones that can be collect")]
-    [SerializeField] private float _collectAmount;
+    [SerializeField] private int _collectAmount;
 
-    public float CollectAmount
+    public int CollectAmount
     {
         get => _collectAmount;
         set => _collectAmount = value;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -78,11 +78,13 @@ public class Death : MonoBehaviour
         _player.enabled = true;
         _deathScene.SetActive(false);
         SceneManager.LoadScene(_mainMenuName);
+        PlayerPrefs.DeleteAll();
     }
 
     public void CloseGame()
     {
         Time.timeScale = 1;
+        PlayerPrefs.DeleteAll();
         Application.Quit();
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Enemy.SoundItem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,6 +30,10 @@ public class SceneChange : MonoBehaviour
     private GameObject _questManager;
     private GameObject _playtestingHints;
     private GameObject _stoneUI;
+
+    private CollectStones _collectStones;
+    
+    private NoisyItem[] _noisyItems;
     
     void Start()
     {
@@ -39,8 +44,12 @@ public class SceneChange : MonoBehaviour
         _questManager = GameObject.Find("QuestManager");
         _playtestingHints = GameObject.Find("SomePlaytestingInfos");
         _stoneUI = GameObject.Find("StoneUI");
+
+        _collectStones = FindObjectOfType<CollectStones>();
         
         _skipButton.SetActive(false);
+
+        _noisyItems = FindObjectsOfType<NoisyItem>();
     }
     
     void Update()
@@ -56,6 +65,16 @@ public class SceneChange : MonoBehaviour
 
                 if (_text.color.a <= 0.001f)
                 {
+                    PlayerPrefs.DeleteKey("PlayerPositionX");
+                    PlayerPrefs.DeleteKey("PlayerPositionY");
+                    PlayerPrefs.DeleteKey("PlayerPositionZ");
+                    PlayerPrefs.SetInt("StonesAmount", _collectStones.StonesCounter);
+                    for (int i = 0; i < _noisyItems.Length; i++)
+                    {
+                        _noisyItems[i].SafeState = true;
+                    }
+                    
+                    PlayerPrefs.Save();
                     SceneManager.LoadScene(_nextSceneName);
                 }
             }

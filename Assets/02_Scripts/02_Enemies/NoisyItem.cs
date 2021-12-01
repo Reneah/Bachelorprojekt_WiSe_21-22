@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemy.SoundItem
 {
-        public class NoisyItem : MonoBehaviour
+    public class NoisyItem : MonoBehaviour
     { 
         [Header("Item")]
         [Tooltip("the item text that will show up when the player is in range, hovers over the item and when it is available")]
@@ -15,6 +15,8 @@ namespace Enemy.SoundItem
         [SerializeField] private bool _reusable;
         [Tooltip("the offset of the noisy item origin so that the enemy is able to reach the item")]
         [SerializeField] private GameObject _offsetOrigin;
+        [Tooltip("the key to save the used status of the item")]
+        [SerializeField] private string _playerPrefsKey;
         
         public GameObject OffsetOrigin
         {
@@ -29,13 +31,13 @@ namespace Enemy.SoundItem
         [Range(1,3)]
         [SerializeField] private int _stage;
 
-       // [Tooltip("modify the text position at the mouse position")]
-         private Vector2 _textOffset;
+        // [Tooltip("modify the text position at the mouse position")]
+        private Vector2 _textOffset;
 
         [Header("Sound Collider")]
         [Tooltip("the collider, which shows the sound range of the item")]
         [SerializeField] private GameObject _soundRangeCollider;
-        
+
         public bool Reusable
         {
             get => _reusable;
@@ -89,8 +91,18 @@ namespace Enemy.SoundItem
 
         private bool _itemUsable = false;
 
+        private bool _safeState = false;
+
+        public bool SafeState
+        {
+            get => _safeState;
+            set => _safeState = value;
+        }
+
         void Start()
         {
+            _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
+            
             _collectibleText.gameObject.SetActive(false);
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
             
@@ -102,6 +114,12 @@ namespace Enemy.SoundItem
             _textOffset.y = -60;
             _collectibleText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
             _negativeText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+
+            if (_safeState)
+            {
+                PlayerPrefs.SetInt(_playerPrefsKey, _itemUsed.GetHashCode());
+                _safeState = false;
+            }
 
             ItemActivation();
             ItemExecution();
@@ -211,4 +229,3 @@ namespace Enemy.SoundItem
         }
     }
 }
-
