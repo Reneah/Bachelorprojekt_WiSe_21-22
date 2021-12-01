@@ -15,19 +15,19 @@ public class CollectStones : MonoBehaviour
     [Tooltip("modify the text position at the mouse position")]
     [SerializeField] private Vector2 _textOffset;
     [Tooltip("the amount of stones that can be collected")]
-    [SerializeField] private float _maxStoneAmount;
+    [SerializeField] private int _maxStoneAmount;
     [Tooltip("The GO of the stones UI element and text")]
     [SerializeField] private GameObject _stonesUIelements;
 
     private GameObject _usebleMarker;
     
-    private float _stonesCounter = 0;
+    private int _stonesCounter = 0;
     private bool _stonesCollectible = false;
     private GameObject _stones;
     public static bool _stonesActive;
     public static bool _UIdisplayed;
 
-    public float StonesCounter
+    public int StonesCounter
     {
         get => _stonesCounter;
         set => _stonesCounter = value;
@@ -35,11 +35,23 @@ public class CollectStones : MonoBehaviour
 
     void Start()
     {
+        _UIdisplayed = System.Convert.ToBoolean(PlayerPrefs.GetInt("StoneUI", 0));
+        _stonesActive = System.Convert.ToBoolean(PlayerPrefs.GetInt("StoneActive", 0));
+        
         _stonesAmountText.text = _stonesCounter.ToString();
         
-        // just create a new GameObject to not be null. Otherwise, the usable marker will not dissappear.
+        // just create a new GameObject to not be null. Otherwise, the usable marker will not disappear.
         // the randomness doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
         _usebleMarker = new GameObject();
+        
+        _stonesCounter = PlayerPrefs.GetInt("StonesAmount", 0);
+
+        if (_stonesCounter > 0)
+        {
+            _stonesUIelements.SetActive(true);
+        }
+        
+        _stonesAmountText.text = _stonesCounter.ToString();
     }
     
     void Update()
@@ -48,6 +60,7 @@ public class CollectStones : MonoBehaviour
         {
             _stonesUIelements.SetActive(true);
             _UIdisplayed = true;
+            PlayerPrefs.SetInt("StoneUI", 0);
         }
         
         _stoneText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
@@ -72,9 +85,10 @@ public class CollectStones : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     _stonesActive = true;
+                    PlayerPrefs.SetInt("StoneActive", 1);
                     _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount;
                     
-                    // if max amount reached, return
+                    
                     if (_maxStoneAmount <= _stonesCounter)
                     {
                         // maximize the stone amount, when for example only 2 stones can be collected even through the pile amount is 3
