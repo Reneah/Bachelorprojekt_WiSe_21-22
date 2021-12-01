@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Enemy.Controller;
 using Enemy.ShareInformation;
 using UnityEngine;
@@ -25,11 +22,21 @@ namespace Enemy.LootSpot
         [Tooltip("the distance to stop in front of the loot spot")]
         [Range(1,5)]
         [SerializeField] private float _stopDistance;
+        [Tooltip("the cooldown when the enemy is able to loot the spot again")]
+        [Range(5,60)]
+        [SerializeField] private float _lootSpotCooldown;
+        [Tooltip("the loot chance can't drop below the minimum loot chance")]
+        [Range(0, 90)] 
+        [SerializeField] private int _minimumLootChance;
         
         // the chance that the enemy will loot the spot
         private float _chanceToLoot;
         // the time, how long the enemy is looting at the spot
         private float _lootCooldown;
+        // the cooldown when the enemy is able to loot the spot again
+        private float _lootSpotTime;
+        // reactivate the spot after a certain time
+        private bool _reactivateLootSpot = false;
 
         // need this script to communicate with the current enemy nearby
         private EnemyController _enemyController;
@@ -54,6 +61,19 @@ namespace Enemy.LootSpot
                     _enemyController.Loot = false;
                     _enemyController.ReachedLootSpot = false;
                     _lootCooldown = _lootTime;
+                    _reactivateLootSpot = true;
+                }
+            }
+
+            // when the spot is looted, the time will run to reactivate the loot spot
+            if (_lootSpotTime >= 0 && _reactivateLootSpot)
+            {
+                _lootSpotTime -= Time.deltaTime;
+                
+                if (_lootSpotTime <= 0)
+                {
+                    _lootSpotTime = _lootSpotCooldown;
+                    _reactivateLootSpot = false;
                 }
             }
         }
@@ -65,7 +85,7 @@ namespace Enemy.LootSpot
             {
                 _chanceToLoot = Random.value;
                 
-                if (_chanceToLoot <= _lootChance && _lootChance > 0 && !EnemyShareInformation.IsLooting)
+                if (_chanceToLoot <= _lootChance && _lootChance > 0 && !EnemyShareInformation.IsLooting && !_reactivateLootSpot)
                 {
                     // When the enemy ios looting, no other enemy will get to the spot as well
                     EnemyShareInformation.IsLooting = true;
@@ -76,6 +96,18 @@ namespace Enemy.LootSpot
                     _enemyController.SmoothRotation = _smoothRotation;
                     _enemyController.StopDistanceLootSpot = _stopDistance;
                     _lootChance -= _shrinkLootChance;
+
+                    //  the loot chance can't drop below the minimum loot chance or 0
+                    if (_lootChance < _minimumLootChance)
+                    {
+                        _lootChance = _minimumLootChance;
+
+                        if (_lootChance <= 0)
+                        {
+                            _lootChance = 0;
+                        }
+                    }
+                    
                 }
             }
         }
