@@ -50,7 +50,7 @@ namespace Enemy.LootSpot
         {
             // When the enemy reached the loot spot, the time will run how long the enemy will loot
             // Afterwards the variables will be resetted
-            if (_enemyController.ReachedLootSpot)
+            if (_enemyController != null && _enemyController.ReachedLootSpot)
             {
                 _lootCooldown -= Time.deltaTime;
                 
@@ -87,15 +87,22 @@ namespace Enemy.LootSpot
                 
                 if (_chanceToLoot <= _lootChance && _lootChance > 0 && !EnemyShareInformation.IsLooting && !_reactivateLootSpot)
                 {
-                    // When the enemy ios looting, no other enemy will get to the spot as well
-                    EnemyShareInformation.IsLooting = true;
-                    
                     _enemyController = other.GetComponent<EnemyController>();
+
+                    // when the enemy is patrolling he is able to loot
+                    if (!_enemyController.Patrolling)
+                    {
+                        return;
+                    }
+                    
                     _enemyController.Loot = true;
                     _enemyController.LootSpotTransform = transform;
                     _enemyController.SmoothRotation = _smoothRotation;
                     _enemyController.StopDistanceLootSpot = _stopDistance;
                     _lootChance -= _shrinkLootChance;
+                    
+                    // When the enemy ios looting, no other enemy will get to the spot as well
+                    EnemyShareInformation.IsLooting = true;
 
                     //  the loot chance can't drop below the minimum loot chance or 0
                     if (_lootChance < _minimumLootChance)

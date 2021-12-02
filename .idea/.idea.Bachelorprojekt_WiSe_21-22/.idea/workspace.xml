@@ -68,13 +68,10 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/FieldOfViewEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/IEnemyState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyLootBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyLootState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LootSpot.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" />
@@ -351,14 +348,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/Checkpoint.cs</url>
           <line>44</line>
-          <properties documentPath="C:\Users\Chris\Documents\Unity Projekte\Bachelorprojekt_WiSe_21-22\Assets\02_Scripts\01_Player\Checkpoint.cs" initialLine="35">
-            <startOffsets>
-              <option value="1265" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1284" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\Chris\Documents\Unity Projekte\Bachelorprojekt_WiSe_21-22\Assets\02_Scripts\01_Player\Checkpoint.cs" initialLine="35" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

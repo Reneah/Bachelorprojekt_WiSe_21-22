@@ -36,7 +36,8 @@ namespace Enemy.States
                 enemy.Agent.isStopped = false;
                 enemy.AnimationHandler.LootSpot(false);
                 return EnemyController.EnemyPatrolState;
-            }
+                
+        }
             
             return this;
         }
