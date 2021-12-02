@@ -50,7 +50,7 @@ namespace Enemy.LootSpot
         {
             // When the enemy reached the loot spot, the time will run how long the enemy will loot
             // Afterwards the variables will be resetted
-            if (_enemyController.ReachedLootSpot)
+            if (_enemyController != null && _enemyController.ReachedLootSpot)
             {
                 _lootCooldown -= Time.deltaTime;
                 
