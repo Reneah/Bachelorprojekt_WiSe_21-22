@@ -34,7 +34,7 @@ namespace Enemy.States
             
             if (enemy.CatchPlayer())
             {
-                enemy.Player.GetComponent<Death>().EnemyCatchedPlayer = true;
+                enemy.InGameMenu.EnemyCatchedPlayer = true;
                 enemy.AnimationHandler.FinalHit();
                 enemy.Player.PlayerAnimationHandler.PlayerDeath();
             }
