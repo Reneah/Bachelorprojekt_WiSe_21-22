@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -20,11 +21,18 @@ namespace untitledProject
         [SerializeField] private float _smoothRotation = 10;
         [Tooltip("set the sprint speed of the character ")]
         [SerializeField] private float _sprintSpeed = 5;
+        [Tooltip("the speed that the player has while fleeing")]
+        [SerializeField] private float _fleeSpeed = 6;
+        [Tooltip("when the enemy has lost the sight to the player, the time is set to still play the flee animation")]
+        [SerializeField] private float _calmDownTime = 3;
         // the ref Velocity of the forward movement
         private float _refVelocity;
         private float _currentForwardVelocity;
         private Vector3 _moveDirection;
         private float targetSpeed;
+
+        private float _calmDownCooldown;
+        private bool _playerIsSpotted = true;
 
         public float CurrentForwardVelocity
         {
@@ -127,6 +135,7 @@ namespace untitledProject
         {
             // start state machine with LookAroundState
             _currentState = PlayerIdleState;
+
         }
         
         void Start()
@@ -138,10 +147,23 @@ namespace untitledProject
 
             _characterController.material.staticFriction = 0;
             _characterController.material.dynamicFriction = 0;
+
+            _calmDownCooldown = _calmDownTime;
+
+            StartCoroutine(PlayerPosition());
+
+            _characterController.enabled = false;
+            transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX", transform.position.x), PlayerPrefs.GetFloat("PlayerPositionY", transform.position.y), PlayerPrefs.GetFloat("PlayerPositionZ", transform.position.z));
+            _characterController.enabled = true;
         }
         
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                PlayerPrefs.DeleteAll();
+            }
+            
             var playerState = _currentState.Execute(this);
             if (playerState != _currentState)
             {
@@ -152,6 +174,35 @@ namespace untitledProject
             
             GroundCheck();
             _playerAnimationHandler.SetGrounded(IsGrounded);
+
+            CalmDownTime();
+        }
+
+        private IEnumerator PlayerPosition()
+        {
+            yield return new WaitForSeconds(0.1f);
+            
+        }
+        
+        /// <summary>
+        /// when the enemy has lost the player, hew needs time to calm down to play the sneak animation again
+        /// </summary>
+        private void CalmDownTime()
+        {
+            if (!_playerIsSpotted)
+            {
+                if (_calmDownCooldown > 0)
+                {
+                    _calmDownCooldown -= Time.deltaTime;
+                }
+
+                if (_calmDownCooldown <= 0)
+                {
+                    _calmDownCooldown = _calmDownTime;
+                    _playerAnimationHandler.PlayerFlee(false);
+                    _playerIsSpotted = true;
+                }
+            }
         }
 
         public void MovementExecution()
@@ -175,6 +226,12 @@ namespace untitledProject
                 _resetVerticalVelocity = true;
                 bool sprint = Input.GetKey(KeyCode.LeftShift);
                 targetSpeed = (sprint? _sprintSpeed : _movementSpeed) * _moveDirection.magnitude;
+
+                if (_playerAnimationHandler.PlayerAnimator.GetBool("Flee"))
+                {
+                    targetSpeed = _fleeSpeed * _moveDirection.magnitude;
+                }
+                
             }
             
             // the current velocity will be smoothed, so that it is possible to have some tweaks 
@@ -271,7 +328,24 @@ namespace untitledProject
                 _currentVerticalVelocity = JumpVelocity;
             }
         }
-        
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("ViewCone"))
+            {
+                _calmDownCooldown = _calmDownTime;
+                _playerIsSpotted = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if(other.CompareTag("ViewCone"))
+            {
+                _playerIsSpotted = false;
+            }
+        }
+
         public void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;

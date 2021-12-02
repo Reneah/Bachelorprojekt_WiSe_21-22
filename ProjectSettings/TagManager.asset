@@ -11,6 +11,9 @@ TagManager:
   - NoisyItem
   - Stones
   - FootSteps
+  - ViewCone
+  - Talkable
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemy.SoundItem;
 using TMPro;
 using UnityEngine;
 using untitledProject;
@@ -50,12 +51,12 @@ public class PlayerThrowTrigger : MonoBehaviour
     // signalize that the noisy item can be activated
     private GameObject _usableMarker;
     
-    private SoundItem _soundItem;
+    private NoisyItem noisyItem;
     
-    public SoundItem SoundItem
+    public NoisyItem NoisyItem
     {
-        get => _soundItem;
-        set => _soundItem = value;
+        get => noisyItem;
+        set => noisyItem = value;
     }
     
     // the player is able to throw
@@ -96,13 +97,13 @@ public class PlayerThrowTrigger : MonoBehaviour
         
         // just find a random sound item and new GameObject to not be null. Otherwise, there will be errors
         // the randomness and new GameObject creation doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
-        _soundItem = FindObjectOfType<SoundItem>();
+        noisyItem = FindObjectOfType<NoisyItem>();
         _usableMarker = new GameObject();
     }
 
     private void Update()
     {
-        if (_soundItem != null && !_soundItem.ItemUsed)
+        if (noisyItem != null && !noisyItem.ItemUsed)
         {
             Throw();
         }
@@ -130,11 +131,11 @@ public class PlayerThrowTrigger : MonoBehaviour
         
         if (!_close)
         {
-            Debug.DrawRay(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position * Vector3.Distance(_soundItem.transform.position, transform.position));
+            Debug.DrawRay(_inWayRaycastPosition.position, noisyItem.transform.position - transform.position * Vector3.Distance(noisyItem.transform.position, transform.position));
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            Physics.Raycast(_inWayRaycastPosition.position, _soundItem.transform.position - transform.position, out hit, Vector3.Distance(_soundItem.transform.position, transform.position));
+            Physics.Raycast(_inWayRaycastPosition.position, noisyItem.transform.position - transform.position, out hit, Vector3.Distance(noisyItem.transform.position, transform.position));
             
                 // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
                 if(Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("NoisyItem")))
@@ -182,7 +183,7 @@ public class PlayerThrowTrigger : MonoBehaviour
     {
         if (other.CompareTag("NoisyItem") && !_throwstate && !_close)
         {
-            _soundItem = other.GetComponent<SoundItem>();
+            noisyItem = other.GetComponent<NoisyItem>();
 
             foreach (Transform child in other.transform)
             {
