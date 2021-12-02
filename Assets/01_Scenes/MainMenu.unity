@@ -4727,7 +4727,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -20066,10 +20066,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1182678774}
   m_HandleRect: {fileID: 647496766}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -25991,7 +25991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3f14732680be548b04a121cd427e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioMixer: {fileID: 24100000, guid: 69e095412daedc04d86057a8d1f8cb71, type: 2}
   _resolutionDropdown: {fileID: 580505376}
   _graphicsDropdown: {fileID: 24599837}
   _framerateDropdown: {fileID: 74467894}
@@ -27032,6 +27031,14 @@ PrefabInstance:
     - target: {fileID: 9113414239915680192, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
       propertyPath: m_Volume
       value: 0.7943282
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240078249718, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: _masterAudioVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113414240078249718, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: _masterPlaylistVolume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9113414240151486704, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
       propertyPath: frames

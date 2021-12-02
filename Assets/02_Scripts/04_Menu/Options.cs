@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
+﻿using System.Collections.Generic;
 using DarkTonic.MasterAudio;
 using UnityEngine;
 using UnityEngine.Audio;
 using TMPro;
-using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
 using Toggle = UnityEngine.UI.Toggle;
 
@@ -14,15 +10,6 @@ namespace DA.Menu
 {
     public class Options : MonoBehaviour
     {
-        [Tooltip("The Music Audio Mixer")]
-        [SerializeField] private AudioMixer _audioMixer;
-
-        public AudioMixer AudioMixer
-        {
-            get => _audioMixer;
-            set => _audioMixer = value;
-        }
-
         // all resolutions of the PC
         private List<Resolution> _resolutions = new List<Resolution>();
 
@@ -75,8 +62,6 @@ namespace DA.Menu
 
         private void Start()
         {
-            _scenePersistent = FindObjectOfType<ScenePersistent>();
-            _scenePersistent.Loaded = true;
             // deactivates the V-Sync
             QualitySettings.vSyncCount = 0;
             // because the V-Sync is deactivated the toggle has to be on false
@@ -144,8 +129,7 @@ namespace DA.Menu
         /// <param name="volume"></param>
         public void SetMusicVolume(float volume)
         {
-            ScenePersistent.MusicVolume = _musicSlider.value;
-            _audioMixer.SetFloat("Volume", _musicSlider.value);
+            MasterAudio.PlaylistMasterVolume = _musicSlider.value;
         }
 
         /// <summary>
@@ -210,7 +194,6 @@ namespace DA.Menu
         
         public void ChangeSoundVolume()
         {
-            ScenePersistent.SoundVolume = _soundSlider.value;
             MasterAudio.MasterVolumeLevel = _soundSlider.value;
         }
 
