@@ -57,9 +57,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17784ca5049868541994682302c68ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chanceToTalk: 100
-  _stopDistance: 1
+  _chanceToTalk: 50
+  _stopDistance: 1.5
   _timeToTalk: 3
+  _smoothRotation: 5
 --- !u!1 &111681001738863389
 GameObject:
   m_ObjectHideFlags: 0
