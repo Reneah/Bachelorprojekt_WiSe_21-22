@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using DarkTonic.MasterAudio;
 using UnityEngine;
 using UnityEngine.Audio;
 using TMPro;
@@ -144,7 +145,7 @@ namespace DA.Menu
         public void SetMusicVolume(float volume)
         {
             ScenePersistent.MusicVolume = _musicSlider.value;
-            _audioMixer.SetFloat("volume", _musicSlider.value);
+            _audioMixer.SetFloat("Volume", _musicSlider.value);
         }
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace DA.Menu
         public void SetQuality(int qualityIndex)
         {
             QualitySettings.SetQualityLevel(_graphicsDropdown.value);
-
+            
             if (_vSyncToggle.isOn)
             {
                 QualitySettings.vSyncCount = 1;
@@ -210,7 +211,7 @@ namespace DA.Menu
         public void ChangeSoundVolume()
         {
             ScenePersistent.SoundVolume = _soundSlider.value;
-            //MasterAudio.MasterVolumeLevel = _soundSlider.value;
+            MasterAudio.MasterVolumeLevel = _soundSlider.value;
         }
 
         /// <summary>

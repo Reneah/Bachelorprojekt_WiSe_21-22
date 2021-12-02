@@ -43,11 +43,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerStepsSound.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Menu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu1.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu1.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Options.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" />
@@ -94,6 +92,8 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Options.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ScenePersistent.cs" />
       </list>
     </option>
   </component>
@@ -236,6 +236,7 @@
       <workItem from="1638344586245" duration="3343000" />
       <workItem from="1638353878170" duration="29786000" />
       <workItem from="1638433075223" duration="277000" />
+      <workItem from="1638433986561" duration="3283000" />
     </task>
     <servers />
   </component>
