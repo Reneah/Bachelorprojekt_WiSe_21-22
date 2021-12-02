@@ -13,6 +13,7 @@
       <e p="Assets" t="Include">
         <e p="02_Scripts" t="Include">
           <e p="01_Player" t="Include">
+            <e p="Checkpoint.cs" t="Include" />
             <e p="CollectibleItemRaycast.cs" t="Include" />
             <e p="CollectItem.cs" t="Include" />
             <e p="CollectStones.cs" t="Include" />
@@ -33,16 +34,19 @@
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyGuardState.cs" t="Include" />
             <e p="EnemyIdleState.cs" t="Include" />
+            <e p="EnemyLootState.cs" t="Include" />
             <e p="EnemyNoisyItemSearchState.cs" t="Include" />
             <e p="EnemyPatrolState.cs" t="Include" />
             <e p="EnemySearchState.cs" t="Include" />
             <e p="EnemyShareInformation.cs" t="Include" />
             <e p="EnemySoundInvestigationState.cs" t="Include" />
+            <e p="EnemyTalkCheck.cs" t="Include" />
+            <e p="EnemyTalkState.cs" t="Include" />
             <e p="EnemyVisionChaseState.cs" t="Include" />
             <e p="IEnemyState.cs" t="Include" />
             <e p="LookAgentVisualization.cs" t="Include" />
+            <e p="LootSpot.cs" t="Include" />
             <e p="NoisyItem.cs" t="Include" />
-            <e p="PlayerNearDetection.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
@@ -65,7 +69,6 @@
           </e>
           <e p="Editor" t="Include">
             <e p="EnemyControllerEditor.cs" t="Include" />
-            <e p="FieldOfViewEditor.cs" t="Include" />
           </e>
         </e>
         <e p="03_ArtAssets" t="Include">

@@ -1,44 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Enemy.Controller;
 
-public class EnemyNoisyItemSearchState : IEnemyState
+namespace Enemy.States
 {
-    public IEnemyState Execute(EnemyController enemy)
+    public class EnemyNoisyItemSearchState : IEnemyState
     {
-        if (enemy.SoundNoticed)
+        public IEnemyState Execute(EnemyController enemy)
         {
-            return EnemyController.EnemySoundInvestigationState;
-        }
-        
-        if (enemy.CanSeePlayer)
-        {
-            return EnemyController.EnemyVisionChaseState;
-        }
-
-        if (enemy.FinishChecking)
-        {
-            if (enemy.Guarding)
+            if (enemy.SoundNoticed)
             {
-                return EnemyController.EnemyGuardState;
+                return EnemyController.EnemySoundInvestigationState;
             }
-            
-            return EnemyController.EnemyPatrolState;
-        }
         
-        enemy.UpdateSearchNoisyItemBehaviour();
-        return this;
-    }
+            if (enemy.CanSeePlayer)
+            {
+                return EnemyController.EnemyVisionChaseState;
+            }
 
-    public void Enter(EnemyController enemy)
-    {
-        enemy.PrepareSearchNoisyItemBehaviour();
-        enemy.StartSearchNoisyItemBehaviour();
-    }
+            if (enemy.FinishChecking)
+            {
+                if (enemy.Guarding)
+                {
+                    return EnemyController.EnemyGuardState;
+                }
+            
+                return EnemyController.EnemyPatrolState;
+            }
+        
+            enemy.UpdateSearchNoisyItemBehaviour();
+            return this;
+        }
 
-    public void Exit(EnemyController enemy)
-    {
-        enemy.ResetNoisyItemWaypoints = true;
-        enemy.FinishChecking = false;
+        public void Enter(EnemyController enemy)
+        {
+            enemy.PrepareSearchNoisyItemBehaviour();
+            enemy.StartSearchNoisyItemBehaviour();
+        }
+
+        public void Exit(EnemyController enemy)
+        {
+            enemy.ResetNoisyItemWaypoints = true;
+            enemy.FinishChecking = false;
+        }
     }
 }
+
+
