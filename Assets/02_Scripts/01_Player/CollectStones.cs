@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Image = UnityEngine.UI.Image;
 
 public class CollectStones : MonoBehaviour
 {
-    [Tooltip("the item text that will show up when the player is in range and hovers over the item")]
-    [SerializeField] private TextMeshProUGUI _stoneText;
-    [Tooltip("the item text that will show up when the player hovers over the item and it is not available")]
-    [SerializeField] private TextMeshProUGUI _negativeStoneText;
+    [Tooltip("the item sprite that will show up when the player is in range and hovers over the item")]
+    [SerializeField] private GameObject _stoneSprite;
+    [Tooltip("the item sprite that will show up when the player hovers over the item and it is not available")]
+    [SerializeField] private GameObject _negativeStoneSprite;
     [Tooltip("the amount of stones that the player can collect with this pile")]
     [SerializeField] private TextMeshProUGUI _stonesAmountText;
     [Tooltip("modify the text position at the mouse position")]
@@ -18,7 +19,7 @@ public class CollectStones : MonoBehaviour
     [SerializeField] private int _maxStoneAmount;
     [Tooltip("The GO of the stones UI element and text")]
     [SerializeField] private GameObject _stonesUIelements;
-
+    
     private GameObject _usebleMarker;
     
     private int _stonesCounter = 0;
@@ -63,8 +64,8 @@ public class CollectStones : MonoBehaviour
             PlayerPrefs.SetInt("StoneUI", 0);
         }
         
-        _stoneText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
-        _negativeStoneText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        _stoneSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        _negativeStoneSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit _hit;
@@ -73,14 +74,14 @@ public class CollectStones : MonoBehaviour
         {
             if (!_stonesCollectible)
             {
-                _negativeStoneText.gameObject.SetActive(true);
+                _negativeStoneSprite.gameObject.SetActive(true);
             }
             
             else if (_stonesCollectible)
             {
                 _usebleMarker.SetActive(true);
-                _stoneText.gameObject.SetActive(true);
-                _negativeStoneText.gameObject.SetActive(false);
+                _stoneSprite.SetActive(true);
+                _negativeStoneSprite.gameObject.SetActive(false);
                 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -103,8 +104,8 @@ public class CollectStones : MonoBehaviour
         }
         else
         {
-            _stoneText.gameObject.SetActive(false);
-            _negativeStoneText.gameObject.SetActive(false);
+            _stoneSprite.SetActive(false);
+            _negativeStoneSprite.gameObject.SetActive(false);
             _usebleMarker.SetActive(false);
         }
     }

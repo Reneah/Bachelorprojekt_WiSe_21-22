@@ -9,10 +9,10 @@ using untitledProject;
 public class PlayerThrowTrigger : MonoBehaviour
 {
     [Header("Throwing Rocks")]
-    [Tooltip("shows text if the player can throw the rock towards the noisy item")]
-    [SerializeField] private TextMeshProUGUI _throwableText;
-    [Tooltip("shows text if the player can not throw the rock towards the noisy item")]
-    [SerializeField] private TextMeshProUGUI _notThrowableText;
+    [Tooltip("shows sprite if the player can throw the rock towards the noisy item")]
+    [SerializeField] private GameObject _throwableSprite;
+    [Tooltip("shows sprite if the player can not throw the rock towards the noisy item")]
+    [SerializeField] private GameObject _notThrowableSprite;
     [Tooltip("the origin of the raycast to signalize the obstacles in the trajectory")] 
     [SerializeField] private Transform _inWayRaycastPosition;
     [Tooltip("the name of the marker to show the current usable noisy item ")]
@@ -29,7 +29,7 @@ public class PlayerThrowTrigger : MonoBehaviour
     private CollectStones _collectStones;
     
     private bool _playerThrew = false;
-
+    
     public bool PlayerThrew
     {
         get => _playerThrew;
@@ -109,8 +109,8 @@ public class PlayerThrowTrigger : MonoBehaviour
         }
         else
         {
-            _throwableText.gameObject.SetActive(false);
-            _notThrowableText.gameObject.SetActive(false);
+            _throwableSprite.gameObject.SetActive(false);
+            _notThrowableSprite.gameObject.SetActive(false);
             _usableMarker.SetActive(false);
         }
     }
@@ -118,14 +118,14 @@ public class PlayerThrowTrigger : MonoBehaviour
     private void Throw()
     {
         // update the UI position all the time
-        _throwableText.transform.position =  new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
-        _notThrowableText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        _throwableSprite.transform.position =  new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        _notThrowableSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         
         // if the player is near the noisy item, he is able to activate it per hand and doesn't need to throw
         if (_close)
         {
-            _throwableText.gameObject.SetActive(false);
-            _notThrowableText.gameObject.SetActive(false);
+            _throwableSprite.gameObject.SetActive(false);
+            _notThrowableSprite.gameObject.SetActive(false);
             _usableMarker.SetActive(false);
         }
         
@@ -140,7 +140,7 @@ public class PlayerThrowTrigger : MonoBehaviour
                 // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
                 if(Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("NoisyItem")))
                 {
-                    _notThrowableText.gameObject.SetActive(true);
+                    _notThrowableSprite.gameObject.SetActive(true);
                     
                     if (_throwAvailable && _collectStones.StonesCounter > 0)
                     {
@@ -149,20 +149,19 @@ public class PlayerThrowTrigger : MonoBehaviour
                         // if something is blocking the trajectory
                         if (hit.collider.CompareTag("Wall"))
                         {
-                            _throwableText.gameObject.SetActive(false);
-                            _notThrowableText.gameObject.SetActive(true);
+                            _throwableSprite.gameObject.SetActive(false);
+                            _notThrowableSprite.gameObject.SetActive(true);
                         }
                         else
                         {
-                            _throwableText.gameObject.SetActive(true);
-                            _notThrowableText.gameObject.SetActive(false);
-
-                            // this should be actually in the state so that it can't be used again when the item can be used again
+                            _throwableSprite.gameObject.SetActive(true);
+                            _notThrowableSprite.gameObject.SetActive(false);
+                            
                             if (Input.GetMouseButtonDown(0))
                             {
                                 _usableMarker.SetActive(false);
                                 _throwstate = true;
-                                _throwableText.gameObject.SetActive(false);
+                                _throwableSprite.gameObject.SetActive(false);
                                 _throwAvailable = false;
                                 _throwPosition = Instantiate(_lastThrowPositionObject, transform.position, Quaternion.identity);
                                 _playerThrew = true;
@@ -172,8 +171,8 @@ public class PlayerThrowTrigger : MonoBehaviour
                 }
                 else
                 {
-                    _throwableText.gameObject.SetActive(false);
-                    _notThrowableText.gameObject.SetActive(false);
+                    _throwableSprite.gameObject.SetActive(false);
+                    _notThrowableSprite.gameObject.SetActive(false);
                     _usableMarker.SetActive(false);
                 }
         }
@@ -201,8 +200,8 @@ public class PlayerThrowTrigger : MonoBehaviour
     {
         if (other.CompareTag("NoisyItem"))
         {
-            _throwableText.gameObject.SetActive(false);
-            _notThrowableText.gameObject.SetActive(false);
+            _throwableSprite.gameObject.SetActive(false);
+            _notThrowableSprite.gameObject.SetActive(false);
             _usableMarker.SetActive(false);
             _throwAvailable = false;
         }

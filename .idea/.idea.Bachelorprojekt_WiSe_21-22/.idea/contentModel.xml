@@ -55,6 +55,7 @@
             <e p="CinemachineFadeOutObjects.cs" t="Include" />
             <e p="Death.cs" t="Include" />
             <e p="FadeOut.cs" t="Include" />
+            <e p="ImageAnimation.cs" t="Include" />
             <e p="IntroScene.cs" t="Include" />
             <e p="QuestManager.cs" t="Include" />
             <e p="SceneChange.cs" t="Include" />
