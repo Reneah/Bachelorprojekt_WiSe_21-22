@@ -7,11 +7,12 @@ namespace Enemy.SoundItem
     public class NoisyItem : MonoBehaviour
     { 
         [Header("Item")]
-        [Tooltip("the item text that will show up when the player is in range, hovers over the item and when it is available")]
-        [SerializeField] private TextMeshProUGUI _collectibleText;
-        [Tooltip("the item text that will show up when the player hovers over the item and it is not available")]
-        [SerializeField] private TextMeshProUGUI _negativeText;
-        [SerializeField] private GameObject _usebleMarker;
+        [Tooltip("the item sprite that will show up when the player is in range, hovers over the item and when it is available")]
+        [SerializeField] private GameObject _collectibleSprite;
+        [Tooltip("the item sprite that will show up when the player hovers over the item and it is not available")]
+        [SerializeField] private GameObject _negativeSprite;
+        [Tooltip("mark the close range")]
+        [SerializeField] private GameObject _closeActivationRadius;
         [SerializeField] private bool _reusable;
         [Tooltip("the offset of the noisy item origin so that the enemy is able to reach the item")]
         [SerializeField] private GameObject _offsetOrigin;
@@ -103,17 +104,16 @@ namespace Enemy.SoundItem
         {
             _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
             
-            _collectibleText.gameObject.SetActive(false);
+            _collectibleSprite.gameObject.SetActive(false);
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
-            
         }
 
         private void Update()
         {
-            _textOffset.x = 270;
-            _textOffset.y = -60;
-            _collectibleText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
-            _negativeText.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+            _textOffset.x = 50;
+            _textOffset.y = -40;
+            _collectibleSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+            _negativeSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
 
             if (_safeState)
             {
@@ -130,11 +130,11 @@ namespace Enemy.SoundItem
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit _hit;
 
-            if (Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("NoisyItem")))
+            if (Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("NoisyItem")) && _playerThrowTrigger.Close)
             {
-                if (_itemUsed && _itemUsable)
+                if (_itemUsed && !_itemUsable)
                 {
-                    _negativeText.gameObject.SetActive(true);
+                    _negativeSprite.gameObject.SetActive(true);
                 }
                 
                 else if (!_itemUsed && _itemUsable)
@@ -152,8 +152,9 @@ namespace Enemy.SoundItem
                             }
                         }
                 
-                        _usebleMarker.SetActive(false);
-                        _collectibleText.gameObject.SetActive(false);
+                        _closeActivationRadius.SetActive(false);
+                        _collectibleSprite.gameObject.SetActive(false);
+                        _negativeSprite.gameObject.SetActive(true);
                         _soundRangeCollider.SetActive(true);
 
                         _itemUsable = false;
@@ -161,17 +162,16 @@ namespace Enemy.SoundItem
                         return;
                     }
                     
-                    _usebleMarker.SetActive(true);
-                    _collectibleText.gameObject.SetActive(true);
-                    _negativeText.gameObject.SetActive(false);
-                    _playerThrowTrigger.Close = true;
+                    _closeActivationRadius.SetActive(true);
+                    _collectibleSprite.gameObject.SetActive(true);
+                    _negativeSprite.gameObject.SetActive(false);
                 }
             }
             else
             {
-                _collectibleText.gameObject.SetActive(false);
-                _negativeText.gameObject.SetActive(false);
-                _usebleMarker.SetActive(false);
+                _collectibleSprite.gameObject.SetActive(false);
+                _negativeSprite.gameObject.SetActive(false);
+                _closeActivationRadius.SetActive(false);
             }
         }
         
@@ -190,14 +190,14 @@ namespace Enemy.SoundItem
                     {
                         _deactivationTime = 0.3f;
                         _soundRangeCollider.SetActive(false);
-                        _itemUsable = false;
+                        _itemUsable = true;
                         _itemUsed = false;
                         _oneTimeUsed = true;
                         MasterAudio.PlaySound("ShatterVase");
                     }
                     else
                     {
-                        _negativeText.gameObject.SetActive(false);
+                        _negativeSprite.gameObject.SetActive(false);
                         _soundRangeCollider.SetActive(false);
                         Destroy(this);
                         MasterAudio.PlaySound("ShatterVase");
@@ -210,6 +210,7 @@ namespace Enemy.SoundItem
         {
             if (other.CompareTag("Player") && !_itemUsed)
             {
+                _playerThrowTrigger.Close = true;
                 _itemUsable = true;
             }
         }
@@ -222,8 +223,8 @@ namespace Enemy.SoundItem
                 {
                     _itemUsable = false;
                     _playerThrowTrigger.Close = false;
-                    _collectibleText.gameObject.SetActive(false);
-                    _usebleMarker.SetActive(false);
+                    _collectibleSprite.gameObject.SetActive(false);
+                    _closeActivationRadius.SetActive(false);
                 }
             }
         }
