@@ -59,6 +59,8 @@
             <e p="IntroScene.cs" t="Include" />
             <e p="QuestManager.cs" t="Include" />
             <e p="SceneChange.cs" t="Include" />
+            <e p="Tutorial.cs" t="Include" />
+            <e p="TutorialContinueButton.cs" t="Include" />
             <e p="WallCheck.cs" t="Include" />
           </e>
           <e p="04_Menu" t="Include">
