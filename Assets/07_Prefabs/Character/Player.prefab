@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b0401448280bf44a4f6734cab0c925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _throwableText: {fileID: 0}
-  _notThrowableText: {fileID: 0}
+  _throwableSprite: {fileID: 0}
+  _notThrowableSprite: {fileID: 0}
   _inWayRaycastPosition: {fileID: 983871270}
   _usableMarkerName: ThrowRadius
   _textOffset: {x: 40, y: -20}
@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27598595b7b128d4e8d5a723dff51b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stoneText: {fileID: 4356790629063974249}
-  _negativeStoneText: {fileID: 0}
+  _stoneSprite: {fileID: 0}
+  _negativeStoneSprite: {fileID: 0}
   _stonesAmountText: {fileID: 0}
   _textOffset: {x: 40, y: -40}
   _maxStoneAmount: 5
@@ -1280,10 +1280,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 1.5
-  _smoothSpeed: 20
+  _smoothSpeed: 8
   _smoothRotation: 5
   _sprintSpeed: 3.5
-  _fleeSpeed: 6
+  _fleeSpeed: 4
   _calmDownTime: 3
   _terminalVelocity: 10
   _gravityModifier: 1
