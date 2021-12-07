@@ -14,6 +14,7 @@
             <e p="Checkpoint.cs" t="Include" />
             <e p="CollectibleItemRaycast.cs" t="Include" />
             <e p="CollectItem.cs" t="Include" />
+            <e p="CollectProvisions.cs" t="Include" />
             <e p="CollectStones.cs" t="Include" />
             <e p="IPlayerState.cs" t="Include" />
             <e p="PlayerAnimationHandler.cs" t="Include" />
@@ -25,6 +26,7 @@
             <e p="PlayerStepsSound.cs" t="Include" />
             <e p="PlayerThrowState.cs" t="Include" />
             <e p="PlayerThrowTrigger.cs" t="Include" />
+            <e p="Provisions.cs" t="Include" />
             <e p="StonePile.cs" t="Include" />
           </e>
           <e p="02_Enemies" t="Include">
