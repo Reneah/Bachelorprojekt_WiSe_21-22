@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Chris\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Chris\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Bachelorprojekt_WiSe_21-22.1961707861.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Chris\AppData\Roaming\JetBrains\Rider2020.2\consoles\db" t="IncludeRecursive" />
-    <e p="C:\Users\Chris\AppData\Roaming\JetBrains\Rider2020.2\extensions" t="IncludeRecursive" />
-    <e p="C:\Users\Chris\Documents\Unity Projekte\Bachelorprojekt_WiSe_21-22" t="IncludeRecursive">
+    <e p="C:\Users\Bela\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Bela\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Bachelorprojekt_WiSe_21-22.-999837024.00" t="ExcludeRecursive" />
+    <e p="D:\Game Design\Theorie\Bachelorthese\Bachelorprojekt\Repository\Bachelorprojekt_WiSe_21-22" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
@@ -13,8 +11,10 @@
       <e p="Assets" t="Include">
         <e p="02_Scripts" t="Include">
           <e p="01_Player" t="Include">
+            <e p="Checkpoint.cs" t="Include" />
             <e p="CollectibleItemRaycast.cs" t="Include" />
             <e p="CollectItem.cs" t="Include" />
+            <e p="CollectProvisions.cs" t="Include" />
             <e p="CollectStones.cs" t="Include" />
             <e p="IPlayerState.cs" t="Include" />
             <e p="PlayerAnimationHandler.cs" t="Include" />
@@ -26,6 +26,7 @@
             <e p="PlayerStepsSound.cs" t="Include" />
             <e p="PlayerThrowState.cs" t="Include" />
             <e p="PlayerThrowTrigger.cs" t="Include" />
+            <e p="Provisions.cs" t="Include" />
             <e p="StonePile.cs" t="Include" />
           </e>
           <e p="02_Enemies" t="Include">
@@ -54,9 +55,12 @@
             <e p="CinemachineFadeOutObjects.cs" t="Include" />
             <e p="Death.cs" t="Include" />
             <e p="FadeOut.cs" t="Include" />
+            <e p="ImageAnimation.cs" t="Include" />
             <e p="IntroScene.cs" t="Include" />
             <e p="QuestManager.cs" t="Include" />
             <e p="SceneChange.cs" t="Include" />
+            <e p="Tutorial.cs" t="Include" />
+            <e p="TutorialContinueButton.cs" t="Include" />
             <e p="WallCheck.cs" t="Include" />
           </e>
           <e p="04_Menu" t="Include">

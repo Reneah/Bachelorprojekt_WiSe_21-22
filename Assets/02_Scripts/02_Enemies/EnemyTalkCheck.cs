@@ -93,11 +93,11 @@ namespace Enemy.TalkCheck
                 _chanceToSpeak = Random.value;
                 
                 // When the chance to talk is reached, the enemy is not already talking and is not looting, he can talk with the enemy
-                if (_chanceToSpeak <= _chanceToTalk / 100 && EnemyShareInformation.EnemyTalkingNumber <= 2 && !EnemyShareInformation.IsLooting || !_takeTalkPartner && EnemyShareInformation.EnemyTalkingNumber <= 2 && !EnemyShareInformation.IsLooting)
+                if (_chanceToSpeak <= _chanceToTalk / 100 && EnemyShareInformation.EnemyTalkingNumber < 2 && !EnemyShareInformation.IsLooting || !_takeTalkPartner && EnemyShareInformation.EnemyTalkingNumber < 2 && !EnemyShareInformation.IsLooting)
                 {
                     EnemyShareInformation.EnemyTalkingNumber++;
                     
-                    if (EnemyShareInformation.EnemyTalkingNumber <= 2)
+                    if (EnemyShareInformation.EnemyTalkingNumber < 2)
                     {
                         _takeTalkPartner = true;
                     }

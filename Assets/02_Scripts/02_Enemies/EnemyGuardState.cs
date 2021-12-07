@@ -1,4 +1,5 @@
 using Enemy.Controller;
+using UnityEngine;
 
 namespace Enemy.States
 {
@@ -20,7 +21,7 @@ namespace Enemy.States
             {
                 return EnemyController.EnemyTalkState;
             }
-        
+            
             if (enemy.GuardPointDistance())
             {
                 enemy.ReachedGuardpoint = true;

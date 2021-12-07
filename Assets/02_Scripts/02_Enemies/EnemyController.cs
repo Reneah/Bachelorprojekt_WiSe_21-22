@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Enemy.AnimationHandler;
 using Enemy.SoundItem;
@@ -32,6 +33,15 @@ namespace Enemy.Controller
         {
             get => _enemyTalkCheck;
             set => _enemyTalkCheck = value;
+        }
+
+        // need this script to call the death scene
+        private InGameMenu _inGameMenu;
+
+        public InGameMenu InGameMenu
+        {
+            get => _inGameMenu;
+            set => _inGameMenu = value;
         }
 
         // the current state of the enemy
@@ -455,6 +465,7 @@ namespace Enemy.Controller
             _agent = GetComponent<NavMeshAgent>();
             _animationHandler = GetComponent<EnemyAnimationHandler>();
             _player = FindObjectOfType<PlayerController>();
+            _inGameMenu = FindObjectOfType<InGameMenu>();
             _enemyTalkCheck = transform.Find("EnemyTalkCheck").GetComponent<EnemyTalkCheck>();
 
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
