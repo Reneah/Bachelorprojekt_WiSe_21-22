@@ -1346,10 +1346,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 1.5
-  _smoothSpeed: 20
+  _smoothSpeed: 8
   _smoothRotation: 5
   _sprintSpeed: 3.5
-  _fleeSpeed: 6
+  _fleeSpeed: 4
   _calmDownTime: 3
   _terminalVelocity: 10
   _gravityModifier: 1

@@ -116,6 +116,12 @@ public class CollectItem : MonoBehaviour
                     _collectibleSprite.gameObject.SetActive(false);
                     _ItemImage.SetActive(true);
                     _itemCollected = true;
+                    
+                    // Temporary solution: If it's the secret passage, do NOT deactivate the game object
+                    if (_secretPassage)
+                    {
+                        return;
+                    }
                     gameObject.SetActive(false);
                 }
             }
