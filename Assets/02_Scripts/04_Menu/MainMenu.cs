@@ -29,6 +29,8 @@ public class MainMenu : MonoBehaviour
     
     private void Start()
     {
+        PlayerPrefs.DeleteAll();
+        
         Cursor.SetCursor(_cursorTexture,Vector2.zero, CursorMode.Auto);
         
        // MasterAudio.PlaySound("Wind");

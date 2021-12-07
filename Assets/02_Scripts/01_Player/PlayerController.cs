@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -134,6 +135,7 @@ namespace untitledProject
         {
             // start state machine with LookAroundState
             _currentState = PlayerIdleState;
+
         }
         
         void Start()
@@ -147,10 +149,21 @@ namespace untitledProject
             _characterController.material.dynamicFriction = 0;
 
             _calmDownCooldown = _calmDownTime;
+
+            StartCoroutine(PlayerPosition());
+
+            _characterController.enabled = false;
+            transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX", transform.position.x), PlayerPrefs.GetFloat("PlayerPositionY", transform.position.y), PlayerPrefs.GetFloat("PlayerPositionZ", transform.position.z));
+            _characterController.enabled = true;
         }
         
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                PlayerPrefs.DeleteAll();
+            }
+            
             var playerState = _currentState.Execute(this);
             if (playerState != _currentState)
             {
@@ -165,6 +178,12 @@ namespace untitledProject
             CalmDownTime();
         }
 
+        private IEnumerator PlayerPosition()
+        {
+            yield return new WaitForSeconds(0.1f);
+            
+        }
+        
         /// <summary>
         /// when the enemy has lost the player, hew needs time to calm down to play the sneak animation again
         /// </summary>
@@ -210,7 +229,7 @@ namespace untitledProject
 
                 if (_playerAnimationHandler.PlayerAnimator.GetBool("Flee"))
                 {
-                    //targetSpeed = _fleeSpeed * _moveDirection.magnitude;
+                    targetSpeed = _fleeSpeed * _moveDirection.magnitude;
                 }
                 
             }

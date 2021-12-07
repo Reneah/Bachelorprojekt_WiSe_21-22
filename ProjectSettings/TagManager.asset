@@ -12,6 +12,9 @@ TagManager:
   - Stones
   - FootSteps
   - ViewCone
+  - Talkable
+  - Enemy
+  - TutorialTrigger
   layers:
   - Default
   - TransparentFX
