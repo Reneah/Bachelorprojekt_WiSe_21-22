@@ -36,12 +36,14 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            
+           
         }
 
         public void Exit(EnemyController enemy)
         {
             enemy.Agent.isStopped = false;
+            enemy.EnemyTalkCheck.Talkable = false;
+            
         }
     }
 }
