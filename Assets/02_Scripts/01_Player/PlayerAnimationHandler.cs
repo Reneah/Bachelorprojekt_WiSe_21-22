@@ -119,6 +119,4 @@ public class PlayerAnimationHandler : MonoBehaviour
             MasterAudio.PlaySound("PlayerLoudFootsteps");
         }
     }
-    
-    
 }

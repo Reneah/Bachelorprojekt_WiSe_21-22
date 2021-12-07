@@ -659,7 +659,7 @@ namespace Enemy.Controller
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
-                // when the player is to close to the enemy or to long in the view field, the enemy get spotted
+                // when the player is to close to the enemy or to long in the view field, the player get spotted
                 if (_spotTime >= _secondsToSpott || distance <= _spottedDistance)
                 {
                     _spottedBar.fillAmount = 1;
