@@ -3,7 +3,7 @@ using Enemy.ShareInformation;
 
 namespace Enemy.States
 {
-        public class EnemySoundInvestigationState : IEnemyState
+    public class EnemySoundInvestigationState : IEnemyState
     {
         public IEnemyState Execute(EnemyController enemy)
         {

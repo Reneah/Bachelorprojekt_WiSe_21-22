@@ -16,6 +16,8 @@ TagManager:
   - Enemy
   - TutorialTrigger
   - Provisions
+  - HighGround
+  - LowGround
   layers:
   - Default
   - TransparentFX
