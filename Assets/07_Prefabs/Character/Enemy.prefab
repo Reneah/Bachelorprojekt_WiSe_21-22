@@ -2348,8 +2348,8 @@ MonoBehaviour:
   _spottedBar: {fileID: 0}
   _spottedDistance: 3
   _lastChanceTime: 1
-  _highGroundViewCone: {fileID: 0}
-  _lowGroundViewCone: {fileID: 0}
+  _highGroundViewCone: {fileID: 4154271164689893104}
+  _lowGroundViewCone: {fileID: 7761334938483211356}
   _firstStageRunSpeed: 2
   _secondStageRunSpeed: 2.5
   _thirdStageRunSpeed: 3
