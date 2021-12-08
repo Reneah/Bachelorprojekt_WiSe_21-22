@@ -144,6 +144,10 @@ namespace Enemy.Controller
         [SerializeField] private float _spottedDistance;
         [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
         [SerializeField] private float _lastChanceTime;
+        [Tooltip("the view cone that will eb activated when the player is on high ground")]
+        [SerializeField] private GameObject _highGroundViewCone;
+        [Tooltip("the view cone that will be activated when the player is on low ground")]
+        [SerializeField] private GameObject _lowGroundViewCone;
         
         // the time to spot the enemy when he is in the view field
         private float _spotTime = 0;
@@ -497,6 +501,28 @@ namespace Enemy.Controller
             }
             
             PlayerDetected();
+            CheckPlayerGround();
+        }
+
+        /// <summary>
+        /// Check if the Player is on higher ground or not to modify the vision for better player recognizing
+        /// </summary>
+        public void CheckPlayerGround()
+        {
+            if (_player.LowGround)
+            {             
+                // Standard View Cone
+                _lowGroundViewCone.SetActive(true);
+                _highGroundViewCone.SetActive(false);
+  
+            }
+
+            if (_player.HighGround)
+            {
+                // Bigger View Cone
+                _lowGroundViewCone.SetActive(false);
+                _highGroundViewCone.SetActive(true);
+            }
         }
         
         /// <summary>
