@@ -100,8 +100,22 @@ namespace untitledProject
         private RaycastHit hit;
         private bool _isGrounded;
         private bool _useGroundCheck;
+        private bool _lowGround;
+        private bool _highGround;
         
-        [Header("Slope Settings")] 
+        public bool LowGround
+        {
+            get => _lowGround;
+            set => _lowGround = value;
+        }
+        
+        public bool HighGround
+        {
+            get => _highGround;
+            set => _highGround = value;
+        }
+
+        [Header("Slope Settings")]
         [Tooltip("the force to the ground at the character")]
         [SerializeField]
         private float _slopeForce;
@@ -336,6 +350,18 @@ namespace untitledProject
             {
                 _calmDownCooldown = _calmDownTime;
                 _playerIsSpotted = true;
+            }
+
+            if (other.CompareTag("HighGround"))
+            {
+                _highGround = true;
+                _lowGround = false;
+            }
+
+            if (other.CompareTag("LowGround"))
+            {
+                _highGround = false;
+                _lowGround = true;
             }
         }
 

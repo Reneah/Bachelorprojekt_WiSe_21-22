@@ -40,6 +40,8 @@ namespace Enemy.CustomInspector
         private SerializedProperty _spottedDistance;
         private SerializedProperty _lastChanceTime;
         private SerializedProperty _spottedTime;
+        private SerializedProperty _highGroundViewCone;
+        private SerializedProperty _lowGroundViewCone;
         
         // Investigation variables
         private SerializedProperty _firstStageRunSpeed;
@@ -83,6 +85,8 @@ namespace Enemy.CustomInspector
             _spottedBar = serializedObject.FindProperty("_spottedBar");
             _spottedDistance = serializedObject.FindProperty("_spottedDistance");
             _lastChanceTime = serializedObject.FindProperty("_lastChanceTime");
+            _highGroundViewCone = serializedObject.FindProperty("_highGroundViewCone");
+            _lowGroundViewCone = serializedObject.FindProperty("_lowGroundViewCone");
             
             // Investigation variables
             _firstStageRunSpeed = serializedObject.FindProperty("_firstStageRunSpeed");
@@ -142,6 +146,8 @@ namespace Enemy.CustomInspector
             EditorGUILayout.PropertyField(_spottedBar);
             EditorGUILayout.PropertyField(_spottedDistance);
             EditorGUILayout.PropertyField(_lastChanceTime);
+            EditorGUILayout.PropertyField(_highGroundViewCone);
+            EditorGUILayout.PropertyField(_lowGroundViewCone);
             
             // Investigation variables
             EditorGUILayout.PropertyField(_firstStageRunSpeed);
