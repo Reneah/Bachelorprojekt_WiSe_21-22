@@ -32,6 +32,7 @@
             <e p="StonePile.cs" t="Include" />
           </e>
           <e p="02_Enemies" t="Include">
+            <e p="ChaseActivation.cs" t="Include" />
             <e p="EnemyAnimationHandler.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyGuardState.cs" t="Include" />

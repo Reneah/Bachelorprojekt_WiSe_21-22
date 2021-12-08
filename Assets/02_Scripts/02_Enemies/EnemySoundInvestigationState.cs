@@ -94,6 +94,9 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
+            //enemy.ActivateChasing = false;
+            EnemyShareInformation.PlayerLocalized = true;
+            
             enemy.SoundNoticed = false;
             
             enemy.CurrentSoundStage = enemy.SoundBehaviourStage;

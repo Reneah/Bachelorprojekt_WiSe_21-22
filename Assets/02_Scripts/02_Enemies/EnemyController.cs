@@ -86,7 +86,16 @@ namespace Enemy.Controller
         
         // determines if the first enemy reached the destination of the player nearby so that the other ones can gather 
         private bool _firstEnemyReachedDestination;
-        
+
+        // when the enemy is near another enemy who has sighted the player he will chase him as well
+        private bool _activateChasing = false;
+
+        public bool ActivateChasing
+        {
+            get => _activateChasing;
+            set => _activateChasing = value;
+        }
+
         public float ReminderTime
         {
             get => _reminderTime;
@@ -771,22 +780,6 @@ namespace Enemy.Controller
                 // the amount of the waypoints fo the enemy when the player activated the noisy item in close range
                 _usuableWaypointsAmount = Random.Range(1,_noisyItemScript.CloseNoisyItemWaypoints.Length);
                 
-              //  float _distance = Vector3.Distance(transform.position, other.transform.position);
-                
-            //    RaycastHit hit;
-             //   Physics.Raycast(other.transform.position, transform.position - other.transform.position, out hit, _distance);
-
-              //  if (hit.collider.CompareTag("Wall"))
-                {
-              //      _soundItemScript.Stage--;
-
-                    if (_noisyItemScript.Stage <= 0)
-                    {
-                  //      _soundItemScript.Stage = 0;
-                    //    return;
-                    }
-                }
-
                 // when the sound stage goes from 1 to 3, the sound will be noticed and the enemy will start to run towards it
                 if(_noisyItemScript.Stage <= 3)
                 {
@@ -819,7 +812,6 @@ namespace Enemy.Controller
                     _noisyItemSearchPoints.Add(waypoints);
                 }
             }
-            
         }
 
         private void OnTriggerStay(Collider other)

@@ -1877,6 +1877,63 @@ Transform:
   m_Father: {fileID: 2102534739715852109}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6585094905186861927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4579886130165846411}
+  - component: {fileID: 4670049687541400823}
+  - component: {fileID: 7074504279244619695}
+  m_Layer: 0
+  m_Name: EnemyChaseActivation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4579886130165846411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6585094905186861927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6958195730867115906}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4670049687541400823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6585094905186861927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14aa62a7f461dd45a9c1d753ca10796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &7074504279244619695
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6585094905186861927}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6698195859022486062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,6 +2339,7 @@ Transform:
   - {fileID: 3407039403896463216}
   - {fileID: 1954719614993269969}
   - {fileID: 586826175}
+  - {fileID: 4579886130165846411}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 91.664, z: 0}
@@ -2330,8 +2388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0100503f9a788754aa043e3d8e2558db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _guarding: 1
-  _patrolling: 0
+  _guarding: 0
+  _patrolling: 1
   _lowGroundCatchDistance: 0.8
   _highGroundCatchDistance: 1.5
   _chaseSpeed: 4
