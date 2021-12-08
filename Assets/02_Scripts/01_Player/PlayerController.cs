@@ -29,7 +29,7 @@ namespace untitledProject
         private float _refVelocity;
         private float _currentForwardVelocity;
         private Vector3 _moveDirection;
-        private float targetSpeed;
+        private float _targetSpeed;
 
         private float _calmDownCooldown;
         private bool _playerIsSpotted = true;
@@ -225,17 +225,18 @@ namespace untitledProject
             {
                 _resetVerticalVelocity = true;
                 bool sprint = Input.GetKey(KeyCode.LeftShift);
-                targetSpeed = (sprint? _sprintSpeed : _movementSpeed) * _moveDirection.magnitude;
+                _targetSpeed = (sprint? _sprintSpeed : _movementSpeed) * _moveDirection.magnitude;
 
                 if (_playerAnimationHandler.PlayerAnimator.GetBool("Flee"))
                 {
-                    targetSpeed = _fleeSpeed * _moveDirection.magnitude;
+                    _targetSpeed = _fleeSpeed * _moveDirection.magnitude;
+                    
                 }
                 
             }
             
             // the current velocity will be smoothed, so that it is possible to have some tweaks 
-            _currentForwardVelocity = Mathf.SmoothDamp(_currentForwardVelocity, targetSpeed, ref _refVelocity, _smoothSpeed * Time.deltaTime);
+            _currentForwardVelocity = Mathf.SmoothDamp(_currentForwardVelocity, _targetSpeed, ref _refVelocity, _smoothSpeed * Time.deltaTime);
             Vector3 velocity = new Vector3(_moveDirection.x * _currentForwardVelocity, _currentVerticalVelocity, _moveDirection.z * _currentForwardVelocity) + new Vector3(0, Gravity(), 0);
             _characterController.Move(velocity * Time.deltaTime);
             
