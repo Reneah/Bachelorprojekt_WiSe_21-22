@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Cinemachine.Utility;
 using Enemy.AnimationHandler;
+using Enemy.ShareInformation;
 using Enemy.SoundItem;
 using Enemy.States;
 using Enemy.TalkCheck;
@@ -71,13 +73,19 @@ namespace Enemy.Controller
         [Header("Chase Behaviour")]
         [Tooltip("set the distance to catch the player")]
         [Range(0.5f, 5)]
-        [SerializeField] private float _catchDistance = 2;
+        [SerializeField] private float _lowGroundCatchDistance = 2;
+        [Tooltip("set the distance to catch the player")]
+        [Range(1, 5)]
+        [SerializeField] private float _highGroundCatchDistance = 2;
         [Tooltip("the speed which the enemy will chase the player")]
         [Range(1,10)]
         [SerializeField] private float _chaseSpeed;
         // give the enemy the chance to chase the player again
         // otherwise at a quick turn of the player or other situations, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
         private float _reminderTime = 0;
+        
+        // determines if the first enemy reached the destination of the player nearby so that the other ones can gather 
+        private bool _firstEnemyReachedDestination;
         
         public float ReminderTime
         {
@@ -141,8 +149,10 @@ namespace Enemy.Controller
         [SerializeField] private float _secondsToSpott;
         [SerializeField] private Image _spottedBar;
         [Tooltip("the distance where you get spotted instantly")]
+        [Range(0,10)]
         [SerializeField] private float _spottedDistance;
         [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
+        [Range(0,10)]
         [SerializeField] private float _lastChanceTime;
         [Tooltip("the view cone that will eb activated when the player is on high ground")]
         [SerializeField] private GameObject _highGroundViewCone;
@@ -487,7 +497,6 @@ namespace Enemy.Controller
             
             // the dwelling time at a waypoint
             _standingCooldown = _dwellingTimer;
-            
         }
         
         void Update()
@@ -501,7 +510,6 @@ namespace Enemy.Controller
             }
             
             PlayerDetected();
-            CheckPlayerGround();
         }
 
         /// <summary>
@@ -524,6 +532,15 @@ namespace Enemy.Controller
                 _highGroundViewCone.SetActive(true);
             }
         }
+
+        /// <summary>
+        /// check if the enemy reached the last point that he is able to reach
+        /// </summary>
+        /// <returns></returns>
+        public bool PathEndPosition(float _stopDistance)
+        {
+            return Vector3.Distance(transform.position, _agent.pathEndPosition) <= _stopDistance;
+        }
         
         /// <summary>
         /// When the enemy is in the chase state, the destination will be the player and the speed will be modified
@@ -533,6 +550,31 @@ namespace Enemy.Controller
             _agent.SetDestination(_player.transform.position);
             _agent.speed = _chaseSpeed;
             _animationHandler.SetSpeed(_chaseSpeed);
+
+            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination
+            if (EnemyShareInformation.EnemyInstance != null && !EnemyShareInformation.EnemyInstance._agent.isStopped)
+            {
+                EnemyShareInformation.FirstEnemyReachedDestination = false;
+            }
+
+            _agent.isStopped = false;
+            
+            // prevent that the run animation is playing when the agent can't go further in contrast to the player
+            // rotates the enemy towards the player position
+            // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop
+            if (PathEndPosition(0.5f) || PathEndPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination)
+            {
+                if (!EnemyShareInformation.FirstEnemyReachedDestination)
+                {
+                    EnemyShareInformation.EnemyInstance = this;
+                    EnemyShareInformation.FirstEnemyReachedDestination = true;
+                }
+                _firstEnemyReachedDestination = true;
+                _agent.isStopped = true;
+                _animationHandler.SetSpeed(0);
+                _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 5 * Time.deltaTime);
+                transform.rotation = _desiredDirection;
+            }
         }
         
         /// <summary>
@@ -541,7 +583,14 @@ namespace Enemy.Controller
         /// <returns></returns>
         public bool CatchPlayer()
         {
-            return Vector3.Distance(transform.position, _player.transform.position) <= _catchDistance;
+            if (_player.HighGround)
+            {
+               return  Vector3.Distance(transform.position, _player.transform.position) <= _highGroundCatchDistance;
+            }
+            else
+            {
+                return Vector3.Distance(transform.position, _player.transform.position) <= _lowGroundCatchDistance;
+            }
         }
         
         #region PatrolBehaviour
@@ -804,7 +853,7 @@ namespace Enemy.Controller
                 }
             }
         }
-
+        
         /// <summary>
         /// the distance between the sound event and the enemy
         /// </summary>

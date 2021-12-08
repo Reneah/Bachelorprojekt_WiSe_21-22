@@ -38,6 +38,8 @@ namespace Enemy.States
         
             enemy.AnimationHandler.SetSpeed(enemy.PatrolSpeed);
             enemy.StartPatrolBehaviour();
+            
+            enemy.Agent.isStopped = true;
         }
 
         public void Exit(EnemyController enemy)
