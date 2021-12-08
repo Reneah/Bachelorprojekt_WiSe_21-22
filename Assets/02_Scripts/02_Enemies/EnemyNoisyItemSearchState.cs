@@ -34,6 +34,8 @@ namespace Enemy.States
         {
             enemy.PrepareSearchNoisyItemBehaviour();
             enemy.StartSearchNoisyItemBehaviour();
+            
+            enemy.Agent.isStopped = true;
         }
 
         public void Exit(EnemyController enemy)

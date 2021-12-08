@@ -244,7 +244,6 @@ namespace untitledProject
                 if (_playerAnimationHandler.PlayerAnimator.GetBool("Flee"))
                 {
                     _targetSpeed = _fleeSpeed * _moveDirection.magnitude;
-                    
                 }
                 
             }
