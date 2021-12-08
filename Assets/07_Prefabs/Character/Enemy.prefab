@@ -58,10 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17784ca5049868541994682302c68ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chanceToTalk: 100
+  _chanceToTalk: 75
   _stopDistance: 2
-  _timeToTalk: 3
-  _smoothRotation: 5
+  _timeToTalk: 5
+  _smoothRotation: 7
 --- !u!54 &1154771643
 Rigidbody:
   m_ObjectHideFlags: 0
