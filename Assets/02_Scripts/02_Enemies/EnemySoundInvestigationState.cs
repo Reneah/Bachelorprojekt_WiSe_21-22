@@ -108,6 +108,8 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
+            enemy.GetSoundOnce = false;
+            
             enemy.ChaseActivationObject.SetActive(true);
             
             enemy.SoundNoticed = false;
