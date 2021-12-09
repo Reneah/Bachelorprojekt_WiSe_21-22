@@ -20,8 +20,6 @@ namespace Enemy.ShareInformation
         public static EnemyController EnemyInstance;
         // when the first enemy reached the closest point to the player, he will stop and signalize the other one that they have to stop around the destination to not collide and not to play the run animation anymore
         public static bool FirstEnemyReachedDestination;
-
-        public static float CheckSound;
     }
 }
 
