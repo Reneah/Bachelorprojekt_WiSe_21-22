@@ -2424,19 +2424,19 @@ MonoBehaviour:
   _secondsToSpott: 1
   _spottedBar: {fileID: 0}
   _spottedDistance: 3
-  _lastChanceTime: 1
+  _lastChanceTime: 2.5
   _highGroundViewCone: {fileID: 4154271164689893104}
   _lowGroundViewCone: {fileID: 7761334938483211356}
   _firstStageRunSpeed: 2
   _secondStageRunSpeed: 2.5
   _thirdStageRunSpeed: 3
-  _searchSpeed: 2
+  _searchSpeed: 2.5
   _waypointCounter: 3
   _switchLookTime: 5
   _lookSwitchSpeed: 2
   _lookingRoute: {fileID: 0}
   _guardPoint: {fileID: 0}
-  _stopGuardpointDistance: 0.5
+  _stopGuardpointDistance: 0.25
   _desiredBodyRotation: {fileID: 0}
   _currentLookPosition: {fileID: 0}
   _smoothBodyRotation: 10
@@ -2465,7 +2465,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 180
+  m_AngularSpeed: 360
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
