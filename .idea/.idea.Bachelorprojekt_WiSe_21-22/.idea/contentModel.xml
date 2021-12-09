@@ -48,6 +48,7 @@
             <e p="LookAgentVisualization.cs" t="Include" />
             <e p="LootSpot.cs" t="Include" />
             <e p="NoisyItem.cs" t="Include" />
+            <e p="NoisyItemPullRadius.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
