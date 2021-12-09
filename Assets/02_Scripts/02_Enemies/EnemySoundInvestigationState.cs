@@ -1,5 +1,6 @@
 using Enemy.Controller;
 using Enemy.ShareInformation;
+using UnityEngine;
 
 namespace Enemy.States
 {
@@ -7,6 +8,19 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
+            if (enemy.ChaseActivationObject.activeInHierarchy)
+            {
+                enemy.ActivateChaseCooldown -= Time.deltaTime;
+
+                if (enemy.ActivateChaseCooldown <= 0)
+                {
+                    enemy.ChaseActivationObject.SetActive(false);
+                    enemy.ActivateChasing = false;
+                    enemy.ActivateChaseCooldown = 0.1f;
+                }
+            }
+            
             if (enemy.CanSeePlayer)
             {
                 enemy.AnimationHandler.FinishedInvestigationAnimation = false;
@@ -94,8 +108,7 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            //enemy.ActivateChasing = false;
-            EnemyShareInformation.PlayerLocalized = true;
+            enemy.ChaseActivationObject.SetActive(true);
             
             enemy.SoundNoticed = false;
             

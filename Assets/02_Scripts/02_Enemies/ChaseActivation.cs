@@ -9,11 +9,11 @@ namespace Enemy.ChaseActivation
 {
     public class ChaseActivation : MonoBehaviour
     {
-        private void OnTriggerStay(Collider other)
+        // when this game object is activated and a other enemy is nearby, he will be chase the player as well
+        private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Enemy") && EnemyShareInformation.PlayerLocalized)
+            if (other.CompareTag("Enemy"))
             {
-                Debug.Log("yes");
                 other.GetComponent<EnemyController>().ActivateChasing = true;
             }
         }

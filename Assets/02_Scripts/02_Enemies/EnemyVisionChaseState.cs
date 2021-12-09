@@ -8,7 +8,18 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            EnemyShareInformation.PlayerLocalized = false;
+            // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
+            if (enemy.ChaseActivationObject.activeInHierarchy)
+            {
+                enemy.ActivateChaseCooldown -= Time.deltaTime;
+
+                if (enemy.ActivateChaseCooldown <= 0)
+                {
+                    enemy.ChaseActivationObject.SetActive(false);
+                    enemy.ActivateChasing = false;
+                    enemy.ActivateChaseCooldown = 0.1f;
+                }
+            }
             
             enemy.CheckPlayerGround();
             
@@ -55,8 +66,7 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
-            enemy.ActivateChasing = false;
-            EnemyShareInformation.PlayerLocalized = true;
+            enemy.ChaseActivationObject.SetActive(true);
             
             // when the chase has been activated through another enemy, it is necessary to call the method once here, because he won't see the enemy and won't go in the update method
             enemy.ChasePlayer();
