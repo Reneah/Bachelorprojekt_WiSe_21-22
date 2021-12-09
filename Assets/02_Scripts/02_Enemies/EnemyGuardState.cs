@@ -47,7 +47,7 @@ namespace Enemy.States
             enemy.Agent.SetDestination(enemy.GuardPoint.transform.position);
             enemy.AnimationHandler.SetSpeed(enemy.PatrolSpeed);
             
-            enemy.Agent.isStopped = true;
+            enemy.Agent.isStopped = false;
         }
 
         public void Exit(EnemyController enemy)

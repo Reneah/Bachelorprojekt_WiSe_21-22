@@ -38,7 +38,7 @@ namespace Enemy.States
             enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
             enemy.StartSearchBehaviour();
             
-            enemy.Agent.isStopped = true;
+            enemy.Agent.isStopped = false;
         }
 
         public void Exit(EnemyController enemy)

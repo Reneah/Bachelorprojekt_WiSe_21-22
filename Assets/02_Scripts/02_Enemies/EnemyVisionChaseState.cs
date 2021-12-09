@@ -1,4 +1,5 @@
 using Enemy.Controller;
+using Enemy.ShareInformation;
 using UnityEngine;
 
 namespace Enemy.States
@@ -7,6 +8,19 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
+            if (enemy.ChaseActivationObject.activeInHierarchy)
+            {
+                enemy.ActivateChaseCooldown -= Time.deltaTime;
+
+                if (enemy.ActivateChaseCooldown <= 0)
+                {
+                    enemy.ChaseActivationObject.SetActive(false);
+                    enemy.ActivateChasing = false;
+                    enemy.ActivateChaseCooldown = 0.1f;
+                }
+            }
+            
             enemy.CheckPlayerGround();
             
             if (enemy.CanSeePlayer)
@@ -14,7 +28,7 @@ namespace Enemy.States
                 enemy.ReminderTime = enemy.LastChanceTime;
                 enemy.ChasePlayer();
             }
-    
+            
             if (!enemy.CanSeePlayer)
             {
                 enemy.ReminderTime -= Time.deltaTime;
@@ -52,7 +66,13 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
+            enemy.ChaseActivationObject.SetActive(true);
+            
+            // when the chase has been activated through another enemy, it is necessary to call the method once here, because he won't see the enemy and won't go in the update method
+            enemy.ChasePlayer();
+            
             enemy.ReminderTime = enemy.LastChanceTime;
+            enemy.Agent.isStopped = false;
         }
     
         public void Exit(EnemyController enemy)

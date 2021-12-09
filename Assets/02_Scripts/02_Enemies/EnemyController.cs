@@ -84,9 +84,36 @@ namespace Enemy.Controller
         // otherwise at a quick turn of the player or other situations, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
         private float _reminderTime = 0;
         
-        // determines if the first enemy reached the destination of the player nearby so that the other ones can gather 
+        // determines if the first enemy reached the destination of the player nearby so that the other ones can gather around
         private bool _firstEnemyReachedDestination;
-        
+
+        // when the enemy is near another enemy who has sighted the player he will chase him as well
+        private bool _activateChasing = false;
+
+        // activate and deactivate the chase activation to pull other nearby enemies to chase the player 
+        private GameObject _chaseActivationObject;
+
+        // the time window where this enemy can pull other enemies to chase the player nearby
+        private float _activateChaseCooldown = 0.1f;
+
+        public float ActivateChaseCooldown
+        {
+            get => _activateChaseCooldown;
+            set => _activateChaseCooldown = value;
+        }
+
+        public GameObject ChaseActivationObject
+        {
+            get => _chaseActivationObject;
+            set => _chaseActivationObject = value;
+        }
+
+        public bool ActivateChasing
+        {
+            get => _activateChasing;
+            set => _activateChasing = value;
+        }
+
         public float ReminderTime
         {
             get => _reminderTime;
@@ -481,6 +508,7 @@ namespace Enemy.Controller
             _player = FindObjectOfType<PlayerController>();
             _inGameMenu = FindObjectOfType<InGameMenu>();
             _enemyTalkCheck = transform.Find("EnemyTalkCheck").GetComponent<EnemyTalkCheck>();
+            _chaseActivationObject = transform.Find("EnemyChaseActivation").GetComponent<ChaseActivation.ChaseActivation>().gameObject;
 
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
             if (_patrolling)
@@ -532,7 +560,9 @@ namespace Enemy.Controller
                 _highGroundViewCone.SetActive(true);
             }
         }
-
+        
+        #region ChaseBehaviour
+        
         /// <summary>
         /// check if the enemy reached the last point that he is able to reach
         /// </summary>
@@ -592,6 +622,8 @@ namespace Enemy.Controller
                 return Vector3.Distance(transform.position, _player.transform.position) <= _lowGroundCatchDistance;
             }
         }
+        
+        #endregion
         
         #region PatrolBehaviour
         
@@ -771,22 +803,6 @@ namespace Enemy.Controller
                 // the amount of the waypoints fo the enemy when the player activated the noisy item in close range
                 _usuableWaypointsAmount = Random.Range(1,_noisyItemScript.CloseNoisyItemWaypoints.Length);
                 
-              //  float _distance = Vector3.Distance(transform.position, other.transform.position);
-                
-            //    RaycastHit hit;
-             //   Physics.Raycast(other.transform.position, transform.position - other.transform.position, out hit, _distance);
-
-              //  if (hit.collider.CompareTag("Wall"))
-                {
-              //      _soundItemScript.Stage--;
-
-                    if (_noisyItemScript.Stage <= 0)
-                    {
-                  //      _soundItemScript.Stage = 0;
-                    //    return;
-                    }
-                }
-
                 // when the sound stage goes from 1 to 3, the sound will be noticed and the enemy will start to run towards it
                 if(_noisyItemScript.Stage <= 3)
                 {
@@ -819,7 +835,6 @@ namespace Enemy.Controller
                     _noisyItemSearchPoints.Add(waypoints);
                 }
             }
-            
         }
 
         private void OnTriggerStay(Collider other)
