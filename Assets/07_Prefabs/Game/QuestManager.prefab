@@ -68,7 +68,7 @@ MonoBehaviour:
   m_text: '- Meet up with Drustan back at the front gate.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
-  m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 76ff70d335b76894aae3c9b69cbcdcd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_text: '- Gather 6 provisions before you head to the cellar.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
-  m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 76ff70d335b76894aae3c9b69cbcdcd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_text: '- Enter the staircase to the cellar, without being seen.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
-  m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 76ff70d335b76894aae3c9b69cbcdcd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_text: Escape the keep unharmed.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
-  m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 76ff70d335b76894aae3c9b69cbcdcd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_text: '- Find the hidden key under the throne.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
-  m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 76ff70d335b76894aae3c9b69cbcdcd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_text: '- Find a backpack.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
-  m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 76ff70d335b76894aae3c9b69cbcdcd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
