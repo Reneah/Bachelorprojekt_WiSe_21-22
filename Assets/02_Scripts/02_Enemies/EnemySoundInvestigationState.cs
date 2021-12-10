@@ -110,6 +110,7 @@ namespace Enemy.States
         {
             enemy.GetSoundOnce = false;
             
+            //NOTE: Will be pulled by every Sound. That should not happen! Only when the enemy hears the footsteps
             enemy.ChaseActivationObject.SetActive(true);
             
             enemy.SoundNoticed = false;

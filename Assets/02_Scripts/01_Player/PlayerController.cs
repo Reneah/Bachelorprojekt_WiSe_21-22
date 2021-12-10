@@ -353,12 +353,14 @@ namespace untitledProject
 
             if (other.CompareTag("HighGround"))
             {
+                Debug.Log("high");
                 _highGround = true;
                 _lowGround = false;
             }
 
             if (other.CompareTag("LowGround"))
             {
+                Debug.Log("low");
                 _highGround = false;
                 _lowGround = true;
             }
