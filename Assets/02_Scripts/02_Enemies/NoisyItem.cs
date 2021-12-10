@@ -17,12 +17,13 @@ namespace Enemy.SoundItem
         [SerializeField] private GameObject _negativeSprite;
         [Tooltip("mark the close range")]
         [SerializeField] private GameObject _closeActivationRadius;
+        [Tooltip("is the noisy item reusable or not")]
         [SerializeField] private bool _reusable;
         [Tooltip("the offset of the noisy item origin so that the enemy is able to reach the item")]
         [SerializeField] private GameObject _offsetOrigin;
         [Tooltip("the key to save the used status of the item")]
         [SerializeField] private string _playerPrefsKey;
-        
+
         public GameObject OffsetOrigin
         {
             get => _offsetOrigin;
@@ -42,17 +43,9 @@ namespace Enemy.SoundItem
         [Header("Sound Collider")]
         [Tooltip("the collider, which shows the sound range of the item")]
         [SerializeField] private GameObject _soundRangeCollider;
-
-        public bool Reusable
-        {
-            get => _reusable;
-            set => _reusable = value;
-        }
-
-        private bool _reuseItem;
-
+        
         // deactivate the sound collider after a fixed time
-        private float _deactivationTime = 0.3f;
+        private float _deactivationTime = 0.1f;
 
         public GameObject SoundRangeCollider
         {
@@ -67,28 +60,28 @@ namespace Enemy.SoundItem
         
         [Tooltip("the waypoints the enemy will run down when the player activating the item in close distance")]
         [SerializeField] private Transform[] _closeNoisyItemWaypoints;
+        [Tooltip("the max pull amount for the noisy item")]
         [SerializeField] private float _enemyPullAmount;
 
-        private float _closestEnemyDistance;
+         // the final closest enemy distance to the noisy item
+         private float _closestEnemyDistance;
+         // the max pull amount for the noisy item
          private float _enemyAmountToPull;
+         // the current closest enemy distance to the noisy item
         private float _currentclosestEnemyDistance;
+        // need this script to activate the noisy item investigation
         private EnemyController _closestEnemy;
-        private List<EnemyController> _enemySelected = new List<EnemyController>();
+        // the enemies who heard the noisy item
+        private List<EnemyController> _enemyList = new List<EnemyController>();
+        // the cooldown how long to wait to get all enemies in sound range. Otherwise the first enemy would start the method and no one else could be added to investigate
         private float _pullEnemyCooldown = 0.1f;
 
-        public float PullEnemyCooldown
+        public List<EnemyController> EnemyList
         {
-            get => _pullEnemyCooldown;
-            set => _pullEnemyCooldown = value;
+            get => _enemyList;
+            set => _enemyList = value;
         }
-
-
-        public List<EnemyController> EnemySelected
-        {
-            get => _enemySelected;
-            set => _enemySelected = value;
-        }
-
+        
         public Transform[] CloseNoisyItemWaypoints
         {
             get => _closeNoisyItemWaypoints;
@@ -125,13 +118,13 @@ namespace Enemy.SoundItem
             set => _safeState = value;
         }
 
-        // enemy got already pulled and no more than 2 can investigate the noisy item
-        private bool _enemyGotPulled = false;
+        // start the pull countdown to be certain to get all enemies in the sound range
+        private bool startPullCountdown = false;
 
-        public bool EnemyGotPulled
+        public bool StartPullCountdown
         {
-            get => _enemyGotPulled;
-            set => _enemyGotPulled = value;
+            get => startPullCountdown;
+            set => startPullCountdown = value;
         }
 
         void Start()
@@ -154,22 +147,11 @@ namespace Enemy.SoundItem
                 PlayerPrefs.SetInt(_playerPrefsKey, _itemUsed.GetHashCode());
                 _safeState = false;
             }
-
-            if (_enemyGotPulled)
-            {
-                _pullEnemyCooldown -= Time.deltaTime;
-
-                if (_pullEnemyCooldown <= 0)
-                {
-                    PullEnemyNoisyItem();
-                    _pullEnemyCooldown = 0.1f;
-                    _enemyGotPulled = false;
-                }
-            }
-                
-
+            
             ItemActivation();
             ItemExecution();
+
+            PullCountdown();
         }
 
         private void ItemActivation()
@@ -235,7 +217,7 @@ namespace Enemy.SoundItem
                 {
                     if (_reusable)
                     {
-                        _deactivationTime = 0.3f;
+                        _deactivationTime = 0.1f;
                         _soundRangeCollider.SetActive(false);
                         _itemUsable = true;
                         _itemUsed = false;
@@ -252,13 +234,33 @@ namespace Enemy.SoundItem
                 }
             }
         }
+
+        /// <summary>
+        /// the countdown to choose the enemies, who should be pulled
+        /// </summary>
+        private void PullCountdown()
+        {
+            if (startPullCountdown)
+            {
+                _pullEnemyCooldown -= Time.deltaTime;
+
+                if (_pullEnemyCooldown <= 0)
+                {
+                    _pullEnemyCooldown = 0.1f;
+                    _enemyAmountToPull = _enemyPullAmount;
+                    startPullCountdown = false;
+                    PullEnemyToNoisyItem();
+                }
+            }
+        }
         
-        // this method has to be called somewhere
-        // _enemyAmountToPull has to be set of the enemyList.count
-        public void PullEnemyNoisyItem()
+        /// <summary>
+        /// search the closest enemies to investigate the noisy item - there is a max amount to pull the enemies
+        /// </summary>
+        public void PullEnemyToNoisyItem()
         {
             _closestEnemyDistance = Mathf.Infinity;
-            foreach (EnemyController enemy in _enemySelected)
+            foreach (EnemyController enemy in _enemyList)
             {
                 _currentclosestEnemyDistance = Vector3.Distance(transform.position, enemy.transform.position);
                 if (_currentclosestEnemyDistance <= _closestEnemyDistance)
@@ -267,30 +269,23 @@ namespace Enemy.SoundItem
                     _closestEnemyDistance = _currentclosestEnemyDistance;
                 }
             }
-            // when the fixed waypoints amount is reached, this method will be stopped
-            if (_enemyAmountToPull > 0 || _enemySelected.Count > 0)
+            // when the max enemy pull amount is reached, this method will be stopped
+            if (_enemyAmountToPull > 0)
             {
-                _enemySelected.Add(_closestEnemy);
+                _closestEnemy.CanInvestigate = true;
+                _enemyList.Remove(_closestEnemy);
                 _enemyAmountToPull--;
-                
-                // reset the amount of desired waypoints
+                PullEnemyToNoisyItem();
+
+                // reset the amount of desired enemies
                 if (_enemyAmountToPull <= 1)
                 {
                     _enemyAmountToPull = _enemyPullAmount;
                 }
-            }
-
-            foreach (var enemy in _enemySelected)
-            {
-                enemy.EnemyPulled = true;
+                return;
             }
             
-            foreach (var enemy in _enemySelected)
-            {
-               // enemy.EnemyPulled = false;
-            }
-            
-            _enemySelected.Clear();
+            _enemyList.Clear();
             
         }
         

@@ -303,8 +303,20 @@ namespace Enemy.Controller
          private Transform _currentCloseNoisyItemWaypoint;
          // get all waypoints in the search area again after using them
          private bool _resetNoisyItemWaypoints = false;
-
-
+         
+         // the enemy is able to investigate the noisy item when he heard the sound and the max enemy pull amount is not reached
+         private bool _canInvestigate = false;
+         // because the trigger enter gets more calls than one at the sound tag, I counter it with this bool
+         private bool _getSoundOnce = false;
+         
+         public bool CanInvestigate
+         {
+             get => _canInvestigate;
+             set => _canInvestigate = value;
+         }
+         
+         public bool GetSoundOnce { get; set; }
+         
          public bool ResetNoisyItemWaypoints
          {
              get => _resetNoisyItemWaypoints;
@@ -391,14 +403,7 @@ namespace Enemy.Controller
         }
         
         #endregion
-
-        private bool _enemyPulled = false;
-        public bool EnemyPulled
-        {
-            get => _enemyPulled;
-            set => _enemyPulled = value;
-        }
-
+        
         #region GuardVariables
         
         [Header("Guard Behaviour")]
@@ -502,11 +507,13 @@ namespace Enemy.Controller
             get => _lootSpotTransform;
             set => _lootSpotTransform = value;
         }
-
+        
         #endregion
         
         void Start()
         {
+            _highGroundViewCone.SetActive(false);
+            
             // start state machine with the idle
             _currentState = EnemyIdleState;
             
@@ -545,25 +552,11 @@ namespace Enemy.Controller
             }
 
             PlayerDetected();
-            
-            if (_enemyPulled)
-            {
-                Debug.Log("yes");
-                // the amount of the waypoints fo the enemy when the player activated the noisy item in close range
-                _usuableWaypointsAmount = Random.Range(1,_noisyItemScript.CloseNoisyItemWaypoints.Length);
-                
-                // when the sound stage goes from 1 to 3, the sound will be noticed and the enemy will start to run towards it
-                if(_noisyItemScript.Stage <= 3)
-                {
-                    _soundBehaviourStage = _noisyItemScript.Stage;
-                    _soundEventPosition = _noisyItemScript.OffsetOrigin.transform;
-                    _soundNoticed = true;
-                }
-
-                _enemyPulled = false;
-            }
+            ActivateNoisyItemInvestigation();
         }
-
+        
+        #region ChaseBehaviour
+        
         /// <summary>
         /// Check if the Player is on higher ground or not to modify the vision for better player recognizing
         /// </summary>
@@ -585,8 +578,6 @@ namespace Enemy.Controller
             }
         }
         
-        #region ChaseBehaviour
-        
         /// <summary>
         /// check if the enemy reached the last point that he is able to reach
         /// </summary>
@@ -604,25 +595,14 @@ namespace Enemy.Controller
             _agent.SetDestination(_player.transform.position);
             _agent.speed = _chaseSpeed;
             _animationHandler.SetSpeed(_chaseSpeed);
-
-            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination
-            if (EnemyShareInformation.EnemyInstance != null && !EnemyShareInformation.EnemyInstance._agent.isStopped)
-            {
-                EnemyShareInformation.FirstEnemyReachedDestination = false;
-            }
-
+            
             _agent.isStopped = false;
             
             // prevent that the run animation is playing when the agent can't go further in contrast to the player
             // rotates the enemy towards the player position
             // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop
-            if (PathEndPosition(0.5f) || PathEndPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination)
+            if (PathEndPosition(0.5f) || PathEndPosition(2)  && _player.HighGround)
             {
-                if (!EnemyShareInformation.FirstEnemyReachedDestination)
-                {
-                    EnemyShareInformation.EnemyInstance = this;
-                    EnemyShareInformation.FirstEnemyReachedDestination = true;
-                }
                 _firstEnemyReachedDestination = true;
                 _agent.isStopped = true;
                 _animationHandler.SetSpeed(0);
@@ -818,20 +798,22 @@ namespace Enemy.Controller
         
         private void OnTriggerEnter(Collider other)
         {
-            // when the enemy hears a sound, he will investigate it 
-            if (other.CompareTag("Sound"))
+            // when the enemy hears a sound, he will investigate it when the max enemy pull amount is not reached
+            if (other.CompareTag("Sound") && !_getSoundOnce)
             {
+                _getSoundOnce = true;
+                
                 // get the current noisy item script of the item
                 _noisyItemScript = other.GetComponentInParent<NoisyItem>();
-                _noisyItemScript.EnemySelected.Add(this);
-                _noisyItemScript.EnemyGotPulled = true;
-
-                //NOTE: Start timer to activate the method in Noisy Item to have enough time to get the enemies in the list
+                // add the enemy to the list and start the cooldown to choose the closest enemies
+                _noisyItemScript.EnemyList.Add(this);
+                _noisyItemScript.StartPullCountdown = true;
             }
 
             // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the sound position
             if (other.CompareTag("FootSteps"))
             {
+                _player.PlayerAnimationHandler.PlayerFlee(true);
                 _soundNoticed = true;
                 _soundBehaviourStage = 3;
                 _soundEventPosition = _player.transform;
@@ -1050,6 +1032,28 @@ namespace Enemy.Controller
                     _reachedWaypoint = false;
                     StartSearchNoisyItemBehaviour();
                 }
+            }
+        }
+
+        /// <summary>
+        /// activate the noisy item investigation when the enemy is chosen for this
+        /// </summary>
+        public void ActivateNoisyItemInvestigation()
+        {
+            if (_canInvestigate)
+            {
+                // the amount of the waypoints fo the enemy when the player activated the noisy item in close range
+                _usuableWaypointsAmount = Random.Range(1,_noisyItemScript.CloseNoisyItemWaypoints.Length);
+                
+                // when the sound stage goes from 1 to 3, the sound will be noticed and the enemy will start to run towards it
+                if(_noisyItemScript.Stage <= 3)
+                {
+                    _soundBehaviourStage = _noisyItemScript.Stage;
+                    _soundEventPosition = _noisyItemScript.OffsetOrigin.transform;
+                    _soundNoticed = true;
+                }
+
+                _canInvestigate = false;
             }
         }
         #endregion
