@@ -68,9 +68,6 @@ namespace Enemy.States
         {
             enemy.ChaseActivationObject.SetActive(true);
             
-            // when the chase has been activated through another enemy, it is necessary to call the method once here, because he won't see the enemy and won't go in the update method
-            //enemy.ChasePlayer();
-            
             enemy.ReminderTime = enemy.LastChanceTime;
             enemy.Agent.isStopped = false;
         }
