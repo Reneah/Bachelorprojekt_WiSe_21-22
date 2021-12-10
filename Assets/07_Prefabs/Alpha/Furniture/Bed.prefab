@@ -1438,7 +1438,7 @@ GameObject:
   - component: {fileID: 3592612330944784358}
   m_Layer: 6
   m_Name: Bed
-  m_TagString: Untagged
+  m_TagString: HighGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

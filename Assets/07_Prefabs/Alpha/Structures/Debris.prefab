@@ -11480,7 +11480,7 @@ GameObject:
   - component: {fileID: 4062239117149827206}
   m_Layer: 6
   m_Name: Debris
-  m_TagString: Wall
+  m_TagString: HighGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
