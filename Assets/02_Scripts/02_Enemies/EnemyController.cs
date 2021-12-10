@@ -96,6 +96,15 @@ namespace Enemy.Controller
         // the time window where this enemy can pull other enemies to chase the player nearby
         private float _activateChaseCooldown = 0.1f;
 
+        // the position on the NavMesh around the current player position that is reachable
+        private NavMeshHit _hit;
+
+        public NavMeshHit Hit
+        {
+            get => _hit;
+            set => _hit = value;
+        }
+
         public float ActivateChaseCooldown
         {
             get => _activateChaseCooldown;
@@ -579,12 +588,15 @@ namespace Enemy.Controller
         }
         
         /// <summary>
-        /// check if the enemy reached the last point that he is able to reach
+        /// check if the enemy reached the last point that he is able to reach the player
         /// </summary>
         /// <returns></returns>
-        public bool PathEndPosition(float _stopDistance)
+        public bool ClosestPlayerPosition(float _stopDistance)
         {
-            return Vector3.Distance(transform.position, _agent.pathEndPosition) <= _stopDistance;
+            // give a position around the player on the NavMesh that is reachable
+            NavMesh.SamplePosition(_player.transform.position, out _hit,4, NavMesh.AllAreas);
+            
+            return Vector3.Distance(transform.position, _hit.position) <= _stopDistance;
         }
         
         /// <summary>
@@ -592,23 +604,39 @@ namespace Enemy.Controller
         /// </summary>
         public void ChasePlayer()
         {
+            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination 
+            if (EnemyShareInformation.EnemyInstance != null && !EnemyShareInformation.EnemyInstance._agent.isStopped) 
+            { 
+                EnemyShareInformation.FirstEnemyReachedDestination = false; 
+            } 
+            
+            // prevent that the run animation is playing when the agent can't go further in contrast to the player 
+            // rotates the enemy towards the player position 
+            // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop 
+            if (ClosestPlayerPosition(0.5f)|| ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination)
+            {
+                if (!EnemyShareInformation.FirstEnemyReachedDestination)
+                {
+                    EnemyShareInformation.EnemyInstance = this;
+                    EnemyShareInformation.FirstEnemyReachedDestination = true;
+                }
+                
+                _agent.isStopped = true;
+                _animationHandler.SetSpeed(0);
+                
+                if (Vector3.Dot(transform.TransformDirection(Vector3.forward), _player.transform.position - transform.position) <= 0.9f)
+                {
+                    _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 5 * Time.deltaTime);
+                    transform.rotation = _desiredDirection;
+                }
+
+                return;
+            }
+
             _agent.SetDestination(_player.transform.position);
             _agent.speed = _chaseSpeed;
             _animationHandler.SetSpeed(_chaseSpeed);
-            
             _agent.isStopped = false;
-            
-            // prevent that the run animation is playing when the agent can't go further in contrast to the player
-            // rotates the enemy towards the player position
-            // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop
-            if (PathEndPosition(0.5f) || PathEndPosition(2)  && _player.HighGround)
-            {
-                _firstEnemyReachedDestination = true;
-                _agent.isStopped = true;
-                _animationHandler.SetSpeed(0);
-                _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 5 * Time.deltaTime);
-                transform.rotation = _desiredDirection;
-            }
         }
         
         /// <summary>

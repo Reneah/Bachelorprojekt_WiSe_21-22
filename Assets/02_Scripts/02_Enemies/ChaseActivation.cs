@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Enemy.Controller;
-using Enemy.ShareInformation;
 using UnityEngine;
 
 namespace Enemy.ChaseActivation

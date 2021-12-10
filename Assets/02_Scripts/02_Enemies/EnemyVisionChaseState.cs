@@ -36,7 +36,7 @@ namespace Enemy.States
                 if (enemy.ReminderTime > 0)
                 {
                     // prevent that the run animation is playing when the agent can't go further in contrast to the player
-                    if (enemy.PathEndPosition(0.5f))
+                    if (enemy.ClosestPlayerPosition(0.5f))
                     {
                         enemy.AnimationHandler.SetSpeed(0);
                     }
@@ -46,9 +46,9 @@ namespace Enemy.States
                 // if the enemy still doesn't see the player, the search mode will be activated 
                 if (enemy.ReminderTime <= 0)
                 {
-                    if (enemy.PathEndPosition(0.5f))
+                    if (enemy.ClosestPlayerPosition(0.5f))
                     {
-                        enemy.ReminderTime = 1;
+                        enemy.ReminderTime = enemy.LastChanceTime;
                         return EnemyController.EnemySearchState;
                     }
                 }

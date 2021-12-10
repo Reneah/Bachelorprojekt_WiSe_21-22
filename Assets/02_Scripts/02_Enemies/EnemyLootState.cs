@@ -1,5 +1,4 @@
 using Enemy.Controller;
-using Enemy.States;
 using UnityEngine;
 
 namespace Enemy.States
@@ -36,8 +35,7 @@ namespace Enemy.States
                 enemy.Agent.isStopped = false;
                 enemy.AnimationHandler.LootSpot(false);
                 return EnemyController.EnemyPatrolState;
-                
-        }
+            }
             
             return this;
         }
