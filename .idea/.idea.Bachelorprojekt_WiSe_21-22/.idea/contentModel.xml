@@ -14,6 +14,7 @@
         <e p="02_Scripts" t="Include">
           <e p="01_Player" t="Include">
             <e p="Checkpoint.cs" t="Include" />
+            <e p="CollectibleCloseActivation.cs" t="Include" />
             <e p="CollectibleItemRaycast.cs" t="Include" />
             <e p="CollectItem.cs" t="Include" />
             <e p="CollectProvisions.cs" t="Include" />
@@ -50,6 +51,7 @@
             <e p="LookAgentVisualization.cs" t="Include" />
             <e p="LootSpot.cs" t="Include" />
             <e p="NoisyItem.cs" t="Include" />
+            <e p="NoisyItemCloseActivation.cs" t="Include" />
             <e p="NoisyItemPullRadius.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
