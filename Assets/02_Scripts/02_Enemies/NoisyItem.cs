@@ -286,7 +286,6 @@ namespace Enemy.SoundItem
             }
             
             _enemyList.Clear();
-            
         }
         
         private void OnTriggerStay(Collider other)
