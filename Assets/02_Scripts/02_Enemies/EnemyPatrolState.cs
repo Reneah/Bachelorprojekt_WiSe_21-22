@@ -6,7 +6,7 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.ActivateChasing)
             {
                 return EnemyController.EnemyVisionChaseState;
             }
@@ -38,6 +38,8 @@ namespace Enemy.States
         
             enemy.AnimationHandler.SetSpeed(enemy.PatrolSpeed);
             enemy.StartPatrolBehaviour();
+            
+            enemy.Agent.isStopped = false;
         }
 
         public void Exit(EnemyController enemy)

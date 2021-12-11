@@ -114,7 +114,7 @@ public class CollectProvisions : MonoBehaviour
             _provisions = other.gameObject;
             _provisionsCollectible = true;
             
-            _usebleMarker = other.transform.GetChild(0).gameObject;
+           // _usebleMarker = other.transform.GetChild(0).gameObject;
         }
     }
 

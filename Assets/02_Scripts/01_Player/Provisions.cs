@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Provisions : MonoBehaviour
 {
-    [Tooltip("the amount of stones that can be collect")]
+    [Tooltip("the amount of provisions that can be collect")]
     [SerializeField] private int _collectAmount;
 
     public int CollectAmount

@@ -6,6 +6,8 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            enemy.CheckPlayerGround();
+            
             if (enemy.CanSeePlayer)
             {
                 enemy.ResetSearchWaypoints = true;
@@ -35,6 +37,8 @@ namespace Enemy.States
         {
             enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
             enemy.StartSearchBehaviour();
+            
+            enemy.Agent.isStopped = false;
         }
 
         public void Exit(EnemyController enemy)

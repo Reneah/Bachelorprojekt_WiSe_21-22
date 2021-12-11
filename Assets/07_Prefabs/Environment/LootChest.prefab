@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 352534998490004614}
   - component: {fileID: 8257001124074149464}
   - component: {fileID: 3910448475398524339}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: loot_chest_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,9 +106,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3588820619164663532}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LootChest
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 869476039232092936}
   - component: {fileID: 8906503882034465216}
   - component: {fileID: 3910448475606867023}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: loot_chest_bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

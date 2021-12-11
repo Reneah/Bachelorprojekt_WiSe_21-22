@@ -46,7 +46,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5740456994557418218
 Transform:
@@ -79,11 +79,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lootChance: 100
   _shrinkLootChance: 20
-  _lootTime: 7
-  _smoothRotation: 5
-  _stopDistance: 2
-  _lootSpotCooldown: 0
-  _minimumLootChance: 0
+  _lootTime: 10
+  _smoothRotation: 7
+  _stopDistance: 1
+  _lootSpotCooldown: 10
+  _minimumLootChance: 20
 --- !u!135 &1740285324
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -212,6 +212,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 64c83b6e21730b944ad5abaa9991d5dc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 64c83b6e21730b944ad5abaa9991d5dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64c83b6e21730b944ad5abaa9991d5dc, type: 3}
 --- !u!1 &4236901484007556949 stripped
@@ -275,9 +283,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8322244313020179613, guid: 87a24dc6cb7c68f4d966787c600a79da, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8322244313020179613, guid: 87a24dc6cb7c68f4d966787c600a79da, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 87a24dc6cb7c68f4d966787c600a79da, type: 3}
       propertyPath: m_Name
       value: LootChest
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 87a24dc6cb7c68f4d966787c600a79da, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 87a24dc6cb7c68f4d966787c600a79da, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520000207995684857, guid: 87a24dc6cb7c68f4d966787c600a79da, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520000207995684857, guid: 87a24dc6cb7c68f4d966787c600a79da, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87a24dc6cb7c68f4d966787c600a79da, type: 3}
@@ -350,6 +382,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 64c83b6e21730b944ad5abaa9991d5dc, type: 3}
       propertyPath: m_Name
       value: Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 64c83b6e21730b944ad5abaa9991d5dc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 64c83b6e21730b944ad5abaa9991d5dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64c83b6e21730b944ad5abaa9991d5dc, type: 3}

@@ -32,6 +32,7 @@
             <e p="StonePile.cs" t="Include" />
           </e>
           <e p="02_Enemies" t="Include">
+            <e p="ChaseActivation.cs" t="Include" />
             <e p="EnemyAnimationHandler.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyGuardState.cs" t="Include" />
@@ -49,6 +50,7 @@
             <e p="LookAgentVisualization.cs" t="Include" />
             <e p="LootSpot.cs" t="Include" />
             <e p="NoisyItem.cs" t="Include" />
+            <e p="NoisyItemPullRadius.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />

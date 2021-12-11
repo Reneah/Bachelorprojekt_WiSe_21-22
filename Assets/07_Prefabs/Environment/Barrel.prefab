@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2123601624888404993}
   - component: {fileID: 4223385948437256395}
   - component: {fileID: 2616349763481423127}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
