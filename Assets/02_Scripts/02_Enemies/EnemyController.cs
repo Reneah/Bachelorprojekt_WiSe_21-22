@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Cinemachine.Utility;
 using Enemy.AnimationHandler;
 using Enemy.ShareInformation;
 using Enemy.SoundItem;
@@ -613,7 +611,7 @@ namespace Enemy.Controller
             // prevent that the run animation is playing when the agent can't go further in contrast to the player 
             // rotates the enemy towards the player position 
             // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop 
-            if (ClosestPlayerPosition(0.5f)|| ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination)
+            if (ClosestPlayerPosition(0.5f)|| ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination && _player.HighGround)
             {
                 if (!EnemyShareInformation.FirstEnemyReachedDestination)
                 {
@@ -837,18 +835,6 @@ namespace Enemy.Controller
                 _noisyItemScript.EnemyList.Add(this);
                 _noisyItemScript.StartPullCountdown = true;
             }
-
-            // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the sound position
-            if (other.CompareTag("FootSteps"))
-            {
-                _player.PlayerAnimationHandler.PlayerFlee(true);
-                _soundNoticed = true;
-                _soundBehaviourStage = 3;
-                _soundEventPosition = _player.transform;
-                _animationActivated = false;
-                _heardFootsteps = true;
-                _spottedBar.fillAmount = 1;
-            }
             
             // if the enemy gets in a new room, the old search points will be deleted and the new ones will be selected
             if (other.CompareTag("SearchPoints"))
@@ -866,6 +852,18 @@ namespace Enemy.Controller
 
         private void OnTriggerStay(Collider other)
         {
+            // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the player position
+            if (other.CompareTag("FootSteps"))
+            {
+                _player.PlayerAnimationHandler.PlayerFlee(true);
+                _soundNoticed = true;
+                _soundBehaviourStage = 3;
+                _soundEventPosition = _player.transform;
+                _animationActivated = false;
+                _heardFootsteps = true;
+                _spottedBar.fillAmount = 1;
+            }
+            
             // if the enemy used the points in the room, all points will be added again because used points will be deleted during the search mode
             if (other.CompareTag("SearchPoints"))
             {
