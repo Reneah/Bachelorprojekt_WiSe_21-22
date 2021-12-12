@@ -24,6 +24,14 @@ namespace Enemy.SoundItem
         [Tooltip("the key to save the used status of the item")]
         [SerializeField] private string _playerPrefsKey;
 
+        [SerializeField] private LayerMask _noisyItemLayer;
+
+        public LayerMask NoisyItemLayer
+        {
+            get => _noisyItemLayer;
+            set => _noisyItemLayer = value;
+        }
+
         public GameObject OffsetOrigin
         {
             get => _offsetOrigin;
@@ -127,6 +135,36 @@ namespace Enemy.SoundItem
             set => startPullCountdown = value;
         }
 
+        public PlayerThrowTrigger PlayerThrowTrigger
+        {
+            get => _playerThrowTrigger;
+            set => _playerThrowTrigger = value;
+        }
+
+        public GameObject CloseActivationRadius
+        {
+            get => _closeActivationRadius;
+            set => _closeActivationRadius = value;
+        }
+
+        public GameObject CollectibleSprite
+        {
+            get => _collectibleSprite;
+            set => _collectibleSprite = value;
+        }
+
+        public GameObject NegativeSprite
+        {
+            get => _negativeSprite;
+            set => _negativeSprite = value;
+        }
+
+        public bool ItemUsable
+        {
+            get => _itemUsable;
+            set => _itemUsable = value;
+        }
+
         void Start()
         {
             _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
@@ -159,7 +197,7 @@ namespace Enemy.SoundItem
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit _hit;
 
-            if (Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("NoisyItem")) && _playerThrowTrigger.Close)
+            if (Physics.Raycast(ray, out _hit, Mathf.Infinity, _noisyItemLayer) && _playerThrowTrigger.Close)
             {
                 if (_itemUsed && !_itemUsable)
                 {
@@ -168,29 +206,6 @@ namespace Enemy.SoundItem
                 
                 else if (!_itemUsed && _itemUsable)
                 {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        _playerThrowTrigger.PlayerThrew = false;
-                        if (_oneTimeUsed)
-                        {
-                            _stage++;
-
-                            if (_stage >= 3)
-                            {
-                                _stage = 3;
-                            }
-                        }
-                
-                        _closeActivationRadius.SetActive(false);
-                        _collectibleSprite.gameObject.SetActive(false);
-                        _negativeSprite.gameObject.SetActive(true);
-                        _soundRangeCollider.SetActive(true);
-
-                        _itemUsable = false;
-                        _itemUsed = true;
-                        return;
-                    }
-                    
                     _closeActivationRadius.SetActive(true);
                     _collectibleSprite.gameObject.SetActive(true);
                     _negativeSprite.gameObject.SetActive(false);
@@ -286,30 +301,6 @@ namespace Enemy.SoundItem
             }
             
             _enemyList.Clear();
-            
-        }
-        
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("Player") && !_itemUsed)
-            {
-                _playerThrowTrigger.Close = true;
-                _itemUsable = true;
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                if (other.CompareTag("Player") && !_itemUsed)
-                {
-                    _itemUsable = false;
-                    _playerThrowTrigger.Close = false;
-                    _collectibleSprite.gameObject.SetActive(false);
-                    _closeActivationRadius.SetActive(false);
-                }
-            }
         }
     }
 }

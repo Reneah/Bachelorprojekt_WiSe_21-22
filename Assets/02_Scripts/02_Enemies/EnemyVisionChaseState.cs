@@ -36,7 +36,7 @@ namespace Enemy.States
                 if (enemy.ReminderTime > 0)
                 {
                     // prevent that the run animation is playing when the agent can't go further in contrast to the player
-                    if (enemy.PathEndPosition(0.5f))
+                    if (enemy.ClosestPlayerPosition(0.5f))
                     {
                         enemy.AnimationHandler.SetSpeed(0);
                     }
@@ -46,9 +46,9 @@ namespace Enemy.States
                 // if the enemy still doesn't see the player, the search mode will be activated 
                 if (enemy.ReminderTime <= 0)
                 {
-                    if (enemy.PathEndPosition(0.5f))
+                    if (enemy.ClosestPlayerPosition(0.5f))
                     {
-                        enemy.ReminderTime = 1;
+                        enemy.ReminderTime = enemy.LastChanceTime;
                         return EnemyController.EnemySearchState;
                     }
                 }
@@ -67,9 +67,6 @@ namespace Enemy.States
         public void Enter(EnemyController enemy)
         {
             enemy.ChaseActivationObject.SetActive(true);
-            
-            // when the chase has been activated through another enemy, it is necessary to call the method once here, because he won't see the enemy and won't go in the update method
-            //enemy.ChasePlayer();
             
             enemy.ReminderTime = enemy.LastChanceTime;
             enemy.Agent.isStopped = false;

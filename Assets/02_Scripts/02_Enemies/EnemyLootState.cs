@@ -1,5 +1,4 @@
 using Enemy.Controller;
-using Enemy.States;
 using UnityEngine;
 
 namespace Enemy.States
@@ -10,11 +9,15 @@ namespace Enemy.States
         {
             if (enemy.CanSeePlayer)
             {
+                enemy.Agent.isStopped = false;
+                enemy.AnimationHandler.LootSpot(false);
                 return EnemyController.EnemyVisionChaseState;
             }
 
             if (enemy.SoundNoticed)
             {
+                enemy.Agent.isStopped = false;
+                enemy.AnimationHandler.LootSpot(false);
                 return EnemyController.EnemySoundInvestigationState;
             }
 
@@ -26,7 +29,7 @@ namespace Enemy.States
                 enemy.Agent.isStopped = true;
                 
                 // rotates the enemy towards the loot spot
-                Quaternion _desiredDirection = Quaternion.Slerp(enemy.transform.rotation, Quaternion.LookRotation(enemy.LootSpotTransform.position - enemy.transform.position), enemy.SmoothRotation * Time.deltaTime);
+                Quaternion _desiredDirection = Quaternion.Slerp(enemy.transform.rotation, enemy.LootSpotTransform.rotation, enemy.SmoothRotation * Time.deltaTime);
                 enemy.transform.rotation = _desiredDirection;
             }
             
@@ -36,8 +39,7 @@ namespace Enemy.States
                 enemy.Agent.isStopped = false;
                 enemy.AnimationHandler.LootSpot(false);
                 return EnemyController.EnemyPatrolState;
-                
-        }
+            }
             
             return this;
         }
