@@ -834,8 +834,6 @@ namespace Enemy.Controller
                 // add the enemy to the list and start the cooldown to choose the closest enemies
                 _noisyItemScript.EnemyList.Add(this);
                 _noisyItemScript.StartPullCountdown = true;
-                
-                _soundNoticed = true;
             }
             
             // if the enemy gets in a new room, the old search points will be deleted and the new ones will be selected

@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Gather 6 provisions before you head to the cellar.'
+  m_text: '- Gather at least 6 provisions before you head to the cellar.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 76ff70d335b76894aae3c9b69cbcdcd3, type: 2}
@@ -986,7 +986,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.3, y: 18.425041}
+  m_AnchoredPosition: {x: 1.3, y: -0.02934742}
   m_SizeDelta: {x: 118.8, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7415613765099603702
