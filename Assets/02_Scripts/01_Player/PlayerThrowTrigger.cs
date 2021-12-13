@@ -26,6 +26,8 @@ public class PlayerThrowTrigger : MonoBehaviour
 
     [SerializeField] private Transform _lastThrowPositionObject;
 
+    [SerializeField] private LayerMask _noisyItem;
+
     private CollectStones _collectStones;
     
     private bool _playerThrew = false;
@@ -138,7 +140,7 @@ public class PlayerThrowTrigger : MonoBehaviour
             Physics.Raycast(_inWayRaycastPosition.position, noisyItem.transform.position - transform.position, out hit, Vector3.Distance(noisyItem.transform.position, transform.position));
             
                 // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
-                if(Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("NoisyItem")))
+                if(Physics.Raycast(ray, Mathf.Infinity, _noisyItem))
                 {
                     _notThrowableSprite.gameObject.SetActive(true);
                     

@@ -14,6 +14,7 @@
         <e p="02_Scripts" t="Include">
           <e p="01_Player" t="Include">
             <e p="Checkpoint.cs" t="Include" />
+            <e p="CollectibleCloseActivation.cs" t="Include" />
             <e p="CollectibleItemRaycast.cs" t="Include" />
             <e p="CollectItem.cs" t="Include" />
             <e p="CollectProvisions.cs" t="Include" />
@@ -50,9 +51,11 @@
             <e p="LookAgentVisualization.cs" t="Include" />
             <e p="LootSpot.cs" t="Include" />
             <e p="NoisyItem.cs" t="Include" />
+            <e p="NoisyItemCloseActivation.cs" t="Include" />
             <e p="NoisyItemPullRadius.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
+            <e p="SpottedBarTowardsCamera.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
           </e>
           <e p="03_Game" t="Include">
@@ -89,13 +92,6 @@
         <e p="06_Technical" t="Include">
           <e p="Shader" t="Include">
             <e p="Placeholder.txt" t="Include" />
-          </e>
-        </e>
-        <e p="07_Prefabs" t="Include">
-          <e p="Alpha" t="Include">
-            <e p="Items" t="Include">
-              <e p="Placeholder.txt" t="Include" />
-            </e>
           </e>
         </e>
         <e p="Art Assets" t="Include">
@@ -209,6 +205,119 @@
                 <e p="DOTweenModuleUtils.cs" t="Include" />
               </e>
               <e p="Readme.txt" t="Include" />
+            </e>
+          </e>
+          <e p="DynamicShadowProjector" t="Include">
+            <e p="ProjectorForLWRP-master-universalrp" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="AdditionalProjectorRenderer.cs" t="Include" />
+                <e p="CustomRendererInterface.cs" t="Include" />
+                <e p="CustomRendererPass.cs" t="Include" />
+                <e p="CustomRendererPassManager.cs" t="Include" />
+                <e p="Editor" t="Include">
+                  <e p="ProjectorEditor.cs" t="Include" />
+                  <e p="ProjectorMaterialPreprocessor.cs" t="Include" />
+                </e>
+                <e p="ProjectorForLWRP.cs" t="Include" />
+                <e p="ProjectorRendererFeature.cs" t="Include" />
+                <e p="Utils" t="Include">
+                  <e p="ObjectPool.cs" t="Include" />
+                  <e p="StencilMaskAllocator.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="EnableCbuffer.cginc" t="Include" />
+                <e p="P4LWRP.cginc" t="Include" />
+                <e p="ProjectorDebug.shader" t="Include" />
+                <e p="ProjectorLight.shader" t="Include" />
+                <e p="ProjectorShadow.shader" t="Include" />
+                <e p="StencilPass.shader" t="Include" />
+              </e>
+              <e p="SRP" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="ProjectorForSRP.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Test" t="Include">
+                <e p="CullingTest.cs" t="Include" />
+                <e p="CullingTest.shader" t="Include" />
+              </e>
+            </e>
+            <e p="Readme.txt" t="Include" />
+            <e p="Samples" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="FPSCheck.cs" t="Include" />
+                <e p="Rotate.cs" t="Include" />
+                <e p="Swing.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="DrawSceneObject.cs" t="Include" />
+              <e p="DrawTargetObject.cs" t="Include" />
+              <e p="Editor" t="Include">
+                <e p="DrawSceneObjectEditor.cs" t="Include" />
+                <e p="DrawTargetObjectEditor.cs" t="Include" />
+                <e p="EditorBase.cs" t="Include" />
+                <e p="MipmappedShadowFallbackEditor.cs" t="Include" />
+                <e p="ProjectorShaderGUI.cs" t="Include" />
+                <e p="PropertyBlockForTransparentReceiverEditor.cs" t="Include" />
+                <e p="ShadowTextureRendererEditor.cs" t="Include" />
+              </e>
+              <e p="FollowTargetObject.cs" t="Include" />
+              <e p="MipmappedShadowFallback.cs" t="Include" />
+              <e p="PropertyBlockForTransparentReceiver.cs" t="Include" />
+              <e p="ShadowTextureRenderer.cs" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="Blit" t="Include">
+                <e p="Blit.shader" t="Include" />
+                <e p="Blur.shader" t="Include" />
+                <e p="CopyMipmap.shader" t="Include" />
+                <e p="Downsample.cginc" t="Include" />
+                <e p="Downsample.shader" t="Include" />
+                <e p="DownsampleFallback.shader" t="Include" />
+                <e p="EraseShadow.shader" t="Include" />
+              </e>
+              <e p="Caps" t="Include">
+                <e p="glslCheck.shader" t="Include" />
+                <e p="tex2DlodExtensionCheck.shader" t="Include" />
+              </e>
+              <e p="EnableCbuffer.cginc" t="Include" />
+              <e p="Projector" t="Include">
+                <e p="DSPMipmappedShadow.cginc" t="Include" />
+                <e p="DSPProjector.cginc" t="Include" />
+                <e p="Dynamic" t="Include">
+                  <e p="LightxShadowWithLinearFalloff.shader" t="Include" />
+                  <e p="LightxShadowWithoutFalloff.shader" t="Include" />
+                  <e p="MipmappedShadow.shader" t="Include" />
+                  <e p="MipmappedShadowForLightmapShadowmask.shader" t="Include" />
+                  <e p="MipmappedShadowForLightmapSubtractive.shader" t="Include" />
+                  <e p="ShadowWithLinearFalloff.shader" t="Include" />
+                  <e p="ShadowWithoutFalloff.shader" t="Include" />
+                  <e p="SimpleShadowWithLinearFalloff.shader" t="Include" />
+                  <e p="SimpleShadowWithoutFalloff.shader" t="Include" />
+                </e>
+                <e p="Invisible.shader" t="Include" />
+                <e p="LightWithLinearFalloff.shader" t="Include" />
+                <e p="LightWithoutFalloff.shader" t="Include" />
+                <e p="LightxShadowWithLinearFalloff.shader" t="Include" />
+                <e p="LightxShadowWithoutFalloff.shader" t="Include" />
+                <e p="MipmappedShadow.shader" t="Include" />
+                <e p="MipmappedShadowForLightmapShadowmask.shader" t="Include" />
+                <e p="MipmappedShadowForLightmapSubtractive.shader" t="Include" />
+                <e p="ShadowWithLinearFalloff.shader" t="Include" />
+                <e p="ShadowWithoutFalloff.shader" t="Include" />
+                <e p="SimpleShadowWithLinearFalloff.shader" t="Include" />
+                <e p="SimpleShadowWithoutFalloff.shader" t="Include" />
+                <e p="UnityShaderVariablesForSRP.cginc" t="Include" />
+              </e>
+              <e p="Shadow" t="Include">
+                <e p="DSPShadow.cginc" t="Include" />
+                <e p="ShadowForReplacement.shader" t="Include" />
+                <e p="ShadowOpaque.shader" t="Include" />
+                <e p="ShadowTransparent.shader" t="Include" />
+                <e p="ShadowTransparentCutout.shader" t="Include" />
+              </e>
             </e>
           </e>
           <e p="TextMesh Pro" t="Include">
