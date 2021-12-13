@@ -53,7 +53,8 @@ namespace Enemy.SoundItem
         [SerializeField] private GameObject _soundRangeCollider;
         
         // deactivate the sound collider after a fixed time
-        private float _deactivationTime = 0.1f;
+        // the time has to be higher as the pull cooldown time
+        private float _deactivationTime = 0.2f;
 
         public GameObject SoundRangeCollider
         {
@@ -232,7 +233,7 @@ namespace Enemy.SoundItem
                 {
                     if (_reusable)
                     {
-                        _deactivationTime = 0.1f;
+                        _deactivationTime = 0.2f;
                         _soundRangeCollider.SetActive(false);
                         _itemUsable = true;
                         _itemUsed = false;
@@ -291,7 +292,7 @@ namespace Enemy.SoundItem
                 _enemyList.Remove(_closestEnemy);
                 _enemyAmountToPull--;
                 PullEnemyToNoisyItem();
-
+                
                 // reset the amount of desired enemies
                 if (_enemyAmountToPull <= 1)
                 {
