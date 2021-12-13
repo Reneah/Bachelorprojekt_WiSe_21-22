@@ -96,13 +96,13 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SpottedBarTowardsCamera.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemCloseActivation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
       </list>
     </option>
   </component>
@@ -267,6 +267,7 @@
       <workItem from="1639239383963" duration="8704000" />
       <workItem from="1639327197018" duration="2916000" />
       <workItem from="1639381073596" duration="1539000" />
+      <workItem from="1639383059456" duration="1669000" />
     </task>
     <servers />
   </component>
@@ -368,10 +369,10 @@
     </state>
     <state x="652" y="212" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638347951073" />
     <state x="669" y="235" key="run.anything.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1635953837811" />
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1639381715489">
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1639384463451">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1639381715489" />
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1639384463451" />
     <state x="675" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1639330242961" />
   </component>
   <component name="XDebuggerManager">
