@@ -7,7 +7,7 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.ActivateChasing)
             {
                 return EnemyController.EnemyVisionChaseState;
             }
@@ -36,12 +36,14 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            
+           
         }
 
         public void Exit(EnemyController enemy)
         {
             enemy.Agent.isStopped = false;
+            enemy.EnemyTalkCheck.Talkable = false;
+            
         }
     }
 }

@@ -92,7 +92,7 @@ public class SceneChange : MonoBehaviour
         _playerController.enabled = false;
         // Deactivate QuestManager parent object, this is a temporary solution so it doesn't overlap with the narrative text
         _questManager.SetActive(false);
-        _playtestingHints.SetActive(false);
+        //_playtestingHints.SetActive(false);
         _stoneUI.SetActive(false);
         _fadeImage.DOFade(1, _fadeTime);
     }

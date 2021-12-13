@@ -26,6 +26,11 @@ public class CollectItem : MonoBehaviour
     [Tooltip("has to be interacted with by the player as a quest task")] 
     [SerializeField] private bool _secretPassage;
     
+    public static bool _keyCollected = false;
+    public static bool _backpackCollected = false;
+    public static bool _parchmentCollected = false;
+    public static bool _secretPassageOpened = false;
+    
     private bool _itemCollectible;
     
     // a raycast in another script hits the collectable to activate the UI & functionalities
@@ -37,15 +42,75 @@ public class CollectItem : MonoBehaviour
         set => _hitCollectable = value;
     }
 
+    public bool ItemCollected
+    {
+        get => _itemCollected;
+        set => _itemCollected = value;
+    }
+
+    public GameObject CollectibleSprite
+    {
+        get => _collectibleSprite;
+        set => _collectibleSprite = value;
+    }
+
+    public bool SecretPassage
+    {
+        get => _secretPassage;
+        set => _secretPassage = value;
+    }
+
+    public GameObject ItemImage
+    {
+        get => _ItemImage;
+        set => _ItemImage = value;
+    }
+
+    public GameObject Enemies
+    {
+        get => _enemies;
+        set => _enemies = value;
+    }
+
+    public PlayerController PlayerController
+    {
+        get => _playerController;
+        set => _playerController = value;
+    }
+
+    public SceneChange SceneChange
+    {
+        get => _sceneChange;
+        set => _sceneChange = value;
+    }
+
+    public bool Key
+    {
+        get => _key;
+        set => _key = value;
+    }
+
+    public bool ItemCollectible
+    {
+        get => _itemCollectible;
+        set => _itemCollectible = value;
+    }
+
+    public bool Backpack
+    {
+        get => _backpack;
+        set => _backpack = value;
+    }
+
+    public bool Parchment
+    {
+        get => _parchment;
+        set => _parchment = value;
+    }
+
     //[SerializeField]
     private float _textVanishTime;
     
-    public static bool _keyCollected = false;
-    public static bool _backpackCollected = false;
-    public static bool _parchmentCollected = false;
-    public static bool _secretPassageOpened = false;
-
-    private float _vanishTime;
     private bool _itemCollected = false;
 
     private SceneChange _sceneChange;
@@ -54,8 +119,6 @@ public class CollectItem : MonoBehaviour
     
     void Start()
     {
-        _vanishTime = _textVanishTime;
-        
         _collectibleSprite.gameObject.SetActive(false);
         _ItemImage.SetActive(false);
         _sceneChange = FindObjectOfType<SceneChange>();
@@ -80,44 +143,6 @@ public class CollectItem : MonoBehaviour
                 _usebleMarker.SetActive(true);
                 _collectibleSprite.gameObject.SetActive(true);
                 _negativeSprite.gameObject.SetActive(false);
-
-                if (Input.GetKey(KeyCode.Mouse0))
-                {
-                    _itemCollectible = false;
-                    
-                    if (_key)
-                    {
-                        _keyCollected = true;
-                    }
-                    else if(_backpack)
-                    {
-                        _backpackCollected = true;
-                        _sceneChange.ChangeScene();
-                        _playerController.enabled = false;
-                    }
-                    else if(_parchment)
-                    {
-                        _parchmentCollected = true;
-                        _sceneChange.ChangeScene();
-                        _playerController.enabled = false;
-                    }
-                    else if(_secretPassage)
-                    {
-                        if (!_keyCollected)
-                        { //This seems to cause issues, as you can't pick up with the secret door even when you have collected the key
-                            return;
-                        }
-                        _secretPassageOpened = true;
-                        _sceneChange.ChangeScene();
-                        _playerController.enabled = false;
-                        _enemies.SetActive(false);
-                    }
-                
-                    _collectibleSprite.gameObject.SetActive(false);
-                    _ItemImage.SetActive(true);
-                    _itemCollected = true;
-                    gameObject.SetActive(false);
-                }
             }
         }
         else
@@ -125,44 +150,6 @@ public class CollectItem : MonoBehaviour
             _collectibleSprite.gameObject.SetActive(false);
             _negativeSprite.gameObject.SetActive(false);
             _usebleMarker.SetActive(false);
-        }
-        
-        if (_itemCollected)
-        {
-            _vanishTime -= Time.deltaTime;
-
-            if (_vanishTime <= 0)
-            { 
-                // have the possibility to deactivate the object later when something is running with cooldown after collecting the item
-            }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player")  && !_itemCollected)
-        {
-            _collectibleSprite.gameObject.SetActive(true);
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player")  && !_itemCollected)
-        {
-            _itemCollectible = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (other.CompareTag("Player") && !_itemCollected)
-            {
-                _collectibleSprite.gameObject.SetActive(false);
-                _itemCollectible = false;
-            }
         }
     }
 }

@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Enemy.AnimationHandler;
+using Enemy.ShareInformation;
 using Enemy.SoundItem;
 using Enemy.States;
 using Enemy.TalkCheck;
@@ -71,7 +71,10 @@ namespace Enemy.Controller
         [Header("Chase Behaviour")]
         [Tooltip("set the distance to catch the player")]
         [Range(0.5f, 5)]
-        [SerializeField] private float _catchDistance = 2;
+        [SerializeField] private float _lowGroundCatchDistance = 2;
+        [Tooltip("set the distance to catch the player")]
+        [Range(1, 5)]
+        [SerializeField] private float _highGroundCatchDistance = 2;
         [Tooltip("the speed which the enemy will chase the player")]
         [Range(1,10)]
         [SerializeField] private float _chaseSpeed;
@@ -79,6 +82,45 @@ namespace Enemy.Controller
         // otherwise at a quick turn of the player or other situations, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
         private float _reminderTime = 0;
         
+        // determines if the first enemy reached the destination of the player nearby so that the other ones can gather around
+        private bool _firstEnemyReachedDestination;
+
+        // when the enemy is near another enemy who has sighted the player he will chase him as well
+        private bool _activateChasing = false;
+
+        // activate and deactivate the chase activation to pull other nearby enemies to chase the player 
+        private GameObject _chaseActivationObject;
+
+        // the time window where this enemy can pull other enemies to chase the player nearby
+        private float _activateChaseCooldown = 0.1f;
+
+        // the position on the NavMesh around the current player position that is reachable
+        private NavMeshHit _hit;
+
+        public NavMeshHit Hit
+        {
+            get => _hit;
+            set => _hit = value;
+        }
+
+        public float ActivateChaseCooldown
+        {
+            get => _activateChaseCooldown;
+            set => _activateChaseCooldown = value;
+        }
+
+        public GameObject ChaseActivationObject
+        {
+            get => _chaseActivationObject;
+            set => _chaseActivationObject = value;
+        }
+
+        public bool ActivateChasing
+        {
+            get => _activateChasing;
+            set => _activateChasing = value;
+        }
+
         public float ReminderTime
         {
             get => _reminderTime;
@@ -86,7 +128,7 @@ namespace Enemy.Controller
         }
 
         #endregion
-        
+
         #region PatrolVariables
         
         [Header("Patrol Behaviour")]
@@ -141,9 +183,15 @@ namespace Enemy.Controller
         [SerializeField] private float _secondsToSpott;
         [SerializeField] private Image _spottedBar;
         [Tooltip("the distance where you get spotted instantly")]
+        [Range(0,10)]
         [SerializeField] private float _spottedDistance;
         [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
+        [Range(0,10)]
         [SerializeField] private float _lastChanceTime;
+        [Tooltip("the view cone that will eb activated when the player is on high ground")]
+        [SerializeField] private GameObject _highGroundViewCone;
+        [Tooltip("the view cone that will be activated when the player is on low ground")]
+        [SerializeField] private GameObject _lowGroundViewCone;
         
         // the time to spot the enemy when he is in the view field
         private float _spotTime = 0;
@@ -262,8 +310,20 @@ namespace Enemy.Controller
          private Transform _currentCloseNoisyItemWaypoint;
          // get all waypoints in the search area again after using them
          private bool _resetNoisyItemWaypoints = false;
-
-
+         
+         // the enemy is able to investigate the noisy item when he heard the sound and the max enemy pull amount is not reached
+         private bool _canInvestigate = false;
+         // because the trigger enter gets more calls than one at the sound tag, I counter it with this bool
+         private bool _getSoundOnce = false;
+         
+         public bool CanInvestigate
+         {
+             get => _canInvestigate;
+             set => _canInvestigate = value;
+         }
+         
+         public bool GetSoundOnce { get; set; }
+         
          public bool ResetNoisyItemWaypoints
          {
              get => _resetNoisyItemWaypoints;
@@ -350,9 +410,9 @@ namespace Enemy.Controller
         }
         
         #endregion
-
+        
         #region GuardVariables
-
+        
         [Header("Guard Behaviour")]
         [Tooltip("the time to switch between the looking points")]
         [SerializeField] private float _switchLookTime;
@@ -454,11 +514,13 @@ namespace Enemy.Controller
             get => _lootSpotTransform;
             set => _lootSpotTransform = value;
         }
-
+        
         #endregion
         
         void Start()
         {
+            _highGroundViewCone.SetActive(false);
+            
             // start state machine with the idle
             _currentState = EnemyIdleState;
             
@@ -467,6 +529,7 @@ namespace Enemy.Controller
             _player = FindObjectOfType<PlayerController>();
             _inGameMenu = FindObjectOfType<InGameMenu>();
             _enemyTalkCheck = transform.Find("EnemyTalkCheck").GetComponent<EnemyTalkCheck>();
+            _chaseActivationObject = transform.Find("EnemyChaseActivation").GetComponent<ChaseActivation.ChaseActivation>().gameObject;
 
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
             if (_patrolling)
@@ -483,7 +546,6 @@ namespace Enemy.Controller
             
             // the dwelling time at a waypoint
             _standingCooldown = _dwellingTimer;
-            
         }
         
         void Update()
@@ -495,8 +557,44 @@ namespace Enemy.Controller
                 _currentState = enemyState;
                 _currentState.Enter(this);
             }
-            
+
             PlayerDetected();
+            ActivateNoisyItemInvestigation();
+        }
+        
+        #region ChaseBehaviour
+        
+        /// <summary>
+        /// Check if the Player is on higher ground or not to modify the vision for better player recognizing
+        /// </summary>
+        public void CheckPlayerGround()
+        {
+            if (_player.LowGround)
+            {             
+                // Standard View Cone
+                _lowGroundViewCone.SetActive(true);
+                _highGroundViewCone.SetActive(false);
+  
+            }
+
+            if (_player.HighGround)
+            {
+                // Bigger View Cone
+                _lowGroundViewCone.SetActive(false);
+                _highGroundViewCone.SetActive(true);
+            }
+        }
+        
+        /// <summary>
+        /// check if the enemy reached the last point that he is able to reach the player
+        /// </summary>
+        /// <returns></returns>
+        public bool ClosestPlayerPosition(float _stopDistance)
+        {
+            // give a position around the player on the NavMesh that is reachable
+            NavMesh.SamplePosition(_player.transform.position, out _hit,4, NavMesh.AllAreas);
+            
+            return Vector3.Distance(transform.position, _hit.position) <= _stopDistance;
         }
         
         /// <summary>
@@ -504,9 +602,39 @@ namespace Enemy.Controller
         /// </summary>
         public void ChasePlayer()
         {
+            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination 
+            if (EnemyShareInformation.EnemyInstance != null && !EnemyShareInformation.EnemyInstance._agent.isStopped) 
+            { 
+                EnemyShareInformation.FirstEnemyReachedDestination = false; 
+            } 
+            
+            // prevent that the run animation is playing when the agent can't go further in contrast to the player 
+            // rotates the enemy towards the player position 
+            // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop 
+            if (ClosestPlayerPosition(0.5f)|| ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination && _player.HighGround)
+            {
+                if (!EnemyShareInformation.FirstEnemyReachedDestination)
+                {
+                    EnemyShareInformation.EnemyInstance = this;
+                    EnemyShareInformation.FirstEnemyReachedDestination = true;
+                }
+                
+                _agent.isStopped = true;
+                _animationHandler.SetSpeed(0);
+                
+                if (Vector3.Dot(transform.TransformDirection(Vector3.forward), _player.transform.position - transform.position) <= 0.9f)
+                {
+                    _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 5 * Time.deltaTime);
+                    transform.rotation = _desiredDirection;
+                }
+
+                return;
+            }
+
             _agent.SetDestination(_player.transform.position);
             _agent.speed = _chaseSpeed;
             _animationHandler.SetSpeed(_chaseSpeed);
+            _agent.isStopped = false;
         }
         
         /// <summary>
@@ -515,8 +643,17 @@ namespace Enemy.Controller
         /// <returns></returns>
         public bool CatchPlayer()
         {
-            return Vector3.Distance(transform.position, _player.transform.position) <= _catchDistance;
+            if (_player.HighGround)
+            {
+               return  Vector3.Distance(transform.position, _player.transform.position) <= _highGroundCatchDistance;
+            }
+            else
+            {
+                return Vector3.Distance(transform.position, _player.transform.position) <= _lowGroundCatchDistance;
+            }
         }
+        
+        #endregion
         
         #region PatrolBehaviour
         
@@ -659,7 +796,7 @@ namespace Enemy.Controller
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
-                // when the player is to close to the enemy or to long in the view field, the enemy get spotted
+                // when the player is to close to the enemy or to long in the view field, the player get spotted
                 if (_spotTime >= _secondsToSpott || distance <= _spottedDistance)
                 {
                     _spottedBar.fillAmount = 1;
@@ -687,49 +824,18 @@ namespace Enemy.Controller
         
         private void OnTriggerEnter(Collider other)
         {
-            // when the enemy hears a sound, he will investigate it 
-            if (other.CompareTag("Sound"))
+            // when the enemy hears a sound, he will investigate it when the max enemy pull amount is not reached
+            if (other.CompareTag("Sound") && !_getSoundOnce)
             {
+                _getSoundOnce = true;
+                
                 // get the current noisy item script of the item
                 _noisyItemScript = other.GetComponentInParent<NoisyItem>();
+                // add the enemy to the list and start the cooldown to choose the closest enemies
+                _noisyItemScript.EnemyList.Add(this);
+                _noisyItemScript.StartPullCountdown = true;
                 
-                // the amount of the waypoints fo the enemy when the player activated the noisy item in close range
-                _usuableWaypointsAmount = Random.Range(1,_noisyItemScript.CloseNoisyItemWaypoints.Length);
-                
-              //  float _distance = Vector3.Distance(transform.position, other.transform.position);
-                
-            //    RaycastHit hit;
-             //   Physics.Raycast(other.transform.position, transform.position - other.transform.position, out hit, _distance);
-
-              //  if (hit.collider.CompareTag("Wall"))
-                {
-              //      _soundItemScript.Stage--;
-
-                    if (_noisyItemScript.Stage <= 0)
-                    {
-                  //      _soundItemScript.Stage = 0;
-                    //    return;
-                    }
-                }
-
-                // when the sound stage goes from 1 to 3, the sound will be noticed and the enemy will start to run towards it
-                if(_noisyItemScript.Stage <= 3)
-                {
-                    _soundBehaviourStage = _noisyItemScript.Stage;
-                    _soundEventPosition = _noisyItemScript.OffsetOrigin.transform;
-                    _soundNoticed = true;
-                }
-            }
-
-            // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the sound position
-            if (other.CompareTag("FootSteps"))
-            {
                 _soundNoticed = true;
-                _soundBehaviourStage = 3;
-                _soundEventPosition = _player.transform;
-                _animationActivated = false;
-                _heardFootsteps = true;
-                _spottedBar.fillAmount = 1;
             }
             
             // if the enemy gets in a new room, the old search points will be deleted and the new ones will be selected
@@ -744,11 +850,22 @@ namespace Enemy.Controller
                     _noisyItemSearchPoints.Add(waypoints);
                 }
             }
-            
         }
 
         private void OnTriggerStay(Collider other)
         {
+            // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the player position
+            if (other.CompareTag("FootSteps"))
+            {
+                _player.PlayerAnimationHandler.PlayerFlee(true);
+                _soundNoticed = true;
+                _soundBehaviourStage = 3;
+                _soundEventPosition = _player.transform;
+                _animationActivated = false;
+                _heardFootsteps = true;
+                _spottedBar.fillAmount = 1;
+            }
+            
             // if the enemy used the points in the room, all points will be added again because used points will be deleted during the search mode
             if (other.CompareTag("SearchPoints"))
             {
@@ -778,7 +895,7 @@ namespace Enemy.Controller
                 }
             }
         }
-
+        
         /// <summary>
         /// the distance between the sound event and the enemy
         /// </summary>
@@ -943,6 +1060,28 @@ namespace Enemy.Controller
                     _reachedWaypoint = false;
                     StartSearchNoisyItemBehaviour();
                 }
+            }
+        }
+
+        /// <summary>
+        /// activate the noisy item investigation when the enemy is chosen for this
+        /// </summary>
+        public void ActivateNoisyItemInvestigation()
+        {
+            if (_canInvestigate)
+            {
+                // the amount of the waypoints fo the enemy when the player activated the noisy item in close range
+                _usuableWaypointsAmount = Random.Range(1,_noisyItemScript.CloseNoisyItemWaypoints.Length);
+                
+                // when the sound stage goes from 1 to 3, the sound will be noticed and the enemy will start to run towards it
+                if(_noisyItemScript.Stage <= 3)
+                {
+                    _soundBehaviourStage = _noisyItemScript.Stage;
+                    _soundEventPosition = _noisyItemScript.OffsetOrigin.transform;
+                    _soundNoticed = true;
+                }
+
+                _canInvestigate = false;
             }
         }
         #endregion

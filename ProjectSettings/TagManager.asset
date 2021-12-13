@@ -15,6 +15,10 @@ TagManager:
   - Talkable
   - Enemy
   - TutorialTrigger
+  - Provisions
+  - HighGround
+  - LowGround
+  - NoisyItemShield
   layers:
   - Default
   - TransparentFX
@@ -28,9 +32,9 @@ TagManager:
   - NoisyItem
   - Stones
   - CollectibleItem
-  - 
-  - 
-  - 
+  - Provisions
+  - NoisyItemShield
+  - NoisyItemJug
   - 
   - 
   - 

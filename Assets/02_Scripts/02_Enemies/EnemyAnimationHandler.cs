@@ -132,7 +132,7 @@ namespace Enemy.AnimationHandler
             // controls the head rotation when the enemies sees the player
             if (_enemyController.CanSeePlayer)
             {
-                _enemyAnimator.SetLookAtWeight(_headRotationWeight);
+                _enemyAnimator.SetLookAtWeight(0.5f);
                 _enemyAnimator.SetLookAtPosition(_enemyController.LookPositionAtSpotted.position);
             }
 

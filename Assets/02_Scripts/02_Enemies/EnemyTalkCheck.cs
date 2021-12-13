@@ -23,7 +23,11 @@ namespace Enemy.TalkCheck
         
         // determines when the enemy run to each other
         private bool _talkable = false;
-        public bool Talkable => _talkable;
+        public bool Talkable
+        {
+            get => _talkable;
+            set => _talkable = value;
+        }
 
         // the position of the other enemy
         private GameObject _talkableEnemy;
@@ -83,6 +87,16 @@ namespace Enemy.TalkCheck
                     }
                 }
             }
+            // if the enemy sees or hears the player while the countdown, everything will be reset
+            else if (!_talkable && _countDown)
+            {
+                _enemyAnimation.TalkToEnemy(false);
+                _countDown = false;
+                _talkable = false;
+                EnemyShareInformation.EnemyTalkingNumber = 0;
+                _talkCooldown = _timeToTalk;
+                _takeTalkPartner = false;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -103,6 +117,7 @@ namespace Enemy.TalkCheck
                     }
                     
                     _talkable = true;
+                    _enemyController.AnimationHandler.SetSpeed(_enemyController.PatrolSpeed);
                     _talkableEnemy = other.GetComponentInParent<Transform>().gameObject;
                 }
             }

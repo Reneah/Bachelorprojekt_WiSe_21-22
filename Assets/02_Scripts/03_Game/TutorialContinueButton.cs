@@ -6,19 +6,13 @@ using UnityEngine;
     public class TutorialContinueButton : MonoBehaviour
     {
         private Tutorial _tutorialTrigger;
-        
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
 
-        // Update is called once per frame
-        void Update()
+        public Tutorial TutorialTrigger
         {
-        
+            get => _tutorialTrigger;
+            set => _tutorialTrigger = value;
         }
-
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("TutorialTrigger"))

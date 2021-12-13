@@ -24,6 +24,7 @@ public class InGameMenu : MonoBehaviour
 
     private PlayerController _playerController;
     private PlayerAnimationHandler _playerAnimation;
+    private TutorialContinueButton _tutorialContinueButton;
     
     private bool _enemyCatchedPlayer;
     public bool EnemyCatchedPlayer
@@ -52,12 +53,15 @@ public class InGameMenu : MonoBehaviour
 
     private bool _openMenu = false;
 
+    private bool _gotTutorialObject;
+
     private void Start()
     {
         Cursor.SetCursor(_cursorTexture, Vector2.zero, CursorMode.Auto);
         
         _playerController = FindObjectOfType<PlayerController>();
         _playerAnimation = FindObjectOfType<PlayerAnimationHandler>();
+        _tutorialContinueButton = FindObjectOfType<TutorialContinueButton>();
         
         // MasterAudio.PlaySound("Wind");
         // MasterAudio.PlaySound("Forest");
@@ -68,7 +72,12 @@ public class InGameMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_dead)
+        if (_tutorialContinueButton.TutorialTrigger != null && !_gotTutorialObject)
+        {
+            _gotTutorialObject = true;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Escape) && !_dead && !_gotTutorialObject || Input.GetKeyDown(KeyCode.Escape) && !_dead  && _gotTutorialObject && !_tutorialContinueButton.TutorialTrigger.TutorialWindowOpen)
         {
             if (!_openMenu)
             {

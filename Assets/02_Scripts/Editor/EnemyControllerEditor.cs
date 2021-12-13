@@ -27,7 +27,8 @@ namespace Enemy.CustomInspector
         private SerializedProperty _patrolSpeed;
         
         // chase variables
-        private SerializedProperty _catchDistance;
+        private SerializedProperty _lowGroundCatchDistance;
+        private SerializedProperty _highGroundCatchDistance;
         private SerializedProperty _chaseSpeed;
         
         // Field Of View variables
@@ -40,6 +41,8 @@ namespace Enemy.CustomInspector
         private SerializedProperty _spottedDistance;
         private SerializedProperty _lastChanceTime;
         private SerializedProperty _spottedTime;
+        private SerializedProperty _highGroundViewCone;
+        private SerializedProperty _lowGroundViewCone;
         
         // Investigation variables
         private SerializedProperty _firstStageRunSpeed;
@@ -71,7 +74,8 @@ namespace Enemy.CustomInspector
             _patrolSpeed = serializedObject.FindProperty("_patrolSpeed");
             
             // chase variables
-            _catchDistance = serializedObject.FindProperty("_catchDistance");
+            _lowGroundCatchDistance = serializedObject.FindProperty("_lowGroundCatchDistance");
+            _highGroundCatchDistance = serializedObject.FindProperty("_highGroundCatchDistance");
             _chaseSpeed = serializedObject.FindProperty("_chaseSpeed");
             
             // Field Of View variables
@@ -83,6 +87,8 @@ namespace Enemy.CustomInspector
             _spottedBar = serializedObject.FindProperty("_spottedBar");
             _spottedDistance = serializedObject.FindProperty("_spottedDistance");
             _lastChanceTime = serializedObject.FindProperty("_lastChanceTime");
+            _highGroundViewCone = serializedObject.FindProperty("_highGroundViewCone");
+            _lowGroundViewCone = serializedObject.FindProperty("_lowGroundViewCone");
             
             // Investigation variables
             _firstStageRunSpeed = serializedObject.FindProperty("_firstStageRunSpeed");
@@ -130,7 +136,8 @@ namespace Enemy.CustomInspector
             }
             
             // chase variables
-            EditorGUILayout.PropertyField(_catchDistance);
+            EditorGUILayout.PropertyField(_lowGroundCatchDistance);
+            EditorGUILayout.PropertyField(_highGroundCatchDistance);
             EditorGUILayout.PropertyField(_chaseSpeed);
             
             // Field Of View variables
@@ -142,7 +149,9 @@ namespace Enemy.CustomInspector
             EditorGUILayout.PropertyField(_spottedBar);
             EditorGUILayout.PropertyField(_spottedDistance);
             EditorGUILayout.PropertyField(_lastChanceTime);
-            
+            EditorGUILayout.PropertyField(_highGroundViewCone);
+            EditorGUILayout.PropertyField(_lowGroundViewCone);
+
             // Investigation variables
             EditorGUILayout.PropertyField(_firstStageRunSpeed);
             EditorGUILayout.PropertyField(_secondStageRunSpeed);

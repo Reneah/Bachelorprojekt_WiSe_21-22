@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using DarkTonic.MasterAudio;
+using Enemy.Controller;
 using TMPro;
 using UnityEngine;
 
@@ -13,12 +17,21 @@ namespace Enemy.SoundItem
         [SerializeField] private GameObject _negativeSprite;
         [Tooltip("mark the close range")]
         [SerializeField] private GameObject _closeActivationRadius;
+        [Tooltip("is the noisy item reusable or not")]
         [SerializeField] private bool _reusable;
         [Tooltip("the offset of the noisy item origin so that the enemy is able to reach the item")]
         [SerializeField] private GameObject _offsetOrigin;
         [Tooltip("the key to save the used status of the item")]
         [SerializeField] private string _playerPrefsKey;
-        
+
+        [SerializeField] private LayerMask _noisyItemLayer;
+
+        public LayerMask NoisyItemLayer
+        {
+            get => _noisyItemLayer;
+            set => _noisyItemLayer = value;
+        }
+
         public GameObject OffsetOrigin
         {
             get => _offsetOrigin;
@@ -38,17 +51,9 @@ namespace Enemy.SoundItem
         [Header("Sound Collider")]
         [Tooltip("the collider, which shows the sound range of the item")]
         [SerializeField] private GameObject _soundRangeCollider;
-
-        public bool Reusable
-        {
-            get => _reusable;
-            set => _reusable = value;
-        }
-
-        private bool _reuseItem;
-
+        
         // deactivate the sound collider after a fixed time
-        private float _deactivationTime = 0.3f;
+        private float _deactivationTime = 0.1f;
 
         public GameObject SoundRangeCollider
         {
@@ -63,7 +68,28 @@ namespace Enemy.SoundItem
         
         [Tooltip("the waypoints the enemy will run down when the player activating the item in close distance")]
         [SerializeField] private Transform[] _closeNoisyItemWaypoints;
+        [Tooltip("the max pull amount for the noisy item")]
+        [SerializeField] private float _enemyPullAmount;
 
+         // the final closest enemy distance to the noisy item
+         private float _closestEnemyDistance;
+         // the max pull amount for the noisy item
+         private float _enemyAmountToPull;
+         // the current closest enemy distance to the noisy item
+        private float _currentclosestEnemyDistance;
+        // need this script to activate the noisy item investigation
+        private EnemyController _closestEnemy;
+        // the enemies who heard the noisy item
+        private List<EnemyController> _enemyList = new List<EnemyController>();
+        // the cooldown how long to wait to get all enemies in sound range. Otherwise the first enemy would start the method and no one else could be added to investigate
+        private float _pullEnemyCooldown = 0.1f;
+
+        public List<EnemyController> EnemyList
+        {
+            get => _enemyList;
+            set => _enemyList = value;
+        }
+        
         public Transform[] CloseNoisyItemWaypoints
         {
             get => _closeNoisyItemWaypoints;
@@ -100,6 +126,45 @@ namespace Enemy.SoundItem
             set => _safeState = value;
         }
 
+        // start the pull countdown to be certain to get all enemies in the sound range
+        private bool startPullCountdown = false;
+
+        public bool StartPullCountdown
+        {
+            get => startPullCountdown;
+            set => startPullCountdown = value;
+        }
+
+        public PlayerThrowTrigger PlayerThrowTrigger
+        {
+            get => _playerThrowTrigger;
+            set => _playerThrowTrigger = value;
+        }
+
+        public GameObject CloseActivationRadius
+        {
+            get => _closeActivationRadius;
+            set => _closeActivationRadius = value;
+        }
+
+        public GameObject CollectibleSprite
+        {
+            get => _collectibleSprite;
+            set => _collectibleSprite = value;
+        }
+
+        public GameObject NegativeSprite
+        {
+            get => _negativeSprite;
+            set => _negativeSprite = value;
+        }
+
+        public bool ItemUsable
+        {
+            get => _itemUsable;
+            set => _itemUsable = value;
+        }
+
         void Start()
         {
             _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
@@ -120,9 +185,11 @@ namespace Enemy.SoundItem
                 PlayerPrefs.SetInt(_playerPrefsKey, _itemUsed.GetHashCode());
                 _safeState = false;
             }
-
+            
             ItemActivation();
             ItemExecution();
+
+            PullCountdown();
         }
 
         private void ItemActivation()
@@ -130,7 +197,7 @@ namespace Enemy.SoundItem
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit _hit;
 
-            if (Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("NoisyItem")) && _playerThrowTrigger.Close)
+            if (Physics.Raycast(ray, out _hit, Mathf.Infinity, _noisyItemLayer) && _playerThrowTrigger.Close)
             {
                 if (_itemUsed && !_itemUsable)
                 {
@@ -139,29 +206,6 @@ namespace Enemy.SoundItem
                 
                 else if (!_itemUsed && _itemUsable)
                 {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        _playerThrowTrigger.PlayerThrew = false;
-                        if (_oneTimeUsed)
-                        {
-                            _stage++;
-
-                            if (_stage >= 3)
-                            {
-                                _stage = 3;
-                            }
-                        }
-                
-                        _closeActivationRadius.SetActive(false);
-                        _collectibleSprite.gameObject.SetActive(false);
-                        _negativeSprite.gameObject.SetActive(true);
-                        _soundRangeCollider.SetActive(true);
-
-                        _itemUsable = false;
-                        _itemUsed = true;
-                        return;
-                    }
-                    
                     _closeActivationRadius.SetActive(true);
                     _collectibleSprite.gameObject.SetActive(true);
                     _negativeSprite.gameObject.SetActive(false);
@@ -188,7 +232,7 @@ namespace Enemy.SoundItem
                 {
                     if (_reusable)
                     {
-                        _deactivationTime = 0.3f;
+                        _deactivationTime = 0.1f;
                         _soundRangeCollider.SetActive(false);
                         _itemUsable = true;
                         _itemUsed = false;
@@ -205,28 +249,58 @@ namespace Enemy.SoundItem
                 }
             }
         }
-        
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("Player") && !_itemUsed)
-            {
-                _playerThrowTrigger.Close = true;
-                _itemUsable = true;
-            }
-        }
 
-        private void OnTriggerExit(Collider other)
+        /// <summary>
+        /// the countdown to choose the enemies, who should be pulled
+        /// </summary>
+        private void PullCountdown()
         {
-            if (other.CompareTag("Player"))
+            if (startPullCountdown)
             {
-                if (other.CompareTag("Player") && !_itemUsed)
+                _pullEnemyCooldown -= Time.deltaTime;
+
+                if (_pullEnemyCooldown <= 0)
                 {
-                    _itemUsable = false;
-                    _playerThrowTrigger.Close = false;
-                    _collectibleSprite.gameObject.SetActive(false);
-                    _closeActivationRadius.SetActive(false);
+                    _pullEnemyCooldown = 0.1f;
+                    _enemyAmountToPull = _enemyPullAmount;
+                    startPullCountdown = false;
+                    PullEnemyToNoisyItem();
                 }
             }
+        }
+        
+        /// <summary>
+        /// search the closest enemies to investigate the noisy item - there is a max amount to pull the enemies
+        /// </summary>
+        public void PullEnemyToNoisyItem()
+        {
+            _closestEnemyDistance = Mathf.Infinity;
+            foreach (EnemyController enemy in _enemyList)
+            {
+                _currentclosestEnemyDistance = Vector3.Distance(transform.position, enemy.transform.position);
+                if (_currentclosestEnemyDistance <= _closestEnemyDistance)
+                {
+                    _closestEnemy = enemy;
+                    _closestEnemyDistance = _currentclosestEnemyDistance;
+                }
+            }
+            // when the max enemy pull amount is reached, this method will be stopped
+            if (_enemyAmountToPull > 0)
+            {
+                _closestEnemy.CanInvestigate = true;
+                _enemyList.Remove(_closestEnemy);
+                _enemyAmountToPull--;
+                PullEnemyToNoisyItem();
+
+                // reset the amount of desired enemies
+                if (_enemyAmountToPull <= 1)
+                {
+                    _enemyAmountToPull = _enemyPullAmount;
+                }
+                return;
+            }
+            
+            _enemyList.Clear();
         }
     }
 }

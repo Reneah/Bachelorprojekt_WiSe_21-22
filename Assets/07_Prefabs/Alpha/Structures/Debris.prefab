@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4075925580888845925}
   - component: {fileID: 573763615307254301}
   - component: {fileID: 7460173820560993155}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrokenSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2306,7 +2306,7 @@ GameObject:
   - component: {fileID: 4489649930748205223}
   - component: {fileID: 1082162906239313997}
   - component: {fileID: 3637386335902887633}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrokenSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4599,7 +4599,7 @@ GameObject:
   - component: {fileID: 4038996009739060355}
   - component: {fileID: 7118531468871215633}
   - component: {fileID: 1727043993003470013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrokenSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6892,7 +6892,7 @@ GameObject:
   - component: {fileID: 9112584783162570236}
   - component: {fileID: 8476416374469538867}
   - component: {fileID: 1515516738618430009}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrokenSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9185,7 +9185,7 @@ GameObject:
   - component: {fileID: 7546993052472502052}
   - component: {fileID: 4535695256487755588}
   - component: {fileID: 8549929017381315859}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrokenSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11478,9 +11478,9 @@ GameObject:
   - component: {fileID: 1908340426335949626}
   - component: {fileID: 3077382254074007857}
   - component: {fileID: 4062239117149827206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Debris
-  m_TagString: Wall
+  m_TagString: HighGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

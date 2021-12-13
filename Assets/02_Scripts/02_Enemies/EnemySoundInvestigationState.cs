@@ -1,12 +1,26 @@
 using Enemy.Controller;
 using Enemy.ShareInformation;
+using UnityEngine;
 
 namespace Enemy.States
 {
-        public class EnemySoundInvestigationState : IEnemyState
+    public class EnemySoundInvestigationState : IEnemyState
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
+            if (enemy.ChaseActivationObject.activeInHierarchy)
+            {
+                enemy.ActivateChaseCooldown -= Time.deltaTime;
+
+                if (enemy.ActivateChaseCooldown <= 0)
+                {
+                    enemy.ChaseActivationObject.SetActive(false);
+                    enemy.ActivateChasing = false;
+                    enemy.ActivateChaseCooldown = 0.1f;
+                }
+            }
+            
             if (enemy.CanSeePlayer)
             {
                 enemy.AnimationHandler.FinishedInvestigationAnimation = false;
@@ -94,6 +108,14 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
+            enemy.GetSoundOnce = false;
+            
+            // only when the enemy hears the footstep he will go into the chase mode
+            if (enemy.HeardFootsteps)
+            {
+                enemy.ChaseActivationObject.SetActive(true);
+            }
+            
             enemy.SoundNoticed = false;
             
             enemy.CurrentSoundStage = enemy.SoundBehaviourStage;
