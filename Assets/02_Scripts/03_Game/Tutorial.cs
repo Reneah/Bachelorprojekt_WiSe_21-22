@@ -5,15 +5,28 @@ using UnityEngine;
 
     public class Tutorial : MonoBehaviour
     {
+        [SerializeField] private string _playerPrefsKey;
         [SerializeField] private GameObject _tutorialWindow;
         [SerializeField] private GameObject[] _content;
         [SerializeField] private GameObject[] _sprites;
-
         [SerializeField] private GameObject _hud;
 
         private int _contentCounter = 0;
 
         private bool _tutorialWindowOpen = false;
+
+        private bool _reactivateTutorialSpot = true;
+
+        private void OnEnable()
+        {
+            _reactivateTutorialSpot = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 1));
+            
+            if (!_reactivateTutorialSpot)
+            {
+                gameObject.SetActive(false);
+                _reactivateTutorialSpot = true;
+            }
+        }
 
         public bool TutorialWindowOpen
         {
@@ -64,6 +77,8 @@ using UnityEngine;
                 gameObject.SetActive(false);
                 _hud.SetActive(true);
                 _tutorialWindowOpen = false;
+
+                PlayerPrefs.SetInt(_playerPrefsKey, 0);
                 return;
             }
             
