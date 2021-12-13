@@ -110,7 +110,11 @@ namespace Enemy.States
         {
             enemy.GetSoundOnce = false;
             
-            enemy.ChaseActivationObject.SetActive(true);
+            // only when the enemy hears the footstep he will go into the chase mode
+            if (enemy.HeardFootsteps)
+            {
+                enemy.ChaseActivationObject.SetActive(true);
+            }
             
             enemy.SoundNoticed = false;
             

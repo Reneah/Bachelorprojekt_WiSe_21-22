@@ -4412,7 +4412,7 @@ GameObject:
   - component: {fileID: 7892696789336084021}
   m_Layer: 6
   m_Name: ThronePlattform
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

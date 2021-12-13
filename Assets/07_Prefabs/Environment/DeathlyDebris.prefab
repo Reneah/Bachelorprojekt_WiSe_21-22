@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4452703774892259824}
   - component: {fileID: 8562344131900570985}
   - component: {fileID: 5076524915111323298}
+  - component: {fileID: 2925207290551304589}
   m_Layer: 8
   m_Name: debrisMass
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &5076524915111323298
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105504330258884799}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7226289226327831123, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
+--- !u!64 &2925207290551304589
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,6 +204,7 @@ GameObject:
   - component: {fileID: 7060976252347488404}
   - component: {fileID: 7554051439306276258}
   - component: {fileID: 4796987038576050741}
+  - component: {fileID: 5156675350893355403}
   m_Layer: 8
   m_Name: debrisMass (1)
   m_TagString: Untagged
@@ -273,6 +289,64 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7226289226327831123, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
+--- !u!64 &5156675350893355403
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164799388937598194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7226289226327831123, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
+--- !u!1 &1395855469018873194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6441788332285881251}
+  - component: {fileID: 791207617250879508}
+  m_Layer: 8
+  m_Name: ColliderBarrier_L
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6441788332285881251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395855469018873194}
+  m_LocalRotation: {x: -0, y: 0.2542926, z: -0, w: 0.9671274}
+  m_LocalPosition: {x: 2.226, y: 1.235, z: -0.99200004}
+  m_LocalScale: {x: 1, y: 2.0100486, z: 0.14488}
+  m_Children: []
+  m_Father: {fileID: 7285463338034817888}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 29.463, z: 0}
+--- !u!65 &791207617250879508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395855469018873194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1896254950514460329
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +358,7 @@ GameObject:
   - component: {fileID: 1650987862978955700}
   - component: {fileID: 6328937975683737059}
   - component: {fileID: 2865758688427324958}
+  - component: {fileID: 8155955137585508079}
   m_Layer: 8
   m_Name: stoneRectangular
   m_TagString: Untagged
@@ -354,6 +429,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8155955137585508079
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896254950514460329}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1356686937746923673, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &2238805048641123872
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +535,7 @@ GameObject:
   - component: {fileID: 4043950862082597111}
   - component: {fileID: 6555486455453445618}
   - component: {fileID: 3171096652622836789}
+  - component: {fileID: 1798612051381454416}
   m_Layer: 8
   m_Name: stoneRound (1)
   m_TagString: Untagged
@@ -516,6 +606,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1798612051381454416
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2503124244926680386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3419693775310581072, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &2515156058626110480
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +793,7 @@ GameObject:
   - component: {fileID: 6075936628601636745}
   - component: {fileID: 7903207649735879545}
   - component: {fileID: 511608194714792088}
+  - component: {fileID: 2331095711462975325}
   m_Layer: 8
   m_Name: stoneRound
   m_TagString: Untagged
@@ -759,6 +864,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2331095711462975325
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3226630340425630834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3419693775310581072, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &3228851492183279429
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +889,7 @@ GameObject:
   - component: {fileID: 1427029696348581794}
   - component: {fileID: 7181688482034315648}
   - component: {fileID: 3892369381037352777}
+  - component: {fileID: 6035204752278292501}
   m_Layer: 8
   m_Name: stoneRectangular (2)
   m_TagString: Untagged
@@ -840,6 +960,64 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6035204752278292501
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228851492183279429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1356686937746923673, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
+--- !u!1 &3962193854231680521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786891112602504681}
+  - component: {fileID: 7595644889347027634}
+  m_Layer: 8
+  m_Name: ColliderBarrier_C
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &786891112602504681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962193854231680521}
+  m_LocalRotation: {x: -0, y: -0.025339536, z: -0, w: 0.9996789}
+  m_LocalPosition: {x: 3.7270002, y: 1.235, z: -1.2550001}
+  m_LocalScale: {x: 2.3732717, y: 2.0100486, z: 0.14488}
+  m_Children: []
+  m_Father: {fileID: 7285463338034817888}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: -2.904, z: 0}
+--- !u!65 &7595644889347027634
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962193854231680521}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4660374168095556662
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,6 +1029,7 @@ GameObject:
   - component: {fileID: 5818437430375944697}
   - component: {fileID: 6819152808570543887}
   - component: {fileID: 4508706671776301094}
+  - component: {fileID: 363008813970905178}
   m_Layer: 8
   m_Name: stoneRectangular (1)
   m_TagString: Untagged
@@ -921,6 +1100,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &363008813970905178
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660374168095556662}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1356686937746923673, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &5674951207039788908
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +1125,7 @@ GameObject:
   - component: {fileID: 7512788985750209145}
   - component: {fileID: 8453220759856294460}
   - component: {fileID: 703645576165968551}
+  - component: {fileID: 6611267355334756195}
   m_Layer: 8
   m_Name: stoneRound (2)
   m_TagString: Untagged
@@ -1002,6 +1196,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6611267355334756195
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5674951207039788908}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3419693775310581072, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &6108155771258252354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +1221,7 @@ GameObject:
   - component: {fileID: 8852384961588631069}
   - component: {fileID: 760572864217370194}
   - component: {fileID: 3530632958752168708}
+  - component: {fileID: 1840482287516225915}
   m_Layer: 8
   m_Name: stoneRound (3)
   m_TagString: Untagged
@@ -1083,6 +1292,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1840482287516225915
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108155771258252354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3419693775310581072, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &7138302441067872940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,6 +1317,7 @@ GameObject:
   - component: {fileID: 7384930619613381676}
   - component: {fileID: 7045430463694617051}
   - component: {fileID: 3215334813162053409}
+  - component: {fileID: 4156718008950216418}
   m_Layer: 8
   m_Name: stoneRectangular (3)
   m_TagString: Untagged
@@ -1164,6 +1388,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4156718008950216418
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138302441067872940}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1356686937746923673, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &7144482076253423377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +1413,7 @@ GameObject:
   - component: {fileID: 5009419042997881415}
   - component: {fileID: 5612760354281751279}
   - component: {fileID: 1978331037150193091}
+  - component: {fileID: 5041107461986856197}
   m_Layer: 8
   m_Name: woodPlank_01 (1)
   m_TagString: Untagged
@@ -1245,6 +1484,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5041107461986856197
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7144482076253423377}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5296261365028268578, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &7801591377967873961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,6 +1509,7 @@ GameObject:
   - component: {fileID: 2323834265890435238}
   - component: {fileID: 412064791177632523}
   - component: {fileID: 4978991663483735542}
+  - component: {fileID: 3543400646066420842}
   m_Layer: 8
   m_Name: woodPlank_02
   m_TagString: Untagged
@@ -1326,6 +1580,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3543400646066420842
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801591377967873961}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3501844140751230751, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &7825669636850252407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1605,7 @@ GameObject:
   - component: {fileID: 405145168260816772}
   - component: {fileID: 8244518406826025655}
   - component: {fileID: 4072331007983051026}
+  - component: {fileID: 8196093308144669411}
   m_Layer: 8
   m_Name: woodPlank_02 (1)
   m_TagString: Untagged
@@ -1407,6 +1676,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8196093308144669411
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7825669636850252407}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3501844140751230751, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &7949129194452169178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,9 +1737,56 @@ Transform:
   - {fileID: 405145168260816772}
   - {fileID: 5009419042997881415}
   - {fileID: 8852384961588631069}
+  - {fileID: 6441788332285881251}
+  - {fileID: 786891112602504681}
+  - {fileID: 8657064647288405982}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8431398049862883772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8657064647288405982}
+  - component: {fileID: 2048183339360965549}
+  m_Layer: 8
+  m_Name: ColliderBarrier_R
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8657064647288405982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431398049862883772}
+  m_LocalRotation: {x: -0, y: -0.4678858, z: -0, w: 0.883789}
+  m_LocalPosition: {x: 5.3840003, y: 1.235, z: -0.6460001}
+  m_LocalScale: {x: 1.2557863, y: 2.0100486, z: 0.14488}
+  m_Children: []
+  m_Father: {fileID: 7285463338034817888}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: -55.794, z: 0}
+--- !u!65 &2048183339360965549
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431398049862883772}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8500277961299634591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,6 +1798,7 @@ GameObject:
   - component: {fileID: 8539246630969448322}
   - component: {fileID: 813571511109541852}
   - component: {fileID: 7425589643583844274}
+  - component: {fileID: 7251041559072832652}
   m_Layer: 8
   m_Name: woodPlank_01
   m_TagString: Untagged
@@ -1538,6 +1869,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7251041559072832652
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8500277961299634591}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5296261365028268578, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &8795163436926027843
 GameObject:
   m_ObjectHideFlags: 0

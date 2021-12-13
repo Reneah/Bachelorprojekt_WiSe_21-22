@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 5710090030758050878}
   - component: {fileID: 427175701888604850}
   - component: {fileID: 2466119627278288393}
+  - component: {fileID: 4563206047663903927}
   m_Layer: 8
   m_Name: stoneRectangular (2)
   m_TagString: Untagged
@@ -243,6 +244,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4563206047663903927
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762270405939122278}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1356686937746923673, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &1464034670695138953
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +318,7 @@ GameObject:
   - component: {fileID: 7330668274936132164}
   - component: {fileID: 643493796380724405}
   - component: {fileID: 8642146741823620871}
+  - component: {fileID: 1137362743760657605}
   m_Layer: 8
   m_Name: stoneRound (1)
   m_TagString: Untagged
@@ -373,6 +389,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1137362743760657605
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164400941591423275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3419693775310581072, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &3250000024600234002
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +496,7 @@ GameObject:
   - component: {fileID: 1891097489014839890}
   - component: {fileID: 3986364351394251332}
   - component: {fileID: 2903469406970962715}
+  - component: {fileID: 6721436951240500020}
   m_Layer: 8
   m_Name: debrisMass (2)
   m_TagString: Untagged
@@ -537,6 +568,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &2903469406970962715
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4621849224973955602}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7226289226327831123, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
+--- !u!64 &6721436951240500020
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -723,6 +768,7 @@ GameObject:
   - component: {fileID: 3338188806308507866}
   - component: {fileID: 1705848689664842794}
   - component: {fileID: 9014000649633171403}
+  - component: {fileID: 74447349135304672}
   m_Layer: 8
   m_Name: stoneRound
   m_TagString: Untagged
@@ -793,6 +839,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &74447349135304672
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6252960107700728609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3419693775310581072, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &6405825354391700291
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +1026,7 @@ GameObject:
   - component: {fileID: 7847748380560621287}
   - component: {fileID: 3302641193761510064}
   - component: {fileID: 6756676470578528589}
+  - component: {fileID: 3851177895803463960}
   m_Layer: 8
   m_Name: stoneRectangular
   m_TagString: Untagged
@@ -1036,6 +1097,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3851177895803463960
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6940443884117586426}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1356686937746923673, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &7282431030147613043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,6 +1204,7 @@ GameObject:
   - component: {fileID: 2016505810460733383}
   - component: {fileID: 1356939076929915633}
   - component: {fileID: 4076852156447815014}
+  - component: {fileID: 1437947838383033855}
   m_Layer: 8
   m_Name: debrisMass (1)
   m_TagString: Untagged
@@ -1200,6 +1276,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &4076852156447815014
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7650353506424341409}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7226289226327831123, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
+--- !u!64 &1437947838383033855
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1386,6 +1476,7 @@ GameObject:
   - component: {fileID: 882650097638461557}
   - component: {fileID: 6222751485303413376}
   - component: {fileID: 7866213541926516130}
+  - component: {fileID: 4902512505170080976}
   m_Layer: 8
   m_Name: stoneRectangular (1)
   m_TagString: Untagged
@@ -1456,6 +1547,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4902512505170080976
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889815108481207972}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1356686937746923673, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &8896687914410926060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,6 +1573,7 @@ GameObject:
   - component: {fileID: 5173122328885694115}
   - component: {fileID: 923870946127022650}
   - component: {fileID: 4355756716416078321}
+  - component: {fileID: 970615395979008288}
   m_Layer: 8
   m_Name: debrisMass
   m_TagString: Untagged
@@ -1552,6 +1658,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7226289226327831123, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
+--- !u!64 &970615395979008288
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896687914410926060}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7226289226327831123, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
 --- !u!1 &9118524176438201434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,6 +1684,7 @@ GameObject:
   - component: {fileID: 1921701832170968433}
   - component: {fileID: 4522199371122734134}
   - component: {fileID: 1127318471551515061}
+  - component: {fileID: 4943363335154552592}
   m_Layer: 8
   m_Name: debrisMass (3)
   m_TagString: Untagged
@@ -1635,6 +1756,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &1127318471551515061
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9118524176438201434}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7226289226327831123, guid: 1a38f9968755d0a4e831b1b2722a78d2, type: 3}
+--- !u!64 &4943363335154552592
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Cinemachine.Utility;
 using Enemy.AnimationHandler;
 using Enemy.ShareInformation;
 using Enemy.SoundItem;
@@ -95,6 +93,15 @@ namespace Enemy.Controller
 
         // the time window where this enemy can pull other enemies to chase the player nearby
         private float _activateChaseCooldown = 0.1f;
+
+        // the position on the NavMesh around the current player position that is reachable
+        private NavMeshHit _hit;
+
+        public NavMeshHit Hit
+        {
+            get => _hit;
+            set => _hit = value;
+        }
 
         public float ActivateChaseCooldown
         {
@@ -512,6 +519,8 @@ namespace Enemy.Controller
         
         void Start()
         {
+            _highGroundViewCone.SetActive(false);
+            
             // start state machine with the idle
             _currentState = EnemyIdleState;
             
@@ -552,7 +561,9 @@ namespace Enemy.Controller
             PlayerDetected();
             ActivateNoisyItemInvestigation();
         }
-
+        
+        #region ChaseBehaviour
+        
         /// <summary>
         /// Check if the Player is on higher ground or not to modify the vision for better player recognizing
         /// </summary>
@@ -574,15 +585,16 @@ namespace Enemy.Controller
             }
         }
         
-        #region ChaseBehaviour
-        
         /// <summary>
-        /// check if the enemy reached the last point that he is able to reach
+        /// check if the enemy reached the last point that he is able to reach the player
         /// </summary>
         /// <returns></returns>
-        public bool PathEndPosition(float _stopDistance)
+        public bool ClosestPlayerPosition(float _stopDistance)
         {
-            return Vector3.Distance(transform.position, _agent.pathEndPosition) <= _stopDistance;
+            // give a position around the player on the NavMesh that is reachable
+            NavMesh.SamplePosition(_player.transform.position, out _hit,4, NavMesh.AllAreas);
+            
+            return Vector3.Distance(transform.position, _hit.position) <= _stopDistance;
         }
         
         /// <summary>
@@ -590,34 +602,39 @@ namespace Enemy.Controller
         /// </summary>
         public void ChasePlayer()
         {
-            _agent.SetDestination(_player.transform.position);
-            _agent.speed = _chaseSpeed;
-            _animationHandler.SetSpeed(_chaseSpeed);
-
-            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination
-            if (EnemyShareInformation.EnemyInstance != null && !EnemyShareInformation.EnemyInstance._agent.isStopped)
-            {
-                EnemyShareInformation.FirstEnemyReachedDestination = false;
-            }
-
-            _agent.isStopped = false;
+            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination 
+            if (EnemyShareInformation.EnemyInstance != null && !EnemyShareInformation.EnemyInstance._agent.isStopped) 
+            { 
+                EnemyShareInformation.FirstEnemyReachedDestination = false; 
+            } 
             
-            // prevent that the run animation is playing when the agent can't go further in contrast to the player
-            // rotates the enemy towards the player position
-            // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop
-            if (PathEndPosition(0.5f) || PathEndPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination)
+            // prevent that the run animation is playing when the agent can't go further in contrast to the player 
+            // rotates the enemy towards the player position 
+            // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop 
+            if (ClosestPlayerPosition(0.5f)|| ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination && _player.HighGround)
             {
                 if (!EnemyShareInformation.FirstEnemyReachedDestination)
                 {
                     EnemyShareInformation.EnemyInstance = this;
                     EnemyShareInformation.FirstEnemyReachedDestination = true;
                 }
-                _firstEnemyReachedDestination = true;
+                
                 _agent.isStopped = true;
                 _animationHandler.SetSpeed(0);
-                _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 5 * Time.deltaTime);
-                transform.rotation = _desiredDirection;
+                
+                if (Vector3.Dot(transform.TransformDirection(Vector3.forward), _player.transform.position - transform.position) <= 0.9f)
+                {
+                    _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 5 * Time.deltaTime);
+                    transform.rotation = _desiredDirection;
+                }
+
+                return;
             }
+
+            _agent.SetDestination(_player.transform.position);
+            _agent.speed = _chaseSpeed;
+            _animationHandler.SetSpeed(_chaseSpeed);
+            _agent.isStopped = false;
         }
         
         /// <summary>
@@ -817,17 +834,8 @@ namespace Enemy.Controller
                 // add the enemy to the list and start the cooldown to choose the closest enemies
                 _noisyItemScript.EnemyList.Add(this);
                 _noisyItemScript.StartPullCountdown = true;
-            }
-
-            // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the sound position
-            if (other.CompareTag("FootSteps"))
-            {
+                
                 _soundNoticed = true;
-                _soundBehaviourStage = 3;
-                _soundEventPosition = _player.transform;
-                _animationActivated = false;
-                _heardFootsteps = true;
-                _spottedBar.fillAmount = 1;
             }
             
             // if the enemy gets in a new room, the old search points will be deleted and the new ones will be selected
@@ -846,6 +854,18 @@ namespace Enemy.Controller
 
         private void OnTriggerStay(Collider other)
         {
+            // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the player position
+            if (other.CompareTag("FootSteps"))
+            {
+                _player.PlayerAnimationHandler.PlayerFlee(true);
+                _soundNoticed = true;
+                _soundBehaviourStage = 3;
+                _soundEventPosition = _player.transform;
+                _animationActivated = false;
+                _heardFootsteps = true;
+                _spottedBar.fillAmount = 1;
+            }
+            
             // if the enemy used the points in the room, all points will be added again because used points will be deleted during the search mode
             if (other.CompareTag("SearchPoints"))
             {
