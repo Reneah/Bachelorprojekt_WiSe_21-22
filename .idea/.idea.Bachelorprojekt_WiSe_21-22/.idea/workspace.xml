@@ -43,6 +43,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@4.5.2/Runtime/Core/Log.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerGroundDetection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/Scripts/Singleton/MasterAudio.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
@@ -52,7 +53,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyLootBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/SavePlayerValues.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/NewBehaviourScript.cs" />
@@ -84,11 +84,8 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/ChaseActivation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyVisionChaseState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LootSpot.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyLootState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectProvisions.cs" />
@@ -102,7 +99,11 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerGroundDetection.cs" />
       </list>
     </option>
   </component>
@@ -268,6 +269,7 @@
       <workItem from="1639327197018" duration="2916000" />
       <workItem from="1639381073596" duration="1539000" />
       <workItem from="1639383059456" duration="1669000" />
+      <workItem from="1639411808288" duration="1551000" />
     </task>
     <servers />
   </component>
