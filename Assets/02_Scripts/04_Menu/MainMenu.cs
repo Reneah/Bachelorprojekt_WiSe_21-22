@@ -107,7 +107,7 @@ public class MainMenu : MonoBehaviour
         CollectItem._backpackCollected = false;
         CollectItem._parchmentCollected = false;
         CollectItem._parchmentCollected = false;
-        CollectItem._secretPassageOpened = false;
+        CollectItem._enteredStaircase = false;
         
         _fadeImage.DOFade(1, 3);
     }
