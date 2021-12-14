@@ -120,14 +120,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ItemImage: {fileID: 0}
-  _textOffset: {x: 0, y: 0}
+  _textOffset: {x: 40, y: 0}
   _collectibleSprite: {fileID: 0}
   _negativeSprite: {fileID: 0}
   _usebleMarker: {fileID: 6320995878953516886}
+  _spawnKey: {fileID: 0}
   _key: 0
   _backpack: 0
   _parchment: 1
-  _secretPassage: 0
+  _throneCompartment: 0
+  _staircaseToCellar: 0
 --- !u!1 &2458204500464514039
 GameObject:
   m_ObjectHideFlags: 0
