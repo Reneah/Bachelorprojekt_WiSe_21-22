@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="877614ff-2134-43be-8987-24837770e7e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_3.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,6 +271,7 @@
       <workItem from="1639411808288" duration="1551000" />
       <workItem from="1639418004412" duration="496000" />
       <workItem from="1639484588957" duration="2193000" />
+      <workItem from="1639502790040" duration="166000" />
     </task>
     <servers />
   </component>
