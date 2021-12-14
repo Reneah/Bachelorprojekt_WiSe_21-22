@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 1163864586760787277}
   - component: {fileID: 4804618205320771287}
   - component: {fileID: 8244950299668422465}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pillow1
-  m_TagString: Untagged
+  m_TagString: HighGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1163864586760787277
 Transform:
@@ -93,12 +93,12 @@ GameObject:
   - component: {fileID: 8739855049563064485}
   - component: {fileID: 5413222120495927920}
   - component: {fileID: 7210086991322564833}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: blanket_02
-  m_TagString: Untagged
+  m_TagString: HighGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5574666395648152486
 Transform:
@@ -189,12 +189,12 @@ GameObject:
   - component: {fileID: 6222433017981831550}
   - component: {fileID: 3339885725009422760}
   - component: {fileID: 7863261594155685619}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pillow
-  m_TagString: Untagged
+  m_TagString: HighGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7023660350511088906
 Transform:
@@ -370,12 +370,12 @@ GameObject:
   - component: {fileID: 6702489581330505287}
   - component: {fileID: 6119324624726650841}
   - component: {fileID: 5312885049486424993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: blanket_01
-  m_TagString: Untagged
+  m_TagString: HighGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8643587913542996905
 Transform:
