@@ -1,3 +1,4 @@
+using BP;
 using Enemy.Controller;
 using Enemy.ShareInformation;
 using UnityEngine;
@@ -41,8 +42,13 @@ namespace Enemy.LootSpot
         // need this script to communicate with the current enemy nearby
         private EnemyController _enemyController;
 
+        private LootChestAnimationController _lootChestAnimation;
+        private bool _chestAnimation = false;
+
         void Start()
         {
+            _lootChestAnimation = GetComponentInChildren<LootChestAnimationController>();
+            
             _lootCooldown = _lootTime;
         }
         
@@ -53,14 +59,21 @@ namespace Enemy.LootSpot
             if (_enemyController != null && _enemyController.ReachedLootSpot)
             {
                 _lootCooldown -= Time.deltaTime;
+                if (!_chestAnimation)
+                {
+                    _lootChestAnimation.OpenChest(true);
+                    _chestAnimation = true;
+                }
                 
                 if (_lootCooldown <= 0)
                 {
                     _enemyController.AnimationHandler.LootSpot(false);
+                    _lootChestAnimation.OpenChest(false);
                     EnemyShareInformation.IsLooting = false;
                     _enemyController.Loot = false;
                     _enemyController.ReachedLootSpot = false;
                     _lootCooldown = _lootTime;
+                    _chestAnimation = false;
                     _reactivateLootSpot = true;
                 }
             }

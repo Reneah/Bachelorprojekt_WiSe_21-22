@@ -9,22 +9,34 @@ using UnityEngine;
 namespace Enemy.SoundItem
 {
     public class NoisyItem : MonoBehaviour
-    { 
-        [Header("Item")]
+    {
+        [Header("Item")] 
+        [Tooltip("the broken Item, when it is not reusable")] 
+        [SerializeField] private GameObject _brokenItem;
+        [Tooltip("the unharmed Item, when it is not reusable")] 
+        [SerializeField] private GameObject _unharmedItem;
         [Tooltip("the item sprite that will show up when the player is in range, hovers over the item and when it is available")]
         [SerializeField] private GameObject _collectibleSprite;
         [Tooltip("the item sprite that will show up when the player hovers over the item and it is not available")]
         [SerializeField] private GameObject _negativeSprite;
         [Tooltip("mark the close range")]
         [SerializeField] private GameObject _closeActivationRadius;
+        [Tooltip("mark the throw range radius")]
+        [SerializeField] private GameObject _throwRangeRadius;
         [Tooltip("is the noisy item reusable or not")]
         [SerializeField] private bool _reusable;
         [Tooltip("the offset of the noisy item origin so that the enemy is able to reach the item")]
         [SerializeField] private GameObject _offsetOrigin;
         [Tooltip("the key to save the used status of the item")]
         [SerializeField] private string _playerPrefsKey;
-
+        [Tooltip("the layer for the noisy item to be able to activate it")]
         [SerializeField] private LayerMask _noisyItemLayer;
+
+        public GameObject ThrowRangeRadius
+        {
+            get => _throwRangeRadius;
+            set => _throwRangeRadius = value;
+        }
 
         public LayerMask NoisyItemLayer
         {
@@ -84,7 +96,9 @@ namespace Enemy.SoundItem
         private List<EnemyController> _enemyList = new List<EnemyController>();
         // the cooldown how long to wait to get all enemies in sound range. Otherwise the first enemy would start the method and no one else could be added to investigate
         private float _pullEnemyCooldown = 0.1f;
-
+        // determines if the mouse is hovering over the noisy item
+        private bool _hoverOverNoisyItem;
+        
         public List<EnemyController> EnemyList
         {
             get => _enemyList;
@@ -166,11 +180,22 @@ namespace Enemy.SoundItem
             set => _itemUsable = value;
         }
 
+        private Collider _collider;
+        private NoisyItemCloseActivation _noisyItemCloseActivation;
+        
         void Start()
         {
-            _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
+            _collider = GetComponent<Collider>();
+            _noisyItemCloseActivation = GetComponentInChildren<NoisyItemCloseActivation>();
             
+            _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
             _collectibleSprite.gameObject.SetActive(false);
+            
+            if (!_reusable)
+            {
+                _brokenItem.SetActive(false);
+                _unharmedItem.SetActive(true);
+            }
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
         }
 
@@ -198,7 +223,9 @@ namespace Enemy.SoundItem
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit _hit;
 
-            if (Physics.Raycast(ray, out _hit, Mathf.Infinity, _noisyItemLayer) && _playerThrowTrigger.Close)
+            _hoverOverNoisyItem = Physics.Raycast(ray, out _hit, Mathf.Infinity, _noisyItemLayer);
+
+            if (_hoverOverNoisyItem && _playerThrowTrigger.Close)
             {
                 if (_itemUsed && !_itemUsable)
                 {
@@ -242,9 +269,13 @@ namespace Enemy.SoundItem
                     }
                     else
                     {
+                        _collider.enabled = false;
+                        _noisyItemCloseActivation.enabled = false;
+                        _brokenItem.SetActive(true);
+                        _unharmedItem.SetActive(false);
                         _negativeSprite.gameObject.SetActive(false);
                         _soundRangeCollider.SetActive(false);
-                        Destroy(this);
+                        this.enabled = false;
                         MasterAudio.PlaySound("ShatterVase");
                     }
                 }
