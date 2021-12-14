@@ -54,12 +54,12 @@ public class PlayerThrowTrigger : MonoBehaviour
     // signalize that the noisy item can be activated in throw range
     private GameObject _throwRange;
     
-    private NoisyItem noisyItem;
+    private NoisyItem _noisyItem;
     
     public NoisyItem NoisyItem
     {
-        get => noisyItem;
-        set => noisyItem = value;
+        get => _noisyItem;
+        set => _noisyItem = value;
     }
     
     // the player is able to throw
@@ -101,7 +101,7 @@ public class PlayerThrowTrigger : MonoBehaviour
         
         // just find a random sound item and new GameObject to not be null. Otherwise, there will be errors
         // the randomness and new GameObject creation doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
-        noisyItem = FindObjectOfType<NoisyItem>();
+        _noisyItem = FindObjectOfType<NoisyItem>();
         _throwRange = new GameObject();
     }
 
@@ -109,11 +109,10 @@ public class PlayerThrowTrigger : MonoBehaviour
     {
         AbleToThrow();
         
-        if (noisyItem != null && !noisyItem.ItemUsed )
-        {
+        
             Throw();
-        }
-        else
+        
+        if(_noisyItem.ItemUsed)
         {
             _throwableSprite.gameObject.SetActive(false);
             _notThrowableSprite.gameObject.SetActive(false);
@@ -125,9 +124,9 @@ public class PlayerThrowTrigger : MonoBehaviour
     {
         if(_hit.collider != null && !_throwstate && !_close && Vector3.Distance(transform.position, _hit.collider.gameObject.transform.position) < _throwDistance)
         {
-            noisyItem = _hit.collider.GetComponent<NoisyItem>();
+            _noisyItem = _hit.collider.GetComponent<NoisyItem>();
             
-            _throwRange = noisyItem.ThrowRangeRadius;
+            _throwRange = _noisyItem.ThrowRangeRadius;
             _throwAvailable = true;
         }
         
@@ -156,11 +155,11 @@ public class PlayerThrowTrigger : MonoBehaviour
         
         if (!_close)
         {
-            Debug.DrawRay(_inWayRaycastPosition.position, noisyItem.transform.position - transform.position * Vector3.Distance(noisyItem.transform.position, transform.position));
+            Debug.DrawRay(_inWayRaycastPosition.position, _noisyItem.transform.position - transform.position * Vector3.Distance(_noisyItem.transform.position, transform.position));
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            Physics.Raycast(_inWayRaycastPosition.position, noisyItem.transform.position - transform.position, out hit, Vector3.Distance(noisyItem.transform.position, transform.position));
+            Physics.Raycast(_inWayRaycastPosition.position, _noisyItem.transform.position - transform.position, out hit, Vector3.Distance(_noisyItem.transform.position, transform.position));
             
                 // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
                 if(Physics.Raycast(ray, out _hit, Mathf.Infinity,  _noisyItemLayer))

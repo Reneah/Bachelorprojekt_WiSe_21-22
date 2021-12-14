@@ -6,10 +6,12 @@ using UnityEngine;
     public class CollectibleCloseActivation : MonoBehaviour
     {
         private CollectItem _collectItem;
+        private QuestManager _questManager;
         
         void Start()
         {
             _collectItem = GetComponentInParent<CollectItem>();
+            _questManager = FindObjectOfType<QuestManager>();
         }
         
         void Update()
@@ -34,13 +36,19 @@ using UnityEngine;
                     _collectItem.SceneChange.ChangeScene();
                     _collectItem.PlayerController.enabled = false;
                 }
-                else if(_collectItem.SecretPassage)
+                else if(_collectItem.ThroneCompartment)
                 {
-                    if (!CollectItem._keyCollected)
+                    CollectItem._throneCompartmentOpened = true;
+                   _collectItem.SpawnKey.SetActive(true);
+                }
+                else if(_collectItem.StaircaseToCellar)
+                {
+                    if (!CollectItem._keyCollected || !_questManager.ProvisionsQuestDone)
                     { //This seems to cause issues, as you can't pick up with the secret door even when you have collected the key
+                        Debug.Log("You haven't met all conditions yet to enter the staircase.");
                         return;
                     }
-                    CollectItem._secretPassageOpened = true;
+                    CollectItem._enteredStaircase = true;
                     _collectItem.SceneChange.ChangeScene();
                     _collectItem.PlayerController.enabled = false;
                     _collectItem.Enemies.SetActive(false);
@@ -51,7 +59,7 @@ using UnityEngine;
                 _collectItem.ItemCollected = true;
                     
                 // Temporary solution: If it's the secret passage, do NOT deactivate the game object
-                if (_collectItem.SecretPassage)
+                if (_collectItem.StaircaseToCellar || _collectItem.ThroneCompartment)
                 {
                     return;
                 }
