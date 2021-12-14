@@ -18,7 +18,10 @@ public class PlayerThrowState : IPlayerState
     public IPlayerState Execute(PlayerController player)
     {
         // rotate to the destined location
-        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(player.PlayerThrowTrigger.NoisyItem.transform.position - player.transform.position), Time.deltaTime * player.PlayerThrowTrigger.RotationSpeed);
+        Quaternion playerRotation =  Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(player.PlayerThrowTrigger.NoisyItem.transform.position - player.transform.position), Time.deltaTime * player.PlayerThrowTrigger.RotationSpeed);
+        playerRotation.x = 0;
+        playerRotation.z = 0;
+        player.transform.rotation = playerRotation;
 
         if (_activateCooldown)
         {
