@@ -916,7 +916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 3421040221536906205}
-  _textFadeTime: 10
+  _textFadeTime: 4
   _fadeStayTime: 35
   _nextSceneName: GameWorld_BesiegedKeep_1
 --- !u!224 &4602165365526123608

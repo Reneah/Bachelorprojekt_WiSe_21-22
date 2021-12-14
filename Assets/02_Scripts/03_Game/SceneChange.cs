@@ -33,6 +33,17 @@ public class SceneChange : MonoBehaviour
     private CollectStones _collectStones;
     
     private NoisyItem[] _noisyItems;
+
+    private bool _currentlyChangeScene = false;
+
+    public bool CurrentlyChangeScene
+    {
+        get => _currentlyChangeScene;
+        set => _currentlyChangeScene = value;
+    }
+
+    private bool _activateFade = true;
+    private bool _activateFade2 = true;
     
     void Start()
     {
@@ -59,8 +70,12 @@ public class SceneChange : MonoBehaviour
             
             if (_fadeStayCooldown <= 0)
             {
-                _text.DOFade(0, _textFadeTime);
-
+                if (_activateFade2)
+                {
+                    _text.DOFade(0, _textFadeTime);
+                    _activateFade2 = false;
+                }
+                
                 if (_text.color.a <= 0.001f)
                 {
                     PlayerPrefs.DeleteKey("PlayerPositionX");
@@ -78,14 +93,19 @@ public class SceneChange : MonoBehaviour
             }
             else
             {
+                if (_activateFade)
+                {
+                    _text.DOFade(1, _textFadeTime);
+                    _activateFade = false;
+                }
                 _fadeStayCooldown -= Time.deltaTime;
-                _text.DOFade(1, _textFadeTime);
             }
         }
     }
 
     public void ChangeScene()
     {
+        _currentlyChangeScene = true;
         _playerController.PlayerAnimationHandler.SetSpeeds(0,0);
         _playerController.enabled = false;
         // Deactivate QuestManager parent object, this is a temporary solution so it doesn't overlap with the narrative text
