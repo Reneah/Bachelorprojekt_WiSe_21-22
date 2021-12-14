@@ -174,9 +174,9 @@ GameObject:
   - component: {fileID: 427175701888604850}
   - component: {fileID: 2466119627278288393}
   - component: {fileID: 4563206047663903927}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: stoneRectangular (2)
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -319,9 +319,9 @@ GameObject:
   - component: {fileID: 643493796380724405}
   - component: {fileID: 8642146741823620871}
   - component: {fileID: 1137362743760657605}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: stoneRound (1)
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -769,9 +769,9 @@ GameObject:
   - component: {fileID: 1705848689664842794}
   - component: {fileID: 9014000649633171403}
   - component: {fileID: 74447349135304672}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: stoneRound
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1027,9 +1027,9 @@ GameObject:
   - component: {fileID: 3302641193761510064}
   - component: {fileID: 6756676470578528589}
   - component: {fileID: 3851177895803463960}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: stoneRectangular
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1477,9 +1477,9 @@ GameObject:
   - component: {fileID: 6222751485303413376}
   - component: {fileID: 7866213541926516130}
   - component: {fileID: 4902512505170080976}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: stoneRectangular (1)
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
