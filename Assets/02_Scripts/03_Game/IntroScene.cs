@@ -42,4 +42,9 @@ public class IntroScene : MonoBehaviour
             _text.DOFade(1, _textFadeTime);
         }
     }
+
+    public void SkipIntro()
+    {
+        SceneManager.LoadScene(_nextSceneName);
+    }
 }
