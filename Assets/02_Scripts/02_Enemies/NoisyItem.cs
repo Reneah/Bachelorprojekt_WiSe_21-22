@@ -179,9 +179,15 @@ namespace Enemy.SoundItem
             get => _itemUsable;
             set => _itemUsable = value;
         }
+
+        private Collider _collider;
+        private NoisyItemCloseActivation _noisyItemCloseActivation;
         
         void Start()
         {
+            _collider = GetComponent<Collider>();
+            _noisyItemCloseActivation = GetComponentInChildren<NoisyItemCloseActivation>();
+            
             _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
             _collectibleSprite.gameObject.SetActive(false);
             
@@ -263,6 +269,8 @@ namespace Enemy.SoundItem
                     }
                     else
                     {
+                        _collider.enabled = false;
+                        _noisyItemCloseActivation.enabled = false;
                         _brokenItem.SetActive(true);
                         _unharmedItem.SetActive(false);
                         _negativeSprite.gameObject.SetActive(false);

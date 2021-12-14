@@ -94,6 +94,7 @@ public class PlayerThrowTrigger : MonoBehaviour
 
     private Ray ray;
     private RaycastHit _hit;
+    private bool _hitNoisyItem;
 
     private void Start()
     {
@@ -102,41 +103,11 @@ public class PlayerThrowTrigger : MonoBehaviour
         // just find a random sound item and new GameObject to not be null. Otherwise, there will be errors
         // the randomness and new GameObject creation doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
         _noisyItem = FindObjectOfType<NoisyItem>();
-        _throwRange = new GameObject();
     }
 
     private void Update()
     {
-        AbleToThrow();
-        
-        
-            Throw();
-        
-        if(_noisyItem.ItemUsed)
-        {
-            _throwableSprite.gameObject.SetActive(false);
-            _notThrowableSprite.gameObject.SetActive(false);
-            _throwRange.SetActive(false);
-        }
-    }
-
-    private void AbleToThrow()
-    {
-        if(_hit.collider != null && !_throwstate && !_close && Vector3.Distance(transform.position, _hit.collider.gameObject.transform.position) < _throwDistance)
-        {
-            _noisyItem = _hit.collider.GetComponent<NoisyItem>();
-            
-            _throwRange = _noisyItem.ThrowRangeRadius;
-            _throwAvailable = true;
-        }
-        
-        else if(_throwRange != null && _hit.collider != null && Vector3.Distance(transform.position, _hit.collider.gameObject.transform.position) > _throwDistance)
-        {
-            _throwableSprite.gameObject.SetActive(false);
-            _notThrowableSprite.gameObject.SetActive(false);
-            _throwRange.SetActive(false);
-            _throwAvailable = false;
-        }
+        Throw();
     }
     
     private void Throw()
@@ -155,23 +126,30 @@ public class PlayerThrowTrigger : MonoBehaviour
         
         if (!_close)
         {
-            Debug.DrawRay(_inWayRaycastPosition.position, _noisyItem.transform.position - transform.position * Vector3.Distance(_noisyItem.transform.position, transform.position));
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
-            Physics.Raycast(_inWayRaycastPosition.position, _noisyItem.transform.position - transform.position, out hit, Vector3.Distance(_noisyItem.transform.position, transform.position));
+            
+            _hitNoisyItem = Physics.Raycast(ray, out _hit, Mathf.Infinity, _noisyItemLayer);
             
                 // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
-                if(Physics.Raycast(ray, out _hit, Mathf.Infinity,  _noisyItemLayer))
+                //!Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("Blocked"))
+                if(_hitNoisyItem) 
                 {
+                    _noisyItem = _hit.collider.GetComponent<NoisyItem>();
+                    _throwRange = _noisyItem.ThrowRangeRadius;
+                    
+                    if (!_throwstate && Vector3.Distance(transform.position, _hit.collider.gameObject.transform.position) < _throwDistance)
+                    {
+                        _throwAvailable = true;
+                    }
+                    
+                    _throwRange.SetActive(true);
                     _notThrowableSprite.gameObject.SetActive(true);
                     
                     if (_throwAvailable && _collectStones.StonesCounter > 0)
                     {
-                        _throwRange.SetActive(true);
-                        
                         // if something is blocking the trajectory
-                        if (hit.collider.CompareTag("Wall"))
+                        if(Physics.Raycast(_inWayRaycastPosition.position, _noisyItem.transform.position - _inWayRaycastPosition.position, out hit, Vector3.Distance(_noisyItem.transform.position, _inWayRaycastPosition.position), LayerMask.GetMask("Wall")))
                         {
                             _throwableSprite.gameObject.SetActive(false);
                             _notThrowableSprite.gameObject.SetActive(true);
@@ -197,7 +175,11 @@ public class PlayerThrowTrigger : MonoBehaviour
                 {
                     _throwableSprite.gameObject.SetActive(false);
                     _notThrowableSprite.gameObject.SetActive(false);
-                    _throwRange.SetActive(false);
+                    if (_throwRange != null)
+                    {
+                        _throwRange.SetActive(false);
+                    }
+                    _throwAvailable = false;
                 }
         }
     }
