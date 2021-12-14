@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 8818092095008201186}
   m_Layer: 11
   m_Name: Throne
-  m_TagString: Untagged
+  m_TagString: HighGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
