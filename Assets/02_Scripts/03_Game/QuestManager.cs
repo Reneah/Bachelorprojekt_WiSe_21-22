@@ -32,7 +32,7 @@ public class QuestManager : MonoBehaviour
     private CollectProvisions _collectProvisions;
     private int _currentProvisionsCount;
     
-    /// <summary>
+    /// <summary>mm
     /// Variables for quest panel movement
     /// </summary>
     bool isDown = true;
@@ -62,6 +62,28 @@ public class QuestManager : MonoBehaviour
         _quest4Text.enabled = false;
         _quest5Text.enabled = false;
         _quest6Text.enabled = false;
+    
+        // Reset QuestManager quest texts to regular font on New Game Start
+        if (!CollectItem._backpackCollected)
+        {
+            _quest2Text.fontStyle = FontStyles.Normal;
+        }
+        if (!CollectItem._parchmentCollected)
+        {
+            _quest3Text.fontStyle = FontStyles.Normal;
+        }
+        if (_currentProvisionsCount <= _collectProvisions.ProvisionsCounter)
+        {
+            _quest4Text.fontStyle = FontStyles.Normal;
+        }
+        if (!CollectItem._keyCollected)
+        {
+            _quest5Text.fontStyle = FontStyles.Normal;
+        }
+        if (!CollectItem._secretPassageOpened)
+        {
+            _quest6Text.fontStyle = FontStyles.Normal;
+        }
         
     }
 
@@ -94,12 +116,12 @@ public class QuestManager : MonoBehaviour
 
             if (_currentProvisionsCount >= _provisionsQuestTarget)
             {
-                // activate crossed out resolved quest text "Gather X provisions."
+                // activate crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Strikethrough;
             }
             else
             {
-                // revoke crossed out resolved quest text "Gather X provisions."
+                // revoke crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Normal;
             }
         }
