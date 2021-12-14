@@ -30,7 +30,6 @@ public class QuestManager : MonoBehaviour
 
     [SerializeField] private int _provisionsQuestTarget;
     private GameObject _staircaseToCellarInteractionObjects;
-    private GameObject _staircaseDoo
     private CollectProvisions _collectProvisions;
     private int _currentProvisionsCount;
     private bool _provisionsQuestDone;
