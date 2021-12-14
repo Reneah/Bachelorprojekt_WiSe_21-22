@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using untitledProject;
 
-    public class Tutorial : MonoBehaviour
+public class Tutorial : MonoBehaviour
     {
         [SerializeField] private string _playerPrefsKey;
         [SerializeField] private GameObject _tutorialWindow;
         [SerializeField] private GameObject[] _content;
         [SerializeField] private GameObject[] _sprites;
         [SerializeField] private GameObject _hud;
+
+        private PlayerController _playerController;
+        private PlayerStepsSound _playerStepsSound;
 
         private int _contentCounter = 0;
 
@@ -19,6 +23,8 @@ using UnityEngine;
 
         private void OnEnable()
         {
+            _playerController = FindObjectOfType<PlayerController>();
+            _playerStepsSound = FindObjectOfType<PlayerStepsSound>();
             _reactivateTutorialSpot = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 1));
             
             if (!_reactivateTutorialSpot)
@@ -38,6 +44,9 @@ using UnityEngine;
         {
             if (other.CompareTag("Player"))
             {
+                _playerController.enabled = false;
+                _playerStepsSound.enabled = false;
+                    
                 _hud.SetActive(false);
                 _tutorialWindowOpen = true;
                 
@@ -63,6 +72,9 @@ using UnityEngine;
 
             if (_contentCounter >= _content.Length)
             {
+                _playerController.enabled = true;
+                _playerStepsSound.enabled = true;
+                
                 Time.timeScale = 1;
                 _tutorialWindow.SetActive(false);
                 
