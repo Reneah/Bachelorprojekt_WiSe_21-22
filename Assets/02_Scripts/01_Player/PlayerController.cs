@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using untitledProject;
@@ -18,11 +21,24 @@ namespace untitledProject
         [SerializeField] private float _smoothRotation = 10;
         [Tooltip("set the sprint speed of the character ")]
         [SerializeField] private float _sprintSpeed = 5;
+        [Tooltip("the speed that the player has while fleeing")]
+        [SerializeField] private float _fleeSpeed = 6;
+        [Tooltip("when the enemy has lost the sight to the player, the time is set to still play the flee animation")]
+        [SerializeField] private float _calmDownTime = 3;
         // the ref Velocity of the forward movement
         private float _refVelocity;
         private float _currentForwardVelocity;
         private Vector3 _moveDirection;
-        private float targetSpeed;
+        private float _targetSpeed;
+
+        private float _calmDownCooldown;
+        private bool _playerIsSpotted = true;
+
+        public float CurrentForwardVelocity
+        {
+            get => _currentForwardVelocity;
+            set => _currentForwardVelocity = value;
+        }
 
         public Vector3 MoveDirection
         {
@@ -34,20 +50,29 @@ namespace untitledProject
         private float _verticalAxis;
         private float _horizontalAxis;
         private float _currentVerticalVelocity;
+        
+        private CharacterController _characterController;
 
-        public float CurrentVerticalVelocity
+        public CharacterController CharacterController
         {
-            get => _currentVerticalVelocity;
-            set => _currentVerticalVelocity = value;
+            get => _characterController;
+            set => _characterController = value;
         }
 
-        private CharacterController _characterController;
         private PlayerAnimationHandler _playerAnimationHandler;
         
         public PlayerAnimationHandler PlayerAnimationHandler
         {
             get => _playerAnimationHandler;
             set => _playerAnimationHandler = value;
+        }
+
+        private CollectStones _collectStones;
+
+        public CollectStones CollectStones
+        {
+            get => _collectStones;
+            set => _collectStones = value;
         }
 
         [Header("Jump Settings")]
@@ -74,6 +99,16 @@ namespace untitledProject
         [SerializeField] private Transform _groundCheckTransform;
         private RaycastHit hit;
         private bool _isGrounded;
+        private bool _useGroundCheck;
+
+
+        [Header("Slope Settings")]
+        [Tooltip("the force to the ground at the character")]
+        [SerializeField]
+        private float _slopeForce;
+        [Tooltip("the length at which the slope force should take action")]
+        [SerializeField]
+        private float _slopeForceRayLength;
 
         public bool IsGrounded
         {
@@ -81,26 +116,55 @@ namespace untitledProject
             set => _isGrounded = value;
         }
 
+        // get the script to have the bool value to use it in the states
+        private PlayerThrowTrigger _playerThrowTrigger;
+
+        public PlayerThrowTrigger PlayerThrowTrigger
+        {
+            get => _playerThrowTrigger;
+            set => _playerThrowTrigger = value;
+        }
+
         // the current state of the player
         private IPlayerState _currentState;
         public static readonly PlayerIdleState PlayerIdleState = new PlayerIdleState();
         public static readonly PlayerRunState PlayerRunState = new PlayerRunState();
         public static readonly PlayerJumpState PlayerJumpState =  new PlayerJumpState();
+        public static readonly PlayerThrowState PlayerThrowState =  new PlayerThrowState();
         
         private void Awake()
         {
             // start state machine with LookAroundState
             _currentState = PlayerIdleState;
+
         }
         
         void Start()
         {
             _playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
             _characterController = GetComponent<CharacterController>();
+            _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
+            _collectStones = FindObjectOfType<CollectStones>();
+
+            _characterController.material.staticFriction = 0;
+            _characterController.material.dynamicFriction = 0;
+
+            _calmDownCooldown = _calmDownTime;
+
+            StartCoroutine(PlayerPosition());
+
+            _characterController.enabled = false;
+            transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX", transform.position.x), PlayerPrefs.GetFloat("PlayerPositionY", transform.position.y), PlayerPrefs.GetFloat("PlayerPositionZ", transform.position.z));
+            _characterController.enabled = true;
         }
         
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                PlayerPrefs.DeleteAll();
+            }
+            
             var playerState = _currentState.Execute(this);
             if (playerState != _currentState)
             {
@@ -111,6 +175,35 @@ namespace untitledProject
             
             GroundCheck();
             _playerAnimationHandler.SetGrounded(IsGrounded);
+
+            CalmDownTime();
+        }
+
+        private IEnumerator PlayerPosition()
+        {
+            yield return new WaitForSeconds(0.1f);
+            
+        }
+        
+        /// <summary>
+        /// when the enemy has lost the player, hew needs time to calm down to play the sneak animation again
+        /// </summary>
+        private void CalmDownTime()
+        {
+            if (!_playerIsSpotted)
+            {
+                if (_calmDownCooldown > 0)
+                {
+                    _calmDownCooldown -= Time.deltaTime;
+                }
+
+                if (_calmDownCooldown <= 0)
+                {
+                    _calmDownCooldown = _calmDownTime;
+                    _playerAnimationHandler.PlayerFlee(false);
+                    _playerIsSpotted = true;
+                }
+            }
         }
 
         public void MovementExecution()
@@ -133,11 +226,17 @@ namespace untitledProject
             {
                 _resetVerticalVelocity = true;
                 bool sprint = Input.GetKey(KeyCode.LeftShift);
-                targetSpeed = (sprint? _sprintSpeed : _movementSpeed) * _moveDirection.magnitude;
+                _targetSpeed = (sprint? _sprintSpeed : _movementSpeed) * _moveDirection.magnitude;
+
+                if (_playerAnimationHandler.PlayerAnimator.GetBool("Flee"))
+                {
+                    _targetSpeed = _fleeSpeed * _moveDirection.magnitude;
+                }
+                
             }
             
             // the current velocity will be smoothed, so that it is possible to have some tweaks 
-            _currentForwardVelocity = Mathf.SmoothDamp(_currentForwardVelocity, targetSpeed, ref _refVelocity, _smoothSpeed * Time.deltaTime);
+            _currentForwardVelocity = Mathf.SmoothDamp(_currentForwardVelocity, _targetSpeed, ref _refVelocity, _smoothSpeed * Time.deltaTime);
             Vector3 velocity = new Vector3(_moveDirection.x * _currentForwardVelocity, _currentVerticalVelocity, _moveDirection.z * _currentForwardVelocity) + new Vector3(0, Gravity(), 0);
             _characterController.Move(velocity * Time.deltaTime);
             
@@ -179,27 +278,79 @@ namespace untitledProject
 
         public void GroundCheck()
         {
-            // Check if we are grounded
-            _isGrounded = Physics.CheckSphere(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask);
-
-            if (_isGrounded & _resetVerticalVelocity)
+            if (_useGroundCheck)
+            {
+                // Check if we are grounded
+                _isGrounded = Physics.CheckSphere(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask);
+            }
+            
+            if (_isGrounded && _resetVerticalVelocity)
             {
                 // Reset current vertical velocity
                 _currentVerticalVelocity = 0;
                 _playerAnimationHandler.ResetJumpTrigger();
                 _resetVerticalVelocity = false;
+                _useGroundCheck = false;
             }
+            
+            // if the character is not moving horizontal to the ground, the slope will be activated to hold the character down
+            if ((_verticalAxis != 0 || _horizontalAxis != 0) && OnSlope() && _isGrounded)
+            {
+                _characterController.Move(Vector3.down * _characterController.height / 2 * (_slopeForce * Time.deltaTime)); 
+            }
+
+            if (_currentVerticalVelocity <= 1)
+            {
+                _useGroundCheck = true;
+            }
+        }
+        
+        /// <summary>
+        /// decides when to activate the slope to hold the player down at not horizontal surfaces
+        /// </summary>
+        /// <returns></returns>
+        private bool OnSlope()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, _characterController.height / 2 * _slopeForceRayLength))
+            {
+                // if the character is not horizontal relative to Vector3.up then the character will be dragged to the ground to don't take off
+                if (hit.normal != Vector3.up)
+                    return true;
+            }
+            return false;
         }
         
         public void Jump()
         {
-            GroundCheck();
-  
             if (_isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
                 _playerAnimationHandler.DoJump();
                 _currentVerticalVelocity = JumpVelocity;
             }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("ViewCone"))
+            {
+                _calmDownCooldown = _calmDownTime;
+                _playerIsSpotted = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if(other.CompareTag("ViewCone"))
+            {
+                _playerIsSpotted = false;
+            }
+        }
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(_groundCheckTransform.position, _groundCheckRadius);
         }
     }
 }

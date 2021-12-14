@@ -1,41 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Enemy.Controller;
 
-public class EnemySearchState : IEnemyState
+namespace Enemy.States
 {
-    public IEnemyState Execute(EnemyController enemy)
+    public class EnemySearchState : IEnemyState
     {
-        if (enemy.CanSeePlayer)
+        public IEnemyState Execute(EnemyController enemy)
         {
-            return EnemyController.EnemyChaseState;
-        }
-
-        if (enemy.FinishChecking)
-        {
-            if (enemy.Guarding)
-            {
-                return EnemyController.EnemyGuardState;
-            }
+            enemy.CheckPlayerGround();
             
-            return EnemyController.EnemyPatrolState;
-        }
+            if (enemy.CanSeePlayer)
+            {
+                enemy.ResetSearchWaypoints = true;
+                return EnemyController.EnemyVisionChaseState;
+            }
         
-        enemy.UpdateSearchBehaviour();
-        return this;
+            if (enemy.SoundNoticed)
+            {
+                return EnemyController.EnemySoundInvestigationState;
+            }
+
+            if (enemy.FinishChecking)
+            {
+                if (enemy.Guarding)
+                {
+                    return EnemyController.EnemyGuardState;
+                }
+            
+                return EnemyController.EnemyPatrolState;
+            }
+        
+            enemy.UpdateSearchBehaviour();
+            return this;
+        }
+
+        public void Enter(EnemyController enemy)
+        {
+            enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
+            enemy.StartSearchBehaviour();
+            
+            enemy.Agent.isStopped = false;
+        }
+
+        public void Exit(EnemyController enemy)
+        {
+            enemy.FinishChecking = false;
+        }
+    
     }
 
-    public void Enter(EnemyController enemy)
-    {
-        // lost the sight of the player
-        enemy.SpottedBar.fillAmount = 0;
-
-        enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
-        enemy.StartSearchBehaviour();
-    }
-
-    public void Exit(EnemyController enemy)
-    {
-        enemy.FinishChecking = false;
-    }
 }

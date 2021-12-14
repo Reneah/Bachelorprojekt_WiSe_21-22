@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Enemy.SoundItem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,9 +23,17 @@ public class SceneChange : MonoBehaviour
     [Tooltip("the next scene name that should be loaded")]
     [SerializeField] private string _nextSceneName;
     private float _fadeStayCooldown = 0;
+    [Tooltip("skip the text")]
+    [SerializeField] private GameObject _skipButton;
 
     private PlayerController _playerController;
     private GameObject _questManager;
+    private GameObject _playtestingHints;
+    private GameObject _stoneUI;
+
+    private CollectStones _collectStones;
+    
+    private NoisyItem[] _noisyItems;
     
     void Start()
     {
@@ -33,6 +42,14 @@ public class SceneChange : MonoBehaviour
 
         _playerController = FindObjectOfType<PlayerController>();
         _questManager = GameObject.Find("QuestManager");
+        _playtestingHints = GameObject.Find("SomePlaytestingInfos");
+        _stoneUI = GameObject.Find("StoneUI");
+
+        _collectStones = FindObjectOfType<CollectStones>();
+        
+        _skipButton.SetActive(false);
+
+        _noisyItems = FindObjectsOfType<NoisyItem>();
     }
     
     void Update()
@@ -40,12 +57,24 @@ public class SceneChange : MonoBehaviour
         bool _completeFadeIn = _fadeImage.color.a >= 0.99f;
         if (_completeFadeIn)
         {
+            _skipButton.SetActive(true);
+            
             if (_fadeStayCooldown <= 0)
             {
                 _text.DOFade(0, _textFadeTime);
 
                 if (_text.color.a <= 0.001f)
                 {
+                    PlayerPrefs.DeleteKey("PlayerPositionX");
+                    PlayerPrefs.DeleteKey("PlayerPositionY");
+                    PlayerPrefs.DeleteKey("PlayerPositionZ");
+                    PlayerPrefs.SetInt("StonesAmount", _collectStones.StonesCounter);
+                    for (int i = 0; i < _noisyItems.Length; i++)
+                    {
+                        _noisyItems[i].SafeState = true;
+                    }
+                    
+                    PlayerPrefs.Save();
                     SceneManager.LoadScene(_nextSceneName);
                 }
             }
@@ -63,6 +92,13 @@ public class SceneChange : MonoBehaviour
         _playerController.enabled = false;
         // Deactivate QuestManager parent object, this is a temporary solution so it doesn't overlap with the narrative text
         _questManager.SetActive(false);
+        //_playtestingHints.SetActive(false);
+        _stoneUI.SetActive(false);
         _fadeImage.DOFade(1, _fadeTime);
+    }
+
+    public void Skip()
+    {
+        _fadeStayCooldown = 0;
     }
 }

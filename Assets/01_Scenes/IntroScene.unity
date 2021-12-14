@@ -549,8 +549,8 @@ MonoBehaviour:
     escape together. Drustan had said, but how exactly Edward was left to wonder,
     while he traversed the dark and damaged corridors of the keep...'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
+  m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -649,7 +649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 3421040221536906205}
   _textFadeTime: 10
-  _fadeStayTime: 30
+  _fadeStayTime: 35
   _nextSceneName: GameWorld_BesiegedKeep_1
 --- !u!224 &4602165365526123608
 RectTransform:

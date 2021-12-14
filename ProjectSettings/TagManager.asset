@@ -8,6 +8,17 @@ TagManager:
   - Wall
   - SearchPoints
   - Death
+  - NoisyItem
+  - Stones
+  - FootSteps
+  - ViewCone
+  - Talkable
+  - Enemy
+  - TutorialTrigger
+  - Provisions
+  - HighGround
+  - LowGround
+  - NoisyItemShield
   layers:
   - Default
   - TransparentFX
@@ -18,12 +29,12 @@ TagManager:
   - Ground
   - Player
   - Wall
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - NoisyItem
+  - Stones
+  - CollectibleItem
+  - Provisions
+  - NoisyItemShield
+  - NoisyItemJug
   - 
   - 
   - 

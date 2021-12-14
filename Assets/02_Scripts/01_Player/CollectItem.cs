@@ -1,20 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using untitledProject;
 
 public class CollectItem : MonoBehaviour
 { 
     [Header("Item UI")]
-    [Tooltip("shows the collectable item")]
-    [SerializeField] private TextMeshProUGUI _itemCollectableText;
-    [Tooltip("shows the current button to use")]
-    [SerializeField] private TextMeshProUGUI _useButtonText;
     [Tooltip("shows, that it is in the possession of the player")] 
     [SerializeField] private GameObject _ItemImage;
+    [Tooltip("modify the text position at the mouse position")]
+    [SerializeField] private Vector2 _textOffset;
+    [Tooltip("the item sprite that will show up when the player is in range, hovers over the item and when it is available")]
+    [SerializeField] private GameObject _collectibleSprite;
+    [Tooltip("the item sprite that will show up when the player hovers over the item and it is not available")]
+    [SerializeField] private GameObject _negativeSprite;
+    [Tooltip("signalize that the stones can be collected")]
+    [SerializeField] private GameObject _usebleMarker;
 
     [Header("Choose the ONE Item which will be represented")] 
     [Tooltip("the key to open doors")] 
@@ -25,112 +25,131 @@ public class CollectItem : MonoBehaviour
     [SerializeField] private bool _parchment;
     [Tooltip("has to be interacted with by the player as a quest task")] 
     [SerializeField] private bool _secretPassage;
-
-    // Bela: Don't see why this should be needed.
-    /*public bool Key
-    {
-        get => _key;
-        set => _key = value;
-    }*/
-
-    //[SerializeField]
-    private float _textVanishTime;
     
     public static bool _keyCollected = false;
     public static bool _backpackCollected = false;
     public static bool _parchmentCollected = false;
     public static bool _secretPassageOpened = false;
+    
+    private bool _itemCollectible;
+    
+    // a raycast in another script hits the collectable to activate the UI & functionalities
+    private bool _hitCollectable;
 
-    private float _vanishTime;
+    public bool HitCollectable
+    {
+        get => _hitCollectable;
+        set => _hitCollectable = value;
+    }
+
+    public bool ItemCollected
+    {
+        get => _itemCollected;
+        set => _itemCollected = value;
+    }
+
+    public GameObject CollectibleSprite
+    {
+        get => _collectibleSprite;
+        set => _collectibleSprite = value;
+    }
+
+    public bool SecretPassage
+    {
+        get => _secretPassage;
+        set => _secretPassage = value;
+    }
+
+    public GameObject ItemImage
+    {
+        get => _ItemImage;
+        set => _ItemImage = value;
+    }
+
+    public GameObject Enemies
+    {
+        get => _enemies;
+        set => _enemies = value;
+    }
+
+    public PlayerController PlayerController
+    {
+        get => _playerController;
+        set => _playerController = value;
+    }
+
+    public SceneChange SceneChange
+    {
+        get => _sceneChange;
+        set => _sceneChange = value;
+    }
+
+    public bool Key
+    {
+        get => _key;
+        set => _key = value;
+    }
+
+    public bool ItemCollectible
+    {
+        get => _itemCollectible;
+        set => _itemCollectible = value;
+    }
+
+    public bool Backpack
+    {
+        get => _backpack;
+        set => _backpack = value;
+    }
+
+    public bool Parchment
+    {
+        get => _parchment;
+        set => _parchment = value;
+    }
+
+    //[SerializeField]
+    private float _textVanishTime;
+    
     private bool _itemCollected = false;
 
     private SceneChange _sceneChange;
     private PlayerController _playerController;
+    private GameObject _enemies;
     
     void Start()
     {
-        _vanishTime = _textVanishTime;
-        
-        _useButtonText.gameObject.SetActive(false);
-        _itemCollectableText.gameObject.SetActive(false);
+        _collectibleSprite.gameObject.SetActive(false);
         _ItemImage.SetActive(false);
         _sceneChange = FindObjectOfType<SceneChange>();
         _playerController = FindObjectOfType<PlayerController>();
+        _enemies = GameObject.Find("Enemies");
     }
     
     void Update()
     {
-        if (_itemCollected)
+        _collectibleSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        _negativeSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
+        
+        if (_hitCollectable)
         {
-            _vanishTime -= Time.deltaTime;
-
-            if (_vanishTime <= 0)
-            { 
-                // have the possibility to deactivate the object later when something is running with cooldown after collecting the item
-            }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player")  && !_itemCollected)
-        {
-            _itemCollectableText.gameObject.SetActive(true);
-            _useButtonText.gameObject.SetActive(true);
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player")  && !_itemCollected)
-        {
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (!_itemCollectible)
             {
-                if (_key)
-                {
-                    _keyCollected = true;
-                }
-                else if(_backpack)
-                {
-                    _backpackCollected = true;
-                    _sceneChange.ChangeScene();
-                    _playerController.enabled = false;
-                }
-                else if(_parchment)
-                {
-                    _parchmentCollected = true;
-                    _sceneChange.ChangeScene();
-                    _playerController.enabled = false;
-                }
-                else if(_secretPassage)
-                {
-                    if (!_keyCollected)
-                    { //This seems to cause issues, as you can't pick up with the secret door even when you have collected the key
-                        return;
-                    }
-                    _secretPassageOpened = true;
-                    _sceneChange.ChangeScene();
-                    _playerController.enabled = false;
-                }
-                
-                _itemCollectableText.gameObject.SetActive(false);
-                _useButtonText.gameObject.SetActive(false);
-                _ItemImage.SetActive(true);
-                _itemCollected = true;
-                gameObject.SetActive(false);
+                _negativeSprite.gameObject.SetActive(true);
+            }
+            
+            else if (_itemCollectible)
+            {
+                _usebleMarker.SetActive(true);
+                _collectibleSprite.gameObject.SetActive(true);
+                _negativeSprite.gameObject.SetActive(false);
             }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        else
         {
-            if (other.CompareTag("Player") && !_itemCollected)
-            {
-                _useButtonText.gameObject.SetActive(false);
-                _itemCollectableText.gameObject.SetActive(false);
-            }
+            _collectibleSprite.gameObject.SetActive(false);
+            _negativeSprite.gameObject.SetActive(false);
+            _usebleMarker.SetActive(false);
         }
     }
 }
