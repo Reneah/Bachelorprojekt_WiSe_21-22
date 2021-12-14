@@ -38,6 +38,7 @@ namespace Enemy.SoundItem
                 _noisyItem.CollectibleSprite.gameObject.SetActive(false);
                 _noisyItem.NegativeSprite.gameObject.SetActive(true);
                 _noisyItem.SoundRangeCollider.SetActive(true);
+                _noisyItem.PlayerThrowTrigger.Close = false;
 
                 _noisyItem.ItemUsable = false;
                 _noisyItem.ItemUsed = true;
