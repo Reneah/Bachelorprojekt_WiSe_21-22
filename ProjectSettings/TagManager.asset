@@ -19,6 +19,7 @@ TagManager:
   - HighGround
   - LowGround
   - NoisyItemShield
+  - Blocked
   layers:
   - Default
   - TransparentFX

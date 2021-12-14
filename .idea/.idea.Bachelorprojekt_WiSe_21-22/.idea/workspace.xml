@@ -99,10 +99,10 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemCloseActivation.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
       </list>
     </option>
@@ -272,6 +272,7 @@
       <workItem from="1639411808288" duration="1551000" />
       <workItem from="1639418004412" duration="496000" />
       <workItem from="1639484588957" duration="2193000" />
+      <workItem from="1639494678198" duration="8549000" />
     </task>
     <servers />
   </component>
