@@ -5,27 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="877614ff-2134-43be-8987-24837770e7e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/07_Prefabs/Environment/Throne.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/07_Prefabs/Environment/Throne.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/07_Prefabs/Items/Door_Cellar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/07_Prefabs/Items/Door_Cellar.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/07_Prefabs/Items/Key.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/07_Prefabs/Items/Key.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/07_Prefabs/Items/Parchment.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/07_Prefabs/Items/Parchment.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/3rd Party Plugin Integration/MA_BehaviorDesigner.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/3rd Party Plugin Integration/MA_NodeCanvas.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/3rd Party Plugin Integration/MA_Oculus.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/3rd Party Plugin Integration/MA_PlaymakerActionsAndScene.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/3rd Party Plugin Integration/MA_ResonanceAudio.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/3rd Party Plugin Integration/MA_Tk2d.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/3rd Party Plugin Integration/MA_UFPS.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/AssemblyDefinitions/MA_asmdefs.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/AssemblyDefinitions/MA_plus_CGK_asmdefs.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/OtherPackages/AssetBundles.unitypackage.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
