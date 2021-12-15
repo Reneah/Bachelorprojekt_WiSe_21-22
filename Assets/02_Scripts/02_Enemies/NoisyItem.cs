@@ -19,10 +19,8 @@ namespace Enemy.SoundItem
         [SerializeField] private GameObject _collectibleSprite;
         [Tooltip("the item sprite that will show up when the player hovers over the item and it is not available")]
         [SerializeField] private GameObject _negativeSprite;
-        [Tooltip("mark the close range")]
-        [SerializeField] private GameObject _closeActivationRadius;
-        [Tooltip("mark the throw range radius")]
-        [SerializeField] private GameObject _throwRangeRadius;
+        [Tooltip("mark the sound radius")]
+        [SerializeField] private GameObject _soundRadius;
         [Tooltip("is the noisy item reusable or not")]
         [SerializeField] private bool _reusable;
         [Tooltip("the offset of the noisy item origin so that the enemy is able to reach the item")]
@@ -32,10 +30,10 @@ namespace Enemy.SoundItem
         [Tooltip("the layer for the noisy item to be able to activate it")]
         [SerializeField] private LayerMask _noisyItemLayer;
 
-        public GameObject ThrowRangeRadius
+        public GameObject SoundRadius
         {
-            get => _throwRangeRadius;
-            set => _throwRangeRadius = value;
+            get => _soundRadius;
+            set => _soundRadius = value;
         }
 
         public LayerMask NoisyItemLayer
@@ -155,13 +153,7 @@ namespace Enemy.SoundItem
             get => _playerThrowTrigger;
             set => _playerThrowTrigger = value;
         }
-
-        public GameObject CloseActivationRadius
-        {
-            get => _closeActivationRadius;
-            set => _closeActivationRadius = value;
-        }
-
+        
         public GameObject CollectibleSprite
         {
             get => _collectibleSprite;
@@ -234,7 +226,6 @@ namespace Enemy.SoundItem
                 
                 else if (!_itemUsed && _itemUsable)
                 {
-                    _closeActivationRadius.SetActive(true);
                     _collectibleSprite.gameObject.SetActive(true);
                     _negativeSprite.gameObject.SetActive(false);
                 }
@@ -243,7 +234,6 @@ namespace Enemy.SoundItem
             {
                 _collectibleSprite.gameObject.SetActive(false);
                 _negativeSprite.gameObject.SetActive(false);
-                _closeActivationRadius.SetActive(false);
             }
         }
         

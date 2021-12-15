@@ -51,8 +51,8 @@ public class PlayerThrowTrigger : MonoBehaviour
         set => _waitToThrowDuringRotation = value;
     }
 
-    // signalize that the noisy item can be activated in throw range
-    private GameObject _throwRange;
+    // signalize the sound radius of the noisy item
+    private GameObject _soundRadius;
     
     private NoisyItem _noisyItem;
     
@@ -121,7 +121,7 @@ public class PlayerThrowTrigger : MonoBehaviour
         {
             _throwableSprite.gameObject.SetActive(false);
             _notThrowableSprite.gameObject.SetActive(false);
-            _throwRange.SetActive(false);
+            _soundRadius.SetActive(false);
         }
         
         if (!_close)
@@ -136,14 +136,14 @@ public class PlayerThrowTrigger : MonoBehaviour
                 if(_hitNoisyItem) 
                 {
                     _noisyItem = _hit.collider.GetComponent<NoisyItem>();
-                    _throwRange = _noisyItem.ThrowRangeRadius;
+                    _soundRadius = _noisyItem.SoundRadius;
                     
                     if (!_throwstate && Vector3.Distance(transform.position, _hit.collider.gameObject.transform.position) < _throwDistance)
                     {
                         _throwAvailable = true;
                     }
                     
-                    _throwRange.SetActive(true);
+                    _soundRadius.SetActive(true);
                     _notThrowableSprite.gameObject.SetActive(true);
                     
                     if (_throwAvailable && _collectStones.StonesCounter > 0)
@@ -161,7 +161,7 @@ public class PlayerThrowTrigger : MonoBehaviour
                             
                             if (Input.GetMouseButtonDown(0))
                             {
-                                _throwRange.SetActive(false);
+                                _soundRadius.SetActive(false);
                                 _throwstate = true;
                                 _throwableSprite.gameObject.SetActive(false);
                                 _throwAvailable = false;
@@ -175,9 +175,9 @@ public class PlayerThrowTrigger : MonoBehaviour
                 {
                     _throwableSprite.gameObject.SetActive(false);
                     _notThrowableSprite.gameObject.SetActive(false);
-                    if (_throwRange != null)
+                    if (_soundRadius != null)
                     {
-                        _throwRange.SetActive(false);
+                        _soundRadius.SetActive(false);
                     }
                     _throwAvailable = false;
                 }
