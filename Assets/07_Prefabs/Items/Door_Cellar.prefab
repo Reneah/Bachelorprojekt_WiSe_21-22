@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 3808892479110994355}
   m_Layer: 11
   m_Name: Door_Cellar
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
