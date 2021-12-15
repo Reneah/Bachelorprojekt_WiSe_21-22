@@ -1,4 +1,3 @@
-using BP;
 using Enemy.Controller;
 using Enemy.ShareInformation;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace Enemy.LootSpot
     {
         [Tooltip("the chance that the enemy will loot the spot")]
         [Range(0,100)]
-        [SerializeField]private int _lootChance;
+        [SerializeField]private float _lootChance;
         [Tooltip("Every time the spot is looted, the chance will shrink to loot the place again")]
         [Range(1,100)]
         [SerializeField] private int _shrinkLootChance;
@@ -42,14 +41,18 @@ namespace Enemy.LootSpot
         // need this script to communicate with the current enemy nearby
         private EnemyController _enemyController;
 
+        // need the script to activate the chest animation
         private LootChestAnimationController _lootChestAnimation;
+        
+        // call the chest animation one time
         private bool _chestAnimation = false;
-
+        
         void Start()
         {
             _lootChestAnimation = GetComponentInChildren<LootChestAnimationController>();
             
             _lootCooldown = _lootTime;
+            _lootSpotTime = _lootSpotCooldown;
         }
         
         void Update()
@@ -77,7 +80,7 @@ namespace Enemy.LootSpot
                     _reactivateLootSpot = true;
                 }
             }
-
+            
             // when the spot is looted, the time will run to reactivate the loot spot
             if (_lootSpotTime >= 0 && _reactivateLootSpot)
             {
@@ -94,11 +97,11 @@ namespace Enemy.LootSpot
         private void OnTriggerEnter(Collider other)
         {
             // When the enemy is in range, he has the chance to loot the spot
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy") && !_reactivateLootSpot && !EnemyShareInformation.IsLooting)
             {
                 _chanceToLoot = Random.value;
                 
-                if (_chanceToLoot <= _lootChance && _lootChance > 0 && !EnemyShareInformation.IsLooting && !_reactivateLootSpot)
+                if (_chanceToLoot <= _lootChance / 100 && _lootChance > 0)
                 {
                     _enemyController = other.GetComponent<EnemyController>();
 
@@ -114,7 +117,7 @@ namespace Enemy.LootSpot
                     _enemyController.StopDistanceLootSpot = _stopDistance;
                     _lootChance -= _shrinkLootChance;
                     
-                    // When the enemy ios looting, no other enemy will get to the spot as well
+                    // When the enemy is looting, no other enemy will get to the spot as well
                     EnemyShareInformation.IsLooting = true;
 
                     //  the loot chance can't drop below the minimum loot chance or 0
