@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5794698925013380081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1546577702674806870}
+  m_Layer: 6
+  m_Name: ClimbSmoothing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1546577702674806870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794698925013380081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8446926692399445380}
+  - {fileID: 8446926692427244199}
+  - {fileID: 8446926693144242581}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8446926692399445381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8446926692399445380}
+  - component: {fileID: 8446926692399445379}
+  m_Layer: 6
+  m_Name: BoxCollidersForSmoothClimbing
+  m_TagString: HighGround
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8446926692399445380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446926692399445381}
+  m_LocalRotation: {x: 0.015988447, y: 0.0005527735, z: 0.05096796, w: 0.9985722}
+  m_LocalPosition: {x: -3.6105196, y: 2.8358822, z: 0.72866726}
+  m_LocalScale: {x: 1.4427892, y: 0.21979095, z: 1.3383502}
+  m_Children: []
+  m_Father: {fileID: 1546577702674806870}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 1.827, y: 0.157, z: 5.846}
+--- !u!65 &8446926692399445379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446926692399445381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8446926692427244248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8446926692427244199}
+  - component: {fileID: 8446926692427244198}
+  m_Layer: 6
+  m_Name: BoxCollidersForSmoothClimbing (1)
+  m_TagString: HighGround
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8446926692427244199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446926692427244248}
+  m_LocalRotation: {x: 0.0036035702, y: -0.014168471, z: -0.09798707, w: 0.9950803}
+  m_LocalPosition: {x: -2.4526732, y: 2.8408628, z: 0.7675953}
+  m_LocalScale: {x: 1.0707804, y: 0.219791, z: 1.3383499}
+  m_Children: []
+  m_Father: {fileID: 1546577702674806870}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0.252, y: -1.656, z: -11.251}
+--- !u!65 &8446926692427244198
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446926692427244248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8446926693144242582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8446926693144242581}
+  - component: {fileID: 8446926693144242580}
+  m_Layer: 6
+  m_Name: BoxCollidersForSmoothClimbing (2)
+  m_TagString: HighGround
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8446926693144242581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446926693144242582}
+  m_LocalRotation: {x: 0.014215618, y: 0.014819503, z: -0.30074304, w: 0.9534841}
+  m_LocalPosition: {x: -1.5838926, y: 2.4953616, z: 0.7664683}
+  m_LocalScale: {x: 0.834502, y: 0.21979097, z: 1.33835}
+  m_Children: []
+  m_Father: {fileID: 1546577702674806870}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 2.064, y: 1.13, z: -34.992}
+--- !u!65 &8446926693144242580
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446926693144242582}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

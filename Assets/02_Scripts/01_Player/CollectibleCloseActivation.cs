@@ -38,8 +38,11 @@ using UnityEngine;
                 }
                 else if(_collectItem.ThroneCompartment)
                 {
+                    // Bela: Apparently this value is never used
                     CollectItem._throneCompartmentOpened = true;
-                   _collectItem.SpawnKey.SetActive(true);
+                    // This works fine
+                    _collectItem.RemoveThroneParticleEffect.SetActive(false);
+                    _collectItem.SpawnKey.SetActive(true);
                 }
                 else if(_collectItem.StaircaseToCellar)
                 {
