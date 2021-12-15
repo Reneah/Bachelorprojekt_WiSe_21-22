@@ -126,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2937518348545023570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.039422452, y: 0.085, z: 0.5114826}
+  m_LocalPosition: {x: -0.21, y: 0.081, z: 0.563}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4069851119948102033}
@@ -144,13 +144,13 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.9305493, b: 0.7018868, a: 1}
-  m_Intensity: 0.2
-  m_Range: 0.5
+  m_Intensity: 0.06
+  m_Range: 1.16
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -186,7 +186,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -569,6 +569,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 88b94ccbdd5f90d4c8fcf172994a9bd5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a7e7225ab5b0054cb92b23a6ab6e99d, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 88b94ccbdd5f90d4c8fcf172994a9bd5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8cbd2217c082c4b4690205c229ef3b22, type: 2}
     - target: {fileID: 919132149155446097, guid: 88b94ccbdd5f90d4c8fcf172994a9bd5, type: 3}
       propertyPath: m_Name
       value: Shield
