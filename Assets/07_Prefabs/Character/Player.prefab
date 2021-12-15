@@ -44,7 +44,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &794493865
 MonoBehaviour:
@@ -68,7 +68,10 @@ MonoBehaviour:
   _noisyItemLayer:
     serializedVersion: 2
     m_Bits: 0
-  _throwDistance: 0
+  _noisyItemBlockLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _throwDistance: 8
 --- !u!54 &2039822494
 Rigidbody:
   m_ObjectHideFlags: 0
