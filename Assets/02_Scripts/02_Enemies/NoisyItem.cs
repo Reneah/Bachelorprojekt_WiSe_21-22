@@ -265,6 +265,7 @@ namespace Enemy.SoundItem
                         _unharmedItem.SetActive(false);
                         _negativeSprite.gameObject.SetActive(false);
                         _soundRangeCollider.SetActive(false);
+                        _playerThrowTrigger.Close = false;
                         this.enabled = false;
                         MasterAudio.PlaySound("ShatterVase");
                     }
