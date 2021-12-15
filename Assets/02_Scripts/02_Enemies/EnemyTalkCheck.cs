@@ -75,7 +75,7 @@ namespace Enemy.TalkCheck
                     Quaternion _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_talkableEnemy.transform.position - transform.position), _smoothRotation * Time.deltaTime);
                     _enemyController.transform.rotation = _desiredDirection;
 
-                    // When teh enemy is finishing talking, he will go back to his routine and the values will be resetted
+                    // When the enemy is finishing talking, he will go back to his routine and the values will be reset
                     if (_talkCooldown <= 0)
                     {
                         _enemyAnimation.TalkToEnemy(false);
