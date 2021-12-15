@@ -16,7 +16,7 @@ public class CollectibleItemRaycast : MonoBehaviour
             _item = _hit.collider;
             _item.GetComponent<CollectItem>().HitCollectable = true;
         }
-        else if(!Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("CollectibleItem")) && _item != null)
+        else if(_item != null && !Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("CollectibleItem")))
         {
             _item.GetComponent<CollectItem>().HitCollectable = false;
         }

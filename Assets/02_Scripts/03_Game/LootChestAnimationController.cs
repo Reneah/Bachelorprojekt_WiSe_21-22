@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using untitledProject;
 
-namespace BP
-{
     public class LootChestAnimationController : MonoBehaviour
     {
         private Animator _animator;
@@ -20,4 +18,4 @@ namespace BP
             _animator.SetBool(ChestOpen, open);
         }
     }
-}
+
