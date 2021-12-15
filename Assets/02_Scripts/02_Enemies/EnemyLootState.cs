@@ -7,6 +7,14 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            // When the enemy has finished looting, he will go back in the patrol state
+            if (!enemy.Loot)
+            {
+                enemy.Agent.isStopped = false;
+                enemy.AnimationHandler.LootSpot(false);
+                return EnemyController.EnemyPatrolState;
+            }
+            
             if (enemy.CanSeePlayer)
             {
                 enemy.Agent.isStopped = false;
@@ -31,14 +39,6 @@ namespace Enemy.States
                 // rotates the enemy towards the loot spot
                 Quaternion _desiredDirection = Quaternion.Slerp(enemy.transform.rotation, enemy.LootSpotTransform.rotation, enemy.SmoothRotation * Time.deltaTime);
                 enemy.transform.rotation = _desiredDirection;
-            }
-            
-            // When the enemy has finished looting, he will go back in the patrol state
-            if (!enemy.Loot)
-            {
-                enemy.Agent.isStopped = false;
-                enemy.AnimationHandler.LootSpot(false);
-                return EnemyController.EnemyPatrolState;
             }
             
             return this;
