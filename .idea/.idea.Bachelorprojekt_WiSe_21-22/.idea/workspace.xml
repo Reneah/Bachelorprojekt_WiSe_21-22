@@ -101,8 +101,8 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LootSpot.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/LootChestAnimationController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemCloseActivation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemCloseActivation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
       </list>
     </option>
@@ -277,6 +277,7 @@
       <workItem from="1639551757672" duration="9365000" />
       <workItem from="1639563701644" duration="2000" />
       <workItem from="1639563931175" duration="1768000" />
+      <workItem from="1639571447584" duration="3467000" />
     </task>
     <servers />
   </component>
