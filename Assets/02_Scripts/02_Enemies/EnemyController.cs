@@ -543,7 +543,7 @@ namespace Enemy.Controller
             _player = FindObjectOfType<PlayerController>();
             _inGameMenu = FindObjectOfType<InGameMenu>();
             _playerGroundDetection = FindObjectOfType<PlayerGroundDetection>();
-            _enemyTalkCheck = transform.Find("EnemyTalkCheck").GetComponent<EnemyTalkCheck>();
+            _enemyTalkCheck = GetComponentInChildren<EnemyTalkCheck>();
             _chaseActivationObject = transform.Find("EnemyChaseActivation").GetComponent<ChaseActivation.ChaseActivation>().gameObject;
 
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine

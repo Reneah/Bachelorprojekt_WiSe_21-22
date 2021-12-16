@@ -72,6 +72,7 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
+            enemy.EnemyTalkCheck.Talkable = false;
             enemy.ChaseActivationObject.SetActive(true);
             
             enemy.ReminderTime = enemy.LastChanceTime;

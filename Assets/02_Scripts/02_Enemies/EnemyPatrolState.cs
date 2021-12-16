@@ -17,7 +17,7 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
 
-            if (enemy.EnemyTalkCheck.Talkable)
+            if (enemy.EnemyTalkCheck.Talk)
             {
                 return EnemyController.EnemyTalkState;
             }
@@ -41,6 +41,8 @@ namespace Enemy.States
             enemy.StartPatrolBehaviour();
             
             enemy.Agent.isStopped = false;
+            
+            enemy.EnemyTalkCheck.Talkable = true;
         }
 
         public void Exit(EnemyController enemy)

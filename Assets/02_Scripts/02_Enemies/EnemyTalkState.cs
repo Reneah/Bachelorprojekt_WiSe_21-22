@@ -18,7 +18,7 @@ namespace Enemy.States
             }
             
             // When the enemy is finished talking he will go back to his routine
-            if (!enemy.EnemyTalkCheck.Talkable)
+            if (!enemy.EnemyTalkCheck.Talk)
             {
                 if (enemy.Patrolling)
                 {
@@ -42,7 +42,7 @@ namespace Enemy.States
         public void Exit(EnemyController enemy)
         {
             enemy.Agent.isStopped = false;
-            enemy.EnemyTalkCheck.Talkable = false;
+            enemy.EnemyTalkCheck.Talk = false;
             
         }
     }
