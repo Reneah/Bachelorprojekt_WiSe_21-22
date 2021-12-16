@@ -331,9 +331,13 @@ namespace Enemy.Controller
              get => _canInvestigate;
              set => _canInvestigate = value;
          }
-         
-         public bool GetSoundOnce { get; set; }
-         
+
+         public bool GetSoundOnce
+         {
+             get => _getSoundOnce;
+             set => _getSoundOnce = value;
+         }
+
          public bool ResetNoisyItemWaypoints
          {
              get => _resetNoisyItemWaypoints;
