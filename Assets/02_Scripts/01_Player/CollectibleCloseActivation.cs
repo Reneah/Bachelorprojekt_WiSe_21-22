@@ -16,7 +16,7 @@ using UnityEngine;
         
         void Update()
         {
-            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible )
+            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible)
             {
                 _collectItem.ItemCollectible = false;
                     
