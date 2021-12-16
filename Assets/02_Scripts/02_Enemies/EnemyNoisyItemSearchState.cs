@@ -22,7 +22,7 @@ namespace Enemy.States
                 {
                     return EnemyController.EnemyGuardState;
                 }
-            
+                
                 return EnemyController.EnemyPatrolState;
             }
         
@@ -32,6 +32,7 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
+            enemy.EnemyTalkCheck.Talkable = false;
             enemy.PrepareSearchNoisyItemBehaviour();
             enemy.StartSearchNoisyItemBehaviour();
             
