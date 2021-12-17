@@ -134,6 +134,7 @@ public class PlayerThrowTrigger : MonoBehaviour
                 
             if (_hitNoisyItem)
             {
+                Debug.Log("yes");
                 _soundRadius.SetActive(true);
             }
             else
