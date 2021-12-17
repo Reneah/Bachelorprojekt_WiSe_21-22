@@ -1618,7 +1618,7 @@ MonoBehaviour:
   groupPlayType: 0
   isSelected: 0
   isExpanded: 1
-  groupMasterVolume: 1
+  groupMasterVolume: 0.14125374
   retriggerPercentage: 100
   curVariationMode: 0
   alwaysHighestPriority: 0
@@ -1672,7 +1672,7 @@ MonoBehaviour:
   soundPlayedEventActive: 0
   soundPlayedCustomEvent: 
   willCleanUpDelegatesAfterStop: 1
-  frames: 4797
+  frames: 5310
 --- !u!1 &8248010826325589250
 GameObject:
   m_ObjectHideFlags: 0
@@ -5235,8 +5235,8 @@ MonoBehaviour:
     MusicSettings:
     - alias: 
       audLocation: 0
-      clip: {fileID: 8300000, guid: 5417c79ced1d94c45b5ff9c03f8952b1, type: 3}
-      songName: szegvari_dark-thriller-castle-atmo-orchestral-drone
+      clip: {fileID: 8300000, guid: e56817810208a794a835e102265598d3, type: 3}
+      songName: Bloodline_ambience
       resourceFileName: 
       volume: 0.31622776
       pitch: 1
@@ -5405,7 +5405,7 @@ MonoBehaviour:
   groupPlayType: 0
   isSelected: 0
   isExpanded: 1
-  groupMasterVolume: 1
+  groupMasterVolume: 0.05011873
   retriggerPercentage: 100
   curVariationMode: 0
   alwaysHighestPriority: 0
@@ -5461,7 +5461,7 @@ MonoBehaviour:
   soundPlayedEventActive: 0
   soundPlayedCustomEvent: 
   willCleanUpDelegatesAfterStop: 1
-  frames: 15718
+  frames: 16129
 --- !u!1 &9113414240182353236
 GameObject:
   m_ObjectHideFlags: 0
@@ -5730,7 +5730,7 @@ MonoBehaviour:
   groupPlayType: 0
   isSelected: 0
   isExpanded: 1
-  groupMasterVolume: 1
+  groupMasterVolume: 0.31622776
   retriggerPercentage: 100
   curVariationMode: 0
   alwaysHighestPriority: 0
@@ -5786,7 +5786,7 @@ MonoBehaviour:
   soundPlayedEventActive: 0
   soundPlayedCustomEvent: 
   willCleanUpDelegatesAfterStop: 1
-  frames: 7800
+  frames: 8386
 --- !u!1 &9113414240348396441
 GameObject:
   m_ObjectHideFlags: 0
