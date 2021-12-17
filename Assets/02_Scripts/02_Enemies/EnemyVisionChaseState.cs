@@ -64,7 +64,7 @@ namespace Enemy.States
                 enemy.GetComponent<EnemyController>().enabled = false;
                 enemy.AnimationHandler.enabled = false;
                 enemy.EnemyTalkCheck.enabled = false;
-                enemy.GetComponent<NavMeshAgent>().enabled = false;
+                enemy.Agent.isStopped = true;
             }
             
             return this;
