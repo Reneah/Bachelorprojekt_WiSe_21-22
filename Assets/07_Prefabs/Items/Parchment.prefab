@@ -125,6 +125,7 @@ MonoBehaviour:
   _negativeSprite: {fileID: 0}
   _usebleMarker: {fileID: 6320995878953516886}
   _spawnKey: {fileID: 0}
+  _removeThroneParticleEffect: {fileID: 0}
   _key: 0
   _backpack: 0
   _parchment: 1
@@ -304,11 +305,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3564948008015526161, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2026882040652954433, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}
       propertyPath: m_Name
@@ -316,7 +317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}
