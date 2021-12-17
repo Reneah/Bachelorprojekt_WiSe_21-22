@@ -91,12 +91,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lootChance: 100
-  _shrinkLootChance: 20
+  _shrinkLootChance: 5
   _lootTime: 10
   _smoothRotation: 7
   _stopDistance: 1
   _lootSpotCooldown: 10
-  _minimumLootChance: 20
+  _minimumLootChance: 50
   _usingChest: 0
 --- !u!135 &1740285324
 SphereCollider:
