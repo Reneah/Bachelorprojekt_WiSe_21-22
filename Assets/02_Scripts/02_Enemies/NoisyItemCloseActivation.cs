@@ -34,6 +34,7 @@ namespace Enemy.SoundItem
                     }
                 }
                 
+                _noisyItem.SoundRangeCollider.gameObject.SetActive(true);
                 _noisyItem.CollectibleSprite.gameObject.SetActive(false);
                 _noisyItem.NegativeSprite.gameObject.SetActive(true);
 
