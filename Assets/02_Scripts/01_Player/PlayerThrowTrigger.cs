@@ -99,13 +99,11 @@ public class PlayerThrowTrigger : MonoBehaviour
     private RaycastHit _hit;
     private bool _hitNoisyItem;
 
+    private bool _deactivateUI = false;
+
     private void Start()
     {
         _collectStones = FindObjectOfType<CollectStones>();
-        
-        // just find a random sound item and new GameObject to not be null. Otherwise, there will be errors
-        // the randomness and new GameObject creation doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
-        _noisyItem = FindObjectOfType<NoisyItem>();
     }
 
     private void Update()
@@ -129,11 +127,11 @@ public class PlayerThrowTrigger : MonoBehaviour
         }
         
         // if the player is near the noisy item, he is able to activate it per hand and doesn't need to throw
-        if (_close)
+        if (_noisyItem != null && _close)
         {
             _throwableSprite.gameObject.SetActive(false);
             _notThrowableSprite.gameObject.SetActive(false);
-
+                
             if (_hitNoisyItem)
             {
                 _soundRadius.SetActive(true);
@@ -143,9 +141,9 @@ public class PlayerThrowTrigger : MonoBehaviour
                 _soundRadius.SetActive(false);
             }
         }
-        
+
         if (!_close)
-        {    
+        { 
             // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
             //!Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("Blocked"))
             if(_hitNoisyItem) 
@@ -196,4 +194,5 @@ public class PlayerThrowTrigger : MonoBehaviour
             }
         }
     }
+     
 }

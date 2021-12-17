@@ -89,7 +89,6 @@ public class CollectStones : MonoBehaviour
                     PlayerPrefs.SetInt("StoneActive", 1);
                     _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount;
                     
-                    
                     if (_maxStoneAmount <= _stonesCounter)
                     {
                         // maximize the stone amount, when for example only 2 stones can be collected even through the pile amount is 3

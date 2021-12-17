@@ -1,3 +1,4 @@
+using System;
 using Enemy.AnimationHandler;
 using Enemy.Controller;
 using Enemy.ShareInformation;
@@ -21,16 +22,25 @@ namespace Enemy.TalkCheck
         [Range(1,10)]
         [SerializeField] private float _smoothRotation;
         
-        // determines when the enemy run to each other
-        private bool _talkable = false;
+        // start the talk state
+        private bool _talk = false;
+        public bool Talk
+        {
+            get => _talk;
+            set => _talk = value;
+        }
+
+        // determines if the enemy is talkable
+        private bool _talkable = true;
+
         public bool Talkable
         {
             get => _talkable;
             set => _talkable = value;
         }
-
-        // the position of the other enemy
-        private GameObject _talkableEnemy;
+        
+        // the script of the other enemy to talk to them and know the position
+        private EnemyTalkCheck _talkableEnemy;
         // the chance that the enemy will pick another one to speak with him
         private float _chanceToSpeak;
         // the time the enemy talk to the other enemy
@@ -39,6 +49,12 @@ namespace Enemy.TalkCheck
         private bool _countDown = false;
         // take the other enemy partner to talk, so that it is certain that the other one will react
         private bool _takeTalkPartner = false;
+        
+        public bool TakeTalkPartner
+        {
+            get => _takeTalkPartner;
+            set => _takeTalkPartner = value;
+        }
         
         // need those script to communicate with the enemy
         private EnemyController _enemyController;
@@ -54,7 +70,7 @@ namespace Enemy.TalkCheck
         
         void Update()
         {
-            if (_talkable)
+            if (_talk)
             {
                 // set the destination of the talk partner
                 _enemyController.Agent.SetDestination(_talkableEnemy.transform.position);
@@ -75,27 +91,27 @@ namespace Enemy.TalkCheck
                     Quaternion _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_talkableEnemy.transform.position - transform.position), _smoothRotation * Time.deltaTime);
                     _enemyController.transform.rotation = _desiredDirection;
 
-                    // When teh enemy is finishing talking, he will go back to his routine and the values will be resetted
+                    // When the enemy is finishing talking, he will go back to his routine and the values will be reset
                     if (_talkCooldown <= 0)
                     {
                         _enemyAnimation.TalkToEnemy(false);
                         _countDown = false;
-                        _talkable = false;
-                        EnemyShareInformation.EnemyTalkingNumber = 0;
+                        _talk = false;
                         _talkCooldown = _timeToTalk;
                         _takeTalkPartner = false;
+                        _talkable = true;
                     }
                 }
             }
             // if the enemy sees or hears the player while the countdown, everything will be reset
-            else if (!_talkable && _countDown)
+            else if (!_talk && _countDown)
             {
                 _enemyAnimation.TalkToEnemy(false);
                 _countDown = false;
-                _talkable = false;
-                EnemyShareInformation.EnemyTalkingNumber = 0;
+                _talk = false;
                 _talkCooldown = _timeToTalk;
                 _takeTalkPartner = false;
+                _talkable = true;
             }
         }
 
@@ -104,22 +120,28 @@ namespace Enemy.TalkCheck
             // When he passes a talkable enemy, he is able to talk to him with a random chance
             if (other.CompareTag("Talkable"))
             {
+                _talkableEnemy = other.GetComponent<EnemyTalkCheck>();
                 _chanceToSpeak = Random.value;
                 
                 // When the chance to talk is reached, the enemy is not already talking and is not looting, he can talk with the enemy
-                if (_chanceToSpeak <= _chanceToTalk / 100 && EnemyShareInformation.EnemyTalkingNumber < 2 && !EnemyShareInformation.IsLooting || !_takeTalkPartner && EnemyShareInformation.EnemyTalkingNumber < 2 && !EnemyShareInformation.IsLooting)
+                if (_chanceToSpeak <= _chanceToTalk / 100 && _talkable && !_takeTalkPartner && _talkableEnemy.Talkable)
                 {
-                    EnemyShareInformation.EnemyTalkingNumber++;
-                    
-                    if (EnemyShareInformation.EnemyTalkingNumber < 2)
-                    {
-                        _takeTalkPartner = true;
-                    }
-                    
-                    _talkable = true;
+                    _talkableEnemy.TakeTalkPartner = true;
+                    _talkable = false;
+                    _talk = true;
                     _enemyController.AnimationHandler.SetSpeed(_enemyController.PatrolSpeed);
-                    _talkableEnemy = other.GetComponentInParent<Transform>().gameObject;
+                    
                 }
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("Talkable") && _takeTalkPartner && _talkable)
+            {
+                _talkable = false;
+                _talk = true;
+                _enemyController.AnimationHandler.SetSpeed(_enemyController.PatrolSpeed);
             }
         }
     }

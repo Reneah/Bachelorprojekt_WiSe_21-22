@@ -53,30 +53,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Options.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ScenePersistent.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ImageAnimation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile1.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerStepsSound.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Provisions.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemPullRadius.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/ChaseActivation.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectProvisions.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/TutorialContinueButton.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SpottedBarTowardsCamera.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
@@ -86,24 +73,37 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyVisionChaseState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyLootState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LootSpot.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/LootChestAnimationController.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemCloseActivation.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectProvisions.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Checkpoint.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkCheck.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyVisionChaseState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyLootState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LootSpot.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" />
       </list>
     </option>
   </component>
@@ -278,6 +278,9 @@
       <workItem from="1639563701644" duration="2000" />
       <workItem from="1639563931175" duration="1768000" />
       <workItem from="1639571447584" duration="3467000" />
+      <workItem from="1639593976722" duration="4436000" />
+      <workItem from="1639639959621" duration="5250000" />
+      <workItem from="1639678798981" duration="9519000" />
     </task>
     <servers />
   </component>
@@ -379,10 +382,10 @@
     </state>
     <state x="652" y="212" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638347951073" />
     <state x="669" y="235" key="run.anything.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1635953837811" />
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1639565662611">
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1639687324434">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1639565662611" />
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1639687324434" />
     <state x="675" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1639493508444" />
   </component>
   <component name="XDebuggerManager">
@@ -390,7 +393,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/Checkpoint.cs</url>
-          <line>44</line>
+          <line>47</line>
           <properties documentPath="C:\Users\Chris\Documents\Unity Projekte\Bachelorprojekt_WiSe_21-22\Assets\02_Scripts\01_Player\Checkpoint.cs" initialLine="35" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>

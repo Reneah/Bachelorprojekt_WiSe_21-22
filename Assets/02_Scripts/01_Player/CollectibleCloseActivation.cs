@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 
@@ -16,7 +17,7 @@ using UnityEngine;
         
         void Update()
         {
-            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible )
+            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible)
             {
                 _collectItem.ItemCollectible = false;
                     
@@ -43,6 +44,9 @@ using UnityEngine;
                     // This works fine
                     _collectItem.RemoveThroneParticleEffect.SetActive(false);
                     _collectItem.SpawnKey.SetActive(true);
+                    _collectItem.gameObject.layer = LayerMask.GetMask("Default");
+                    _collectItem.enabled = false;
+                    gameObject.SetActive(false);
                 }
                 else if(_collectItem.StaircaseToCellar)
                 {

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636022045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.06, y: -1.081, z: -1.116005}
+  m_LocalPosition: {x: -0.66447014, y: -0.906, z: 0.81300753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4069851119948102033}
@@ -103,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5832793731586102576
 Transform:
   m_ObjectHideFlags: 0
@@ -292,7 +292,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: -0.36, y: -0.37, z: -0.33}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1826813201120431298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +472,10 @@ PrefabInstance:
     - target: {fileID: 1452637288940736219, guid: e6443cd67ba59294fbb7fa9ec34cc89a, type: 3}
       propertyPath: m_Name
       value: Particle_System_PoI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1452637288940736219, guid: e6443cd67ba59294fbb7fa9ec34cc89a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6443cd67ba59294fbb7fa9ec34cc89a, type: 3}
