@@ -2844,7 +2844,7 @@ MonoBehaviour:
   _enemyHead: {fileID: 7429465334465209964}
   _obstacleRaycastTransform: {fileID: 7429465333900099875}
   _lookPositionAtSpotted: {fileID: 0}
-  _secondsToSpott: 1
+  _secondsToSpott: 3
   _spottedBar: {fileID: 148888973}
   _spottedDistance: 3
   _lastChanceTime: 2.5
