@@ -28,6 +28,8 @@ namespace Enemy.LootSpot
         [Tooltip("the loot chance can't drop below the minimum loot chance")]
         [Range(0, 90)] 
         [SerializeField] private int _minimumLootChance;
+        [Tooltip("when the chest for looting will be used")]
+        [SerializeField] private bool _usingChest;
         
         // the chance that the enemy will loot the spot
         private float _chanceToLoot;
@@ -46,10 +48,16 @@ namespace Enemy.LootSpot
         
         // call the chest animation one time
         private bool _chestAnimation = false;
+
+        // determines if the spot is occupied or not so that no other enemy can loot in the moment
+        private bool _occupied = false;
         
         void Start()
         {
-            _lootChestAnimation = GetComponentInChildren<LootChestAnimationController>();
+            if (_usingChest)
+            {
+                _lootChestAnimation = GetComponentInChildren<LootChestAnimationController>();
+            }
             
             _lootCooldown = _lootTime;
             _lootSpotTime = _lootSpotCooldown;
@@ -62,7 +70,7 @@ namespace Enemy.LootSpot
             if (_enemyController != null && _enemyController.ReachedLootSpot)
             {
                 _lootCooldown -= Time.deltaTime;
-                if (!_chestAnimation)
+                if (!_chestAnimation && _usingChest)
                 {
                     _lootChestAnimation.OpenChest(true);
                     _chestAnimation = true;
@@ -70,14 +78,19 @@ namespace Enemy.LootSpot
                 
                 if (_lootCooldown <= 0)
                 {
-                    _enemyController.AnimationHandler.LootSpot(false);
-                    _lootChestAnimation.OpenChest(false);
-                    EnemyShareInformation.IsLooting = false;
-                    _enemyController.Loot = false;
-                    _enemyController.ReachedLootSpot = false;
-                    _lootCooldown = _lootTime;
-                    _chestAnimation = false;
                     _reactivateLootSpot = true;
+                    _enemyController.AnimationHandler.LootSpot(false);
+                    _enemyController.Loot = false;
+                    _lootCooldown = _lootTime;
+                    
+                    if (_usingChest)
+                    {
+                        _lootChestAnimation.OpenChest(false);
+                        _chestAnimation = false;
+                    }
+
+                    _occupied = false;
+                    _enemyController.ReachedLootSpot = false;
                 }
             }
             
@@ -97,7 +110,7 @@ namespace Enemy.LootSpot
         private void OnTriggerEnter(Collider other)
         {
             // When the enemy is in range, he has the chance to loot the spot
-            if (other.CompareTag("Enemy") && !_reactivateLootSpot && !EnemyShareInformation.IsLooting)
+            if (other.CompareTag("Enemy") && !_reactivateLootSpot && !_occupied)
             {
                 _chanceToLoot = Random.value;
                 
@@ -117,9 +130,6 @@ namespace Enemy.LootSpot
                     _enemyController.StopDistanceLootSpot = _stopDistance;
                     _lootChance -= _shrinkLootChance;
                     
-                    // When the enemy is looting, no other enemy will get to the spot as well
-                    EnemyShareInformation.IsLooting = true;
-
                     //  the loot chance can't drop below the minimum loot chance or 0
                     if (_lootChance < _minimumLootChance)
                     {
@@ -130,6 +140,7 @@ namespace Enemy.LootSpot
                             _lootChance = 0;
                         }
                     }
+                    _occupied = true;
                 }
             }
         }

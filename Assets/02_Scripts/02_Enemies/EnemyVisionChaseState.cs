@@ -64,7 +64,7 @@ namespace Enemy.States
                 enemy.GetComponent<EnemyController>().enabled = false;
                 enemy.AnimationHandler.enabled = false;
                 enemy.EnemyTalkCheck.enabled = false;
-                enemy.GetComponent<NavMeshAgent>().enabled = false;
+                enemy.Agent.isStopped = true;
             }
             
             return this;
@@ -72,6 +72,7 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
+            enemy.EnemyTalkCheck.Talkable = false;
             enemy.ChaseActivationObject.SetActive(true);
             
             enemy.ReminderTime = enemy.LastChanceTime;

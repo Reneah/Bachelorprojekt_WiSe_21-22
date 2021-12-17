@@ -331,9 +331,13 @@ namespace Enemy.Controller
              get => _canInvestigate;
              set => _canInvestigate = value;
          }
-         
-         public bool GetSoundOnce { get; set; }
-         
+
+         public bool GetSoundOnce
+         {
+             get => _getSoundOnce;
+             set => _getSoundOnce = value;
+         }
+
          public bool ResetNoisyItemWaypoints
          {
              get => _resetNoisyItemWaypoints;
@@ -539,9 +543,9 @@ namespace Enemy.Controller
             _player = FindObjectOfType<PlayerController>();
             _inGameMenu = FindObjectOfType<InGameMenu>();
             _playerGroundDetection = FindObjectOfType<PlayerGroundDetection>();
-            _enemyTalkCheck = transform.Find("EnemyTalkCheck").GetComponent<EnemyTalkCheck>();
+            _enemyTalkCheck = GetComponentInChildren<EnemyTalkCheck>();
             _chaseActivationObject = transform.Find("EnemyChaseActivation").GetComponent<ChaseActivation.ChaseActivation>().gameObject;
-
+            
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
             if (_patrolling)
             {
