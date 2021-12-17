@@ -5238,7 +5238,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: e56817810208a794a835e102265598d3, type: 3}
       songName: Bloodline_ambience
       resourceFileName: 
-      volume: 0.31622776
+      volume: 1
       pitch: 1
       isExpanded: 1
       isLoop: 1
