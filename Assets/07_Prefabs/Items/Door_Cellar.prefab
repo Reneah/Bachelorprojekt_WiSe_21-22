@@ -679,7 +679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1882210816038594675
 Transform:
   m_ObjectHideFlags: 0
@@ -752,6 +752,7 @@ MonoBehaviour:
   _negativeSprite: {fileID: 0}
   _usebleMarker: {fileID: 0}
   _spawnKey: {fileID: 0}
+  _removeThroneParticleEffect: {fileID: 0}
   _key: 0
   _backpack: 0
   _parchment: 0
