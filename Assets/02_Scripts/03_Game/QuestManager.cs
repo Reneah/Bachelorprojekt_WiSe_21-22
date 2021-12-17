@@ -29,10 +29,18 @@ public class QuestManager : MonoBehaviour
     private TextMeshProUGUI _quest6Text;
 
     [SerializeField] private int _provisionsQuestTarget;
+    private GameObject _staircaseToCellarInteractionObjects;
     private CollectProvisions _collectProvisions;
     private int _currentProvisionsCount;
+    private bool _provisionsQuestDone;
     
-    /// <summary>
+    public bool ProvisionsQuestDone
+    {
+        get => _provisionsQuestDone;
+        set => _provisionsQuestDone = value;
+    }
+    
+    /// <summary>mm
     /// Variables for quest panel movement
     /// </summary>
     bool isDown = true;
@@ -46,10 +54,13 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private float upPositionValue = 263;
     [SerializeField] private float downPositionValue = -22;
 
+    
     // Start is called before the first frame update
     void Start()
     {
         _collectProvisions = FindObjectOfType<CollectProvisions>();
+        _staircaseToCellarInteractionObjects = GameObject.Find("StaircaseToCellarInteractionObjects");
+        _staircaseToCellarInteractionObjects.SetActive(false);
 
         _quest1Text = GameObject.Find("Quest1Text").GetComponent<TextMeshProUGUI>();
         _quest2Text = GameObject.Find("Quest2Text").GetComponent<TextMeshProUGUI>();
@@ -62,6 +73,28 @@ public class QuestManager : MonoBehaviour
         _quest4Text.enabled = false;
         _quest5Text.enabled = false;
         _quest6Text.enabled = false;
+    
+        // Reset QuestManager quest texts to regular font on New Game Start
+        if (!CollectItem._backpackCollected)
+        {
+            _quest2Text.fontStyle = FontStyles.Normal;
+        }
+        if (!CollectItem._parchmentCollected)
+        {
+            _quest3Text.fontStyle = FontStyles.Normal;
+        }
+        if (_currentProvisionsCount <= _collectProvisions.ProvisionsCounter)
+        {
+            _quest4Text.fontStyle = FontStyles.Normal;
+        }
+        if (!CollectItem._keyCollected)
+        {
+            _quest5Text.fontStyle = FontStyles.Normal;
+        }
+        if (!CollectItem._enteredStaircase)
+        {
+            _quest6Text.fontStyle = FontStyles.Normal;
+        }
         
     }
 
@@ -77,7 +110,8 @@ public class QuestManager : MonoBehaviour
             // activate crossed out resolved quest text, "Find a backpack."
             _quest2Text.fontStyle = FontStyles.Strikethrough;
         }
-        else if (CollectItem._parchmentCollected && !_questStage2complete)
+        
+        if (CollectItem._parchmentCollected && !_questStage2complete)
         {
             //_questStage2complete = true;
             
@@ -88,22 +122,38 @@ public class QuestManager : MonoBehaviour
             // activate crossed out resolved quest text "Meet up with Drustan back at the front gate."
             _quest3Text.fontStyle = FontStyles.Strikethrough;
         }
-        else if (CollectProvisions._provisionsActive)
+        
+        if (CollectProvisions._provisionsActive)
         {
             _currentProvisionsCount = _collectProvisions.ProvisionsCounter;
 
             if (_currentProvisionsCount >= _provisionsQuestTarget)
             {
-                // activate crossed out resolved quest text "Gather X provisions."
+                // activate crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Strikethrough;
+                _provisionsQuestDone = true;
+                
+                // Activate interaction visualisation objects at staircase asset
+                if (CollectItem._keyCollected)
+                {
+                    _staircaseToCellarInteractionObjects.SetActive(true);
+                }
             }
             else
             {
-                // revoke crossed out resolved quest text "Gather X provisions."
+                // revoke crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Normal;
+                _provisionsQuestDone = false;
+                
+                // Dectivate interaction visualisation objects at staircase asset
+                if (CollectItem._keyCollected)
+                {
+                    _staircaseToCellarInteractionObjects.SetActive(false);
+                }
             }
         }
-        else if (CollectItem._keyCollected)
+        
+        if (CollectItem._keyCollected)
         {
             //_questStage3complete = true;
             
@@ -112,7 +162,8 @@ public class QuestManager : MonoBehaviour
             // activate crossed out resolved quest text "Find the hidden key under the throne."
             _quest5Text.fontStyle = FontStyles.Strikethrough;
         }
-        else if (CollectItem._secretPassageOpened)
+
+        if (CollectItem._enteredStaircase)
         {
             //_questStage4complete = true;
             

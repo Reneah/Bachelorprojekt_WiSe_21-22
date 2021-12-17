@@ -7,6 +7,14 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            // When the enemy has finished looting, he will go back in the patrol state
+            if (!enemy.Loot)
+            {
+                enemy.Agent.isStopped = false;
+                enemy.AnimationHandler.LootSpot(false);
+                return EnemyController.EnemyPatrolState;
+            }
+            
             if (enemy.CanSeePlayer)
             {
                 enemy.Agent.isStopped = false;
@@ -33,25 +41,18 @@ namespace Enemy.States
                 enemy.transform.rotation = _desiredDirection;
             }
             
-            // When the enemy has finished looting, he will go back in the patrol state
-            if (!enemy.Loot)
-            {
-                enemy.Agent.isStopped = false;
-                enemy.AnimationHandler.LootSpot(false);
-                return EnemyController.EnemyPatrolState;
-            }
-            
             return this;
         }
 
         public void Enter(EnemyController enemy)
         {
+            enemy.EnemyTalkCheck.Talkable = false;
             enemy.Agent.SetDestination(enemy.LootSpotTransform.position);
         }
 
         public void Exit(EnemyController enemy)
         {
-           
+   
         }
     }
 }

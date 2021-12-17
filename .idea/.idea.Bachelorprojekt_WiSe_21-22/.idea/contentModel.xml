@@ -22,6 +22,7 @@
             <e p="IPlayerState.cs" t="Include" />
             <e p="PlayerAnimationHandler.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
+            <e p="PlayerGroundDetection.cs" t="Include" />
             <e p="PlayerHideState.cs" t="Include" />
             <e p="PlayerIdleState.cs" t="Include" />
             <e p="PlayerJumpState.cs" t="Include" />
@@ -64,6 +65,7 @@
             <e p="FadeOut.cs" t="Include" />
             <e p="ImageAnimation.cs" t="Include" />
             <e p="IntroScene.cs" t="Include" />
+            <e p="LootChestAnimationController.cs" t="Include" />
             <e p="QuestManager.cs" t="Include" />
             <e p="SceneChange.cs" t="Include" />
             <e p="Tutorial.cs" t="Include" />

@@ -34,10 +34,8 @@ namespace Enemy.SoundItem
                     }
                 }
                 
-                _noisyItem.CloseActivationRadius.SetActive(false);
                 _noisyItem.CollectibleSprite.gameObject.SetActive(false);
                 _noisyItem.NegativeSprite.gameObject.SetActive(true);
-                _noisyItem.SoundRangeCollider.SetActive(true);
 
                 _noisyItem.ItemUsable = false;
                 _noisyItem.ItemUsed = true;
@@ -62,7 +60,6 @@ namespace Enemy.SoundItem
                     _noisyItem.ItemUsable = false;
                     _noisyItem.PlayerThrowTrigger.Close = false;
                     _noisyItem.CollectibleSprite.gameObject.SetActive(false);
-                    _noisyItem.CloseActivationRadius.SetActive(false);
                 }
             }
         }

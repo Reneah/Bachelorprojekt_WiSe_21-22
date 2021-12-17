@@ -15,6 +15,11 @@ public class CollectItem : MonoBehaviour
     [SerializeField] private GameObject _negativeSprite;
     [Tooltip("signalize that the stones can be collected")]
     [SerializeField] private GameObject _usebleMarker;
+    [Tooltip("only needed for throne to activate next quest item")]
+    [SerializeField] private GameObject _spawnKey;
+    [Tooltip("only needed for key to deactivate throne interaction particle effect")]
+    [SerializeField] private GameObject _removeThroneParticleEffect;
+
 
     [Header("Choose the ONE Item which will be represented")] 
     [Tooltip("the key to open doors")] 
@@ -24,12 +29,15 @@ public class CollectItem : MonoBehaviour
     [Tooltip("has to be picked up by the player as a quest item")] 
     [SerializeField] private bool _parchment;
     [Tooltip("has to be interacted with by the player as a quest task")] 
-    [SerializeField] private bool _secretPassage;
+    [SerializeField] private bool _throneCompartment;
+    [Tooltip("has to be interacted with by the player as a quest task")] 
+    [SerializeField] private bool _staircaseToCellar;
     
-    public static bool _keyCollected = false;
     public static bool _backpackCollected = false;
     public static bool _parchmentCollected = false;
-    public static bool _secretPassageOpened = false;
+    public static bool _throneCompartmentOpened = false;
+    public static bool _keyCollected = false;
+    public static bool _enteredStaircase = false;
     
     private bool _itemCollectible;
     
@@ -54,10 +62,10 @@ public class CollectItem : MonoBehaviour
         set => _collectibleSprite = value;
     }
 
-    public bool SecretPassage
+    public bool StaircaseToCellar
     {
-        get => _secretPassage;
-        set => _secretPassage = value;
+        get => _staircaseToCellar;
+        set => _staircaseToCellar = value;
     }
 
     public GameObject ItemImage
@@ -106,6 +114,24 @@ public class CollectItem : MonoBehaviour
     {
         get => _parchment;
         set => _parchment = value;
+    }
+
+    public bool ThroneCompartment
+    {
+        get => _throneCompartment;
+        set => _throneCompartment = value;
+    }
+
+    public GameObject SpawnKey
+    {
+        get => _spawnKey;
+        set => _spawnKey = value;
+    }
+
+    public GameObject RemoveThroneParticleEffect
+    {
+        get => _removeThroneParticleEffect;
+        set => _removeThroneParticleEffect = value;
     }
 
     //[SerializeField]

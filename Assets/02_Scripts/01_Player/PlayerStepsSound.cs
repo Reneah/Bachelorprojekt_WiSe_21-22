@@ -29,7 +29,7 @@ public class PlayerStepsSound : MonoBehaviour
     
     void Update()
     {
-        bool sprint = Input.GetKey(KeyCode.LeftShift);
+        bool sprint = Input.GetKey(KeyCode.LeftShift) && _playerController.MoveDirection.magnitude > 0;
         _targetSpeed = (sprint ? _runSoundRadius : _sneakSoundRadius);
         
         if (_playerController.PlayerAnimationHandler.PlayerAnimator.GetBool("Flee"))

@@ -22,6 +22,16 @@ namespace Enemy.Controller
 
         // need this script to get the transform information and some methods of the player
         private PlayerController _player;
+
+        // need this script so that the enemy knows on which ground the player is 
+        private PlayerGroundDetection _playerGroundDetection;
+
+        public PlayerGroundDetection PlayerGroundDetection
+        {
+            get => _playerGroundDetection;
+            set => _playerGroundDetection = value;
+        }
+
         public PlayerController Player => _player;
 
         private EnemyAnimationHandler _animationHandler;
@@ -321,9 +331,13 @@ namespace Enemy.Controller
              get => _canInvestigate;
              set => _canInvestigate = value;
          }
-         
-         public bool GetSoundOnce { get; set; }
-         
+
+         public bool GetSoundOnce
+         {
+             get => _getSoundOnce;
+             set => _getSoundOnce = value;
+         }
+
          public bool ResetNoisyItemWaypoints
          {
              get => _resetNoisyItemWaypoints;
@@ -528,9 +542,10 @@ namespace Enemy.Controller
             _animationHandler = GetComponent<EnemyAnimationHandler>();
             _player = FindObjectOfType<PlayerController>();
             _inGameMenu = FindObjectOfType<InGameMenu>();
-            _enemyTalkCheck = transform.Find("EnemyTalkCheck").GetComponent<EnemyTalkCheck>();
+            _playerGroundDetection = FindObjectOfType<PlayerGroundDetection>();
+            _enemyTalkCheck = GetComponentInChildren<EnemyTalkCheck>();
             _chaseActivationObject = transform.Find("EnemyChaseActivation").GetComponent<ChaseActivation.ChaseActivation>().gameObject;
-
+            
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
             if (_patrolling)
             {
@@ -569,7 +584,7 @@ namespace Enemy.Controller
         /// </summary>
         public void CheckPlayerGround()
         {
-            if (_player.LowGround)
+            if (_playerGroundDetection.LowGround)
             {             
                 // Standard View Cone
                 _lowGroundViewCone.SetActive(true);
@@ -577,7 +592,7 @@ namespace Enemy.Controller
   
             }
 
-            if (_player.HighGround)
+            if (_playerGroundDetection.HighGround)
             {
                 // Bigger View Cone
                 _lowGroundViewCone.SetActive(false);
@@ -611,7 +626,7 @@ namespace Enemy.Controller
             // prevent that the run animation is playing when the agent can't go further in contrast to the player 
             // rotates the enemy towards the player position 
             // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop 
-            if (ClosestPlayerPosition(0.5f)|| ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination && _player.HighGround)
+            if (ClosestPlayerPosition(0.5f)|| ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination && _playerGroundDetection.HighGround)
             {
                 if (!EnemyShareInformation.FirstEnemyReachedDestination)
                 {
@@ -643,7 +658,7 @@ namespace Enemy.Controller
         /// <returns></returns>
         public bool CatchPlayer()
         {
-            if (_player.HighGround)
+            if (_playerGroundDetection.HighGround)
             {
                return  Vector3.Distance(transform.position, _player.transform.position) <= _highGroundCatchDistance;
             }

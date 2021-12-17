@@ -1,6 +1,8 @@
 using Enemy.Controller;
 using Enemy.ShareInformation;
 using UnityEngine;
+using UnityEngine.AI;
+using untitledProject;
 
 namespace Enemy.States
 {
@@ -53,12 +55,16 @@ namespace Enemy.States
                     }
                 }
             }
-            
+
             if (enemy.CatchPlayer())
             {
                 enemy.InGameMenu.EnemyCatchedPlayer = true;
                 enemy.AnimationHandler.FinalHit();
                 enemy.Player.PlayerAnimationHandler.PlayerDeath();
+                enemy.GetComponent<EnemyController>().enabled = false;
+                enemy.AnimationHandler.enabled = false;
+                enemy.EnemyTalkCheck.enabled = false;
+                enemy.Agent.isStopped = true;
             }
             
             return this;
@@ -66,6 +72,7 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
+            enemy.EnemyTalkCheck.Talkable = false;
             enemy.ChaseActivationObject.SetActive(true);
             
             enemy.ReminderTime = enemy.LastChanceTime;

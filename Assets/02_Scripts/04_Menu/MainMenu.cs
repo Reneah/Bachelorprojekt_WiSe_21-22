@@ -103,6 +103,12 @@ public class MainMenu : MonoBehaviour
     
     public void StartGame()
     {
+        // Set static booleans to false to reset QuestManager on New Game Start
+        CollectItem._backpackCollected = false;
+        CollectItem._parchmentCollected = false;
+        CollectItem._parchmentCollected = false;
+        CollectItem._enteredStaircase = false;
+        
         _fadeImage.DOFade(1, 3);
     }
 
