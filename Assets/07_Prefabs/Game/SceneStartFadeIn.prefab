@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadeImage: {fileID: 5932934404779562571}
-  _fadeTime: 8
+  _fadeTime: 4
