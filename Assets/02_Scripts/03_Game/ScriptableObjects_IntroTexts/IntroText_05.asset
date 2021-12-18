@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
+  m_Name: IntroText_05
+  m_EditorClassIdentifier: 
+  fadeStayTime: 14
+  text: A while later, the two of them stood at the entrance to the inner keep. Drustan
+    told Edward to quickly gather some equipment and meet him back at the front gate.
+    They would grab some supplies from the storerooms and escape together, but first
+    Drustan had to aid the kinglet in buying Edward as much time as they could.

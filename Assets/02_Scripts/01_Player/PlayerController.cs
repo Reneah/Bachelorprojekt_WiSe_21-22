@@ -45,6 +45,18 @@ namespace untitledProject
             get => _moveDirection;
             set => _moveDirection = value;
         }
+        
+        public float MovementSpeed
+        {
+            get => _movementSpeed;
+            set => _movementSpeed = value;
+        }
+        
+        public float SmoothRotation
+        {
+            get => _smoothRotation;
+            set => _smoothRotation = value;
+        }
 
         // Movement Inputs
         private float _verticalAxis;
