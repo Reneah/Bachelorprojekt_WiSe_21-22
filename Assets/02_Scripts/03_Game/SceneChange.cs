@@ -28,8 +28,7 @@ public class SceneChange : MonoBehaviour
 
     private PlayerController _playerController;
     private GameObject _questManager;
-    private GameObject _stoneUI;
-
+    
     private CollectStones _collectStones;
     
     private NoisyItem[] _noisyItems;
@@ -52,8 +51,7 @@ public class SceneChange : MonoBehaviour
 
         _playerController = FindObjectOfType<PlayerController>();
         _questManager = GameObject.Find("QuestManager");
-        _stoneUI = GameObject.Find("StoneUI");
-
+        
         _collectStones = FindObjectOfType<CollectStones>();
         
         _skipButton.SetActive(false);
@@ -110,7 +108,6 @@ public class SceneChange : MonoBehaviour
         _playerController.enabled = false;
         // Deactivate QuestManager parent object, this is a temporary solution so it doesn't overlap with the narrative text
         _questManager.SetActive(false);
-        _stoneUI.SetActive(false);
         _fadeImage.DOFade(1, _fadeTime);
     }
 

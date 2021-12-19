@@ -100,7 +100,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-            MasterAudio.PlaySound("PlayerQuietFootsteps");
+            MasterAudio.PlaySound3DAtTransform("PlayerQuietFootsteps", transform);
         }
     }
     
@@ -108,7 +108,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-            MasterAudio.PlaySound("PlayerMediumFootsteps");
+            MasterAudio.PlaySound3DAtTransform("PlayerMediumFootsteps", transform);
         }
     }
     
@@ -116,7 +116,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-            MasterAudio.PlaySound("PlayerLoudFootsteps");
+            MasterAudio.PlaySound3DAtTransform("PlayerLoudFootsteps", transform);
         }
     }
 }

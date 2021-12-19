@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -43,7 +44,7 @@ public class QuestManager : MonoBehaviour
     /// <summary>mm
     /// Variables for quest panel movement
     /// </summary>
-    bool isDown = true;
+    bool isDown = false;
     [SerializeField]
     RectTransform questPanel;
     bool isCompleted;
@@ -54,7 +55,20 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private float upPositionValue = 263;
     [SerializeField] private float downPositionValue = -22;
 
-    
+    private void Awake()
+    {
+        DOTween.Sequence()
+            .Append(questPanel.DOAnchorPosY(upPositionValue, 0)).Append(buttonImage.transform.DOScaleY(1f, 0)).AppendCallback(() =>
+            {
+                isCompleted = true;
+
+                if (isCompleted)
+                {
+                    isCompleted = false;
+                }
+            });
+    }
+
     // Start is called before the first frame update
     void Start()
     {
