@@ -54,6 +54,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] float panelAnimationDuration = 0.7f;
     [SerializeField] private float upPositionValue = 263;
     [SerializeField] private float downPositionValue = -22;
+    [SerializeField]
+    private bool firstScene;
 
     private void Awake()
     {
@@ -72,6 +74,10 @@ public class QuestManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!firstScene)
+        {
+            MoveQuestPanelDown();
+        }
         _collectProvisions = FindObjectOfType<CollectProvisions>();
         _staircaseToCellarInteractionObjects = GameObject.Find("StaircaseToCellarInteractionObjects");
         _staircaseToCellarInteractionObjects.SetActive(false);
