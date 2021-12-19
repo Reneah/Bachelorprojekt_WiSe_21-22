@@ -15,13 +15,13 @@ namespace untitledProject
             }
             
             bool jump = Input.GetKeyDown(KeyCode.Space);
-            if (jump)
+            if (jump && player.IsGrounded)
             {
                 player.Jump();
                 return PlayerController.PlayerJumpState;
             }
 
-            if (player.PlayerThrowTrigger.Throwstate && player.CollectStones.StonesCounter > 0)
+            if (player.PlayerThrowTrigger.Throwstate && player.CollectStones.StonesCounter > 0 && player.IsGrounded)
             {
                 return PlayerController.PlayerThrowState;
             }

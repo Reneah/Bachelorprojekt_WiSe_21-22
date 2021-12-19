@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &636022046
 Transform:
@@ -102,7 +102,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!4 &5832793731586102576
 Transform:
@@ -196,7 +196,7 @@ GameObject:
   m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!4 &4069851118831218657
 Transform:
@@ -257,7 +257,7 @@ GameObject:
   m_TagString: NoisyItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4069851119948102033
 Transform:
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _brokenItem: {fileID: 0}
-  _unharmedItem: {fileID: 2828968791335401663}
+  _unharmedItem: {fileID: 4069851119948102031}
   _collectibleSprite: {fileID: 0}
   _negativeSprite: {fileID: 0}
   _soundRadius: {fileID: 919132147840171103}
@@ -545,15 +545,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4bff1705323f6464b8014647b8d648fa, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bff1705323f6464b8014647b8d648fa, type: 3}
---- !u!1 &2828968791335401663 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4bff1705323f6464b8014647b8d648fa, type: 3}
-  m_PrefabInstance: {fileID: 3135611386872940014}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3173160372907942405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4bff1705323f6464b8014647b8d648fa, type: 3}

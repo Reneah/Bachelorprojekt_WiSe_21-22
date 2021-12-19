@@ -45,6 +45,18 @@ namespace untitledProject
             get => _moveDirection;
             set => _moveDirection = value;
         }
+        
+        public float MovementSpeed
+        {
+            get => _movementSpeed;
+            set => _movementSpeed = value;
+        }
+        
+        public float SmoothRotation
+        {
+            get => _smoothRotation;
+            set => _smoothRotation = value;
+        }
 
         // Movement Inputs
         private float _verticalAxis;
@@ -177,6 +189,8 @@ namespace untitledProject
             _playerAnimationHandler.SetGrounded(IsGrounded);
 
             CalmDownTime();
+            
+            Debug.DrawRay(transform.position,Vector3.down * _characterController.height / 2 * _slopeForceRayLength);
         }
 
         private IEnumerator PlayerPosition()
@@ -294,7 +308,7 @@ namespace untitledProject
             }
             
             // if the character is not moving horizontal to the ground, the slope will be activated to hold the character down
-            if ((_verticalAxis != 0 || _horizontalAxis != 0) && OnSlope() && _isGrounded)
+            if ((_verticalAxis != 0 || _horizontalAxis != 0) && OnSlope() && _isGrounded && !Input.GetKey(KeyCode.Space))
             {
                 _characterController.Move(Vector3.down * _characterController.height / 2 * (_slopeForce * Time.deltaTime)); 
             }
@@ -325,6 +339,7 @@ namespace untitledProject
         {
             if (_isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
+                _isJumping = true;
                 _playerAnimationHandler.DoJump();
                 _currentVerticalVelocity = JumpVelocity;
             }
