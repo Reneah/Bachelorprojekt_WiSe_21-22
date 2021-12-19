@@ -15,7 +15,7 @@ namespace untitledProject
             }
             
             bool jump = Input.GetKeyDown(KeyCode.Space);
-            if (jump)
+            if (jump && player.IsGrounded)
             {
                 player.Jump();
                 return PlayerController.PlayerJumpState;
