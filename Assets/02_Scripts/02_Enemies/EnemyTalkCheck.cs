@@ -11,7 +11,7 @@ namespace Enemy.TalkCheck
     {
         [Tooltip("Chance to talk to him at passing the other enemy in percentage")]
         [Range(0,100)]
-        [SerializeField] private int _chanceToTalk;
+        [SerializeField] private float _chanceToTalk;
         [Tooltip("the distance to stop in front of the other enemy")]
         [Range(1,5)]
         [SerializeField] private float _stopDistance = 0.5f;
