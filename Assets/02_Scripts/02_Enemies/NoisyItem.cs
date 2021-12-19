@@ -255,7 +255,7 @@ namespace Enemy.SoundItem
                         _itemUsable = true;
                         _itemUsed = false;
                         _oneTimeUsed = true;
-                        MasterAudio.PlaySound("ShatterVase");
+                        MasterAudio.PlaySound3DAtTransform("ShieldHit", transform);
                     }
                     else
                     {
@@ -267,7 +267,7 @@ namespace Enemy.SoundItem
                         _soundRangeCollider.SetActive(false);
                         _playerThrowTrigger.Close = false;
                         this.enabled = false;
-                        MasterAudio.PlaySound("ShatterVase");
+                        MasterAudio.PlaySound3DAtTransform("ShatterVase", transform);
                     }
                 }
             }
