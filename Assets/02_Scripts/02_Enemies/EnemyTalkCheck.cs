@@ -21,6 +21,9 @@ namespace Enemy.TalkCheck
         [Tooltip("smooth the rotation towards the other enemy when talking")]
         [Range(1,10)]
         [SerializeField] private float _smoothRotation;
+        [Tooltip("how long the enemy can't talk after he has spoken to somebody")]
+        [Range(0,60)]
+        [SerializeField] private float _reusingTime;
         
         // start the talk state
         private bool _talk = false;
@@ -55,6 +58,16 @@ namespace Enemy.TalkCheck
             get => _takeTalkPartner;
             set => _takeTalkPartner = value;
         }
+
+        private float _talkReuseingTime;
+
+        public float TalkReuseingTime
+        {
+            get => _talkReuseingTime;
+            set => _talkReuseingTime = value;
+        }
+
+        private bool _startCooldown;
         
         // need those script to communicate with the enemy
         private EnemyController _enemyController;
@@ -100,6 +113,7 @@ namespace Enemy.TalkCheck
                         _talkCooldown = _timeToTalk;
                         _takeTalkPartner = false;
                         _talkable = true;
+                        _startCooldown = true;
                     }
                 }
             }
@@ -113,23 +127,33 @@ namespace Enemy.TalkCheck
                 _takeTalkPartner = false;
                 _talkable = true;
             }
+            else if(_startCooldown)
+            {
+                _talkReuseingTime -= Time.deltaTime;
+
+                if (_talkReuseingTime <= 0)
+                {
+                    _startCooldown = false;
+                }
+            }
         }
 
         private void OnTriggerEnter(Collider other)
         {
             // When he passes a talkable enemy, he is able to talk to him with a random chance
-            if (other.CompareTag("Talkable"))
+            if (other.CompareTag("Talkable") && _talkReuseingTime <= 0)
             {
                 _talkableEnemy = other.GetComponent<EnemyTalkCheck>();
                 _chanceToSpeak = Random.value;
                 
-                // When the chance to talk is reached, the enemy is not already talking and is not looting, he can talk with the enemy
-                if (_chanceToSpeak <= _chanceToTalk / 100 && _talkable && !_takeTalkPartner && _talkableEnemy.Talkable)
+                // When the chance to talk is reached, the enemy is not already talking, is blocked or the cooldown is over 0, he can talk with the enemy
+                if (_chanceToSpeak <= _chanceToTalk / 100 && _talkable && !_takeTalkPartner && _talkableEnemy.Talkable && _talkableEnemy.TalkReuseingTime <= 0)
                 {
                     _talkableEnemy.TakeTalkPartner = true;
                     _talkable = false;
                     _talk = true;
                     _enemyController.AnimationHandler.SetSpeed(_enemyController.PatrolSpeed);
+                    _talkReuseingTime = _reusingTime;
                     
                 }
             }
@@ -137,6 +161,7 @@ namespace Enemy.TalkCheck
 
         private void OnTriggerStay(Collider other)
         {
+            // this is for the partner, that he can get the enemy who wants to talk to him
             if (other.CompareTag("Talkable") && _takeTalkPartner && _talkable)
             {
                 _talkable = false;
