@@ -23,7 +23,6 @@
             <e p="PlayerAnimationHandler.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerGroundDetection.cs" t="Include" />
-            <e p="PlayerHideState.cs" t="Include" />
             <e p="PlayerIdleState.cs" t="Include" />
             <e p="PlayerJumpState.cs" t="Include" />
             <e p="PlayerRunState.cs" t="Include" />

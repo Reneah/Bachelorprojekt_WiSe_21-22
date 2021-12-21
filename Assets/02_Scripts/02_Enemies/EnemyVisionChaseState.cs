@@ -72,6 +72,8 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
+            enemy.InChaseState = true;
+            
             enemy.EnemyTalkCheck.Talkable = false;
             enemy.ChaseActivationObject.SetActive(true);
             
@@ -81,7 +83,7 @@ namespace Enemy.States
     
         public void Exit(EnemyController enemy)
         {
-            
+            enemy.InChaseState = false;
         }
     }
 }

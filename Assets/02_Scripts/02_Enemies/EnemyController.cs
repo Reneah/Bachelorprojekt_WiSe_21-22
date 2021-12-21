@@ -267,6 +267,13 @@ namespace Enemy.Controller
             get => _obstructionMask;
             set => _obstructionMask = value;
         }
+
+        private bool _inChaseState = false;
+        public bool InChaseState
+        {
+            get => _inChaseState;
+            set => _inChaseState = value;
+        }
         
         #endregion
 
@@ -530,6 +537,7 @@ namespace Enemy.Controller
         }
         
         #endregion
+        
         
         void Start()
         {
@@ -816,7 +824,6 @@ namespace Enemy.Controller
                 {
                     _spottedBar.fillAmount = 1;
                     _playerSpotted = true;
-                    
                     _player.PlayerAnimationHandler.PlayerFlee(true);
                 }
             }
