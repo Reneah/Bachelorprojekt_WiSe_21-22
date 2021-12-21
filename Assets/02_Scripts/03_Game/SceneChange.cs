@@ -33,6 +33,7 @@ public class SceneChange : MonoBehaviour
     
     private NoisyItem[] _noisyItems;
     private StonePile[] _stonePiles;
+    private Provisions[] _provisions;
 
     private bool _currentlyChangeScene = false;
 
@@ -59,6 +60,7 @@ public class SceneChange : MonoBehaviour
 
         _noisyItems = FindObjectsOfType<NoisyItem>();
         _stonePiles = FindObjectsOfType<StonePile>();
+        _provisions = FindObjectsOfType<Provisions>();
 
     }
     
@@ -86,12 +88,18 @@ public class SceneChange : MonoBehaviour
                     
                     for (int i = 0; i < _noisyItems.Length; i++)
                     {
+                        _noisyItems[i].GetComponent<Transform>().gameObject.SetActive(true);
                         _noisyItems[i].SafeState = true;
                     }
                     
                     for (int i = 0; i < _stonePiles.Length; i++)
                     {
                         _stonePiles[i].SafeState = true;
+                    }
+
+                    for (int i = 0; i < _provisions.Length; i++)
+                    {
+                        _provisions[i].SafeState = true;
                     }
                     
                     PlayerPrefs.Save();

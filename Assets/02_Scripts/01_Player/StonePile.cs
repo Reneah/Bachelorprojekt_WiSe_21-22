@@ -18,7 +18,7 @@ public class StonePile : MonoBehaviour
         set => _stonePileParent = value;
     }
 
-    private bool _collected;
+    private bool _collected = false;
     private bool _safeState;
 
     public bool SafeState
