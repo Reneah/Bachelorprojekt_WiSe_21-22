@@ -121,7 +121,7 @@ namespace Enemy.SoundItem
             set => _stage = value;
         }
         
-        private bool _itemUsed = false;
+        private bool _itemUsed;
 
         public bool ItemUsed
         {
@@ -181,6 +181,8 @@ namespace Enemy.SoundItem
             _noisyItemCloseActivation = GetComponentInChildren<NoisyItemCloseActivation>();
             
             _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
+            Debug.Log(_itemUsed);
+ 
             _collectibleSprite.gameObject.SetActive(false);
             
             if (!_reusable)
