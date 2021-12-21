@@ -87,7 +87,7 @@ public class CollectStones : MonoBehaviour
                 {
                     _stonesActive = true;
                     PlayerPrefs.SetInt("StoneActive", 1);
-                    _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount;
+                    _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount();
                     
                     if (_maxStoneAmount <= _stonesCounter)
                     {
@@ -96,7 +96,8 @@ public class CollectStones : MonoBehaviour
                     }
                     
                     _stonesAmountText.text = _stonesCounter.ToString();
-                    _stones.SetActive(false);
+                    _stones.GetComponent<Collider>().enabled = false;
+                    _stones.GetComponent<StonePile>().StonePileParent.SetActive(false);
                     _stonesCollectible = false;
                 }
             }
