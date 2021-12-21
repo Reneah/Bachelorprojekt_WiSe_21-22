@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using BP._02_Scripts._03_Game;
 using DA.Menu;
 //using DarkTonic.MasterAudio;
 using DG.Tweening;
@@ -22,6 +23,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Texture2D _cursorTexture;
 
     [SerializeField] private string _introSceneName;
+
+    private MissionScore _myMissionScore;
 
     private bool _openMenu = false;
     
@@ -108,6 +111,9 @@ public class MainMenu : MonoBehaviour
         CollectItem._parchmentCollected = false;
         CollectItem._parchmentCollected = false;
         CollectItem._enteredStaircase = false;
+        
+        // Signal to the MissionScore.cs that the game has been started, so the gameplay timer starts
+        _myMissionScore.GameStarted = true;
         
         _fadeImage.DOFade(1, 3);
     }

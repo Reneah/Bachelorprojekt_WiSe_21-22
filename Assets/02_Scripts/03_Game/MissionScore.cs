@@ -5,8 +5,32 @@ using UnityEngine.SceneManagement;
 
 namespace BP._02_Scripts._03_Game
 {
-    public class MissionScore : MonoBehaviour
+    public sealed class MissionScore : MonoBehaviour
     {
+        
+        // Singleton pattern - simple thread-safety
+        private static MissionScore _instance = null;
+        private static readonly object _padlock = new object();
+
+        MissionScore()
+        {
+        }
+
+        public static MissionScore Instance
+        {
+            get
+            {
+                lock (_padlock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new MissionScore();
+                    }
+                    return _instance;
+                }
+            }
+        }
+        
         private Canvas _myCanvas;
 
         private bool _gameStarted;
@@ -111,6 +135,18 @@ namespace BP._02_Scripts._03_Game
             set => _restartScoreCounter = value;
         }
 
+        public bool GameStarted
+        {
+            get => _gameStarted;
+            set => _gameStarted = value;
+        }
+
+        public bool PlayerFinishedGame
+        {
+            get => _playerFinishedGame;
+            set => _playerFinishedGame = value;
+        }
+
         private void Awake()
         {
             _myCanvas = this.GetComponent<Canvas>();
@@ -123,9 +159,11 @@ namespace BP._02_Scripts._03_Game
         // Start is called before the first frame update
         void Start()
         {
-            if (_playerFinishedGame && !_scoresCalculated)
+            // MIGHT HAVE TO BE IN UPDATE
+            if (PlayerFinishedGame && !_scoresCalculated)
             {
                 _myCanvas.enabled = true;
+                DisplayCounterValues();
                 CalculateScores();
                 ChangeFinalResultText(_finalScoreResult);
             }
@@ -134,20 +172,27 @@ namespace BP._02_Scripts._03_Game
         // Update is called once per frame
         void Update()
         {
-            if (_gameStarted && !_playerFinishedGame)
+            if (GameStarted && !PlayerFinishedGame)
             {
                 _playtimeScoreCounter += Time.deltaTime;
             }
             
             //Update some scores during gameplay
+            if (_myCollectProvisions == null || _myCollectStones == null)
+            {
+                return;
+            }
+            
             _provisionsScoreCounter = _myCollectProvisions.ProvisionsCounter;
             _stonesScoreCounter = _myCollectStones.StonesCounter;
+            
         }
 
         // Resets all required values for the Mission Score to the starting state on new playthrough attempt
         private void ResetMissionScores()
         {
-            _playerFinishedGame = false;
+            _gameStarted = false;
+            PlayerFinishedGame = false;
             _scoresCalculated = false;
             
             _playtimeScoreCounter = 0;
@@ -166,6 +211,20 @@ namespace BP._02_Scripts._03_Game
             ResetMissionScores();
         }
 
+        // Overwrites placeholder values with actual values from the player
+        private void DisplayCounterValues()
+        {
+            _playtimeDisplay.text = _playtimeScoreCounter.ToString();
+            _provisionsDisplay.text = _provisionsScoreCounter.ToString();
+            _stonesDisplay.text = _stonesScoreCounter.ToString();
+            _noisyItemDisplay.text = DistractionsScoreCounter.ToString();
+            _playerSpottedDisplay.text = SpottedScoreCounter.ToString();
+            _gameOverDisplay.text = DeathScoreCounter.ToString();
+            _checkpointRestartDisplay.text = RestartScoreCounter.ToString();
+
+        }
+
+        // Calculates all the individual scores and exchanges placeholder scores with them
         private void CalculateScores()
         {
             _scoresCalculated = true;

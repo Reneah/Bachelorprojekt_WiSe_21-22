@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using BP._02_Scripts._03_Game;
 using Enemy.Controller;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ using UnityEngine;
     {
         private CollectItem _collectItem;
         private QuestManager _questManager;
+        private MissionScore _myMissionScore;
         private EnemyController[] _enemyController;
         
         void Start()
@@ -15,6 +17,7 @@ using UnityEngine;
             _collectItem = GetComponentInParent<CollectItem>();
             _questManager = FindObjectOfType<QuestManager>();
             _enemyController = FindObjectsOfType<EnemyController>();
+            _myMissionScore = FindObjectOfType<MissionScore>();
         }
         
         void Update()
@@ -70,6 +73,7 @@ using UnityEngine;
                     _collectItem.SceneChange.ChangeScene();
                     _collectItem.PlayerController.enabled = false;
                     _collectItem.Enemies.SetActive(false);
+                    _myMissionScore.PlayerFinishedGame = true;
                 }
                 
                 _collectItem.CollectibleSprite.gameObject.SetActive(false);

@@ -5927,7 +5927,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7005932941990983415}
   m_Layer: 5
-  m_Name: MissionScore
+  m_Name: MissionScoreUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
