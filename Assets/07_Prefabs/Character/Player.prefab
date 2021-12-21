@@ -1491,7 +1491,7 @@ MonoBehaviour:
   _sprintSpeed: 3
   _fleeSpeed: 4
   _calmDownTime: 3
-  _terminalVelocity: 10
+  _terminalVelocity: 7
   _gravityModifier: 1
   _jumpHeight: 0.4
   _groundCheckRadius: 0.3

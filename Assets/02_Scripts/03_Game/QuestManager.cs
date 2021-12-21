@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Enemy.Controller;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,7 +35,14 @@ public class QuestManager : MonoBehaviour
     private CollectProvisions _collectProvisions;
     private int _currentProvisionsCount;
     private bool _provisionsQuestDone;
-    
+    private EnemyController[] _enemyController;
+
+    public GameObject StaircaseToCellarInteractionObjects
+    {
+        get => _staircaseToCellarInteractionObjects;
+        set => _staircaseToCellarInteractionObjects = value;
+    }
+
     public bool ProvisionsQuestDone
     {
         get => _provisionsQuestDone;
@@ -54,6 +62,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] float panelAnimationDuration = 0.7f;
     [SerializeField] private float upPositionValue = 263;
     [SerializeField] private float downPositionValue = -22;
+    [SerializeField]
+    private bool firstScene;
 
     private void Awake()
     {
@@ -72,6 +82,10 @@ public class QuestManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!firstScene)
+        {
+            MoveQuestPanelDown();
+        }
         _collectProvisions = FindObjectOfType<CollectProvisions>();
         _staircaseToCellarInteractionObjects = GameObject.Find("StaircaseToCellarInteractionObjects");
         _staircaseToCellarInteractionObjects.SetActive(false);
