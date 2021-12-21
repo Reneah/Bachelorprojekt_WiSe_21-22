@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,15 @@ namespace Enemy.SoundItem
 {
     public class NoisyItemCloseActivation : MonoBehaviour
     {
-
+ 
         private NoisyItem _noisyItem;
 
-        private 
-        
-        void Start()
+        private void Start()
         {
             _noisyItem = GetComponentInParent<NoisyItem>();
         }
-        
+
+
         void Update()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

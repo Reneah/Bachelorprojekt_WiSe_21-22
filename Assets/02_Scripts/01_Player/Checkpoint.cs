@@ -13,6 +13,7 @@ public class Checkpoint : MonoBehaviour
 
     private NoisyItem[] _noisyItems;
     private StonePile[] _stonePile;
+    private Provisions[] _provisions;
     
     private void Start()
     {
@@ -21,6 +22,7 @@ public class Checkpoint : MonoBehaviour
 
         _noisyItems = FindObjectsOfType<NoisyItem>();
         _stonePile = FindObjectsOfType<StonePile>();
+        _provisions = FindObjectsOfType<Provisions>();
     }
 
 
@@ -36,12 +38,18 @@ public class Checkpoint : MonoBehaviour
                 
                 for (int i = 0; i < _noisyItems.Length; i++)
                 {
+                    _noisyItems[i].GetComponent<Transform>().gameObject.SetActive(true);
                     _noisyItems[i].SafeState = true;
                 }
 
                 for (int i = 0; i < _stonePile.Length; i++)
                 {
                     _stonePile[i].SafeState = true;
+                }
+                
+                for (int i = 0; i < _provisions.Length; i++)
+                {
+                    _provisions[i].SafeState = true;
                 }
                 
                 PlayerPrefs.Save();
