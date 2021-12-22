@@ -439,19 +439,23 @@ namespace Enemy.Controller
         
         [Header("Guard Behaviour")]
         [Tooltip("the time to switch between the looking points")]
+        [Range(0,10)]
         [SerializeField] private float _switchLookTime;
         [Tooltip("the speed how fast the invisible agent is moving")]
+        [Range(0,10)]
         [SerializeField] private float _lookSwitchSpeed;
         [Tooltip("the route where the enemy should look")]
         [SerializeField] private GameObject _lookingRoute;
         [Tooltip("the point where the enemy is guarding")]
         [SerializeField] private Transform _guardPoint;
         [Tooltip("the distance to stop when reaching the guard point")]
+        [Range(0,5)]
         [SerializeField] private float _stopGuardpointDistance = 0.5f;
         [Tooltip("the rotation of the enemy body when he is guarding")]
         [SerializeField] private Transform _desiredBodyRotation;
         [Tooltip("the look agent to look in specific directions over time")]
         [SerializeField] private Transform _currentLookPosition;
+        [Range(0,20)]
         [Tooltip("smooth the rotation towards the desired Body Rotation")]
         [SerializeField] private float _smoothBodyRotation;
         // signalize if the enemy reached the guard point to start his look routine
@@ -823,14 +827,14 @@ namespace Enemy.Controller
                 float distance = Vector3.Distance(transform.position, _player.transform.position);
 
                 // the time will run and will fill the bar until the player is spotted
-                if (_spotTime <= _secondsToSpott)
+                if (_spotTime < _secondsToSpott)
                 {
                     _spotTime += Time.deltaTime;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
                 // when the player is to close to the enemy or to long in the view field, the player get spotted
-                if (_spotTime >= _secondsToSpott || distance <= _spottedDistance)
+                if (_spotTime > _secondsToSpott || distance <= _spottedDistance)
                 {
                     _spottedBar.fillAmount = 1;
                     _playerSpotted = true;
@@ -845,7 +849,7 @@ namespace Enemy.Controller
                     _spottedBar.fillAmount = _spotTime;
                 }
 
-                if (_spotTime <= 0)
+                if (_spotTime < 0)
                 {
                     _spotTime = 0;
                 }
