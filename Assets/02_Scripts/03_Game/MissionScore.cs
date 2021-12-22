@@ -151,22 +151,39 @@ namespace BP._02_Scripts._03_Game
         {
             _myCanvas = this.GetComponent<Canvas>();
             _myCanvas.enabled = false;
+        }
 
-            _myCollectProvisions = FindObjectOfType<CollectProvisions>();
-            _myCollectStones = FindObjectOfType<CollectStones>();
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            if (scene.name == "GameWorld_BesiegedKeep_2" && loadSceneMode == LoadSceneMode.Single && _myCollectStones == null)
+            {
+               _myCollectStones = FindObjectOfType<CollectStones>();
+            }
+            else if (scene.name == "GameWorld_BesiegedKeep_3" && loadSceneMode == LoadSceneMode.Single && _myCollectProvisions == null)
+            {
+                _myCollectProvisions = FindObjectOfType<CollectProvisions>();
+            }
+            else if (scene.name == "MissionScore" && loadSceneMode == LoadSceneMode.Single)
+            {
+                if (!_scoresCalculated)
+                {
+                    _myCanvas.enabled = true;
+                    DisplayCounterValues();
+                    CalculateScores();
+                    ChangeFinalResultText(_finalScoreResult);
+                }
+            }
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            // MIGHT HAVE TO BE IN UPDATE
-            if (PlayerFinishedGame && !_scoresCalculated)
-            {
-                _myCanvas.enabled = true;
-                DisplayCounterValues();
-                CalculateScores();
-                ChangeFinalResultText(_finalScoreResult);
-            }
+            
         }
 
         // Update is called once per frame
@@ -177,17 +194,23 @@ namespace BP._02_Scripts._03_Game
                 _playtimeScoreCounter += Time.deltaTime;
             }
             
-            //Update some scores during gameplay
-            if (_myCollectProvisions == null || _myCollectStones == null)
+            //Update some scores during gameplay, but don't do it if the references are still null
+            //(happens in Main Menu and Intro Scene)
+            if (_myCollectStones == null)
             {
                 return;
             }
+            if (_myCollectProvisions == null)
+            {
+                _stonesScoreCounter = _myCollectStones.StonesCounter;
+                return;
+            }
             
-            _provisionsScoreCounter = _myCollectProvisions.ProvisionsCounter;
             _stonesScoreCounter = _myCollectStones.StonesCounter;
+            _provisionsScoreCounter = _myCollectProvisions.ProvisionsCounter;
             
         }
-
+        
         // Resets all required values for the Mission Score to the starting state on new playthrough attempt
         private void ResetMissionScores()
         {
@@ -214,7 +237,7 @@ namespace BP._02_Scripts._03_Game
         // Overwrites placeholder values with actual values from the player
         private void DisplayCounterValues()
         {
-            _playtimeDisplay.text = _playtimeScoreCounter.ToString();
+            _playtimeDisplay.text = (Math.Round(_playtimeScoreCounter, 0, MidpointRounding.AwayFromZero).ToString());
             _provisionsDisplay.text = _provisionsScoreCounter.ToString();
             _stonesDisplay.text = _stonesScoreCounter.ToString();
             _noisyItemDisplay.text = DistractionsScoreCounter.ToString();
@@ -231,37 +254,37 @@ namespace BP._02_Scripts._03_Game
             // Calculates the NEGATIVE points to be deduced for the play time
             int playtimePoints = (int)(Math.Round(_playtimeScoreCounter, 0, MidpointRounding.AwayFromZero) * _playtimePointsMultiplier);
             // Sets the value to be displayed as a text
-            _playtimeScore.text = playtimePoints.ToString();
+            _playtimeScore.text = "- " + playtimePoints;
             
             // Calculates the POSITIVE points to be added for the acquired provisions
             int provisionsPoints = _provisionsScoreCounter * _provisionsPointsMultiplier;
             // Sets the value to be displayed as a text
-            _provisionsScore.text = provisionsPoints.ToString();
+            _provisionsScore.text = "+ " + provisionsPoints;
            
             // Calculates the POSITIVE points to be added for the acquired stones
             int stonesPoints = _stonesScoreCounter * _stonesPointsMultiplier;
             // Sets the value to be displayed as a text
-            _stonesScore.text = stonesPoints.ToString();
+            _stonesScore.text = "+ " + stonesPoints;
             
             // Calculates the POSITIVE points to be added for the distractions with Noisy Items
             int distractionsPoints = DistractionsScoreCounter * _noisyItemPointsMultiplier;
             // Sets the value to be displayed as a text
-            _noisyItemScore.text = distractionsPoints.ToString();
+            _noisyItemScore.text = "+ " + distractionsPoints;
             
             // Calculates the NEGATIVE points to be deduced for the player having been spotted
             int spottedPoints = SpottedScoreCounter * _playerSpottedPointsMultiplier;
             // Sets the value to be displayed as a text
-            _playerSpottedScore.text = spottedPoints.ToString();
+            _playerSpottedScore.text = "- " + spottedPoints;
             
             // Calculates the NEGATIVE points to be deduced for the player having failed the game (death or getting caught)
             int deathPoints = DeathScoreCounter * _gameOverPointsMultiplier;
             // Sets the value to be displayed as a text
-            _gameOverScore.text = deathPoints.ToString();
+            _gameOverScore.text = "- " + deathPoints;
             
             // Calculates the NEGATIVE points to be deduced for the player having been spotted
             int restartPoints = RestartScoreCounter * _checkpointRestartPointsMultiplier;
             // Sets the value to be displayed as a text
-            _checkpointRestartScore.text = restartPoints.ToString();
+            _checkpointRestartScore.text = "- " + restartPoints;
             
             // Calculate the final score with all of the sub score values
             _finalScoreResult = 10000 - playtimePoints + provisionsPoints + stonesPoints + distractionsPoints - spottedPoints - deathPoints - restartPoints;

@@ -221,6 +221,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5237260145463603252}
     m_Modifications:
+    - target: {fileID: 1310027485229958658, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1408033673464329325}
+    - target: {fileID: 1310027485229958658, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958658, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BP._02_Scripts._03_Game.MissionScore, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityButtonClickedSound.isExpanded
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1310027485867949102, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
       propertyPath: m_Name
       value: Text_FinalScore_ExcellentResult

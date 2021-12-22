@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BP._02_Scripts._03_Game;
 using Enemy.AnimationHandler;
 using Enemy.ShareInformation;
 using Enemy.SoundItem;
@@ -38,6 +39,8 @@ namespace Enemy.Controller
         public EnemyAnimationHandler AnimationHandler => _animationHandler;
 
         private EnemyTalkCheck _enemyTalkCheck;
+
+        private MissionScore _myMissionScore;
 
         public EnemyTalkCheck EnemyTalkCheck
         {
@@ -556,6 +559,7 @@ namespace Enemy.Controller
             _playerGroundDetection = FindObjectOfType<PlayerGroundDetection>();
             _enemyTalkCheck = GetComponentInChildren<EnemyTalkCheck>();
             _chaseActivationObject = transform.Find("EnemyChaseActivation").GetComponent<ChaseActivation.ChaseActivation>().gameObject;
+            _myMissionScore = FindObjectOfType<MissionScore>();
             
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
             if (_patrolling)
@@ -597,7 +601,8 @@ namespace Enemy.Controller
         {
             if (!_scoreCount)
             {
-                // put your method here 
+                // Counts up the mission score for the player to have been spotted
+                _myMissionScore.SpottedScoreCounter += 1;
                 _scoreCount = true;
             }
 
@@ -897,7 +902,8 @@ namespace Enemy.Controller
                 
                 if (!_scoreCount)
                 {
-                    // put your method here 
+                    // Counts up the mission score for the player to have been spotted
+                    _myMissionScore.SpottedScoreCounter += 1;
                     _scoreCount = true;
                 }
             }
@@ -976,7 +982,8 @@ namespace Enemy.Controller
         /// </summary>
         public void UpdateSearchBehaviour()
         {
-            // enemy has lost the player and reset the score count
+            // enemy has lost the player and reset the score count ability, so next time the player is spotted,
+            // the score will be counted up again
             _scoreCount = false;
             
             // when the current search point position is reached, the standing time will count down and set the next search point

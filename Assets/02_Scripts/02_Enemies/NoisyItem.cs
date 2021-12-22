@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BP._02_Scripts._03_Game;
 using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using TMPro;
@@ -174,6 +175,7 @@ namespace Enemy.SoundItem
 
         private Collider _collider;
         private NoisyItemCloseActivation _noisyItemCloseActivation;
+        private MissionScore _myMissionScore;
 
         void Start()
         {
@@ -190,6 +192,8 @@ namespace Enemy.SoundItem
                 _unharmedItem.SetActive(true);
             }
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
+
+            _myMissionScore = FindObjectOfType<MissionScore>();
         }
 
         private void Update()
@@ -257,6 +261,9 @@ namespace Enemy.SoundItem
                         _itemUsed = false;
                         _oneTimeUsed = true;
                         MasterAudio.PlaySound3DAtTransform("ShieldHit", transform);
+                        
+                        // Count up the distraction score counter for the Mission Score
+                        _myMissionScore.DistractionsScoreCounter += 1;
                     }
                     else
                     {
@@ -268,6 +275,9 @@ namespace Enemy.SoundItem
                         _soundRangeCollider.SetActive(false);
                         _playerThrowTrigger.Close = false;
                         MasterAudio.PlaySound3DAtTransform("ShatterVase", transform);
+                        
+                        // Count up the distraction score counter for the Mission Score
+                        _myMissionScore.DistractionsScoreCounter += 1;
                     }
                 }
             }
