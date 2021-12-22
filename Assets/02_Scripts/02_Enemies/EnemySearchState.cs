@@ -36,6 +36,9 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
+            enemy.PlayerSpotted = false;
+            enemy.UseSpottedBar = false;
+            
             enemy.EnemyTalkCheck.Talkable = false;
             enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
             enemy.StartSearchBehaviour();
