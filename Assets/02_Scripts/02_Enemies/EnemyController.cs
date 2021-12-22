@@ -107,6 +107,9 @@ namespace Enemy.Controller
         // the position on the NavMesh around the current player position that is reachable
         private NavMeshHit _hit;
 
+        // when the enemy spotted the player, the score for the player will change
+        private bool _scoreCount;
+
         public NavMeshHit Hit
         {
             get => _hit;
@@ -592,6 +595,13 @@ namespace Enemy.Controller
         /// </summary>
         public void CheckPlayerGround()
         {
+            if (!_scoreCount)
+            {
+                // put your method here 
+                _scoreCount = true;
+            }
+
+            
             if (_playerGroundDetection.LowGround)
             {             
                 // Standard View Cone
@@ -884,6 +894,12 @@ namespace Enemy.Controller
                 _animationActivated = false;
                 _heardFootsteps = true;
                 _spottedBar.fillAmount = 1;
+                
+                if (!_scoreCount)
+                {
+                    // put your method here 
+                    _scoreCount = true;
+                }
             }
             
             // if the enemy used the points in the room, all points will be added again because used points will be deleted during the search mode
@@ -925,7 +941,7 @@ namespace Enemy.Controller
             return Vector3.Distance(_agent.pathEndPosition, transform.position);
         }
         
-        #region Search Behaviour
+        #region SearchBehaviour
         
         /// <summary>
         /// set the closest waypoint based on the player position
@@ -960,6 +976,9 @@ namespace Enemy.Controller
         /// </summary>
         public void UpdateSearchBehaviour()
         {
+            // enemy has lost the player and reset the score count
+            _scoreCount = false;
+            
             // when the current search point position is reached, the standing time will count down and set the next search point
             if (Vector3.Distance(transform.position, _closestWaypoint.position) <= _stopDistance && !_reachedWaypoint)
             {
