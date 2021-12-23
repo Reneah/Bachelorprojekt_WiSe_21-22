@@ -285,6 +285,12 @@ namespace Enemy.Controller
             set => _inChaseState = value;
         }
         
+        public Image SpottedBar
+        {
+            get => _spottedBar;
+            set => _spottedBar = value;
+        }
+
         #endregion
 
         #region InvestigationVariables
@@ -596,7 +602,6 @@ namespace Enemy.Controller
             }
 
             PlayerVisionDetection();
-            PlayerAcousticDetection();
             ActivateNoisyItemInvestigation();
         }
         
@@ -835,61 +840,21 @@ namespace Enemy.Controller
                 float distance = Vector3.Distance(transform.position, _player.transform.position);
 
                 // the time will run and will fill the bar until the player is spotted
-                if (_spotTime < _visionSecondsToSpott)
+                if (_spotTime < _visionSecondsToSpott || _spotTime < _acousticSecondsToSpott)
                 {
                     _spotTime += Time.deltaTime;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
                 // when the player is to close to the enemy or to long in the view field, the player get spotted
-                if (_spotTime > _visionSecondsToSpott || distance <= _spottedVisionDistance)
+                if (_spotTime > _visionSecondsToSpott || distance <= _spottedVisionDistance || _spotTime > _acousticSecondsToSpott || distance <= _spottedAcousticDistance)
                 {
                     _spottedBar.fillAmount = 1;
                     _playerSpotted = true;
                     _player.PlayerAnimationHandler.PlayerFlee(true);
                 }
             }
-            else
-            {
-                if (_spotTime > 0)
-                {
-                    _spotTime -= Time.deltaTime;
-                    _spottedBar.fillAmount = _spotTime;
-                }
-
-                if (_spotTime < 0)
-                {
-                    _spotTime = 0;
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Bar control to show how much the player is spotted of the enemy
-        /// </summary>
-        public void PlayerAcousticDetection()
-        {
-            // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view field
-            if (_useSpottedBar)
-            {
-                float distance = Vector3.Distance(transform.position, _player.transform.position);
-
-                // the time will run and will fill the bar until the player is spotted
-                if (_spotTime < _acousticSecondsToSpott)
-                {
-                    _spotTime += Time.deltaTime;
-                    _spottedBar.fillAmount = _spotTime;
-                }
-                
-                // when the player is to close to the enemy or to long in the view field, the player get spotted
-                if (_spotTime > _acousticSecondsToSpott || distance <= _spottedAcousticDistance)
-                {
-                    _spottedBar.fillAmount = 1;
-                    _playerSpotted = true;
-                    _player.PlayerAnimationHandler.PlayerFlee(true);
-                }
-            }
-            else
+            else if(!_useSpottedBar && !_inChaseState)
             {
                 if (_spotTime > 0)
                 {

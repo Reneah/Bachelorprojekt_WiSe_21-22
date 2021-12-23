@@ -11,7 +11,6 @@ namespace Enemy.ViewField
         {
             if (other.CompareTag("Player"))
             {
-
                 // there is only one player in the game, so the array can be set to 0
                 Vector3 target = other.transform.position;
                 target = new Vector3 (target.x, target.y + 0.5f, target.z);
@@ -54,6 +53,7 @@ namespace Enemy.ViewField
             {
                 _enemyController.CanSeePlayer = false;
                 _enemyController.UseSpottedBar = false;
+                
             }
         }
     }
