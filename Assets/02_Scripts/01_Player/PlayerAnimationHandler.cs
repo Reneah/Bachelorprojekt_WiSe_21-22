@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using BP;
 using DarkTonic.MasterAudio;
 using UnityEngine;
 using untitledProject;
@@ -21,6 +22,8 @@ public class PlayerAnimationHandler : MonoBehaviour
     // checks if the throw animation is at the end
     private bool _runningThrowAnimation = false;
 
+    private StepVisualizationManager myStepVisualizationManager;
+
 
     public Animator PlayerAnimator
     {
@@ -38,6 +41,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         _playerAnimator = GetComponent<Animator>();
         _playerController = FindObjectOfType<PlayerController>();
+        myStepVisualizationManager = FindObjectOfType<StepVisualizationManager>();
     }
     
     /// <summary>
@@ -118,5 +122,15 @@ public class PlayerAnimationHandler : MonoBehaviour
         {
             MasterAudio.PlaySound3DAtTransform("PlayerLoudFootsteps", transform);
         }
+    }
+
+    public void PlayStepVisualizationOne()
+    {
+        myStepVisualizationManager.PlayStepVisualizationOne();
+    }
+    
+    public void PlayStepVisualizationTwo()
+    {
+        myStepVisualizationManager.PlayStepVisualizationOne();
     }
 }
