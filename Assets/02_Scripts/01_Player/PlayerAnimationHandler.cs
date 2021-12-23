@@ -131,6 +131,6 @@ public class PlayerAnimationHandler : MonoBehaviour
     
     public void PlayStepVisualizationTwo()
     {
-        myStepVisualizationManager.PlayStepVisualizationOne();
+        myStepVisualizationManager.PlayStepVisualizationTwo();
     }
 }

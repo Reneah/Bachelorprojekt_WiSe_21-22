@@ -92,7 +92,7 @@ MonoBehaviour:
   minSize: 0.5
   maxSize: 1.37
   scalingDuration: 0.5
-  fadeDuration: 0.5
+  fadeDuration: 0.3
 --- !u!1 &370099223681653666
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   minSize: 0.5
   maxSize: 1.37
   scalingDuration: 0.5
-  fadeDuration: 0.5
+  fadeDuration: 0.3
 --- !u!1 &2532706927139440745
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1332771618125698393}
+  - component: {fileID: 6016967706662523897}
   m_Layer: 0
   m_Name: StepVisualizationManager
   m_TagString: Untagged
@@ -218,3 +219,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6016967706662523897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2532706927139440745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5683b536ba3de624ea0410af1d9dd191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepVisualizationOne: {fileID: 362851270288802510}
+  stepVisualizationTwo: {fileID: 4426899112482280589}
