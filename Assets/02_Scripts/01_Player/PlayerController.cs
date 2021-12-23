@@ -168,6 +168,9 @@ namespace untitledProject
             _characterController.enabled = false;
             transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX", transform.position.x), PlayerPrefs.GetFloat("PlayerPositionY", transform.position.y), PlayerPrefs.GetFloat("PlayerPositionZ", transform.position.z));
             _characterController.enabled = true;
+            
+            // start state machine with the idle
+            _currentState = PlayerIdleState;
         }
         
         private void Update()

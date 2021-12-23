@@ -32,6 +32,8 @@ public class SceneChange : MonoBehaviour
     private CollectStones _collectStones;
     
     private NoisyItem[] _noisyItems;
+    private StonePile[] _stonePiles;
+    private Provisions[] _provisions;
 
     private bool _currentlyChangeScene = false;
 
@@ -57,6 +59,9 @@ public class SceneChange : MonoBehaviour
         _skipButton.SetActive(false);
 
         _noisyItems = FindObjectsOfType<NoisyItem>();
+        _stonePiles = FindObjectsOfType<StonePile>();
+        _provisions = FindObjectsOfType<Provisions>();
+
     }
     
     void Update()
@@ -80,9 +85,21 @@ public class SceneChange : MonoBehaviour
                     PlayerPrefs.DeleteKey("PlayerPositionY");
                     PlayerPrefs.DeleteKey("PlayerPositionZ");
                     PlayerPrefs.SetInt("StonesAmount", _collectStones.StonesCounter);
+                    
                     for (int i = 0; i < _noisyItems.Length; i++)
                     {
+                        _noisyItems[i].GetComponent<Transform>().gameObject.SetActive(true);
                         _noisyItems[i].SafeState = true;
+                    }
+                    
+                    for (int i = 0; i < _stonePiles.Length; i++)
+                    {
+                        _stonePiles[i].SafeState = true;
+                    }
+
+                    for (int i = 0; i < _provisions.Length; i++)
+                    {
+                        _provisions[i].SafeState = true;
                     }
                     
                     PlayerPrefs.Save();

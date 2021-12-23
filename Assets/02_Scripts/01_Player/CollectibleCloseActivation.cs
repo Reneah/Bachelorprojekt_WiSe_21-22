@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemy.Controller;
 using UnityEngine;
 
 
@@ -7,11 +8,13 @@ using UnityEngine;
     {
         private CollectItem _collectItem;
         private QuestManager _questManager;
+        private EnemyController[] _enemyController;
         
         void Start()
         {
             _collectItem = GetComponentInParent<CollectItem>();
             _questManager = FindObjectOfType<QuestManager>();
+            _enemyController = FindObjectsOfType<EnemyController>();
         }
         
         void Update()
@@ -49,11 +52,20 @@ using UnityEngine;
                 }
                 else if(_collectItem.StaircaseToCellar)
                 {
+                    for (int i = 0; i < _enemyController.Length; i++)
+                    {
+                        if (_enemyController[i].InChaseState)
+                        {
+                            return;
+                        }
+                    }
+                    
                     if (!CollectItem._keyCollected || !_questManager.ProvisionsQuestDone)
                     { //This seems to cause issues, as you can't pick up with the secret door even when you have collected the key
                         Debug.Log("You haven't met all conditions yet to enter the staircase.");
                         return;
                     }
+                    
                     CollectItem._enteredStaircase = true;
                     _collectItem.SceneChange.ChangeScene();
                     _collectItem.PlayerController.enabled = false;

@@ -32,6 +32,7 @@ public class PlayerThrowTrigger : MonoBehaviour
     
 
     private CollectStones _collectStones;
+    private PlayerController _playerController;
     
     private bool _playerThrew = false;
     
@@ -102,6 +103,7 @@ public class PlayerThrowTrigger : MonoBehaviour
 
     private void Start()
     {
+        _playerController = GetComponentInParent<PlayerController>();
         _collectStones = FindObjectOfType<CollectStones>();
     }
 
@@ -126,7 +128,7 @@ public class PlayerThrowTrigger : MonoBehaviour
         }
         
         // if the player is near the noisy item, he is able to activate it per hand and doesn't need to throw
-        if (_noisyItem != null && _close)
+        if (_noisyItem != null && _close && _playerController.IsGrounded)
         {
             _throwableSprite.gameObject.SetActive(false);
             _notThrowableSprite.gameObject.SetActive(false);
@@ -141,7 +143,7 @@ public class PlayerThrowTrigger : MonoBehaviour
             }
         }
 
-        if (!_close)
+        if (!_close && _playerController.IsGrounded)
         { 
             // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
             //!Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("Blocked"))

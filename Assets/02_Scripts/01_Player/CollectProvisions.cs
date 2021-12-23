@@ -77,7 +77,7 @@ public class CollectProvisions : MonoBehaviour
                 {
                     _provisionsActive = true;
                     PlayerPrefs.SetInt("ProvisionsActive", 1);
-                    _provisionsCounter += _provisions.CollectAmount;
+                    _provisionsCounter += _provisions.CollectAmount();
                     
                     if (_maxProvisionsAmount <= _provisionsCounter)
                     {
@@ -86,7 +86,8 @@ public class CollectProvisions : MonoBehaviour
                     }
                     
                     _provisionsAmountText.text = _provisionsCounter.ToString();
-                    _provisions.gameObject.SetActive(false);
+                    _provisions.GetComponent<Collider>().enabled = false;
+                    _provisions.GetComponent<Provisions>().ProvisionsParent.SetActive(false);
                     _provisionsCollectible = false;
                 }
             }

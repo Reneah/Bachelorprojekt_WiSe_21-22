@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Enemy.AnimationHandler;
 using Enemy.ShareInformation;
@@ -107,6 +108,9 @@ namespace Enemy.Controller
         // the position on the NavMesh around the current player position that is reachable
         private NavMeshHit _hit;
 
+        // when the enemy spotted the player, the score for the player will change
+        private bool _scoreCount;
+
         public NavMeshHit Hit
         {
             get => _hit;
@@ -190,11 +194,17 @@ namespace Enemy.Controller
         [SerializeField] private Transform _lookPositionAtSpotted;
         [Tooltip("the delay time that the player get spotted in the view field")]
         [Range(0,10)]
-        [SerializeField] private float _secondsToSpott;
+        [SerializeField] private float _visionSecondsToSpott;
+        [Tooltip("the delay time that the player get spotted in the hear radius")]
+        [Range(0,10)]
+        [SerializeField] private float _acousticSecondsToSpott;
         [SerializeField] private Image _spottedBar;
         [Tooltip("the distance where you get spotted instantly")]
         [Range(0,10)]
-        [SerializeField] private float _spottedDistance;
+        [SerializeField] private float _spottedVisionDistance;
+        [Tooltip("the distance where you get spotted instantly")]
+        [Range(0,10)]
+        [SerializeField] private float _spottedAcousticDistance;
         [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
         [Range(0,10)]
         [SerializeField] private float _lastChanceTime;
@@ -266,6 +276,13 @@ namespace Enemy.Controller
         {
             get => _obstructionMask;
             set => _obstructionMask = value;
+        }
+
+        private bool _inChaseState = false;
+        public bool InChaseState
+        {
+            get => _inChaseState;
+            set => _inChaseState = value;
         }
         
         #endregion
@@ -429,19 +446,23 @@ namespace Enemy.Controller
         
         [Header("Guard Behaviour")]
         [Tooltip("the time to switch between the looking points")]
+        [Range(0,10)]
         [SerializeField] private float _switchLookTime;
         [Tooltip("the speed how fast the invisible agent is moving")]
+        [Range(0,10)]
         [SerializeField] private float _lookSwitchSpeed;
         [Tooltip("the route where the enemy should look")]
         [SerializeField] private GameObject _lookingRoute;
         [Tooltip("the point where the enemy is guarding")]
         [SerializeField] private Transform _guardPoint;
         [Tooltip("the distance to stop when reaching the guard point")]
+        [Range(0,5)]
         [SerializeField] private float _stopGuardpointDistance = 0.5f;
         [Tooltip("the rotation of the enemy body when he is guarding")]
         [SerializeField] private Transform _desiredBodyRotation;
         [Tooltip("the look agent to look in specific directions over time")]
         [SerializeField] private Transform _currentLookPosition;
+        [Range(0,20)]
         [Tooltip("smooth the rotation towards the desired Body Rotation")]
         [SerializeField] private float _smoothBodyRotation;
         // signalize if the enemy reached the guard point to start his look routine
@@ -531,6 +552,7 @@ namespace Enemy.Controller
         
         #endregion
         
+        
         void Start()
         {
             _highGroundViewCone.SetActive(false);
@@ -573,7 +595,8 @@ namespace Enemy.Controller
                 _currentState.Enter(this);
             }
 
-            PlayerDetected();
+            PlayerVisionDetection();
+            PlayerAcousticDetection();
             ActivateNoisyItemInvestigation();
         }
         
@@ -584,6 +607,13 @@ namespace Enemy.Controller
         /// </summary>
         public void CheckPlayerGround()
         {
+            if (!_scoreCount)
+            {
+                // put your method here 
+                _scoreCount = true;
+            }
+
+            
             if (_playerGroundDetection.LowGround)
             {             
                 // Standard View Cone
@@ -797,7 +827,7 @@ namespace Enemy.Controller
         /// <summary>
         /// Bar control to show how much the player is spotted of the enemy
         /// </summary>
-        public void PlayerDetected()
+        public void PlayerVisionDetection()
         {
             // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view field
             if (_useSpottedBar)
@@ -805,18 +835,17 @@ namespace Enemy.Controller
                 float distance = Vector3.Distance(transform.position, _player.transform.position);
 
                 // the time will run and will fill the bar until the player is spotted
-                if (_spotTime <= _secondsToSpott)
+                if (_spotTime < _visionSecondsToSpott)
                 {
                     _spotTime += Time.deltaTime;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
                 // when the player is to close to the enemy or to long in the view field, the player get spotted
-                if (_spotTime >= _secondsToSpott || distance <= _spottedDistance)
+                if (_spotTime > _visionSecondsToSpott || distance <= _spottedVisionDistance)
                 {
                     _spottedBar.fillAmount = 1;
                     _playerSpotted = true;
-                    
                     _player.PlayerAnimationHandler.PlayerFlee(true);
                 }
             }
@@ -828,7 +857,47 @@ namespace Enemy.Controller
                     _spottedBar.fillAmount = _spotTime;
                 }
 
-                if (_spotTime <= 0)
+                if (_spotTime < 0)
+                {
+                    _spotTime = 0;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Bar control to show how much the player is spotted of the enemy
+        /// </summary>
+        public void PlayerAcousticDetection()
+        {
+            // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view field
+            if (_useSpottedBar)
+            {
+                float distance = Vector3.Distance(transform.position, _player.transform.position);
+
+                // the time will run and will fill the bar until the player is spotted
+                if (_spotTime < _acousticSecondsToSpott)
+                {
+                    _spotTime += Time.deltaTime;
+                    _spottedBar.fillAmount = _spotTime;
+                }
+                
+                // when the player is to close to the enemy or to long in the view field, the player get spotted
+                if (_spotTime > _acousticSecondsToSpott || distance <= _spottedAcousticDistance)
+                {
+                    _spottedBar.fillAmount = 1;
+                    _playerSpotted = true;
+                    _player.PlayerAnimationHandler.PlayerFlee(true);
+                }
+            }
+            else
+            {
+                if (_spotTime > 0)
+                {
+                    _spotTime -= Time.deltaTime;
+                    _spottedBar.fillAmount = _spotTime;
+                }
+
+                if (_spotTime < 0)
                 {
                     _spotTime = 0;
                 }
@@ -870,13 +939,25 @@ namespace Enemy.Controller
             // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the player position
             if (other.CompareTag("FootSteps"))
             {
-                _player.PlayerAnimationHandler.PlayerFlee(true);
-                _soundNoticed = true;
-                _soundBehaviourStage = 3;
-                _soundEventPosition = _player.transform;
-                _animationActivated = false;
-                _heardFootsteps = true;
-                _spottedBar.fillAmount = 1;
+                _useSpottedBar = true;
+
+                if (_playerSpotted)
+                {
+                    _player.PlayerAnimationHandler.PlayerFlee(true);
+                    _soundNoticed = true;
+                    _soundBehaviourStage = 3;
+                    _soundEventPosition = _player.transform;
+                    _animationActivated = false;
+                    _heardFootsteps = true;
+                    _spottedBar.fillAmount = 1;
+                
+                    if (!_scoreCount)
+                    {
+                        // put your method here 
+                        _scoreCount = true;
+                    }
+                }
+
             }
             
             // if the enemy used the points in the room, all points will be added again because used points will be deleted during the search mode
@@ -908,7 +989,16 @@ namespace Enemy.Controller
                 }
             }
         }
-        
+
+        private void OnTriggerExit(Collider other)
+        {
+            // when the enemy doesn't hear the footsteps anymore, the spotted bar will get down
+            if (other.CompareTag("FootSteps"))
+            {
+                _useSpottedBar = false;
+            }
+        }
+
         /// <summary>
         /// the distance between the sound event and the enemy
         /// </summary>
@@ -918,7 +1008,7 @@ namespace Enemy.Controller
             return Vector3.Distance(_agent.pathEndPosition, transform.position);
         }
         
-        #region Search Behaviour
+        #region SearchBehaviour
         
         /// <summary>
         /// set the closest waypoint based on the player position
@@ -953,6 +1043,9 @@ namespace Enemy.Controller
         /// </summary>
         public void UpdateSearchBehaviour()
         {
+            // enemy has lost the player and reset the score count
+            _scoreCount = false;
+            
             // when the current search point position is reached, the standing time will count down and set the next search point
             if (Vector3.Distance(transform.position, _closestWaypoint.position) <= _stopDistance && !_reachedWaypoint)
             {

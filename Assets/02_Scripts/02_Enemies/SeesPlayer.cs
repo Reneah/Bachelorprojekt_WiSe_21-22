@@ -33,12 +33,13 @@ namespace Enemy.ViewField
                 
                 if (!obstructedView)
                 {
+                    // start to use the bar and the player is spotted, when the bar is filled up 
                     _enemyController.UseSpottedBar = true;
                 }
             
-                // only sees the player when the time is 0 to spott the player in the view field
+                // only sees the player when the time is 0 to spot the player in the view field
                 // or if the player is on high ground the enemy is able to follow him
-                if(!obstructedView && _enemyController.PlayerSpotted || _enemyController.PlayerGroundDetection.HighGround)
+                if(!obstructedView && _enemyController.PlayerSpotted || _enemyController.PlayerGroundDetection.HighGround && _enemyController.PlayerSpotted)
                 {
                     Debug.DrawRay(_enemyController.ObstacleRaycastTransform.position, directionToTarget * distanceToTarget, Color.green);
                     _enemyController.CanSeePlayer = true; 
