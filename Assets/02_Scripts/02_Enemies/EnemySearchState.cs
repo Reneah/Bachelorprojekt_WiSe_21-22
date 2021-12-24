@@ -41,6 +41,7 @@ namespace Enemy.States
 
             enemy.EnemyTalkCheck.Talkable = false;
             enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
+            enemy.PrepareSearchBehaviour();
             enemy.StartSearchBehaviour();
             
             enemy.Agent.isStopped = false;

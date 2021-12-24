@@ -974,6 +974,39 @@ namespace Enemy.Controller
         }
         
         #region SearchBehaviour
+
+        public void PrepareSearchBehaviour()
+        {
+            // get the current closest point based on the player position
+            _closestWaypointDistance = Mathf.Infinity;
+            
+            foreach (Transform waypoint in _noisyItemSearchPoints)
+            {
+                _currentwaypointDistance = Vector3.Distance(waypoint.transform.position, _player.transform.position);
+                if (_currentwaypointDistance <= _closestWaypointDistance)
+                {
+                    _closestWaypointDistance = _currentwaypointDistance;
+                    _closestWaypoint = waypoint;
+                }
+            }
+            // when the fixed waypoints amount is reached, this method will be stopped
+            if (_waypointAmount > 0)
+            {
+                _noisyItemSelectedPoints.Add(_closestWaypoint);
+                _noisyItemSearchPoints.Remove(_closestWaypoint);
+                _waypointAmount--;
+                PrepareSearchBehaviour();
+
+                // reset the amount of desired waypoints
+                if (_waypointAmount <= 1)
+                {
+                    _waypointAmount = _waypointCounter;
+                }
+            }
+            
+            // the amount of waypoints that can be used of the selected
+            _usuableWaypointsRangeAmount = _noisyItemSelectedPoints.Count;
+        }
         
         /// <summary>
         /// set the closest waypoint based on the player position
@@ -981,26 +1014,24 @@ namespace Enemy.Controller
         public void StartSearchBehaviour()
         {
             // when all search points has been used, the enemy goes back to patrolling or guarding
-            if (_searchWaypoints.Count <= 0)
+            if (_usuableWaypointsRangeAmount <= 0)
             {
                 _resetSearchWaypoints = true;
                 _finishChecking = true;
                 return;
             }
             
-            // get the current closest point based on the player position
-            _closestWaypointDistance = Mathf.Infinity;
-            foreach (Transform waypoint in _searchWaypoints)
+            _currentCloseNoisyItemWaypoint = _noisyItemSelectedPoints[Random.Range(0, _noisyItemSelectedPoints.Count)];
+            if (_currentCloseNoisyItemWaypoint == null)
             {
-                 _currentwaypointDistance = Vector3.Distance(waypoint.transform.position, _player.transform.position);
-                if (_currentwaypointDistance <= _closestWaypointDistance)
-                {
-                    _closestWaypointDistance = _currentwaypointDistance;
-                    _closestWaypoint = waypoint;
-                }
+                StartSearchBehaviour();
+                return;
             }
             _animationHandler.SetSpeed(_searchSpeed);
-            _agent.SetDestination(_closestWaypoint.position);
+            _agent.SetDestination(_currentCloseNoisyItemWaypoint.position);
+            _usuableWaypointsRangeAmount--;
+                
+            _noisyItemSelectedPoints.Remove(_currentCloseNoisyItemWaypoint);
         }
         
         /// <summary>
@@ -1012,7 +1043,7 @@ namespace Enemy.Controller
             _scoreCount = false;
             
             // when the current search point position is reached, the standing time will count down and set the next search point
-            if (Vector3.Distance(transform.position, _closestWaypoint.position) <= _stopDistance && !_reachedWaypoint)
+            if (Vector3.Distance(transform.position, _currentCloseNoisyItemWaypoint.position) <= _stopDistance && !_reachedWaypoint)
             {
                 _animationHandler.SetSpeed(0);
                 _reachedWaypoint = true;
@@ -1020,9 +1051,6 @@ namespace Enemy.Controller
 
             if (_reachedWaypoint)
             {
-                //kick out the waypoint which was already used
-                _searchWaypoints.Remove(_closestWaypoint); 
-                
                 _standingCooldown -= Time.deltaTime;
                 
                 if (_standingCooldown <= 0)
@@ -1084,7 +1112,6 @@ namespace Enemy.Controller
             // when all points were used, the enemy will go back to his routine
             if (_usuableWaypointsAmount <= 0 || _usuableWaypointsRangeAmount <= 0)
             {
-                _waypointAmount = 3;
                 _finishChecking = true;
                 _resetNoisyItemWaypoints = true;
                 return;
@@ -1094,16 +1121,34 @@ namespace Enemy.Controller
             if (_player.PlayerThrowTrigger.PlayerThrew)
             {
                 _currentCloseNoisyItemWaypoint = _noisyItemSelectedPoints[Random.Range(0, _noisyItemSelectedPoints.Count)];
+                
+                if (_currentCloseNoisyItemWaypoint == null)
+                {
+                    StartSearchNoisyItemBehaviour();
+                    return;
+                }
+                
                 _agent.SetDestination(_currentCloseNoisyItemWaypoint.position);
                 _usuableWaypointsRangeAmount--;
+                
+                _noisyItemSelectedPoints.Remove(_currentCloseNoisyItemWaypoint);
             }
 
             // when the enemy activated the item in close range, selected waypoints in the inspector will be used
             if (!_player.PlayerThrowTrigger.PlayerThrew)
             {
                 _currentCloseNoisyItemWaypoint = _noisyItemScript.CloseNoisyItemWaypoints[Random.Range(0, _noisyItemScript.CloseNoisyItemWaypoints.Length)];
+                
+                if (_currentCloseNoisyItemWaypoint == null)
+                {
+                    StartSearchNoisyItemBehaviour();
+                    return;
+                }
+                
                 _agent.SetDestination(_currentCloseNoisyItemWaypoint.position);
                 _usuableWaypointsAmount--;
+                
+                _noisyItemSelectedPoints.Remove(_currentCloseNoisyItemWaypoint);
             }
             
             _animationHandler.SetSpeed(_firstStageRunSpeed);
