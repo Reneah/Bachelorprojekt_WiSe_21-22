@@ -212,7 +212,16 @@ namespace Enemy.Controller
         [SerializeField] private GameObject _highGroundViewCone;
         [Tooltip("the view cone that will be activated when the player is on low ground")]
         [SerializeField] private GameObject _lowGroundViewCone;
-        
+
+        // when the player is in the view field, the spotted time for the vision will be used. Otherwise the acoustic spotted time will be used
+        private bool _playerInViewField = false;
+
+        public bool PlayerInViewField
+        {
+            get => _playerInViewField;
+            set => _playerInViewField = value;
+        }
+
         // the time to spot the enemy when he is in the view field
         private float _spotTime = 0;
         
@@ -614,11 +623,9 @@ namespace Enemy.Controller
                 _currentState = enemyState;
                 _currentState.Enter(this);
             }
-
+            
             PlayerVisionDetection();
             ActivateNoisyItemInvestigation();
-            
-            Debug.DrawRay(transform.position, (_player.transform.position - _enemyHead.position) * 1000, Color.blue);
         }
         
         #region ChaseBehaviour
@@ -856,16 +863,22 @@ namespace Enemy.Controller
                 float distance = Vector3.Distance(transform.position, _player.transform.position);
 
                 // the time will run and will fill the bar until the player is spotted
-                if (_spotTime < _visionSecondsToSpott || _spotTime < _acousticSecondsToSpott)
+                if (_spotTime < _visionSecondsToSpott && _playerInViewField)
                 {
-                    _spotTime += Time.deltaTime;
+                    _spotTime += Time.deltaTime / _visionSecondsToSpott;
+                    _spottedBar.fillAmount = _spotTime;
+                }
+                if (!_playerInViewField && _spotTime < _acousticSecondsToSpott)
+                {
+                    _spotTime += Time.deltaTime / _acousticSecondsToSpott;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
                 // when the player is to close to the enemy or to long in the view field, the player get spotted
-                if (_spotTime > _visionSecondsToSpott || distance <= _spottedVisionDistance || _spotTime > _acousticSecondsToSpott || distance <= _spottedAcousticDistance)
+                if (_spottedBar.fillAmount >= 1 || distance <= _spottedVisionDistance  || distance <= _spottedAcousticDistance)
                 {
-                    _spottedBar.fillAmount = 1;
+                    _spotTime = 1;
+                    _spottedBar.fillAmount = _spotTime;
                     _playerSpotted = true;
                     _player.PlayerAnimationHandler.PlayerFlee(true);
                 }
@@ -892,7 +905,9 @@ namespace Enemy.Controller
             // when the enemy hears a sound, he will investigate it when the max enemy pull amount is not reached
             if (other.CompareTag("Sound") && !_getSoundOnce)
             {
-                if (Physics.Raycast(_enemyHead.position,  _player.transform.position - _enemyHead.position, 100, LayerMask.GetMask("Wall")))
+                Vector3 _raycastDirection = new Vector3(_player.transform.position.x, _player.transform.position.y + 2.5f, _player.transform.position.z) - _enemyHead.position;
+                // when a specific layer is hit that isolate sound, the enemy will hear nothing
+                if (Physics.Raycast(_enemyHead.position, _raycastDirection, 10, _blockAcousticLayerMasks))
                 {
                     return;
                 }
@@ -925,9 +940,13 @@ namespace Enemy.Controller
             // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the player position
             if (other.CompareTag("FootSteps"))
             {
-                if (Physics.Raycast(_enemyHead.position,  _player.transform.position - _enemyHead.position, 100, LayerMask.GetMask("Wall")))
+                Vector3 _raycastDirection = new Vector3(_player.transform.position.x, _player.transform.position.y + 2.5f, _player.transform.position.z) - _enemyHead.position;
+                // when a specific layer is hit that isolate sound, the enemy will hear nothing
+                if (Physics.Raycast(_enemyHead.position, _raycastDirection,  10, _blockAcousticLayerMasks))
                 {
+                    _useSpottedBar = false;
                     return;
+                    
                 }
                 
                 _useSpottedBar = true;
