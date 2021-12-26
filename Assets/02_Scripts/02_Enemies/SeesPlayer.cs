@@ -28,12 +28,14 @@ namespace Enemy.ViewField
                 {
                     _enemyController.CanSeePlayer = false; 
                     _enemyController.UseSpottedBar = false;
+                    _enemyController.PlayerInViewField = false;
                 }
                 
                 if (!obstructedView)
                 {
                     // start to use the bar and the player is spotted, when the bar is filled up 
                     _enemyController.UseSpottedBar = true;
+                    _enemyController.PlayerInViewField = true;
                 }
             
                 // only sees the player when the time is 0 to spot the player in the view field
@@ -53,6 +55,7 @@ namespace Enemy.ViewField
             {
                 _enemyController.CanSeePlayer = false;
                 _enemyController.UseSpottedBar = false;
+                _enemyController.PlayerInViewField = false;
                 
             }
         }
