@@ -26,7 +26,6 @@ namespace Enemy.States
                 {
                     return EnemyController.EnemyGuardState;
                 }
-                
                 return EnemyController.EnemyPatrolState;
             }
         
@@ -45,11 +44,16 @@ namespace Enemy.States
             enemy.StartSearchBehaviour();
             
             enemy.Agent.isStopped = false;
+
+            enemy.SearchArea.EnemySearchAmount++;
         }
 
         public void Exit(EnemyController enemy)
         {
             enemy.FinishChecking = false;
+            enemy.SearchArea.EnemySearchAmount--;
+            
+            enemy.Agent.enabled = true;
         }
     }
 }

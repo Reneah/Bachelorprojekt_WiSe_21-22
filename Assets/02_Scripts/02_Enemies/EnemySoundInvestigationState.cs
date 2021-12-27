@@ -98,7 +98,22 @@ namespace Enemy.States
                         enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                         enemy.AnimationHandler.ResetInvestigatePoint();
                         
-                        return EnemyController.EnemySearchState;
+                        if (enemy.SearchArea.EnemySearchAmount < 2)
+                        {
+                            return EnemyController.EnemySearchState;
+                        }
+                        else
+                        {
+                            if (enemy.Guarding)
+                            {
+                                return EnemyController.EnemyGuardState;
+                            }
+                            else if (enemy.Patrolling)
+                            {
+                                return EnemyController.EnemyPatrolState;
+                            }
+  
+                        }
                     }
                 }
             }

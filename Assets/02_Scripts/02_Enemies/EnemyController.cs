@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BP._02_Scripts._03_Game;
 using Enemy.AnimationHandler;
+using Enemy.SearchArea;
 using Enemy.ShareInformation;
 using Enemy.SoundItem;
 using Enemy.States;
@@ -379,7 +380,17 @@ namespace Enemy.Controller
          private Collider _hearFieldPlayerCollider;
          // need this script to get the collider of the step sound 
          private PlayerStepsSound _playerStepsSound;
-         
+         // need this script to get the current amount how many enemies are searching
+         private SearchAreaOverview _searchArea;
+         // prevent that the if condition in update will run all the time
+         private bool _hearFieldColliderActiv = true;
+
+         public SearchAreaOverview SearchArea
+         {
+             get => _searchArea;
+             set => _searchArea = value;
+         }
+
          public bool CanInvestigate
          {
              get => _canInvestigate;
@@ -650,7 +661,7 @@ namespace Enemy.Controller
             if (!_scoreCount)
             {
                 // Counts up the mission score for the player to have been spotted
-                _myMissionScore.SpottedScoreCounter += 1;
+                //_myMissionScore.SpottedScoreCounter += 1;
                 _scoreCount = true;
             }
 
@@ -870,9 +881,11 @@ namespace Enemy.Controller
         /// </summary>
         public void PlayerVisionDetection()
         {
-            if (!_hearFieldPlayerCollider.enabled)
+            if (!_hearFieldPlayerCollider.enabled && _hearFieldColliderActiv)
             {
+                _hearFieldColliderActiv = false;
                 _useSpottedBar = false;
+                _playerInHearField = false;
             }
             
             // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view field
@@ -944,6 +957,8 @@ namespace Enemy.Controller
             // if the enemy gets in a new room, the old search points will be deleted and the new ones will be selected
             if (other.CompareTag("SearchPoints"))
             {
+                _searchArea = other.GetComponent<SearchAreaOverview>();
+                
                 _searchWaypoints.Clear();
                 _noisyItemSearchPoints.Clear();
 
@@ -967,7 +982,8 @@ namespace Enemy.Controller
                     _useSpottedBar = false;
                     return;
                 }
-            
+
+                _hearFieldColliderActiv = true;
                 _playerInHearField = true;
                 _useSpottedBar = true;
                 
@@ -984,18 +1000,16 @@ namespace Enemy.Controller
                     if (!_scoreCount)
                     {
                         // Counts up the mission score for the player to have been spotted
-                        _myMissionScore.SpottedScoreCounter += 1;
+                    //    _myMissionScore.SpottedScoreCounter += 1;
                         _scoreCount = true;
                     }
 
                 }
-
             }
             
             // if the enemy used the points in the room, all points will be added again because used points will be deleted during the search mode
             if (other.CompareTag("SearchPoints"))
             {
-
                 if (_resetSearchWaypoints)
                 {
                     _searchWaypoints.Clear();
@@ -1117,6 +1131,7 @@ namespace Enemy.Controller
             {
                 _animationHandler.SetSpeed(0);
                 _reachedWaypoint = true;
+                _agent.enabled = false;
             }
 
             if (_reachedWaypoint)
@@ -1125,6 +1140,7 @@ namespace Enemy.Controller
                 
                 if (_standingCooldown <= 0)
                 {
+                    _agent.enabled = true;
                     _standingCooldown = _dwellingTimer;
                     _reachedWaypoint = false;
                     StartSearchBehaviour();
