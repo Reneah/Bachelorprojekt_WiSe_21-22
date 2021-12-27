@@ -111,7 +111,7 @@ public class MainMenu : MonoBehaviour
         // Set static booleans to false to reset QuestManager on New Game Start
         CollectItem._backpackCollected = false;
         CollectItem._parchmentCollected = false;
-        CollectItem._parchmentCollected = false;
+        CollectItem._keyCollected = false;
         CollectItem._enteredStaircase = false;
         
         // Signal to the MissionScore.cs that the game has been started, so the gameplay timer starts
