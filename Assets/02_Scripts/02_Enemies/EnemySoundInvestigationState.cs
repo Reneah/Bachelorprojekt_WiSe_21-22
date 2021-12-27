@@ -116,7 +116,6 @@ namespace Enemy.States
                         }
                     }
                 }
-
             }
             return this;
         }

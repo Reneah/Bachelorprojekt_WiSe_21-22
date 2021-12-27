@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_3.unity
     guid: 228628a34ec2fb94899b87d855aaf1fe
+  - enabled: 1
+    path: Assets/01_Scenes/MissionScore.unity
+    guid: 3fca73a98101cf046815eb9684e30e45
   m_configObjects: {}

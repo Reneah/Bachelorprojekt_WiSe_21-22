@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="877614ff-2134-43be-8987-24837770e7e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_3.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,41 +17,41 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LookAgentVisualization.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemPullRadius.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkCheck.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/TutorialContinueButton.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/Checkpoint.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyVisionChaseState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@4.5.2/Runtime/Core/Log.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SearchAreaOverview.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/Scripts/Singleton/MasterAudio.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerStepsSound.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/AssetsPacks/DynamicShadowProjector/ProjectorForLWRP-master-universalrp/SRP/Scripts/ProjectorForSRP.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/LootChestAnimationController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemPullRadius.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/LootChestAnimationController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/TutorialContinueButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerStepsSound.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LookAgentVisualization.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/DarkTonic/MasterAudio/Scripts/Singleton/MasterAudio.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/01_Player/Checkpoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyVisionChaseState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/AssetsPacks/DynamicShadowProjector/ProjectorForLWRP-master-universalrp/SRP/Scripts/ProjectorForSRP.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkCheck.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyIdleState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -66,12 +61,10 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/TutorialContinueButton.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SpottedBarTowardsCamera.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerGroundDetection.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/LootChestAnimationController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
@@ -86,17 +79,14 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LootSpot.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/PlayerChaseInformation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Provisions.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectProvisions.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Checkpoint.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemCloseActivation.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
@@ -106,12 +96,22 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyVisionChaseState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SearchAreaOverview.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs" />
       </list>
     </option>
   </component>
@@ -122,8 +122,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
-    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.29956663" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35008305" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.2994186" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -155,10 +155,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="16584">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="16584" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -308,8 +308,7 @@
       <workItem from="1640503001175" duration="9206000" />
       <workItem from="1640543036184" duration="1036000" />
       <workItem from="1640591207028" duration="4041000" />
-      <workItem from="1640611488661" duration="1070000" />
-      <workItem from="1640613551017" duration="5071000" />
+      <workItem from="1640605261475" duration="3589000" />
     </task>
     <servers />
   </component>
@@ -322,86 +321,94 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2439" height="411" key="GridCell.Tab.0.bottom" timestamp="1640612920707">
+      <screen x="0" y="0" width="2482" height="1440" />
     </state>
+    <state width="2439" height="411" key="GridCell.Tab.0.bottom/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640612920707" />
     <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.0.bottom/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.0.center" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.0.bottom/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489612" />
+    <state width="2439" height="411" key="GridCell.Tab.0.center" timestamp="1640612920707">
+      <screen x="0" y="0" width="2482" height="1440" />
     </state>
+    <state width="2439" height="411" key="GridCell.Tab.0.center/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640612920707" />
     <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.0.center/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.0.left" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.0.center/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489612" />
+    <state width="2439" height="411" key="GridCell.Tab.0.left" timestamp="1640612920707">
+      <screen x="0" y="0" width="2482" height="1440" />
     </state>
+    <state width="2439" height="411" key="GridCell.Tab.0.left/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640612920707" />
     <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.0.left/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305620" />
-    <state width="1877" height="375" key="GridCell.Tab.0.right" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.0.left/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489612" />
+    <state width="2439" height="411" key="GridCell.Tab.0.right" timestamp="1640612920707">
+      <screen x="0" y="0" width="2482" height="1440" />
     </state>
+    <state width="2439" height="411" key="GridCell.Tab.0.right/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640612920707" />
     <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.0.right/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.0.right/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489612" />
+    <state width="2439" height="411" key="GridCell.Tab.1.bottom" timestamp="1640612803760">
+      <screen x="0" y="0" width="2482" height="1440" />
     </state>
+    <state width="2439" height="411" key="GridCell.Tab.1.bottom/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640612803760" />
     <state width="1877" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.1.bottom/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.1.center" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.1.bottom/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489437" />
+    <state width="2439" height="411" key="GridCell.Tab.1.center" timestamp="1640612803760">
+      <screen x="0" y="0" width="2482" height="1440" />
     </state>
+    <state width="2439" height="411" key="GridCell.Tab.1.center/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640612803760" />
     <state width="1877" height="375" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.1.center/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.1.left" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.1.center/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489437" />
+    <state width="2439" height="411" key="GridCell.Tab.1.left" timestamp="1640612803760">
+      <screen x="0" y="0" width="2482" height="1440" />
     </state>
+    <state width="2439" height="411" key="GridCell.Tab.1.left/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640612803760" />
     <state width="1877" height="375" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.1.left/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.1.right" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.1.left/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489437" />
+    <state width="2439" height="411" key="GridCell.Tab.1.right" timestamp="1640612803760">
+      <screen x="0" y="0" width="2482" height="1440" />
     </state>
+    <state width="2439" height="411" key="GridCell.Tab.1.right/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640612803760" />
     <state width="1877" height="375" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.1.right/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.2.bottom" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.1.right/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489437" />
+    <state width="1927" height="323" key="GridCell.Tab.2.bottom" timestamp="1640180489438">
+      <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.2.bottom/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.2.center" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.2.bottom/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489438" />
+    <state width="1927" height="323" key="GridCell.Tab.2.center" timestamp="1640180489438">
+      <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.2.center/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.2.left" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.2.center/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489438" />
+    <state width="1927" height="323" key="GridCell.Tab.2.left" timestamp="1640180489437">
+      <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.2.left/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.2.right" timestamp="1640117086043">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.2.left/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489437" />
+    <state width="1927" height="323" key="GridCell.Tab.2.right" timestamp="1640180489438">
+      <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086043" />
-    <state width="1822" height="323" key="GridCell.Tab.2.right/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305621" />
-    <state width="1877" height="375" key="GridCell.Tab.3.bottom" timestamp="1640117086044">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.2.right/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489438" />
+    <state width="1927" height="323" key="GridCell.Tab.3.bottom" timestamp="1640180489438">
+      <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086044" />
-    <state width="1822" height="323" key="GridCell.Tab.3.bottom/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305622" />
-    <state width="1877" height="375" key="GridCell.Tab.3.center" timestamp="1640117086044">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.3.bottom/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489438" />
+    <state width="1927" height="323" key="GridCell.Tab.3.center" timestamp="1640180489438">
+      <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086044" />
-    <state width="1822" height="323" key="GridCell.Tab.3.center/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305622" />
-    <state width="1877" height="375" key="GridCell.Tab.3.left" timestamp="1640117086044">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.3.center/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489438" />
+    <state width="1927" height="323" key="GridCell.Tab.3.left" timestamp="1640180489438">
+      <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086044" />
-    <state width="1822" height="323" key="GridCell.Tab.3.left/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305622" />
-    <state width="1877" height="375" key="GridCell.Tab.3.right" timestamp="1640117086044">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1927" height="323" key="GridCell.Tab.3.left/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489438" />
+    <state width="1927" height="323" key="GridCell.Tab.3.right" timestamp="1640180489438">
+      <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1640117086044" />
-    <state width="1822" height="323" key="GridCell.Tab.3.right/0.0.1970.1152@0.0.1970.1152" timestamp="1636364305622" />
+    <state width="1927" height="323" key="GridCell.Tab.3.right/0.0.1970.1152@0.0.1970.1152" timestamp="1640180489438" />
     <state x="778" y="221" key="RiderGenerateDialog" timestamp="1638190640019">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -410,15 +417,51 @@
       <screen x="0" y="0" width="1970" height="1152" />
     </state>
     <state x="100" y="120" width="1680" height="720" key="VCS.FileHistoryDialog/0.0.1970.1152@0.0.1970.1152" timestamp="1639915076630" />
+    <state width="992" height="583" key="XDebugger.FullValuePopup" timestamp="1640176352267">
+      <screen x="0" y="0" width="1970" height="1152" />
+    </state>
+    <state width="992" height="583" key="XDebugger.FullValuePopup/0.0.1970.1152@0.0.1970.1152" timestamp="1640176352267" />
     <state x="652" y="212" key="run.anything.popup" timestamp="1638347951073">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="652" y="212" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638347951073" />
     <state x="669" y="235" key="run.anything.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1635953837811" />
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1640614930021">
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup" timestamp="1640599977607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1640614930021" />
+    <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1640599977607" />
     <state x="675" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1639913180248" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs</url>
+          <line>307</line>
+          <properties documentPath="D:\Game Design\Theorie\Bachelorthese\Bachelorprojekt\Repository\Bachelorprojekt_WiSe_21-22\Assets\02_Scripts\03_Game\MissionScore.cs" initialLine="307">
+            <startOffsets>
+              <option value="13385" />
+            </startOffsets>
+            <endOffsets>
+              <option value="13438" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs</url>
+          <line>308</line>
+          <properties documentPath="D:\Game Design\Theorie\Bachelorthese\Bachelorprojekt\Repository\Bachelorprojekt_WiSe_21-22\Assets\02_Scripts\03_Game\MissionScore.cs" initialLine="308">
+            <startOffsets>
+              <option value="13451" />
+            </startOffsets>
+            <endOffsets>
+              <option value="13516" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
