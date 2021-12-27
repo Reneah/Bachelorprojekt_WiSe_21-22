@@ -382,6 +382,8 @@ namespace Enemy.Controller
          private PlayerStepsSound _playerStepsSound;
          // need this script to get the current amount how many enemies are searching
          private SearchAreaOverview _searchArea;
+         // prevent that the if condition in update will run all the time
+         private bool _hearFieldColliderActiv = true;
 
          public SearchAreaOverview SearchArea
          {
@@ -659,7 +661,7 @@ namespace Enemy.Controller
             if (!_scoreCount)
             {
                 // Counts up the mission score for the player to have been spotted
-                _myMissionScore.SpottedScoreCounter += 1;
+                //_myMissionScore.SpottedScoreCounter += 1;
                 _scoreCount = true;
             }
 
@@ -879,9 +881,11 @@ namespace Enemy.Controller
         /// </summary>
         public void PlayerVisionDetection()
         {
-            if (!_hearFieldPlayerCollider.enabled)
+            if (!_hearFieldPlayerCollider.enabled && _hearFieldColliderActiv)
             {
+                _hearFieldColliderActiv = false;
                 _useSpottedBar = false;
+                _playerInHearField = false;
             }
             
             // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view field
@@ -978,7 +982,8 @@ namespace Enemy.Controller
                     _useSpottedBar = false;
                     return;
                 }
-            
+
+                _hearFieldColliderActiv = true;
                 _playerInHearField = true;
                 _useSpottedBar = true;
                 
@@ -995,7 +1000,7 @@ namespace Enemy.Controller
                     if (!_scoreCount)
                     {
                         // Counts up the mission score for the player to have been spotted
-                        _myMissionScore.SpottedScoreCounter += 1;
+                    //    _myMissionScore.SpottedScoreCounter += 1;
                         _scoreCount = true;
                     }
 
