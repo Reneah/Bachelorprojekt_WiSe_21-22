@@ -146,6 +146,8 @@ namespace Enemy.States
             enemy.AnimationActivated = false;
             enemy.HeardFootsteps = false;
             EnemyShareInformation.ReachedNoisyItem = false;
+            
+            enemy.SoundNoticed = false;
         }
         
         private void UpdateSearchStage(EnemyController enemy)

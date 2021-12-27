@@ -36,9 +36,11 @@ namespace Enemy.CustomInspector
         private SerializedProperty _enemyHead;
         private SerializedProperty _obstacleRaycastTransform;
         private SerializedProperty _lookPositionAtSpotted;
-        private SerializedProperty _secondsToSpott;
+        private SerializedProperty _spottedVisionDistance;
+        private SerializedProperty _spottedAcousticDistance;
         private SerializedProperty _spottedBar;
-        private SerializedProperty _spottedDistance;
+        private SerializedProperty _visionSecondsToSpott;
+        private SerializedProperty _acousticSecondsToSpott;
         private SerializedProperty _lastChanceTime;
         private SerializedProperty _spottedTime;
         private SerializedProperty _highGroundViewCone;
@@ -49,7 +51,9 @@ namespace Enemy.CustomInspector
         private SerializedProperty _secondStageRunSpeed;
         private SerializedProperty _thirdStageRunSpeed;
         private SerializedProperty _searchSpeed;
-        private SerializedProperty _waypointCounter;
+        private SerializedProperty _throwWaypointCounter;
+        private SerializedProperty _playerSearchWaypointCounter;
+        private SerializedProperty _blockAcousticLayerMasks;
 
         private void OnEnable()
         {
@@ -83,9 +87,11 @@ namespace Enemy.CustomInspector
             _enemyHead = serializedObject.FindProperty("_enemyHead");
             _obstacleRaycastTransform = serializedObject.FindProperty("_obstacleRaycastTransform");
             _lookPositionAtSpotted = serializedObject.FindProperty("_lookPositionAtSpotted");
-            _secondsToSpott = serializedObject.FindProperty("_secondsToSpott");
+            _acousticSecondsToSpott = serializedObject.FindProperty("_acousticSecondsToSpott");
+            _visionSecondsToSpott = serializedObject.FindProperty("_visionSecondsToSpott");
             _spottedBar = serializedObject.FindProperty("_spottedBar");
-            _spottedDistance = serializedObject.FindProperty("_spottedDistance");
+            _spottedAcousticDistance = serializedObject.FindProperty("_spottedAcousticDistance");
+            _spottedVisionDistance = serializedObject.FindProperty("_spottedVisionDistance");
             _lastChanceTime = serializedObject.FindProperty("_lastChanceTime");
             _highGroundViewCone = serializedObject.FindProperty("_highGroundViewCone");
             _lowGroundViewCone = serializedObject.FindProperty("_lowGroundViewCone");
@@ -95,7 +101,9 @@ namespace Enemy.CustomInspector
             _secondStageRunSpeed = serializedObject.FindProperty("_secondStageRunSpeed");
             _thirdStageRunSpeed = serializedObject.FindProperty("_thirdStageRunSpeed");
             _searchSpeed = serializedObject.FindProperty("_searchSpeed");
-            _waypointCounter = serializedObject.FindProperty("_waypointCounter");
+            _throwWaypointCounter = serializedObject.FindProperty("_throwWaypointCounter");
+            _playerSearchWaypointCounter = serializedObject.FindProperty("_playerSearchWaypointCounter");
+            _blockAcousticLayerMasks = serializedObject.FindProperty("_blockAcousticLayerMasks");
         }
 
         override public void OnInspectorGUI()
@@ -145,9 +153,11 @@ namespace Enemy.CustomInspector
             EditorGUILayout.PropertyField(_enemyHead);
             EditorGUILayout.PropertyField(_obstacleRaycastTransform);
             EditorGUILayout.PropertyField(_lookPositionAtSpotted);
-            EditorGUILayout.PropertyField(_secondsToSpott);
+            EditorGUILayout.PropertyField(_acousticSecondsToSpott);
+            EditorGUILayout.PropertyField(_visionSecondsToSpott);
             EditorGUILayout.PropertyField(_spottedBar);
-            EditorGUILayout.PropertyField(_spottedDistance);
+            EditorGUILayout.PropertyField(_spottedAcousticDistance);
+            EditorGUILayout.PropertyField(_spottedVisionDistance);
             EditorGUILayout.PropertyField(_lastChanceTime);
             EditorGUILayout.PropertyField(_highGroundViewCone);
             EditorGUILayout.PropertyField(_lowGroundViewCone);
@@ -157,7 +167,9 @@ namespace Enemy.CustomInspector
             EditorGUILayout.PropertyField(_secondStageRunSpeed);
             EditorGUILayout.PropertyField(_thirdStageRunSpeed);
             EditorGUILayout.PropertyField(_searchSpeed);
-            EditorGUILayout.PropertyField(_waypointCounter);
+            EditorGUILayout.PropertyField(_throwWaypointCounter);
+            EditorGUILayout.PropertyField(_playerSearchWaypointCounter);
+            EditorGUILayout.PropertyField(_blockAcousticLayerMasks);
             
             serializedObject.ApplyModifiedProperties();
         }
