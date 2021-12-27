@@ -160,6 +160,11 @@ namespace BP._02_Scripts._03_Game
 
         void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
+            if (scene.name == "MainMenu" && loadSceneMode == LoadSceneMode.Single)
+            {
+                _myCanvas.enabled = false;
+            }
+            
             if (scene.name == "GameWorld_BesiegedKeep_3" && loadSceneMode == LoadSceneMode.Single && _myCollectStones == null)
             {
                _myCollectStones = FindObjectOfType<CollectStones>();
