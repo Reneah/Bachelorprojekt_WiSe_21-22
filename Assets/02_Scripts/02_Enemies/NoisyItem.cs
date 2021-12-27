@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BP._02_Scripts._03_Game;
 using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using TMPro;
@@ -29,7 +30,7 @@ namespace Enemy.SoundItem
         [SerializeField] private string _playerPrefsKey;
         [Tooltip("the layer for the noisy item to be able to activate it")]
         [SerializeField] private LayerMask _noisyItemLayer;
-
+        
         public GameObject SoundRadius
         {
             get => _soundRadius;
@@ -121,7 +122,7 @@ namespace Enemy.SoundItem
             set => _stage = value;
         }
         
-        private bool _itemUsed = false;
+        private bool _itemUsed;
 
         public bool ItemUsed
         {
@@ -174,13 +175,15 @@ namespace Enemy.SoundItem
 
         private Collider _collider;
         private NoisyItemCloseActivation _noisyItemCloseActivation;
-        
+        private MissionScore _myMissionScore;
+
         void Start()
         {
-            _collider = GetComponent<Collider>();
             _noisyItemCloseActivation = GetComponentInChildren<NoisyItemCloseActivation>();
+            _collider = GetComponent<Collider>();
             
             _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
+
             _collectibleSprite.gameObject.SetActive(false);
             
             if (!_reusable)
@@ -189,6 +192,8 @@ namespace Enemy.SoundItem
                 _unharmedItem.SetActive(true);
             }
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
+
+            _myMissionScore = FindObjectOfType<MissionScore>();
         }
 
         private void Update()
@@ -256,6 +261,9 @@ namespace Enemy.SoundItem
                         _itemUsed = false;
                         _oneTimeUsed = true;
                         MasterAudio.PlaySound3DAtTransform("ShieldHit", transform);
+                        
+                        // Count up the distraction score counter for the Mission Score
+                        _myMissionScore.DistractionsScoreCounter += 1;
                     }
                     else
                     {
@@ -266,8 +274,10 @@ namespace Enemy.SoundItem
                         _negativeSprite.gameObject.SetActive(false);
                         _soundRangeCollider.SetActive(false);
                         _playerThrowTrigger.Close = false;
-                        this.enabled = false;
                         MasterAudio.PlaySound3DAtTransform("ShatterVase", transform);
+                        
+                        // Count up the distraction score counter for the Mission Score
+                        _myMissionScore.DistractionsScoreCounter += 1;
                     }
                 }
             }

@@ -143,7 +143,6 @@ namespace Enemy.AnimationHandler
                 _enemyAnimator.SetLookAtWeight(_headRotationWeight);
                 _enemyAnimator.SetLookAtPosition(_enemyController.CurrentLookPosition.transform.position);
             }
-
         }
         
         public void EnemyFootsteps(AnimationEvent animationEvent)

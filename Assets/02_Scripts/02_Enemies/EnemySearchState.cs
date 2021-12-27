@@ -9,7 +9,7 @@ namespace Enemy.States
         {
             enemy.CheckPlayerGround();
             
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.ActivateChasing)
             {
                 enemy.ResetSearchWaypoints = true;
                 return EnemyController.EnemyVisionChaseState;
@@ -36,8 +36,12 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
+            enemy.PlayerSpotted = false;
+            enemy.UseSpottedBar = false;
+
             enemy.EnemyTalkCheck.Talkable = false;
             enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
+            enemy.PrepareSearchBehaviour();
             enemy.StartSearchBehaviour();
             
             enemy.Agent.isStopped = false;
@@ -47,7 +51,5 @@ namespace Enemy.States
         {
             enemy.FinishChecking = false;
         }
-    
     }
-
 }

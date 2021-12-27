@@ -160,6 +160,7 @@ public class QuestManager : MonoBehaviour
                 // activate crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Strikethrough;
                 _provisionsQuestDone = true;
+                MoveQuestPanelDown();
                 
                 // Activate interaction visualisation objects at staircase asset
                 if (CollectItem._keyCollected)
@@ -189,6 +190,7 @@ public class QuestManager : MonoBehaviour
             _quest6Text.enabled = true;
             // activate crossed out resolved quest text "Find the hidden key under the throne."
             _quest5Text.fontStyle = FontStyles.Strikethrough;
+            MoveQuestPanelDown();
         }
 
         if (CollectItem._enteredStaircase)
@@ -199,6 +201,7 @@ public class QuestManager : MonoBehaviour
             _quest6Text.fontStyle = FontStyles.Strikethrough;
             // activate crossed out resolved quest text "Escape the keep unharmed."
             _quest1Text.fontStyle = FontStyles.Strikethrough;
+            MoveQuestPanelDown();
         }
     }
     
