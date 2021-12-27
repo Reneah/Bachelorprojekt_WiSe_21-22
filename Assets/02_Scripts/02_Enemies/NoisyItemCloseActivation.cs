@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,15 @@ namespace Enemy.SoundItem
 {
     public class NoisyItemCloseActivation : MonoBehaviour
     {
-
+ 
         private NoisyItem _noisyItem;
 
-        private 
-        
-        void Start()
+        private void Start()
         {
             _noisyItem = GetComponentInParent<NoisyItem>();
         }
-        
+
+
         void Update()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -34,11 +34,9 @@ namespace Enemy.SoundItem
                     }
                 }
                 
-                _noisyItem.CloseActivationRadius.SetActive(false);
+                _noisyItem.SoundRangeCollider.gameObject.SetActive(true);
                 _noisyItem.CollectibleSprite.gameObject.SetActive(false);
                 _noisyItem.NegativeSprite.gameObject.SetActive(true);
-                _noisyItem.SoundRangeCollider.SetActive(true);
-                _noisyItem.PlayerThrowTrigger.Close = false;
 
                 _noisyItem.ItemUsable = false;
                 _noisyItem.ItemUsed = true;
@@ -63,7 +61,6 @@ namespace Enemy.SoundItem
                     _noisyItem.ItemUsable = false;
                     _noisyItem.PlayerThrowTrigger.Close = false;
                     _noisyItem.CollectibleSprite.gameObject.SetActive(false);
-                    _noisyItem.CloseActivationRadius.SetActive(false);
                 }
             }
         }

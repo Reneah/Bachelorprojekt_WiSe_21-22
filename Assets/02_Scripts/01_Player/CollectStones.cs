@@ -20,8 +20,6 @@ public class CollectStones : MonoBehaviour
     [Tooltip("The GO of the stones UI element and text")]
     [SerializeField] private GameObject _stonesUIelements;
     
-    private GameObject _usebleMarker;
-    
     private int _stonesCounter = 0;
     private bool _stonesCollectible = false;
     private GameObject _stones;
@@ -40,10 +38,6 @@ public class CollectStones : MonoBehaviour
         _stonesActive = System.Convert.ToBoolean(PlayerPrefs.GetInt("StoneActive", 0));
         
         _stonesAmountText.text = _stonesCounter.ToString();
-        
-        // just create a new GameObject to not be null. Otherwise, the usable marker will not disappear.
-        // the randomness doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
-        _usebleMarker = new GameObject();
         
         _stonesCounter = PlayerPrefs.GetInt("StonesAmount", 0);
 
@@ -79,7 +73,6 @@ public class CollectStones : MonoBehaviour
             
             else if (_stonesCollectible)
             {
-                _usebleMarker.SetActive(true);
                 _stoneSprite.SetActive(true);
                 _negativeStoneSprite.gameObject.SetActive(false);
                 
@@ -87,8 +80,7 @@ public class CollectStones : MonoBehaviour
                 {
                     _stonesActive = true;
                     PlayerPrefs.SetInt("StoneActive", 1);
-                    _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount;
-                    
+                    _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount();
                     
                     if (_maxStoneAmount <= _stonesCounter)
                     {
@@ -97,7 +89,8 @@ public class CollectStones : MonoBehaviour
                     }
                     
                     _stonesAmountText.text = _stonesCounter.ToString();
-                    _stones.SetActive(false);
+                    _stones.GetComponent<Collider>().enabled = false;
+                    _stones.GetComponent<StonePile>().StonePileParent.SetActive(false);
                     _stonesCollectible = false;
                 }
             }
@@ -106,7 +99,6 @@ public class CollectStones : MonoBehaviour
         {
             _stoneSprite.SetActive(false);
             _negativeStoneSprite.gameObject.SetActive(false);
-            _usebleMarker.SetActive(false);
         }
     }
 
@@ -127,8 +119,6 @@ public class CollectStones : MonoBehaviour
         {
             _stones = other.gameObject;
             _stonesCollectible = true;
-            
-            _usebleMarker = other.transform.GetChild(0).gameObject;
         }
     }
 

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using BP._02_Scripts._03_Game;
+using Enemy.Controller;
 using UnityEngine;
 
 
@@ -7,16 +9,20 @@ using UnityEngine;
     {
         private CollectItem _collectItem;
         private QuestManager _questManager;
+        private MissionScore _myMissionScore;
+        private EnemyController[] _enemyController;
         
         void Start()
         {
             _collectItem = GetComponentInParent<CollectItem>();
             _questManager = FindObjectOfType<QuestManager>();
+            _enemyController = FindObjectsOfType<EnemyController>();
+            _myMissionScore = FindObjectOfType<MissionScore>();
         }
         
         void Update()
         {
-            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible )
+            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible)
             {
                 _collectItem.ItemCollectible = false;
                     
@@ -38,20 +44,39 @@ using UnityEngine;
                 }
                 else if(_collectItem.ThroneCompartment)
                 {
+                    // Bela: Apparently this value is never used
                     CollectItem._throneCompartmentOpened = true;
-                   _collectItem.SpawnKey.SetActive(true);
+                    // This works fine
+                    _collectItem.RemoveThroneParticleEffect.SetActive(false);
+                    _collectItem.SpawnKey.SetActive(true);
+                    _collectItem.gameObject.layer = LayerMask.GetMask("Default");
+                    _collectItem.enabled = false;
+                    gameObject.SetActive(false);
                 }
                 else if(_collectItem.StaircaseToCellar)
                 {
+                    for (int i = 0; i < _enemyController.Length; i++)
+                    {
+                        if (_enemyController[i].InChaseState)
+                        {
+                            return;
+                        }
+                    }
+                    
                     if (!CollectItem._keyCollected || !_questManager.ProvisionsQuestDone)
                     { //This seems to cause issues, as you can't pick up with the secret door even when you have collected the key
                         Debug.Log("You haven't met all conditions yet to enter the staircase.");
                         return;
                     }
+                    
                     CollectItem._enteredStaircase = true;
                     _collectItem.SceneChange.ChangeScene();
                     _collectItem.PlayerController.enabled = false;
                     _collectItem.Enemies.SetActive(false);
+                    _myMissionScore.PlayerFinishedGame = true;
+                    
+                    // Updates final values of stones and provisions count for the Mission Score scene
+                    _myMissionScore.GrabStonesAndProvisionsValues();
                 }
                 
                 _collectItem.CollectibleSprite.gameObject.SetActive(false);

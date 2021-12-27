@@ -1,6 +1,8 @@
 using Enemy.Controller;
 using Enemy.ShareInformation;
 using UnityEngine;
+using UnityEngine.AI;
+using untitledProject;
 
 namespace Enemy.States
 {
@@ -8,6 +10,7 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            enemy.SpottedBar.fillAmount = 1;
             // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
             if (enemy.ChaseActivationObject.activeInHierarchy)
             {
@@ -32,11 +35,10 @@ namespace Enemy.States
             if (!enemy.CanSeePlayer)
             {
                 enemy.ReminderTime -= Time.deltaTime;
-    
                 if (enemy.ReminderTime > 0)
                 {
                     // prevent that the run animation is playing when the agent can't go further in contrast to the player
-                    if (enemy.ClosestPlayerPosition(0.5f))
+                    if (!enemy.Agent.hasPath)
                     {
                         enemy.AnimationHandler.SetSpeed(0);
                     }
@@ -46,19 +48,23 @@ namespace Enemy.States
                 // if the enemy still doesn't see the player, the search mode will be activated 
                 if (enemy.ReminderTime <= 0)
                 {
-                    if (enemy.ClosestPlayerPosition(0.5f))
+                    if (!enemy.Agent.hasPath)
                     {
                         enemy.ReminderTime = enemy.LastChanceTime;
                         return EnemyController.EnemySearchState;
                     }
                 }
             }
-            
+
             if (enemy.CatchPlayer())
             {
                 enemy.InGameMenu.EnemyCatchedPlayer = true;
                 enemy.AnimationHandler.FinalHit();
                 enemy.Player.PlayerAnimationHandler.PlayerDeath();
+                enemy.GetComponent<EnemyController>().enabled = false;
+                enemy.AnimationHandler.enabled = false;
+                enemy.EnemyTalkCheck.enabled = false;
+                enemy.Agent.isStopped = true;
             }
             
             return this;
@@ -66,6 +72,10 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
+            enemy.SoundNoticed = false;
+            enemy.InChaseState = true;
+            
+            enemy.EnemyTalkCheck.Talkable = false;
             enemy.ChaseActivationObject.SetActive(true);
             
             enemy.ReminderTime = enemy.LastChanceTime;
@@ -74,7 +84,8 @@ namespace Enemy.States
     
         public void Exit(EnemyController enemy)
         {
-            
+            enemy.InChaseState = false;
+            enemy.SoundNoticed = false;
         }
     }
 }

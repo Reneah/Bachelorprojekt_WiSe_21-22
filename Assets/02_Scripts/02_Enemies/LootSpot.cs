@@ -9,7 +9,7 @@ namespace Enemy.LootSpot
     {
         [Tooltip("the chance that the enemy will loot the spot")]
         [Range(0,100)]
-        [SerializeField]private int _lootChance;
+        [SerializeField]private float _lootChance;
         [Tooltip("Every time the spot is looted, the chance will shrink to loot the place again")]
         [Range(1,100)]
         [SerializeField] private int _shrinkLootChance;
@@ -28,6 +28,8 @@ namespace Enemy.LootSpot
         [Tooltip("the loot chance can't drop below the minimum loot chance")]
         [Range(0, 90)] 
         [SerializeField] private int _minimumLootChance;
+        [Tooltip("when the chest for looting will be used")]
+        [SerializeField] private bool _usingChest;
         
         // the chance that the enemy will loot the spot
         private float _chanceToLoot;
@@ -41,9 +43,24 @@ namespace Enemy.LootSpot
         // need this script to communicate with the current enemy nearby
         private EnemyController _enemyController;
 
+        // need the script to activate the chest animation
+        private LootChestAnimationController _lootChestAnimation;
+        
+        // call the chest animation one time
+        private bool _chestAnimation = false;
+
+        // determines if the spot is occupied or not so that no other enemy can loot in the moment
+        private bool _occupied = false;
+        
         void Start()
         {
+            if (_usingChest)
+            {
+                _lootChestAnimation = GetComponentInChildren<LootChestAnimationController>();
+            }
+            
             _lootCooldown = _lootTime;
+            _lootSpotTime = _lootSpotCooldown;
         }
         
         void Update()
@@ -53,18 +70,30 @@ namespace Enemy.LootSpot
             if (_enemyController != null && _enemyController.ReachedLootSpot)
             {
                 _lootCooldown -= Time.deltaTime;
+                if (!_chestAnimation && _usingChest)
+                {
+                    _lootChestAnimation.OpenChest(true);
+                    _chestAnimation = true;
+                }
                 
                 if (_lootCooldown <= 0)
                 {
-                    _enemyController.AnimationHandler.LootSpot(false);
-                    EnemyShareInformation.IsLooting = false;
-                    _enemyController.Loot = false;
-                    _enemyController.ReachedLootSpot = false;
-                    _lootCooldown = _lootTime;
                     _reactivateLootSpot = true;
+                    _enemyController.AnimationHandler.LootSpot(false);
+                    _enemyController.Loot = false;
+                    _lootCooldown = _lootTime;
+                    
+                    if (_usingChest)
+                    {
+                        _lootChestAnimation.OpenChest(false);
+                        _chestAnimation = false;
+                    }
+
+                    _occupied = false;
+                    _enemyController.ReachedLootSpot = false;
                 }
             }
-
+            
             // when the spot is looted, the time will run to reactivate the loot spot
             if (_lootSpotTime >= 0 && _reactivateLootSpot)
             {
@@ -81,11 +110,11 @@ namespace Enemy.LootSpot
         private void OnTriggerEnter(Collider other)
         {
             // When the enemy is in range, he has the chance to loot the spot
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy") && !_reactivateLootSpot && !_occupied)
             {
                 _chanceToLoot = Random.value;
                 
-                if (_chanceToLoot <= _lootChance && _lootChance > 0 && !EnemyShareInformation.IsLooting && !_reactivateLootSpot)
+                if (_chanceToLoot <= _lootChance / 100 && _lootChance > 0)
                 {
                     _enemyController = other.GetComponent<EnemyController>();
 
@@ -101,9 +130,6 @@ namespace Enemy.LootSpot
                     _enemyController.StopDistanceLootSpot = _stopDistance;
                     _lootChance -= _shrinkLootChance;
                     
-                    // When the enemy ios looting, no other enemy will get to the spot as well
-                    EnemyShareInformation.IsLooting = true;
-
                     //  the loot chance can't drop below the minimum loot chance or 0
                     if (_lootChance < _minimumLootChance)
                     {
@@ -114,6 +140,7 @@ namespace Enemy.LootSpot
                             _lootChance = 0;
                         }
                     }
+                    _occupied = true;
                 }
             }
         }

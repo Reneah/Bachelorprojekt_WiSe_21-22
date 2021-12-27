@@ -55,8 +55,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: -0.4, z: 0}
 --- !u!1 &1102452243475783749
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,8 +105,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0.1, y: 0, z: 0}
 --- !u!114 &1102452243475783750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   _negativeSprite: {fileID: 0}
   _usebleMarker: {fileID: 6320995878953516886}
   _spawnKey: {fileID: 0}
+  _removeThroneParticleEffect: {fileID: 0}
   _key: 0
   _backpack: 0
   _parchment: 1
@@ -170,13 +171,13 @@ Light:
   m_GameObject: {fileID: 2458204500464514039}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 2
+  m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.9305493, b: 0.7018868, a: 1}
-  m_Intensity: 0.2
-  m_Range: 0.5
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Intensity: 0.48
+  m_Range: 1.97
+  m_SpotAngle: 148.94463
+  m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -215,7 +216,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -304,11 +305,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3564948008015526161, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2026882040652954433, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}
       propertyPath: m_Name
@@ -316,7 +317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f373ca83498c7c342b6b9f167cc00498, type: 3}

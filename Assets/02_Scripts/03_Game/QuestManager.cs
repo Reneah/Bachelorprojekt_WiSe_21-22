@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Enemy.Controller;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,7 +35,14 @@ public class QuestManager : MonoBehaviour
     private CollectProvisions _collectProvisions;
     private int _currentProvisionsCount;
     private bool _provisionsQuestDone;
-    
+    private EnemyController[] _enemyController;
+
+    public GameObject StaircaseToCellarInteractionObjects
+    {
+        get => _staircaseToCellarInteractionObjects;
+        set => _staircaseToCellarInteractionObjects = value;
+    }
+
     public bool ProvisionsQuestDone
     {
         get => _provisionsQuestDone;
@@ -43,7 +52,7 @@ public class QuestManager : MonoBehaviour
     /// <summary>mm
     /// Variables for quest panel movement
     /// </summary>
-    bool isDown = true;
+    bool isDown = false;
     [SerializeField]
     RectTransform questPanel;
     bool isCompleted;
@@ -53,11 +62,30 @@ public class QuestManager : MonoBehaviour
     [SerializeField] float panelAnimationDuration = 0.7f;
     [SerializeField] private float upPositionValue = 263;
     [SerializeField] private float downPositionValue = -22;
+    [SerializeField]
+    private bool firstScene;
 
-    
+    private void Awake()
+    {
+        DOTween.Sequence()
+            .Append(questPanel.DOAnchorPosY(upPositionValue, 0)).Append(buttonImage.transform.DOScaleY(1f, 0)).AppendCallback(() =>
+            {
+                isCompleted = true;
+
+                if (isCompleted)
+                {
+                    isCompleted = false;
+                }
+            });
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        if (!firstScene)
+        {
+            MoveQuestPanelDown();
+        }
         _collectProvisions = FindObjectOfType<CollectProvisions>();
         _staircaseToCellarInteractionObjects = GameObject.Find("StaircaseToCellarInteractionObjects");
         _staircaseToCellarInteractionObjects.SetActive(false);
@@ -132,6 +160,7 @@ public class QuestManager : MonoBehaviour
                 // activate crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Strikethrough;
                 _provisionsQuestDone = true;
+                MoveQuestPanelDown();
                 
                 // Activate interaction visualisation objects at staircase asset
                 if (CollectItem._keyCollected)
@@ -161,6 +190,7 @@ public class QuestManager : MonoBehaviour
             _quest6Text.enabled = true;
             // activate crossed out resolved quest text "Find the hidden key under the throne."
             _quest5Text.fontStyle = FontStyles.Strikethrough;
+            MoveQuestPanelDown();
         }
 
         if (CollectItem._enteredStaircase)
@@ -171,6 +201,7 @@ public class QuestManager : MonoBehaviour
             _quest6Text.fontStyle = FontStyles.Strikethrough;
             // activate crossed out resolved quest text "Escape the keep unharmed."
             _quest1Text.fontStyle = FontStyles.Strikethrough;
+            MoveQuestPanelDown();
         }
     }
     

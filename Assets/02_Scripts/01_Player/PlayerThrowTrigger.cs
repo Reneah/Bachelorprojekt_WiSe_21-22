@@ -25,11 +25,14 @@ public class PlayerThrowTrigger : MonoBehaviour
     [SerializeField] private Transform _lastThrowPositionObject;
     [Tooltip("the noisy item layer signalize the noisy item in the world ")]
     [SerializeField] private LayerMask _noisyItemLayer;
+    [Tooltip("mark objects where the player can't throw through")]
+    [SerializeField] private LayerMask _noisyItemBlockLayer;
     [Tooltip("the throw distance on the noisy item")]
     [SerializeField] private float _throwDistance;
     
 
     private CollectStones _collectStones;
+    private PlayerController _playerController;
     
     private bool _playerThrew = false;
     
@@ -51,8 +54,8 @@ public class PlayerThrowTrigger : MonoBehaviour
         set => _waitToThrowDuringRotation = value;
     }
 
-    // signalize that the noisy item can be activated in throw range
-    private GameObject _throwRange;
+    // signalize the sound radius of the noisy item
+    private GameObject _soundRadius;
     
     private NoisyItem _noisyItem;
     
@@ -94,49 +97,19 @@ public class PlayerThrowTrigger : MonoBehaviour
 
     private Ray ray;
     private RaycastHit _hit;
+    private bool _hitNoisyItem;
+
+    private bool _deactivateUI = false;
 
     private void Start()
     {
+        _playerController = GetComponentInParent<PlayerController>();
         _collectStones = FindObjectOfType<CollectStones>();
-        
-        // just find a random sound item and new GameObject to not be null. Otherwise, there will be errors
-        // the randomness and new GameObject creation doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
-        _noisyItem = FindObjectOfType<NoisyItem>();
-        _throwRange = new GameObject();
     }
 
     private void Update()
     {
-        AbleToThrow();
-        
-        
-            Throw();
-        
-        if(_noisyItem.ItemUsed)
-        {
-            _throwableSprite.gameObject.SetActive(false);
-            _notThrowableSprite.gameObject.SetActive(false);
-            _throwRange.SetActive(false);
-        }
-    }
-
-    private void AbleToThrow()
-    {
-        if(_hit.collider != null && !_throwstate && !_close && Vector3.Distance(transform.position, _hit.collider.gameObject.transform.position) < _throwDistance)
-        {
-            _noisyItem = _hit.collider.GetComponent<NoisyItem>();
-            
-            _throwRange = _noisyItem.ThrowRangeRadius;
-            _throwAvailable = true;
-        }
-        
-        else if(_throwRange != null && _hit.collider != null && Vector3.Distance(transform.position, _hit.collider.gameObject.transform.position) > _throwDistance)
-        {
-            _throwableSprite.gameObject.SetActive(false);
-            _notThrowableSprite.gameObject.SetActive(false);
-            _throwRange.SetActive(false);
-            _throwAvailable = false;
-        }
+        Throw();
     }
     
     private void Throw()
@@ -145,60 +118,82 @@ public class PlayerThrowTrigger : MonoBehaviour
         _throwableSprite.transform.position =  new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         _notThrowableSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
         
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        _hitNoisyItem = Physics.Raycast(ray, out _hit, Mathf.Infinity, _noisyItemLayer);
+        
+        if (_hit.collider != null)
+        {
+            _noisyItem = _hit.collider.GetComponent<NoisyItem>();
+            _soundRadius = _noisyItem.SoundRadius;
+        }
+        
         // if the player is near the noisy item, he is able to activate it per hand and doesn't need to throw
-        if (_close)
+        if (_noisyItem != null && _close && _playerController.IsGrounded)
         {
             _throwableSprite.gameObject.SetActive(false);
             _notThrowableSprite.gameObject.SetActive(false);
-            _throwRange.SetActive(false);
+                
+            if (_hitNoisyItem)
+            {
+                _soundRadius.SetActive(true);
+            }
+            else
+            {
+                _soundRadius.SetActive(false);
+            }
         }
-        
-        if (!_close)
-        {
-            Debug.DrawRay(_inWayRaycastPosition.position, _noisyItem.transform.position - transform.position * Vector3.Distance(_noisyItem.transform.position, transform.position));
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
-            Physics.Raycast(_inWayRaycastPosition.position, _noisyItem.transform.position - transform.position, out hit, Vector3.Distance(_noisyItem.transform.position, transform.position));
-            
-                // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
-                if(Physics.Raycast(ray, out _hit, Mathf.Infinity,  _noisyItemLayer))
+        if (!_close && _playerController.IsGrounded)
+        { 
+            // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
+            //!Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("Blocked"))
+            if(_hitNoisyItem) 
+            {
+                if (!_throwstate && Vector3.Distance(transform.position, _hit.collider.gameObject.transform.position) < _throwDistance)
                 {
-                    _notThrowableSprite.gameObject.SetActive(true);
-                    
-                    if (_throwAvailable && _collectStones.StonesCounter > 0)
+                    _throwAvailable = true;
+                }
+                
+                _soundRadius.SetActive(true);
+                _notThrowableSprite.gameObject.SetActive(true);
+                
+                if (_throwAvailable && _collectStones.StonesCounter > 0)
+                {
+                    RaycastHit hit;
+                    // if something is blocking the trajectory
+                    if(Physics.Raycast(_inWayRaycastPosition.position, _noisyItem.transform.position - _inWayRaycastPosition.position, out hit, Vector3.Distance(_noisyItem.transform.position, _inWayRaycastPosition.position), _noisyItemBlockLayer))
                     {
-                        _throwRange.SetActive(true);
-                        
-                        // if something is blocking the trajectory
-                        if (hit.collider.CompareTag("Wall"))
-                        {
-                            _throwableSprite.gameObject.SetActive(false);
-                            _notThrowableSprite.gameObject.SetActive(true);
-                        }
-                        else
-                        {
-                            _throwableSprite.gameObject.SetActive(true);
-                            _notThrowableSprite.gameObject.SetActive(false);
-                            
-                            if (Input.GetMouseButtonDown(0))
-                            {
-                                _throwRange.SetActive(false);
-                                _throwstate = true;
-                                _throwableSprite.gameObject.SetActive(false);
-                                _throwAvailable = false;
-                                _throwPosition = Instantiate(_lastThrowPositionObject, transform.position, Quaternion.identity);
-                                _playerThrew = true;
-                            }
-                        } 
+                        _throwableSprite.gameObject.SetActive(false);
+                        _notThrowableSprite.gameObject.SetActive(true);
                     }
+                    else
+                    {
+                        _throwableSprite.gameObject.SetActive(true);
+                        _notThrowableSprite.gameObject.SetActive(false);
+                        
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            _soundRadius.SetActive(false);
+                            _throwstate = true;
+                            _throwableSprite.gameObject.SetActive(false);
+                            _throwAvailable = false;
+                            _throwPosition = Instantiate(_lastThrowPositionObject, transform.position, Quaternion.identity);
+                            _playerThrew = true;
+                        }
+                    } 
                 }
-                else
+            }
+            else
+            {
+                _throwableSprite.gameObject.SetActive(false);
+                _notThrowableSprite.gameObject.SetActive(false);
+                if (_soundRadius != null)
                 {
-                    _throwableSprite.gameObject.SetActive(false);
-                    _notThrowableSprite.gameObject.SetActive(false);
-                    _throwRange.SetActive(false);
+                    _soundRadius.SetActive(false);
                 }
+                _throwAvailable = false;
+            }
         }
     }
+     
 }

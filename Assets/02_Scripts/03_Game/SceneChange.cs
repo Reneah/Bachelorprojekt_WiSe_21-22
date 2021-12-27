@@ -28,11 +28,23 @@ public class SceneChange : MonoBehaviour
 
     private PlayerController _playerController;
     private GameObject _questManager;
-    private GameObject _stoneUI;
-
+    
     private CollectStones _collectStones;
     
     private NoisyItem[] _noisyItems;
+    private StonePile[] _stonePiles;
+    private Provisions[] _provisions;
+
+    private bool _currentlyChangeScene = false;
+
+    public bool CurrentlyChangeScene
+    {
+        get => _currentlyChangeScene;
+        set => _currentlyChangeScene = value;
+    }
+
+    private bool _activateFade = true;
+    private bool _activateFade2 = true;
     
     void Start()
     {
@@ -41,13 +53,15 @@ public class SceneChange : MonoBehaviour
 
         _playerController = FindObjectOfType<PlayerController>();
         _questManager = GameObject.Find("QuestManager");
-        _stoneUI = GameObject.Find("StoneUI");
-
+        
         _collectStones = FindObjectOfType<CollectStones>();
         
         _skipButton.SetActive(false);
 
         _noisyItems = FindObjectsOfType<NoisyItem>();
+        _stonePiles = FindObjectsOfType<StonePile>();
+        _provisions = FindObjectsOfType<Provisions>();
+
     }
     
     void Update()
@@ -59,17 +73,33 @@ public class SceneChange : MonoBehaviour
             
             if (_fadeStayCooldown <= 0)
             {
-                _text.DOFade(0, _textFadeTime);
-
+                if (_activateFade2)
+                {
+                    _text.DOFade(0, _textFadeTime);
+                    _activateFade2 = false;
+                }
+                
                 if (_text.color.a <= 0.001f)
                 {
                     PlayerPrefs.DeleteKey("PlayerPositionX");
                     PlayerPrefs.DeleteKey("PlayerPositionY");
                     PlayerPrefs.DeleteKey("PlayerPositionZ");
                     PlayerPrefs.SetInt("StonesAmount", _collectStones.StonesCounter);
+                    
                     for (int i = 0; i < _noisyItems.Length; i++)
                     {
+                        _noisyItems[i].GetComponent<Transform>().gameObject.SetActive(true);
                         _noisyItems[i].SafeState = true;
+                    }
+                    
+                    for (int i = 0; i < _stonePiles.Length; i++)
+                    {
+                        _stonePiles[i].SafeState = true;
+                    }
+
+                    for (int i = 0; i < _provisions.Length; i++)
+                    {
+                        _provisions[i].SafeState = true;
                     }
                     
                     PlayerPrefs.Save();
@@ -78,19 +108,23 @@ public class SceneChange : MonoBehaviour
             }
             else
             {
+                if (_activateFade)
+                {
+                    _text.DOFade(1, _textFadeTime);
+                    _activateFade = false;
+                }
                 _fadeStayCooldown -= Time.deltaTime;
-                _text.DOFade(1, _textFadeTime);
             }
         }
     }
 
     public void ChangeScene()
     {
+        _currentlyChangeScene = true;
         _playerController.PlayerAnimationHandler.SetSpeeds(0,0);
         _playerController.enabled = false;
         // Deactivate QuestManager parent object, this is a temporary solution so it doesn't overlap with the narrative text
         _questManager.SetActive(false);
-        _stoneUI.SetActive(false);
         _fadeImage.DOFade(1, _fadeTime);
     }
 

@@ -7,7 +7,7 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.ActivateChasing)
             {
                 return EnemyController.EnemyVisionChaseState;
             }
@@ -17,7 +17,7 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
             
-            if (enemy.EnemyTalkCheck.Talkable)
+            if (enemy.EnemyTalkCheck.Talk)
             {
                 return EnemyController.EnemyTalkState;
             }
@@ -48,6 +48,8 @@ namespace Enemy.States
             enemy.AnimationHandler.SetSpeed(enemy.PatrolSpeed);
             
             enemy.Agent.isStopped = false;
+            
+            enemy.EnemyTalkCheck.Talkable = true;
         }
 
         public void Exit(EnemyController enemy)

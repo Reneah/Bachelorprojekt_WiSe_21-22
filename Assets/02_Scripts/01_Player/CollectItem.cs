@@ -17,6 +17,8 @@ public class CollectItem : MonoBehaviour
     [SerializeField] private GameObject _usebleMarker;
     [Tooltip("only needed for throne to activate next quest item")]
     [SerializeField] private GameObject _spawnKey;
+    [Tooltip("only needed for key to deactivate throne interaction particle effect")]
+    [SerializeField] private GameObject _removeThroneParticleEffect;
 
 
     [Header("Choose the ONE Item which will be represented")] 
@@ -124,6 +126,12 @@ public class CollectItem : MonoBehaviour
     {
         get => _spawnKey;
         set => _spawnKey = value;
+    }
+
+    public GameObject RemoveThroneParticleEffect
+    {
+        get => _removeThroneParticleEffect;
+        set => _removeThroneParticleEffect = value;
     }
 
     //[SerializeField]

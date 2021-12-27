@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7308487235153868633}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1894087342247742768
 MonoBehaviour:
@@ -81,11 +81,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461550991952433085}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.008143682, y: 1.2340002, z: 0.1065872}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7308487235153868633}
+  m_Father: {fileID: 1865280865651247370}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &5289876554218424325
@@ -150,6 +150,38 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &6763177014681003507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865280865651247370}
+  m_Layer: 11
+  m_Name: InteractionEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1865280865651247370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6763177014681003507}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2899097893752381182}
+  - {fileID: 4222985300031751732}
+  m_Father: {fileID: 7308487235153868633}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7937355506591657443
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +197,7 @@ GameObject:
   - component: {fileID: 8818092095008201186}
   m_Layer: 11
   m_Name: Throne
-  m_TagString: Untagged
+  m_TagString: HighGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -181,8 +213,7 @@ Transform:
   m_LocalPosition: {x: 5.276493, y: 1.25, z: 86.898964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2899097893752381182}
-  - {fileID: 4222985300031751732}
+  - {fileID: 1865280865651247370}
   - {fileID: 4706675387121220131}
   - {fileID: 1310154531041473466}
   m_Father: {fileID: 0}
@@ -269,6 +300,7 @@ MonoBehaviour:
   _negativeSprite: {fileID: 0}
   _usebleMarker: {fileID: 0}
   _spawnKey: {fileID: 0}
+  _removeThroneParticleEffect: {fileID: 6763177014681003507}
   _key: 0
   _backpack: 0
   _parchment: 0
@@ -279,7 +311,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7308487235153868633}
+    m_TransformParent: {fileID: 1865280865651247370}
     m_Modifications:
     - target: {fileID: 1452637288940736218, guid: e6443cd67ba59294fbb7fa9ec34cc89a, type: 3}
       propertyPath: m_RootOrder
@@ -295,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1452637288940736218, guid: e6443cd67ba59294fbb7fa9ec34cc89a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0629494
+      value: 0.062949404
       objectReference: {fileID: 0}
     - target: {fileID: 1452637288940736218, guid: e6443cd67ba59294fbb7fa9ec34cc89a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -307,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1452637288940736218, guid: e6443cd67ba59294fbb7fa9ec34cc89a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.29918432
+      value: -0.29918435
       objectReference: {fileID: 0}
     - target: {fileID: 1452637288940736218, guid: e6443cd67ba59294fbb7fa9ec34cc89a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -345,7 +377,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: cffde9f70fbb79c4ba3af5f928bb2874, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cffde9f70fbb79c4ba3af5f928bb2874, type: 3}
       propertyPath: m_LocalScale.x

@@ -16,11 +16,9 @@ public class CollectProvisions : MonoBehaviour
     [Tooltip("The GO of the provisions UI element and text")]
     [SerializeField] private GameObject _ProvisionsUIelements;
     
-    private GameObject _usebleMarker;
-    
     private int _provisionsCounter = 0;
     private bool _provisionsCollectible = false;
-    private GameObject _provisions;
+    private Provisions _provisions;
     public static bool _provisionsActive;
     public static bool _UIdisplayed;
 
@@ -36,10 +34,6 @@ public class CollectProvisions : MonoBehaviour
         _provisionsActive = System.Convert.ToBoolean(PlayerPrefs.GetInt("ProvisionsActive", 0));
         
         _provisionsAmountText.text = _provisionsCounter.ToString();
-        
-        // just create a new GameObject to not be null. Otherwise, the usable marker will not disappear.
-        // the randomness doesn't matter, because when the player enters the trigger, it will be updated and can only be used in the trigger
-        _usebleMarker = new GameObject();
         
         _provisionsCounter = PlayerPrefs.GetInt("ProvisionsAmount", 0);
 
@@ -68,6 +62,7 @@ public class CollectProvisions : MonoBehaviour
 
         if (Physics.Raycast(ray, out _hit, Mathf.Infinity, LayerMask.GetMask("Provisions")))
         {
+            _provisions = _hit.collider.GetComponent<Provisions>();
             if (!_provisionsCollectible)
             {
                 _negativeProvisionsSprite.gameObject.SetActive(true);
@@ -75,7 +70,6 @@ public class CollectProvisions : MonoBehaviour
             
             else if (_provisionsCollectible)
             {
-                _usebleMarker.SetActive(true);
                 _provisionsSprite.SetActive(true);
                 _negativeProvisionsSprite.gameObject.SetActive(false);
                 
@@ -83,8 +77,7 @@ public class CollectProvisions : MonoBehaviour
                 {
                     _provisionsActive = true;
                     PlayerPrefs.SetInt("ProvisionsActive", 1);
-                    _provisionsCounter += _provisions.GetComponent<Provisions>().CollectAmount;
-                    
+                    _provisionsCounter += _provisions.CollectAmount();
                     
                     if (_maxProvisionsAmount <= _provisionsCounter)
                     {
@@ -93,16 +86,15 @@ public class CollectProvisions : MonoBehaviour
                     }
                     
                     _provisionsAmountText.text = _provisionsCounter.ToString();
-                    _provisions.SetActive(false);
+                    _provisions.GetComponent<Collider>().enabled = false;
+                    _provisions.GetComponent<Provisions>().ProvisionsParent.SetActive(false);
                     _provisionsCollectible = false;
                 }
             }
         }
         else
-        {
-            _provisionsSprite.SetActive(false);
+        {   _provisionsSprite.SetActive(false);
             _negativeProvisionsSprite.gameObject.SetActive(false);
-            _usebleMarker.SetActive(false);
         }
     }
 
@@ -111,10 +103,7 @@ public class CollectProvisions : MonoBehaviour
     {
         if (other.CompareTag("Provisions"))
         {
-            _provisions = other.gameObject;
             _provisionsCollectible = true;
-            
-           // _usebleMarker = other.transform.GetChild(0).gameObject;
         }
     }
 

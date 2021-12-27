@@ -66,14 +66,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.31414133
+      - time: 0.3402077
         functionName: PlayerMediumFootsteps
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c545367669d38ea44a696c786bdbc0dc, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.7391378
+      - time: 0.794825
         functionName: PlayerMediumFootsteps
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c545367669d38ea44a696c786bdbc0dc, type: 3}

@@ -101,15 +101,15 @@ namespace Enemy.States
                         return EnemyController.EnemySearchState;
                     }
                 }
-
             }
             return this;
         }
 
         public void Enter(EnemyController enemy)
         {
+            enemy.EnemyTalkCheck.Talkable = false;
             enemy.GetSoundOnce = false;
-            
+
             // only when the enemy hears the footstep he will go into the chase mode
             if (enemy.HeardFootsteps)
             {
@@ -145,6 +145,8 @@ namespace Enemy.States
             enemy.AnimationActivated = false;
             enemy.HeardFootsteps = false;
             EnemyShareInformation.ReachedNoisyItem = false;
+            
+            enemy.SoundNoticed = false;
         }
         
         private void UpdateSearchStage(EnemyController enemy)

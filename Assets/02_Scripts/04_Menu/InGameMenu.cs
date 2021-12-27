@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using BP._02_Scripts._03_Game;
 using DA.Menu;
 using DarkTonic.MasterAudio;
 //using DarkTonic.MasterAudio;
@@ -25,6 +26,8 @@ public class InGameMenu : MonoBehaviour
     private PlayerController _playerController;
     private PlayerAnimationHandler _playerAnimation;
     private TutorialContinueButton _tutorialContinueButton;
+    private Death _death;
+    private MissionScore _myMissionScore;
     
     private bool _enemyCatchedPlayer;
     public bool EnemyCatchedPlayer
@@ -55,6 +58,8 @@ public class InGameMenu : MonoBehaviour
 
     private bool _gotTutorialObject;
 
+    private SceneChange _sceneChange;
+
     private void Start()
     {
         Cursor.SetCursor(_cursorTexture, Vector2.zero, CursorMode.Auto);
@@ -62,6 +67,9 @@ public class InGameMenu : MonoBehaviour
         _playerController = FindObjectOfType<PlayerController>();
         _playerAnimation = FindObjectOfType<PlayerAnimationHandler>();
         _tutorialContinueButton = FindObjectOfType<TutorialContinueButton>();
+        _sceneChange = FindObjectOfType<SceneChange>();
+        _death = FindObjectOfType<Death>();
+        _myMissionScore = FindObjectOfType<MissionScore>();
         
         // MasterAudio.PlaySound("Wind");
         // MasterAudio.PlaySound("Forest");
@@ -77,7 +85,7 @@ public class InGameMenu : MonoBehaviour
             _gotTutorialObject = true;
         }
         
-        if (Input.GetKeyDown(KeyCode.Escape) && !_dead && !_gotTutorialObject || Input.GetKeyDown(KeyCode.Escape) && !_dead  && _gotTutorialObject && !_tutorialContinueButton.TutorialTrigger.TutorialWindowOpen)
+        if (Input.GetKeyDown(KeyCode.Escape) && !_dead && !_gotTutorialObject && !_sceneChange.CurrentlyChangeScene || Input.GetKeyDown(KeyCode.Escape) && !_dead  && _gotTutorialObject && !_tutorialContinueButton.TutorialTrigger.TutorialWindowOpen && !_sceneChange.CurrentlyChangeScene)
         {
             if (!_openMenu)
             {
@@ -95,7 +103,7 @@ public class InGameMenu : MonoBehaviour
         {
             _playerAnimation.PlayerDeath();
             _playerController.enabled = false;
-            _deathPage.SetActive(true);
+            _death.Dead = true;
             _enemyCatchedPlayer = false;
         }
     }
@@ -133,8 +141,6 @@ public class InGameMenu : MonoBehaviour
         _hud.SetActive(false);
         _wholeMenu.SetActive(true);
         Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         //MasterAudio.PlaySound("OpenMenu");
     }
 
@@ -144,8 +150,6 @@ public class InGameMenu : MonoBehaviour
         _hud.SetActive(true);
         _wholeMenu.SetActive(false);
         Time.timeScale = 1;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         //MasterAudio.PlaySound("CloseMenu");
     }
 
@@ -190,6 +194,18 @@ public class InGameMenu : MonoBehaviour
 
     public void Restart()
     {
+        // Depending on whether the player is dead or not count up different score counters on the Restart button press
+        if (_dead)
+        {
+            // Count up the death score counter for the MissionScore.cs
+            _myMissionScore.DeathScoreCounter += 1;
+        }
+        else
+        {
+            // Count up the restart score counter for the MissionScore.cs
+            _myMissionScore.RestartScoreCounter += 1;
+        }
+        
         Time.timeScale = 1;
         _deathPage.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

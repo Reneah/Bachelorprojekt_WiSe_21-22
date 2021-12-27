@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BP._02_Scripts._03_Game;
 using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using TMPro;
@@ -19,10 +20,8 @@ namespace Enemy.SoundItem
         [SerializeField] private GameObject _collectibleSprite;
         [Tooltip("the item sprite that will show up when the player hovers over the item and it is not available")]
         [SerializeField] private GameObject _negativeSprite;
-        [Tooltip("mark the close range")]
-        [SerializeField] private GameObject _closeActivationRadius;
-        [Tooltip("mark the throw range radius")]
-        [SerializeField] private GameObject _throwRangeRadius;
+        [Tooltip("mark the sound radius")]
+        [SerializeField] private GameObject _soundRadius;
         [Tooltip("is the noisy item reusable or not")]
         [SerializeField] private bool _reusable;
         [Tooltip("the offset of the noisy item origin so that the enemy is able to reach the item")]
@@ -31,11 +30,11 @@ namespace Enemy.SoundItem
         [SerializeField] private string _playerPrefsKey;
         [Tooltip("the layer for the noisy item to be able to activate it")]
         [SerializeField] private LayerMask _noisyItemLayer;
-
-        public GameObject ThrowRangeRadius
+        
+        public GameObject SoundRadius
         {
-            get => _throwRangeRadius;
-            set => _throwRangeRadius = value;
+            get => _soundRadius;
+            set => _soundRadius = value;
         }
 
         public LayerMask NoisyItemLayer
@@ -123,7 +122,7 @@ namespace Enemy.SoundItem
             set => _stage = value;
         }
         
-        private bool _itemUsed = false;
+        private bool _itemUsed;
 
         public bool ItemUsed
         {
@@ -155,13 +154,7 @@ namespace Enemy.SoundItem
             get => _playerThrowTrigger;
             set => _playerThrowTrigger = value;
         }
-
-        public GameObject CloseActivationRadius
-        {
-            get => _closeActivationRadius;
-            set => _closeActivationRadius = value;
-        }
-
+        
         public GameObject CollectibleSprite
         {
             get => _collectibleSprite;
@@ -179,10 +172,18 @@ namespace Enemy.SoundItem
             get => _itemUsable;
             set => _itemUsable = value;
         }
-        
+
+        private Collider _collider;
+        private NoisyItemCloseActivation _noisyItemCloseActivation;
+        private MissionScore _myMissionScore;
+
         void Start()
         {
+            _noisyItemCloseActivation = GetComponentInChildren<NoisyItemCloseActivation>();
+            _collider = GetComponent<Collider>();
+            
             _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
+
             _collectibleSprite.gameObject.SetActive(false);
             
             if (!_reusable)
@@ -191,6 +192,8 @@ namespace Enemy.SoundItem
                 _unharmedItem.SetActive(true);
             }
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
+
+            _myMissionScore = FindObjectOfType<MissionScore>();
         }
 
         private void Update()
@@ -228,7 +231,6 @@ namespace Enemy.SoundItem
                 
                 else if (!_itemUsed && _itemUsable)
                 {
-                    _closeActivationRadius.SetActive(true);
                     _collectibleSprite.gameObject.SetActive(true);
                     _negativeSprite.gameObject.SetActive(false);
                 }
@@ -237,7 +239,6 @@ namespace Enemy.SoundItem
             {
                 _collectibleSprite.gameObject.SetActive(false);
                 _negativeSprite.gameObject.SetActive(false);
-                _closeActivationRadius.SetActive(false);
             }
         }
         
@@ -259,16 +260,24 @@ namespace Enemy.SoundItem
                         _itemUsable = true;
                         _itemUsed = false;
                         _oneTimeUsed = true;
-                        MasterAudio.PlaySound("ShatterVase");
+                        MasterAudio.PlaySound3DAtTransform("ShieldHit", transform);
+                        
+                        // Count up the distraction score counter for the Mission Score
+                        _myMissionScore.DistractionsScoreCounter += 1;
                     }
                     else
                     {
+                        _collider.enabled = false;
+                        _noisyItemCloseActivation.enabled = false;
                         _brokenItem.SetActive(true);
                         _unharmedItem.SetActive(false);
                         _negativeSprite.gameObject.SetActive(false);
                         _soundRangeCollider.SetActive(false);
-                        this.enabled = false;
-                        MasterAudio.PlaySound("ShatterVase");
+                        _playerThrowTrigger.Close = false;
+                        MasterAudio.PlaySound3DAtTransform("ShatterVase", transform);
+                        
+                        // Count up the distraction score counter for the Mission Score
+                        _myMissionScore.DistractionsScoreCounter += 1;
                     }
                 }
             }

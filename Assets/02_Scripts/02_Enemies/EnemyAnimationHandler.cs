@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using UnityEngine;
 using untitledProject;
@@ -142,7 +143,15 @@ namespace Enemy.AnimationHandler
                 _enemyAnimator.SetLookAtWeight(_headRotationWeight);
                 _enemyAnimator.SetLookAtPosition(_enemyController.CurrentLookPosition.transform.position);
             }
-
+        }
+        
+        public void EnemyFootsteps(AnimationEvent animationEvent)
+        {
+            if (animationEvent.animatorClipInfo.weight > 0.5f)
+            {
+                //MasterAudio.PlaySound("EnemyFootsteps");
+                MasterAudio.PlaySound3DAtTransform("EnemyFootsteps", transform);
+            }
         }
     }
 
