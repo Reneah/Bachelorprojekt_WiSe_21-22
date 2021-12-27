@@ -244,7 +244,6 @@ namespace BP._02_Scripts._03_Game
             _playerSpottedDisplay.text = SpottedScoreCounter.ToString();
             _gameOverDisplay.text = DeathScoreCounter.ToString();
             _checkpointRestartDisplay.text = RestartScoreCounter.ToString();
-
         }
 
         // Calculates all the individual scores and exchanges placeholder scores with them

@@ -101,7 +101,6 @@ namespace Enemy.States
                         return EnemyController.EnemySearchState;
                     }
                 }
-
             }
             return this;
         }

@@ -983,12 +983,11 @@ namespace Enemy.Controller
                 
                     if (!_scoreCount)
                     {
-                        // put your method here 
+                        // Counts up the mission score for the player to have been spotted
+                        _myMissionScore.SpottedScoreCounter += 1;
                         _scoreCount = true;
                     }
-                    // Counts up the mission score for the player to have been spotted
-                    _myMissionScore.SpottedScoreCounter += 1;
-                    _scoreCount = true;
+
                 }
 
             }
