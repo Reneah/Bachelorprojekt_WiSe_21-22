@@ -160,13 +160,10 @@ namespace BP._02_Scripts._03_Game
 
         void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (scene.name == "GameWorld_BesiegedKeep_2" && loadSceneMode == LoadSceneMode.Single && _myCollectStones == null)
+            if (scene.name == "GameWorld_BesiegedKeep_3" && loadSceneMode == LoadSceneMode.Single && _myCollectStones == null)
             {
                _myCollectStones = FindObjectOfType<CollectStones>();
-            }
-            else if (scene.name == "GameWorld_BesiegedKeep_3" && loadSceneMode == LoadSceneMode.Single && _myCollectProvisions == null)
-            {
-                _myCollectProvisions = FindObjectOfType<CollectProvisions>();
+               _myCollectProvisions = FindObjectOfType<CollectProvisions>();
             }
             else if (scene.name == "MissionScore" && loadSceneMode == LoadSceneMode.Single)
             {
@@ -189,26 +186,12 @@ namespace BP._02_Scripts._03_Game
         // Update is called once per frame
         void Update()
         {
+            // Runs a timer as soon as the game is started, until the player finishes it,
+            // by interacting with the staircase to the cellar
             if (GameStarted && !PlayerFinishedGame)
             {
                 _playtimeScoreCounter += Time.deltaTime;
             }
-            
-            //Update some scores during gameplay, but don't do it if the references are still null
-            //(happens in Main Menu and Intro Scene)
-            if (_myCollectStones == null)
-            {
-                return;
-            }
-            if (_myCollectProvisions == null)
-            {
-                _stonesScoreCounter = _myCollectStones.StonesCounter;
-                return;
-            }
-            
-            _stonesScoreCounter = _myCollectStones.StonesCounter;
-            _provisionsScoreCounter = _myCollectProvisions.ProvisionsCounter;
-            
         }
         
         // Resets all required values for the Mission Score to the starting state on new playthrough attempt
@@ -318,6 +301,13 @@ namespace BP._02_Scripts._03_Game
                 _goodResultMessage.SetActive(false);
                 _excellentResultMessage.SetActive(true);
             }
+        }
+
+        public void GrabStonesAndProvisionsValues()
+        {
+            _stonesScoreCounter = _myCollectStones.StonesCounter;
+            _provisionsScoreCounter = _myCollectProvisions.ProvisionsCounter;
+            Debug.Log("Stones = " + _stonesScoreCounter + "and Provisions = " +_provisionsScoreCounter);
         }
     }
 }

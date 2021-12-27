@@ -74,6 +74,9 @@ using UnityEngine;
                     _collectItem.PlayerController.enabled = false;
                     _collectItem.Enemies.SetActive(false);
                     _myMissionScore.PlayerFinishedGame = true;
+                    
+                    // Updates final values of stones and provisions count for the Mission Score scene
+                    _myMissionScore.GrabStonesAndProvisionsValues();
                 }
                 
                 _collectItem.CollectibleSprite.gameObject.SetActive(false);
