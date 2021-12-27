@@ -213,7 +213,7 @@ namespace Enemy.Controller
         [Tooltip("the view cone that will be activated when the player is on low ground")]
         [SerializeField] private GameObject _lowGroundViewCone;
 
-        // when the player is in the view field, the spotted time for the vision will be used. Otherwise the acoustic spotted time will be used
+        // when the player is in the view field, the spotted time for the vision will be used
         private bool _playerInViewField = false;
 
         public bool PlayerInViewField
@@ -370,6 +370,12 @@ namespace Enemy.Controller
          private bool _canInvestigate = false;
          // because the trigger enter gets more calls than one at the sound tag, I counter it with this bool
          private bool _getSoundOnce = false;
+         // when the player enters the hear field, the spotted time will be activated
+         private bool _playerInHearField = false;
+         // the collider of the hear field so that when it is deactivated, the Trigger Exit function can be replaced to stop the spotted time
+         private Collider _hearFieldPlayerCollider;
+         // need this script to get the collider of the step sound 
+         private PlayerStepsSound _playerStepsSound;
          
          public bool CanInvestigate
          {
@@ -594,6 +600,8 @@ namespace Enemy.Controller
             _inGameMenu = FindObjectOfType<InGameMenu>();
             _playerGroundDetection = FindObjectOfType<PlayerGroundDetection>();
             _enemyTalkCheck = GetComponentInChildren<EnemyTalkCheck>();
+            _playerStepsSound = FindObjectOfType<PlayerStepsSound>();
+            _hearFieldPlayerCollider = _playerStepsSound.GetComponent<Collider>();
             _chaseActivationObject = transform.Find("EnemyChaseActivation").GetComponent<ChaseActivation.ChaseActivation>().gameObject;
             
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
@@ -857,6 +865,11 @@ namespace Enemy.Controller
         /// </summary>
         public void PlayerVisionDetection()
         {
+            if (!_hearFieldPlayerCollider.enabled)
+            {
+                _useSpottedBar = false;
+            }
+            
             // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view field
             if (_useSpottedBar)
             {
@@ -868,7 +881,9 @@ namespace Enemy.Controller
                     _spotTime += Time.deltaTime / _visionSecondsToSpott;
                     _spottedBar.fillAmount = _spotTime;
                 }
-                if (!_playerInViewField && _spotTime < _acousticSecondsToSpott)
+                
+                // NOTE: extra if condition, when the player get the footstep tag
+                if (_playerInHearField && _spotTime < _acousticSecondsToSpott)
                 {
                     _spotTime += Time.deltaTime / _acousticSecondsToSpott;
                     _spottedBar.fillAmount = _spotTime;
@@ -946,11 +961,11 @@ namespace Enemy.Controller
                 {
                     _useSpottedBar = false;
                     return;
-                    
                 }
-                
+            
+                _playerInHearField = true;
                 _useSpottedBar = true;
-
+                
                 if (_playerSpotted)
                 {
                     _player.PlayerAnimationHandler.PlayerFlee(true);
@@ -1006,6 +1021,7 @@ namespace Enemy.Controller
             // when the enemy doesn't hear the footsteps anymore, the spotted bar will get down
             if (other.CompareTag("FootSteps"))
             {
+                _playerInHearField = false;
                 _useSpottedBar = false;
             }
         }
