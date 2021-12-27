@@ -8603,7 +8603,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Edward longed to just hide in his bed chamber and hope for this nightmare
+  m_text: Edward longed to just hide in his bed chamber and to hope for this nightmare
     to end. Deep down he knew, this was the wrong way...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
