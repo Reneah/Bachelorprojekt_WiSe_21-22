@@ -51,7 +51,22 @@ namespace Enemy.States
                     if (!enemy.Agent.hasPath)
                     {
                         enemy.ReminderTime = enemy.LastChanceTime;
-                        return EnemyController.EnemySearchState;
+
+                        if (enemy.SearchArea.EnemySearchAmount < enemy.SearchArea.EnemySearchMaxAmount)
+                        {
+                            return EnemyController.EnemySearchState;
+                        }
+                        else
+                        {
+                            if (enemy.Guarding)
+                            {
+                                return EnemyController.EnemyGuardState;
+                            }
+                            else if (enemy.Patrolling)
+                            {
+                                return EnemyController.EnemyPatrolState;
+                            }
+                        }
                     }
                 }
             }
