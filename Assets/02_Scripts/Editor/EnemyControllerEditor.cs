@@ -50,9 +50,7 @@ namespace Enemy.CustomInspector
         private SerializedProperty _firstStageRunSpeed;
         private SerializedProperty _secondStageRunSpeed;
         private SerializedProperty _thirdStageRunSpeed;
-        private SerializedProperty _searchSpeed;
-        private SerializedProperty _throwWaypointCounter;
-        private SerializedProperty _playerSearchWaypointCounter;
+        private SerializedProperty _playerSearchSpeed;
         private SerializedProperty _blockAcousticLayerMasks;
 
         private void OnEnable()
@@ -100,9 +98,7 @@ namespace Enemy.CustomInspector
             _firstStageRunSpeed = serializedObject.FindProperty("_firstStageRunSpeed");
             _secondStageRunSpeed = serializedObject.FindProperty("_secondStageRunSpeed");
             _thirdStageRunSpeed = serializedObject.FindProperty("_thirdStageRunSpeed");
-            _searchSpeed = serializedObject.FindProperty("_searchSpeed");
-            _throwWaypointCounter = serializedObject.FindProperty("_throwWaypointCounter");
-            _playerSearchWaypointCounter = serializedObject.FindProperty("_playerSearchWaypointCounter");
+            _playerSearchSpeed = serializedObject.FindProperty("_playerSearchSpeed");
             _blockAcousticLayerMasks = serializedObject.FindProperty("_blockAcousticLayerMasks");
         }
 
@@ -166,9 +162,7 @@ namespace Enemy.CustomInspector
             EditorGUILayout.PropertyField(_firstStageRunSpeed);
             EditorGUILayout.PropertyField(_secondStageRunSpeed);
             EditorGUILayout.PropertyField(_thirdStageRunSpeed);
-            EditorGUILayout.PropertyField(_searchSpeed);
-            EditorGUILayout.PropertyField(_throwWaypointCounter);
-            EditorGUILayout.PropertyField(_playerSearchWaypointCounter);
+            EditorGUILayout.PropertyField(_playerSearchSpeed);
             EditorGUILayout.PropertyField(_blockAcousticLayerMasks);
             
             serializedObject.ApplyModifiedProperties();

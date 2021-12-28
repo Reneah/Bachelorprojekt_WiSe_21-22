@@ -266,7 +266,7 @@ namespace Enemy.SoundItem
                         MasterAudio.PlaySound3DAtTransform("ShieldHit", transform);
 
                         // Count up the distraction score counter for the Mission Score
-                        _myMissionScore.DistractionsScoreCounter += 1;
+                       // _myMissionScore.DistractionsScoreCounter += 1;
                     }
                     else
                     {
@@ -284,7 +284,7 @@ namespace Enemy.SoundItem
                             PlayerPrefs.SetInt("_permanentlyDeactivated",_permanentlyDeactivated.GetHashCode());
                         
                             // Count up the distraction score counter for the Mission Score
-                            _myMissionScore.DistractionsScoreCounter += 1;
+                           // _myMissionScore.DistractionsScoreCounter += 1;
                         }
                         _unharmedItem.SetActive(false);
                     }

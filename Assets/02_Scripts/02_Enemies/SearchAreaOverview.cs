@@ -12,8 +12,10 @@ namespace Enemy.SearchArea
 {
     public class SearchAreaOverview : MonoBehaviour
     {
+        [Range(1,5)]
         [Tooltip("the amount of enemies that can search at once after the player")]
         [SerializeField] private int _enemySearchMaxAmount;
+        [Range(1,10)]
         [Tooltip("the max amount of waypoint the enemy will pick around the player position after chasing")]
         [SerializeField] private int _playerSearchWaypointCounter;
         
@@ -100,7 +102,6 @@ namespace Enemy.SearchArea
         /// </summary>
         public void StartSearchBehaviour(NavMeshAgent _agent, EnemyAnimationHandler _animationHandler, float _searchSpeed)
         {
-            Debug.Log(_usuableSearchPointAmount);
             // when all search points has been used, the enemy goes back to patrolling or guarding
             if (_usuableSearchPointAmount <= 0)
             {
