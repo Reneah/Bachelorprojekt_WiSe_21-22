@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 997378735444201368}
   - component: {fileID: 997378735444201375}
   - component: {fileID: 997378735444201374}
+  - component: {fileID: 7262026588105990050}
+  - component: {fileID: 5480601144590752947}
   m_Layer: 0
   m_Name: SearchWaypointTrigger
   m_TagString: SearchPoints
@@ -110,6 +112,33 @@ MonoBehaviour:
   _wayColor:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!114 &7262026588105990050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997378735444201372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfdb217c2a9925247a83bfbc76503927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _throwWaypointCounter: 3
+--- !u!114 &5480601144590752947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997378735444201372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e55d6d32894684daebc1188453c235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemySearchMaxAmount: 2
+  _playerSearchWaypointCounter: 5
 --- !u!1 &997378735691788420
 GameObject:
   m_ObjectHideFlags: 0
