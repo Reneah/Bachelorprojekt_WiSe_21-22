@@ -329,15 +329,7 @@ namespace Enemy.Controller
         [SerializeField] private int _playerSearchWaypointCounter;
         [Tooltip("layer mask to block the acoustic through objects")]
         [SerializeField] private LayerMask _blockAcousticLayerMasks;
-        // signalize when the enemy is finish with searching to go back to his routine
-         private bool _finishChecking = false;
-         // the closest waypoint to the current position of the throw position or player
-         private float _closestWaypointDistance;
-         // the transform of the closest current waypoint for the enemy
-         private Transform _closestWaypoint;
-         // the current waypoint distance when searching the closest waypoint of the player or throw position
-         private float _currentwaypointDistance;
-         // the current sound state of the item to update the behaviour of the enemy
+        // the current sound state of the item to update the behaviour of the enemy
          private int _currentSoundStage = 0;
          // prevent that the animation will be activated permanently in Update
          private bool _animationActivated = false;
@@ -347,29 +339,18 @@ namespace Enemy.Controller
          private bool _resetSearchWaypoints = false;
          // the max amount of waypoint the enemy will pick around the throw position after checking the noisy item
          private int _throwWaypointAmount;
-         // the max amount of waypoint the enemy will pick around the player position
-         private int _searchWaypointAmount;
          // the possible waypoint that the enemy can pick when he investigated the noisy item
          List<Transform> _noisyItemSearchPoints = new List<Transform>();
          // the closest waypoints of the throw position or near the noisy item
          List<Transform> _noisyItemSelectedPoints = new List<Transform>();
-         // the possible waypoint that the enemy can pick when he searches the player
-         List<Transform> _searchWaypoints = new List<Transform>();
-         // the closest waypoints of the player position
-         List<Transform> _searchSelectedPoints = new List<Transform>();
          // the amount of the waypoints that the enemy has when the player activates the noisy item in close range
          private int _usuableWaypointsAmount = 1;
          // the amount of the waypoints that the enemy has when the player activates the noisy item in long range
          private int _usuableWaypointsRangeAmount = 1;
-         // the amount of the waypoints that the enemy has when the player search for the player
-         private int _usuableSearchPointAmount = 1;
          // the current closest waypoint for the enemy when the player activate the item in close range
          private Transform _currentCloseNoisyItemWaypoint;
-         // the current closest waypoint for the enemy when the enemy searches the player
-         private Transform _currentSearchWaypoint;
          // get all waypoints in the search area again after using them
          private bool _resetNoisyItemWaypoints = false;
-         
          // the enemy is able to investigate the noisy item when he heard the sound and the max enemy pull amount is not reached
          private bool _canInvestigate = false;
          // because the trigger enter gets more calls than one at the sound tag, I counter it with this bool
@@ -438,13 +419,7 @@ namespace Enemy.Controller
              get => _searchSpeed;
              set => _searchSpeed = value;
          }
-
-         public bool FinishChecking
-         {
-             get => _finishChecking;
-             set => _finishChecking = value;
-         }
-
+         
          public float FirstStageRunSpeed
         {
             get => _firstStageRunSpeed;
@@ -631,7 +606,6 @@ namespace Enemy.Controller
 
             // set the max amount of waypoint the enemy will pick around the throw position after checking the noisy item
             _throwWaypointAmount = _throwWaypointCounter;
-            _searchWaypointAmount = _playerSearchWaypointCounter;
             
             // the dwelling time at a waypoint
             _standingCooldown = _dwellingTimer;
@@ -648,7 +622,7 @@ namespace Enemy.Controller
             }
             
             PlayerVisionDetection();
-            ActivateNoisyItemInvestigation();
+           // ActivateNoisyItemInvestigation();
         }
         
         #region ChaseBehaviour
@@ -727,7 +701,7 @@ namespace Enemy.Controller
 
                 return;
             }
-
+            
             _agent.SetDestination(_player.transform.position);
             _agent.speed = _chaseSpeed;
             _animationHandler.SetSpeed(_chaseSpeed);
@@ -959,12 +933,10 @@ namespace Enemy.Controller
             {
                 _searchArea = other.GetComponent<SearchAreaOverview>();
                 
-                _searchWaypoints.Clear();
                 _noisyItemSearchPoints.Clear();
 
                 foreach (Transform waypoints in other.transform)
                 {
-                    _searchWaypoints.Add(waypoints);
                     _noisyItemSearchPoints.Add(waypoints);
                 }
             }
@@ -1010,18 +982,6 @@ namespace Enemy.Controller
             // if the enemy used the points in the room, all points will be added again because used points will be deleted during the search mode
             if (other.CompareTag("SearchPoints"))
             {
-                if (_resetSearchWaypoints)
-                {
-                    _searchWaypoints.Clear();
-                    
-                    foreach (Transform waypoints in other.transform)
-                    {
-                        _searchWaypoints.Add(waypoints);
-                    }
-
-                    _resetSearchWaypoints = false;
-                }
-                
                 if (_resetNoisyItemWaypoints)
                 {
                     _noisyItemSearchPoints.Clear();
@@ -1057,65 +1017,6 @@ namespace Enemy.Controller
         }
         
         #region SearchBehaviour
-
-        public void PrepareSearchBehaviour()
-        {
-            // get the current closest point based on the player position
-            _closestWaypointDistance = Mathf.Infinity;
-            
-            foreach (Transform waypoint in _searchWaypoints)
-            {
-                _currentwaypointDistance = Vector3.Distance(waypoint.transform.position, _player.transform.position);
-                if (_currentwaypointDistance <= _closestWaypointDistance)
-                {
-                    _closestWaypointDistance = _currentwaypointDistance;
-                    _closestWaypoint = waypoint;
-                }
-            }
-            // when the fixed waypoints amount is reached, this method will be stopped
-            if (_searchWaypointAmount > 0)
-            {
-                _searchSelectedPoints.Add(_closestWaypoint);
-                _searchWaypoints.Remove(_closestWaypoint);
-                _searchWaypointAmount--;
-                PrepareSearchBehaviour();
-
-                // reset the amount of desired waypoints
-                if (_searchWaypointAmount <= 1)
-                {
-                    _searchWaypointAmount = _playerSearchWaypointCounter;
-                }
-            }
-            
-            // the amount of waypoints that can be used of the selected
-            _usuableSearchPointAmount = _searchSelectedPoints.Count;
-        }
-        
-        /// <summary>
-        /// set the closest waypoint based on the player position
-        /// </summary>
-        public void StartSearchBehaviour()
-        {
-            // when all search points has been used, the enemy goes back to patrolling or guarding
-            if (_usuableSearchPointAmount <= 0)
-            {
-                _resetSearchWaypoints = true;
-                _finishChecking = true;
-                return;
-            }
-            
-            _currentSearchWaypoint = _searchSelectedPoints[Random.Range(0, _searchSelectedPoints.Count)];
-            if (_currentSearchWaypoint == null)
-            {
-                StartSearchBehaviour();
-                return;
-            }
-            _animationHandler.SetSpeed(_searchSpeed);
-            _agent.SetDestination(_currentSearchWaypoint.position);
-            _usuableSearchPointAmount--;
-                
-            _searchSelectedPoints.Remove(_currentSearchWaypoint);
-        }
         
         /// <summary>
         /// loop through the search points
@@ -1127,7 +1028,7 @@ namespace Enemy.Controller
             _scoreCount = false;
             
             // when the current search point position is reached, the standing time will count down and set the next search point
-            if (Vector3.Distance(transform.position, _currentSearchWaypoint.position) <= _stopDistance && !_reachedWaypoint)
+            if (Vector3.Distance(transform.position, _agent.destination) <= _stopDistance && !_reachedWaypoint)
             {
                 _animationHandler.SetSpeed(0);
                 _reachedWaypoint = true;
@@ -1143,7 +1044,7 @@ namespace Enemy.Controller
                     _agent.enabled = true;
                     _standingCooldown = _dwellingTimer;
                     _reachedWaypoint = false;
-                    StartSearchBehaviour();
+                    _searchArea.StartSearchBehaviour(_agent, _animationHandler, _searchSpeed);
                 }
             }
         }
@@ -1159,21 +1060,21 @@ namespace Enemy.Controller
             // when the enemy has thrown a stone, the closest waypoints of the throw position will be selected
             if (_player.PlayerThrowTrigger.PlayerThrew)
             {
-                _closestWaypointDistance = Mathf.Infinity;
+                //_closestWaypointDistance = Mathf.Infinity;
                 foreach (Transform waypoint in _noisyItemSearchPoints)
                 {
-                    _currentwaypointDistance = Vector3.Distance(waypoint.transform.position, _player.PlayerThrowTrigger.ThrowPosition.transform.position);
-                    if (_currentwaypointDistance <= _closestWaypointDistance)
+                  //  _currentWaypointDistance = Vector3.Distance(waypoint.transform.position, _player.PlayerThrowTrigger.ThrowPosition.transform.position);
+                   // if (_currentWaypointDistance <= _closestWaypointDistance)
                     {
-                        _closestWaypoint = waypoint;
-                        _closestWaypointDistance = _currentwaypointDistance;
+                //        _closestWaypoint = waypoint;
+              //          _closestWaypointDistance = _currentWaypointDistance;
                     }
                 }
                 // when the fixed waypoints amount is reached, this method will be stopped
                 if (_throwWaypointAmount > 0)
                 {
-                    _noisyItemSelectedPoints.Add(_closestWaypoint);
-                    _noisyItemSearchPoints.Remove(_closestWaypoint);
+                //    _noisyItemSelectedPoints.Add(_closestWaypoint);
+              //      _noisyItemSearchPoints.Remove(_closestWaypoint);
                     _throwWaypointAmount--;
                     PrepareSearchNoisyItemBehaviour();
 
@@ -1198,7 +1099,7 @@ namespace Enemy.Controller
             // when all points were used, the enemy will go back to his routine
             if (_usuableWaypointsAmount <= 0 || _usuableWaypointsRangeAmount <= 0)
             {
-                _finishChecking = true;
+             //   _finishChecking = true;
                 _resetNoisyItemWaypoints = true;
                 return;
             }

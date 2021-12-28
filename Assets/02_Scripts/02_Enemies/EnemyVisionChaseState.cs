@@ -87,6 +87,8 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
+            enemy.SearchArea.PreparedSearchPoints = false;
+            
             enemy.SoundNoticed = false;
             enemy.InChaseState = true;
             

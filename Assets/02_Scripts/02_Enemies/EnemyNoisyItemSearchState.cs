@@ -16,7 +16,8 @@ namespace Enemy.States
                 return EnemyController.EnemyVisionChaseState;
             }
 
-            if (enemy.FinishChecking)
+            // NOTE: Search Area Finishing is wrong here
+            if (enemy.SearchArea.FinishChecking)
             {
                 if (enemy.Guarding)
                 {
@@ -42,7 +43,9 @@ namespace Enemy.States
         public void Exit(EnemyController enemy)
         {
             enemy.ResetNoisyItemWaypoints = true;
-            enemy.FinishChecking = false;
+            
+            // NOTE: Search Area Finishing is wrong here
+            enemy.SearchArea.FinishChecking = false;
         }
     }
 }
