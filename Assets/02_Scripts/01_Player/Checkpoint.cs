@@ -41,7 +41,7 @@ public class Checkpoint : MonoBehaviour
                     _noisyItems[i].GetComponent<Transform>().gameObject.SetActive(true);
                     _noisyItems[i].SafeState = true;
                 }
-
+                
                 for (int i = 0; i < _stonePile.Length; i++)
                 {
                     _stonePile[i].SafeState = true;
