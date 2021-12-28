@@ -65,6 +65,9 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private bool firstScene;
 
+    private bool _provisionsQuestPopUpHappened;
+    private bool _provisionsKeyPopUpHappened;
+
     private void Awake()
     {
         DOTween.Sequence()
@@ -89,6 +92,8 @@ public class QuestManager : MonoBehaviour
         _collectProvisions = FindObjectOfType<CollectProvisions>();
         _staircaseToCellarInteractionObjects = GameObject.Find("StaircaseToCellarInteractionObjects");
         _staircaseToCellarInteractionObjects.SetActive(false);
+        _provisionsQuestPopUpHappened = false;
+        _provisionsKeyPopUpHappened = false;
 
         _quest1Text = GameObject.Find("Quest1Text").GetComponent<TextMeshProUGUI>();
         _quest2Text = GameObject.Find("Quest2Text").GetComponent<TextMeshProUGUI>();
@@ -160,7 +165,13 @@ public class QuestManager : MonoBehaviour
                 // activate crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Strikethrough;
                 _provisionsQuestDone = true;
-                
+
+                if (!_provisionsQuestPopUpHappened)
+                {
+                    MoveQuestPanelDown();
+                    _provisionsQuestPopUpHappened = true;
+                }
+
                 // Activate interaction visualisation objects at staircase asset
                 if (CollectItem._keyCollected)
                 {
@@ -189,6 +200,12 @@ public class QuestManager : MonoBehaviour
             _quest6Text.enabled = true;
             // activate crossed out resolved quest text "Find the hidden key under the throne."
             _quest5Text.fontStyle = FontStyles.Strikethrough;
+            
+            if (!_provisionsKeyPopUpHappened)
+            {
+                MoveQuestPanelDown();
+                _provisionsKeyPopUpHappened = true;
+            }
         }
 
         if (CollectItem._enteredStaircase)

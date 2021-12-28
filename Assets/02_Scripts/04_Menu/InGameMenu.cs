@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using BP._02_Scripts._03_Game;
 using DA.Menu;
 using DarkTonic.MasterAudio;
 //using DarkTonic.MasterAudio;
@@ -26,6 +27,7 @@ public class InGameMenu : MonoBehaviour
     private PlayerAnimationHandler _playerAnimation;
     private TutorialContinueButton _tutorialContinueButton;
     private Death _death;
+    private MissionScore _myMissionScore;
     
     private bool _enemyCatchedPlayer;
     public bool EnemyCatchedPlayer
@@ -67,6 +69,7 @@ public class InGameMenu : MonoBehaviour
         _tutorialContinueButton = FindObjectOfType<TutorialContinueButton>();
         _sceneChange = FindObjectOfType<SceneChange>();
         _death = FindObjectOfType<Death>();
+        _myMissionScore = FindObjectOfType<MissionScore>();
         
         // MasterAudio.PlaySound("Wind");
         // MasterAudio.PlaySound("Forest");
@@ -191,6 +194,18 @@ public class InGameMenu : MonoBehaviour
 
     public void Restart()
     {
+        // Depending on whether the player is dead or not count up different score counters on the Restart button press
+        if (_dead)
+        {
+            // Count up the death score counter for the MissionScore.cs
+            _myMissionScore.DeathScoreCounter += 1;
+        }
+        else
+        {
+            // Count up the restart score counter for the MissionScore.cs
+            _myMissionScore.RestartScoreCounter += 1;
+        }
+        
         Time.timeScale = 1;
         _deathPage.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

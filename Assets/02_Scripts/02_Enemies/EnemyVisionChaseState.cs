@@ -10,6 +10,7 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            enemy.SpottedBar.fillAmount = 1;
             // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
             if (enemy.ChaseActivationObject.activeInHierarchy)
             {
@@ -34,7 +35,6 @@ namespace Enemy.States
             if (!enemy.CanSeePlayer)
             {
                 enemy.ReminderTime -= Time.deltaTime;
-    
                 if (enemy.ReminderTime > 0)
                 {
                     // prevent that the run animation is playing when the agent can't go further in contrast to the player
@@ -51,7 +51,22 @@ namespace Enemy.States
                     if (!enemy.Agent.hasPath)
                     {
                         enemy.ReminderTime = enemy.LastChanceTime;
-                        return EnemyController.EnemySearchState;
+
+                        if (enemy.SearchArea.EnemySearchAmount < enemy.SearchArea.EnemySearchMaxAmount)
+                        {
+                            return EnemyController.EnemySearchState;
+                        }
+                        else
+                        {
+                            if (enemy.Guarding)
+                            {
+                                return EnemyController.EnemyGuardState;
+                            }
+                            else if (enemy.Patrolling)
+                            {
+                                return EnemyController.EnemyPatrolState;
+                            }
+                        }
                     }
                 }
             }
@@ -72,6 +87,7 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
+            enemy.SoundNoticed = false;
             enemy.InChaseState = true;
             
             enemy.EnemyTalkCheck.Talkable = false;
@@ -84,6 +100,7 @@ namespace Enemy.States
         public void Exit(EnemyController enemy)
         {
             enemy.InChaseState = false;
+            enemy.SoundNoticed = false;
         }
     }
 }

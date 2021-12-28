@@ -9,7 +9,7 @@ namespace Enemy.States
         {
             enemy.CheckPlayerGround();
             
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.ActivateChasing)
             {
                 enemy.ResetSearchWaypoints = true;
                 return EnemyController.EnemyVisionChaseState;
@@ -26,7 +26,6 @@ namespace Enemy.States
                 {
                     return EnemyController.EnemyGuardState;
                 }
-                
                 return EnemyController.EnemyPatrolState;
             }
         
@@ -38,19 +37,23 @@ namespace Enemy.States
         {
             enemy.PlayerSpotted = false;
             enemy.UseSpottedBar = false;
-            
+
             enemy.EnemyTalkCheck.Talkable = false;
             enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
+            enemy.PrepareSearchBehaviour();
             enemy.StartSearchBehaviour();
             
             enemy.Agent.isStopped = false;
+
+            enemy.SearchArea.EnemySearchAmount++;
         }
 
         public void Exit(EnemyController enemy)
         {
             enemy.FinishChecking = false;
+            enemy.SearchArea.EnemySearchAmount--;
+            
+            enemy.Agent.enabled = true;
         }
-    
     }
-
 }
