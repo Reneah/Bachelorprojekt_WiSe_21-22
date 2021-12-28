@@ -20,7 +20,7 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
 
-            if (enemy.FinishChecking)
+            if (enemy.SearchArea.FinishChecking)
             {
                 if (enemy.Guarding)
                 {
@@ -40,17 +40,23 @@ namespace Enemy.States
 
             enemy.EnemyTalkCheck.Talkable = false;
             enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
-            enemy.PrepareSearchBehaviour();
-            enemy.StartSearchBehaviour();
+
+            if (!enemy.SearchArea.PreparedSearchPoints)
+            {
+                enemy.SearchArea.PrepareSearchBehaviour();
+            }
+
+            enemy.SearchArea.EnemySearchAmount++;
+            enemy.SearchArea.StartSearchBehaviour(enemy.Agent,enemy.AnimationHandler, enemy.SearchSpeed);
             
             enemy.Agent.isStopped = false;
 
-            enemy.SearchArea.EnemySearchAmount++;
+
         }
 
         public void Exit(EnemyController enemy)
         {
-            enemy.FinishChecking = false;
+            enemy.SearchArea.FinishChecking = false;
             enemy.SearchArea.EnemySearchAmount--;
             
             enemy.Agent.enabled = true;
