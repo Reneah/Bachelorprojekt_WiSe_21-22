@@ -634,14 +634,12 @@ namespace Enemy.Controller
                 //_myMissionScore.SpottedScoreCounter += 1;
                 _scoreCount = true;
             }
-
             
             if (_playerGroundDetection.LowGround)
             {             
                 // Standard View Cone
                 _lowGroundViewCone.SetActive(true);
                 _highGroundViewCone.SetActive(false);
-  
             }
 
             if (_playerGroundDetection.HighGround)
@@ -659,7 +657,7 @@ namespace Enemy.Controller
         public bool ClosestPlayerPosition(float _stopDistance)
         {
             // give a position around the player on the NavMesh that is reachable
-            NavMesh.SamplePosition(_player.transform.position, out _hit,4, NavMesh.AllAreas);
+            NavMesh.SamplePosition(_player.transform.position, out _hit,5, NavMesh.AllAreas);
             
             return Vector3.Distance(transform.position, _hit.position) <= _stopDistance;
         }
@@ -870,7 +868,6 @@ namespace Enemy.Controller
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
-                // NOTE: extra if condition, when the player get the footstep tag
                 if (_playerInHearField && _spotTime < _acousticSecondsToSpott)
                 {
                     _spotTime += Time.deltaTime / _acousticSecondsToSpott;
@@ -963,7 +960,7 @@ namespace Enemy.Controller
                     if (!_scoreCount)
                     {
                         // Counts up the mission score for the player to have been spotted
-                        _myMissionScore.SpottedScoreCounter += 1;
+                       // _myMissionScore.SpottedScoreCounter += 1;
                         _scoreCount = true;
                     }
                 }
