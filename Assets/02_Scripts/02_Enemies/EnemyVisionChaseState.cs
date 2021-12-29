@@ -37,18 +37,12 @@ namespace Enemy.States
                 enemy.ReminderTime -= Time.deltaTime;
                 if (enemy.ReminderTime > 0)
                 {
-                    // prevent that the run animation is playing when the agent can't go further in contrast to the player
-                    if (!enemy.Agent.hasPath)
-                    {
-                        enemy.AnimationHandler.SetSpeed(0);
-                    }
-                    
                     enemy.Agent.SetDestination(enemy.Player.transform.position);
                 }
                 // if the enemy still doesn't see the player, the search mode will be activated 
                 if (enemy.ReminderTime <= 0)
                 {
-                    if (!enemy.Agent.hasPath)
+                    if (!enemy.Agent.hasPath || Vector3.Distance(enemy.Agent.pathEndPosition, enemy.Agent.destination) <= 1)
                     {
                         enemy.ReminderTime = enemy.LastChanceTime;
 
@@ -103,6 +97,9 @@ namespace Enemy.States
         {
             enemy.InChaseState = false;
             enemy.SoundNoticed = false;
+            
+            enemy.Agent.isStopped = false;
+            
         }
     }
 }
