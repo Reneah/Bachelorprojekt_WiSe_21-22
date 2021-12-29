@@ -41,7 +41,8 @@ namespace Enemy.CustomInspector
         private SerializedProperty _spottedBar;
         private SerializedProperty _visionSecondsToSpott;
         private SerializedProperty _acousticSecondsToSpott;
-        private SerializedProperty _lastChanceTime;
+        private SerializedProperty _reminderTimeLowGround;
+        private SerializedProperty _reminderTimeHighGround;
         private SerializedProperty _spottedTime;
         private SerializedProperty _highGroundViewCone;
         private SerializedProperty _lowGroundViewCone;
@@ -90,7 +91,8 @@ namespace Enemy.CustomInspector
             _spottedBar = serializedObject.FindProperty("_spottedBar");
             _spottedAcousticDistance = serializedObject.FindProperty("_spottedAcousticDistance");
             _spottedVisionDistance = serializedObject.FindProperty("_spottedVisionDistance");
-            _lastChanceTime = serializedObject.FindProperty("_lastChanceTime");
+            _reminderTimeLowGround = serializedObject.FindProperty("_reminderTimeLowGround");
+            _reminderTimeHighGround = serializedObject.FindProperty("_reminderTimeHighGround");
             _highGroundViewCone = serializedObject.FindProperty("_highGroundViewCone");
             _lowGroundViewCone = serializedObject.FindProperty("_lowGroundViewCone");
             
@@ -154,7 +156,8 @@ namespace Enemy.CustomInspector
             EditorGUILayout.PropertyField(_spottedBar);
             EditorGUILayout.PropertyField(_spottedAcousticDistance);
             EditorGUILayout.PropertyField(_spottedVisionDistance);
-            EditorGUILayout.PropertyField(_lastChanceTime);
+            EditorGUILayout.PropertyField(_reminderTimeLowGround);
+            EditorGUILayout.PropertyField(_reminderTimeHighGround);
             EditorGUILayout.PropertyField(_highGroundViewCone);
             EditorGUILayout.PropertyField(_lowGroundViewCone);
 
