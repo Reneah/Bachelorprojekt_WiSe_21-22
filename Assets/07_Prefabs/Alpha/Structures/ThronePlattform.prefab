@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1683281564679399240}
   - component: {fileID: 2350755750455018195}
   - component: {fileID: 397313392045238835}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StairsBack
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2321,9 +2321,9 @@ GameObject:
   - component: {fileID: 5615515787297554167}
   - component: {fileID: 7551690466122312975}
   - component: {fileID: 6463607198373676295}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StairsBack
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -4414,9 +4414,9 @@ GameObject:
   - component: {fileID: 3893596397223888649}
   - component: {fileID: 3151017542421962383}
   - component: {fileID: 7045850192907308373}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StairsBack
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

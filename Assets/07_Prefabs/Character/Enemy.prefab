@@ -133,11 +133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17784ca5049868541994682302c68ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chanceToTalk: 100
+  _chanceToTalk: 50
   _stopDistance: 2
-  _timeToTalk: 5
+  _timeToTalk: 10
   _smoothRotation: 7
-  _reusingTime: 0
+  _reusingTime: 15
 --- !u!54 &1154771643
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2404,11 +2404,11 @@ MonoBehaviour:
   _enemyHead: {fileID: 7429465334465209964}
   _obstacleRaycastTransform: {fileID: 7429465333900099875}
   _lookPositionAtSpotted: {fileID: 0}
-  _visionSecondsToSpott: 3
-  _acousticSecondsToSpott: 3
+  _visionSecondsToSpott: 1.5
+  _acousticSecondsToSpott: 1.5
   _spottedBar: {fileID: 148888973}
-  _spottedVisionDistance: 2.5
-  _spottedAcousticDistance: 2.5
+  _spottedVisionDistance: 3
+  _spottedAcousticDistance: 3
   _lastChanceTime: 1
   _highGroundViewCone: {fileID: 2896255336031200142}
   _lowGroundViewCone: {fileID: 1763879659492049104}
@@ -3103,6 +3103,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1721336523870544597}
     m_Modifications:
+    - target: {fileID: 6770819834894292408, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
+      propertyPath: _enemyController
+      value: 
+      objectReference: {fileID: 7429465334143328895}
     - target: {fileID: 8418048045381250094, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
       propertyPath: m_Name
       value: VisionConeLowGround
@@ -3222,6 +3226,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 186.21
       objectReference: {fileID: 0}
+    - target: {fileID: 7947958568894329200, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
+      propertyPath: _enemyController
+      value: 
+      objectReference: {fileID: 7429465334143328895}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
 --- !u!1 &2896255336031200142 stripped
