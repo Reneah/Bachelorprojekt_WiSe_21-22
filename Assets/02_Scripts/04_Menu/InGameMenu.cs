@@ -198,12 +198,12 @@ public class InGameMenu : MonoBehaviour
         if (_dead)
         {
             // Count up the death score counter for the MissionScore.cs
-            _myMissionScore.DeathScoreCounter += 1;
+           // _myMissionScore.DeathScoreCounter += 1;
         }
         else
         {
             // Count up the restart score counter for the MissionScore.cs
-            _myMissionScore.RestartScoreCounter += 1;
+           // _myMissionScore.RestartScoreCounter += 1;
         }
         
         Time.timeScale = 1;
