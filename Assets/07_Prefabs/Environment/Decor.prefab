@@ -1353,6 +1353,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarrelHidingSpot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5094986495627779264, guid: 6a87b0ecd0c8e8b4b895236e45531417, type: 3}
+      propertyPath: m_Name
+      value: Barrel_NavMeshAdjusted
+      objectReference: {fileID: 0}
     - target: {fileID: 5620166422481008990, guid: 6a87b0ecd0c8e8b4b895236e45531417, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.262717
@@ -1408,6 +1412,10 @@ PrefabInstance:
     - target: {fileID: 5620166423008380538, guid: 6a87b0ecd0c8e8b4b895236e45531417, type: 3}
       propertyPath: m_LocalPosition.z
       value: 88.29089
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752579507697351957, guid: 6a87b0ecd0c8e8b4b895236e45531417, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7785483271460537613, guid: 6a87b0ecd0c8e8b4b895236e45531417, type: 3}
       propertyPath: m_RootOrder
@@ -3197,11 +3205,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5396914296517054890, guid: bfd40d72ab458774fa2f228974050908, type: 3}
       propertyPath: m_Name
-      value: Bed (3)
+      value: Bed_NavMeshAdjusted
       objectReference: {fileID: 0}
     - target: {fileID: 5396914296517054890, guid: bfd40d72ab458774fa2f228974050908, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901207022221652095, guid: bfd40d72ab458774fa2f228974050908, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6223664244618496364, guid: bfd40d72ab458774fa2f228974050908, type: 3}
       propertyPath: m_IsActive
@@ -3613,7 +3625,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8113873263632402020, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_Name
-      value: Table
+      value: Table_NavMeshAdjusted
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402022, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_Mesh
@@ -3662,6 +3674,10 @@ PrefabInstance:
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113873263632402024, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402025, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_Mesh
@@ -3893,7 +3909,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8113873263632402020, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_Name
-      value: Table (1)
+      value: Table_NavMeshAdjusted
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402022, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_Mesh
@@ -3913,7 +3929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5628958
+      value: 3.7642732
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3921,11 +3937,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 74.38845
+      value: 74.64522
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.23238581
+      value: 0.30238828
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3933,7 +3949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9726237
+      value: 0.95318484
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalRotation.z
@@ -3945,11 +3961,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 153.125
+      value: 144.798
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402023, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113873263632402024, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8113873263632402025, guid: 6cf59309133313642b67d6099abd36a9, type: 3}
       propertyPath: m_Mesh
@@ -4287,7 +4307,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2421959498547935518, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
       propertyPath: m_Name
-      value: Barrel (5)
+      value: Barrel_NavMeshAdjusted
       objectReference: {fileID: 0}
     - target: {fileID: 2732596674303717839, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
       propertyPath: m_Name
@@ -4380,6 +4400,10 @@ PrefabInstance:
     - target: {fileID: 3361922407760210805, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223385948437256395, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
@@ -4751,7 +4775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3967781728487299160, guid: 745a02c5124b6aa4782a2a9617bde4bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.269197
+      value: 2.355
       objectReference: {fileID: 0}
     - target: {fileID: 3967781728487299160, guid: 745a02c5124b6aa4782a2a9617bde4bb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4759,11 +4783,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3967781728487299160, guid: 745a02c5124b6aa4782a2a9617bde4bb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 74.96236
+      value: 74.753
       objectReference: {fileID: 0}
     - target: {fileID: 3967781728487299160, guid: 745a02c5124b6aa4782a2a9617bde4bb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.39965916
+      value: 0.37384534
       objectReference: {fileID: 0}
     - target: {fileID: 3967781728487299160, guid: 745a02c5124b6aa4782a2a9617bde4bb, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4771,7 +4795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3967781728487299160, guid: 745a02c5124b6aa4782a2a9617bde4bb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9166639
+      value: 0.9274911
       objectReference: {fileID: 0}
     - target: {fileID: 3967781728487299160, guid: 745a02c5124b6aa4782a2a9617bde4bb, type: 3}
       propertyPath: m_LocalRotation.z
@@ -4783,7 +4807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3967781728487299160, guid: 745a02c5124b6aa4782a2a9617bde4bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 132.886
+      value: 136.094
       objectReference: {fileID: 0}
     - target: {fileID: 3967781728487299160, guid: 745a02c5124b6aa4782a2a9617bde4bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -5651,7 +5675,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2421959498547935518, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
       propertyPath: m_Name
-      value: Barrel
+      value: Barrel_NavMeshAdjusted
       objectReference: {fileID: 0}
     - target: {fileID: 2732596674303717839, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
       propertyPath: m_Name
@@ -5744,6 +5768,10 @@ PrefabInstance:
     - target: {fileID: 3361922407760210805, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223385948437256395, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a190e77f203a1d4cbc2ac99b1ec6bab, type: 3}
@@ -7187,11 +7215,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5396914296517054890, guid: bfd40d72ab458774fa2f228974050908, type: 3}
       propertyPath: m_Name
-      value: Bed (2)
+      value: Bed_NavMeshAdjusted
       objectReference: {fileID: 0}
     - target: {fileID: 5396914296517054890, guid: bfd40d72ab458774fa2f228974050908, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901207022221652095, guid: bfd40d72ab458774fa2f228974050908, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfd40d72ab458774fa2f228974050908, type: 3}
