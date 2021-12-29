@@ -57,7 +57,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -73,7 +73,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.36869565
+      - time: 0.3989414
         functionName: PlayStepVisualizationOne
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c545367669d38ea44a696c786bdbc0dc, type: 3}
@@ -82,13 +82,6 @@ ModelImporter:
         messageOptions: 0
       - time: 0.81113523
         functionName: PlayerQuietFootsteps
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: c545367669d38ea44a696c786bdbc0dc, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.83652174
-        functionName: PlayStepVisualizationTwo
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c545367669d38ea44a696c786bdbc0dc, type: 3}
         floatParameter: 0
