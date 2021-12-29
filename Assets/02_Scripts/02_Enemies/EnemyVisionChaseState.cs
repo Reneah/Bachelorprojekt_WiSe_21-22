@@ -28,24 +28,22 @@ namespace Enemy.States
             
             if (enemy.CanSeePlayer)
             {
-                enemy.ReminderTime = enemy.LastChanceTime;
                 enemy.ChasePlayer();
             }
             
             if (!enemy.CanSeePlayer)
             {
-                enemy.ReminderTime -= Time.deltaTime;
-                if (enemy.ReminderTime > 0)
+                enemy.LastChanceTime -= Time.deltaTime;
+                
+                if (enemy.LastChanceTime > 0)
                 {
                     enemy.Agent.SetDestination(enemy.Player.transform.position);
                 }
                 // if the enemy still doesn't see the player, the search mode will be activated 
-                if (enemy.ReminderTime <= 0)
+                if (enemy.LastChanceTime <= 0)
                 {
                     if (!enemy.Agent.hasPath || Vector3.Distance(enemy.Agent.pathEndPosition, enemy.Agent.destination) <= 1)
                     {
-                        enemy.ReminderTime = enemy.LastChanceTime;
-
                         if (enemy.SearchArea.EnemySearchAmount < enemy.SearchArea.EnemySearchMaxAmount)
                         {
                             return EnemyController.EnemySearchState;
@@ -88,8 +86,7 @@ namespace Enemy.States
             
             enemy.EnemyTalkCheck.Talkable = false;
             enemy.ChaseActivationObject.SetActive(true);
-            
-            enemy.ReminderTime = enemy.LastChanceTime;
+
             enemy.Agent.isStopped = false;
         }
     
