@@ -21,7 +21,11 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'mixamorig:LeftUpLeg' has translation animation
+      that will be discarded.\n\t'mixamorig:RightUpLeg' has translation animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -66,6 +70,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.294896
+        functionName: PlayStepVisualizationOne
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c545367669d38ea44a696c786bdbc0dc, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.4121377
         functionName: PlayerHeavyFootsteps
         data: 
@@ -75,6 +86,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.6711954
         functionName: PlayerHeavyFootsteps
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c545367669d38ea44a696c786bdbc0dc, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.79962194
+        functionName: PlayStepVisualizationOne
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c545367669d38ea44a696c786bdbc0dc, type: 3}
         floatParameter: 0
