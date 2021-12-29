@@ -73,6 +73,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.47826087
+        functionName: PlayStepVisualizationOne
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: c545367669d38ea44a696c786bdbc0dc, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.794825
         functionName: PlayerMediumFootsteps
         data: 

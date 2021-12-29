@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerStepVisualization
+  m_Name: PlayerStepVisualization_02
   m_Shader: {fileID: 4800000, guid: 65721f4108dde4ef3876c2d229467c76, type: 3}
   m_ShaderKeywords: FSR_PROJECTOR_FOR_LWRP
   m_LightmapFlags: 4
@@ -83,6 +83,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.7389551, b: 0.43867922, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
