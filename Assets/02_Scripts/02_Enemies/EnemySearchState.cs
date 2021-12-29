@@ -35,6 +35,8 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
+            // NOTE: reduce here the spotted time when searching after the player
+            
             enemy.PlayerSpotted = false;
             enemy.UseSpottedBar = false;
 
@@ -56,6 +58,8 @@ namespace Enemy.States
 
         public void Exit(EnemyController enemy)
         {
+            // NOTE: reset here the spotted time when the search is over
+            
             enemy.SearchArea.FinishChecking = false;
             enemy.SearchArea.EnemySearchAmount--;
             

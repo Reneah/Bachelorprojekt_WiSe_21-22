@@ -2407,11 +2407,12 @@ MonoBehaviour:
   _visionSecondsToSpott: 1.5
   _acousticSecondsToSpott: 1.5
   _spottedBar: {fileID: 148888973}
-  _spottedVisionDistance: 3
-  _spottedAcousticDistance: 3
-  _lastChanceTime: 1
-  _highGroundViewCone: {fileID: 2896255336031200142}
-  _lowGroundViewCone: {fileID: 1763879659492049104}
+  _spottedVisionDistance: 2.5
+  _spottedAcousticDistance: 2.5
+  _reminderTimeLowGround: 2
+  _reminderTimeHighGround: 5
+  _highGroundViewCone: {fileID: 4487805588490079488}
+  _lowGroundViewCone: {fileID: 7351865297384955729}
   _firstStageRunSpeed: 2
   _secondStageRunSpeed: 2.5
   _thirdStageRunSpeed: 3
@@ -3045,7 +3046,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyViewCone
       objectReference: {fileID: 0}
-    - target: {fileID: 7447454331005467262, guid: d6335a6204fb59040893f1d9bea09eda, type: 3}
+    - target: {fileID: 8418048045381250094, guid: 3ff7d67c90776ea4fa7e1c66a4320e3f, type: 3}
+      propertyPath: m_TagString
+      value: ViewCone
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194444659788527252, guid: 3ff7d67c90776ea4fa7e1c66a4320e3f, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
@@ -3182,7 +3187,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5486264252879753820, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
+    - target: {fileID: 5145627461452695782, guid: 72bbc38b3817d7240912cd0842ff7443, type: 3}
+      propertyPath: m_TagString
+      value: ViewCone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486264252879753820, guid: 72bbc38b3817d7240912cd0842ff7443, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
