@@ -657,7 +657,7 @@ namespace Enemy.Controller
         public bool ClosestPlayerPosition(float _stopDistance)
         {
             // give a position around the player on the NavMesh that is reachable
-            NavMesh.SamplePosition(_player.transform.position, out _hit,5, NavMesh.AllAreas);
+            NavMesh.SamplePosition(_player.transform.position, out _hit,4, NavMesh.AllAreas);
             
             return Vector3.Distance(transform.position, _hit.position) <= _stopDistance;
         }
