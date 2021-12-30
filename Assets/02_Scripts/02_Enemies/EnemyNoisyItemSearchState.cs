@@ -15,8 +15,7 @@ namespace Enemy.States
             {
                 return EnemyController.EnemyVisionChaseState;
             }
-
-            // NOTE: Search Area Finishing is wrong here
+            
             if (enemy.NoisyItemSearchArea.FinishChecking)
             {
                 if (enemy.Guarding)
@@ -34,7 +33,13 @@ namespace Enemy.States
         public void Enter(EnemyController enemy)
         {
             enemy.EnemyTalkCheck.Talkable = false;
-            enemy.NoisyItemSearchArea.PrepareSearchNoisyItemBehaviour();
+
+            if (!enemy.NoisyItemSearchArea.PreparedSearchPoints)
+            {
+                enemy.NoisyItemSearchArea.GetSearchPoints();
+                enemy.NoisyItemSearchArea.PrepareSearchNoisyItemBehaviour();
+            }
+            
             enemy.NoisyItemSearchArea.StartSearchNoisyItemBehaviour(enemy.Agent, enemy.AnimationHandler, enemy.InvestigationRunSpeed, enemy.NoisyItemScript);
             
             enemy.Agent.isStopped = false;
@@ -42,8 +47,8 @@ namespace Enemy.States
 
         public void Exit(EnemyController enemy)
         {
-            // NOTE: Search Area Finishing is wrong here
-            enemy.SearchArea.FinishChecking = false;
+            enemy.NoisyItemSearchArea.FinishChecking = false;
+            enemy.NoisyItemSearchArea.PreparedSearchPoints = false;
         }
     }
 }
