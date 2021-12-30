@@ -34,6 +34,7 @@ namespace Enemy.States
             if (!enemy.CanSeePlayer)
             {
                 enemy.LastChanceTime -= Time.deltaTime;
+                Debug.Log(enemy.LastChanceTime);
                 
                 if (enemy.LastChanceTime > 0)
                 {
@@ -79,7 +80,12 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
-            enemy.SearchArea.PreparedSearchPoints = false;
+            // when the enemy will be pulled of another one, the enemy should not go instantly into the search mode. Should have the chance to follow the player
+            if (enemy.ActivateChasing)
+            {
+               // enemy.LastChanceTime = 5;
+               // enemy.PlayerSpotted = true;
+            }
             
             enemy.SoundNoticed = false;
             enemy.InChaseState = true;
@@ -94,6 +100,9 @@ namespace Enemy.States
         {
             enemy.InChaseState = false;
             enemy.SoundNoticed = false;
+            
+            enemy.PlayerSpotted = false;
+            enemy.UseSpottedBar = false;
             
             enemy.Agent.isStopped = false;
             
