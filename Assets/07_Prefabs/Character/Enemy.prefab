@@ -3120,6 +3120,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VisionConeLowGround
       objectReference: {fileID: 0}
+    - target: {fileID: 8418048045381250094, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
+      propertyPath: m_TagString
+      value: ViewCone
+      objectReference: {fileID: 0}
     - target: {fileID: 9194444659788527252, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3188,8 +3192,8 @@ PrefabInstance:
       value: VisionConeHighGround
       objectReference: {fileID: 0}
     - target: {fileID: 5145627461452695782, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_TagString
+      value: ViewCone
       objectReference: {fileID: 0}
     - target: {fileID: 5486264252879753820, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
       propertyPath: m_RootOrder

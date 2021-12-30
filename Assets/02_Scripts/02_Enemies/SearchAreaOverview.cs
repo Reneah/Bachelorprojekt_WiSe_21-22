@@ -69,13 +69,7 @@ namespace Enemy.SearchArea
             get => _enemySearchAmount;
             set => _enemySearchAmount = value;
         }
-
-        public Transform CurrentSearchWaypoint
-        {
-            get => _currentSearchWaypoint;
-            set => _currentSearchWaypoint = value;
-        }
-
+        
         private void Start()
         {
             _playerController = FindObjectOfType<PlayerController>();

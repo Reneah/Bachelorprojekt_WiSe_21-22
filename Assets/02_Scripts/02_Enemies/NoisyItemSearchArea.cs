@@ -36,6 +36,14 @@ namespace Enemy.SearchArea
         private int _usuableWaypointsAmount = 1;
         // signalize when the enemy is finish with searching to go back to his routine
         private bool _finishChecking = false;
+        // pretend that the method will be activated multiple times of other enemies when they start to search after the player
+        private bool _preparedSearchPoints = false;
+
+        public bool PreparedSearchPoints
+        {
+            get => _preparedSearchPoints;
+            set => _preparedSearchPoints = value;
+        }
 
         public int UsuableWaypointsAmount
         {
@@ -65,7 +73,7 @@ namespace Enemy.SearchArea
         /// <summary>
         /// get all current search points in the area
         /// </summary>
-        private void GetSearchPoints()
+        public void GetSearchPoints()
         {
             _noisyItemSearchPoints.Clear();
             _noisyItemSelectedPoints.Clear();
@@ -81,6 +89,7 @@ namespace Enemy.SearchArea
         /// </summary>
         public void PrepareSearchNoisyItemBehaviour()
         {
+            _preparedSearchPoints = true;
             // when the enemy has thrown a stone, the closest waypoints of the throw position will be selected
             if (_playerController.PlayerThrowTrigger.PlayerThrew)
             {
@@ -124,6 +133,7 @@ namespace Enemy.SearchArea
             {
                 _finishChecking = true;
                 GetSearchPoints();
+                _preparedSearchPoints = false;
                 return;
             }
 
