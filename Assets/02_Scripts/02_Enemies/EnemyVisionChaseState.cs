@@ -99,8 +99,6 @@ namespace Enemy.States
             
             enemy.HighGroundViewCone.SetActive(false);
             enemy.LowGroundViewCone.SetActive(true);
-            
-            
         }
     }
 }

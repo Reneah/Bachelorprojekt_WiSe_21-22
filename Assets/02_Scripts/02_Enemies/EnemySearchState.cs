@@ -46,6 +46,7 @@ namespace Enemy.States
 
             if (!enemy.SearchArea.PreparedSearchPoints)
             {
+                enemy.SearchArea.GetSearchPoints();
                 enemy.SearchArea.PrepareSearchBehaviour();
             }
 
