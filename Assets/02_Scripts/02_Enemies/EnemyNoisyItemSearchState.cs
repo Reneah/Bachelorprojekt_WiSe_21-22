@@ -32,8 +32,7 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            enemy.EnemyTalkCheck.Talkable = false;
-
+            
             if (!enemy.NoisyItemSearchArea.PreparedSearchPoints)
             {
                 enemy.NoisyItemSearchArea.GetSearchPoints();

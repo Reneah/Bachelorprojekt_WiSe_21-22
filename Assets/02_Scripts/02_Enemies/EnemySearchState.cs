@@ -35,13 +35,12 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            enemy.AcousticTimeToSpott = enemy.ReducedSpottedTime;
-            enemy.VisionTimeToSpott = enemy.ReducedSpottedTime;
+            enemy.AcousticTimeToSpot = 0;
+            enemy.VisionTimeToSpot = 0;
             
             enemy.PlayerSpotted = false;
             enemy.UseSpottedBar = false;
-
-            enemy.EnemyTalkCheck.Talkable = false;
+            
             enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
 
             if (!enemy.SearchArea.PreparedSearchPoints)
@@ -60,8 +59,8 @@ namespace Enemy.States
 
         public void Exit(EnemyController enemy)
         {
-            enemy.AcousticTimeToSpott = enemy.AcousticSecondsToSpott;
-            enemy.VisionTimeToSpott = enemy.VisionSecondsToSpott;
+            enemy.AcousticTimeToSpot = enemy.AcousticSecondsToSpot;
+            enemy.VisionTimeToSpot = enemy.VisionSecondsToSpot;
             
             enemy.SearchArea.FinishChecking = false;
             enemy.SearchArea.EnemySearchAmount--;

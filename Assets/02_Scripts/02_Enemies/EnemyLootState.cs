@@ -46,7 +46,6 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            enemy.EnemyTalkCheck.Talkable = false;
             enemy.Agent.SetDestination(enemy.LootSpotTransform.position);
         }
 

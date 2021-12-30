@@ -9,11 +9,13 @@ namespace Enemy.States
         {
             if (enemy.CanSeePlayer || enemy.ActivateChasing)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemyVisionChaseState;
             }
 
             if (enemy.SoundNoticed)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemySoundInvestigationState;
             }
 
@@ -24,6 +26,7 @@ namespace Enemy.States
 
             if (enemy.Loot)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemyLootState;
             }
         
@@ -41,11 +44,13 @@ namespace Enemy.States
             enemy.Agent.isStopped = false;
             
             enemy.EnemyTalkCheck.Talkable = true;
+            enemy.AbleToLoot = true;
         }
 
         public void Exit(EnemyController enemy)
         {
             enemy.SoundNoticed = false;
+            enemy.AbleToLoot = false;
         }
     }
 }
