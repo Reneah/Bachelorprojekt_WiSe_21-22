@@ -35,6 +35,9 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
+            enemy.AcousticTimeToSpott = enemy.ReducedSpottedTime;
+            enemy.VisionTimeToSpott = enemy.ReducedSpottedTime;
+            
             enemy.PlayerSpotted = false;
             enemy.UseSpottedBar = false;
 
@@ -43,6 +46,7 @@ namespace Enemy.States
 
             if (!enemy.SearchArea.PreparedSearchPoints)
             {
+                enemy.SearchArea.GetSearchPoints();
                 enemy.SearchArea.PrepareSearchBehaviour();
             }
 
@@ -56,10 +60,16 @@ namespace Enemy.States
 
         public void Exit(EnemyController enemy)
         {
+            enemy.AcousticTimeToSpott = enemy.AcousticSecondsToSpott;
+            enemy.VisionTimeToSpott = enemy.VisionSecondsToSpott;
+            
             enemy.SearchArea.FinishChecking = false;
             enemy.SearchArea.EnemySearchAmount--;
             
             enemy.Agent.enabled = true;
+            
+            enemy.HighGroundViewCone.SetActive(false);
+            enemy.LowGroundViewCone.SetActive(true);
         }
     }
 }

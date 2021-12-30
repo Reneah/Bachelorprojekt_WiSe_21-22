@@ -99,9 +99,6 @@ namespace Enemy.Controller
         [Tooltip("the speed which the enemy will chase the player")]
         [Range(1,10)]
         [SerializeField] private float _chaseSpeed;
-        // give the enemy the chance to chase the player again
-        // otherwise at a quick turn of the player or other situations, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
-        private float _reminderTime = 0;
         
         // determines if the first enemy reached the destination of the player nearby so that the other ones can gather around
         private bool _firstEnemyReachedDestination;
@@ -120,13 +117,7 @@ namespace Enemy.Controller
 
         // when the enemy spotted the player, the score for the player will change
         private bool _scoreCount;
-
-        public NavMeshHit Hit
-        {
-            get => _hit;
-            set => _hit = value;
-        }
-
+        
         public float ActivateChaseCooldown
         {
             get => _activateChaseCooldown;
@@ -144,13 +135,7 @@ namespace Enemy.Controller
             get => _activateChasing;
             set => _activateChasing = value;
         }
-
-        public float ReminderTime
-        {
-            get => _reminderTime;
-            set => _reminderTime = value;
-        }
-
+        
         #endregion
 
         #region PatrolVariables
@@ -217,11 +202,62 @@ namespace Enemy.Controller
         [SerializeField] private float _spottedAcousticDistance;
         [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
         [Range(0,10)]
-        [SerializeField] private float _lastChanceTime;
+        [SerializeField] private float _reminderTimeLowGround;
+        [Range(0,10)]
+        [SerializeField] private float _reminderTimeHighGround;
         [Tooltip("the view cone that will eb activated when the player is on high ground")]
         [SerializeField] private GameObject _highGroundViewCone;
         [Tooltip("the view cone that will be activated when the player is on low ground")]
         [SerializeField] private GameObject _lowGroundViewCone;
+
+        // the time that will be set the spotted time when the enemy is searching for the player
+        private float _reducedSpottedTime = 1;
+        //the delay time that the player get spotted in the view field
+        private float _visionTimeToSpott;
+        //the delay time that the player get spotted in the hear radius
+        private float _acousticTimeToSpott;
+
+        public GameObject LowGroundViewCone
+        {
+            get => _lowGroundViewCone;
+            set => _lowGroundViewCone = value;
+        }
+
+        public GameObject HighGroundViewCone
+        {
+            get => _highGroundViewCone;
+            set => _highGroundViewCone = value;
+        }
+
+        public float ReducedSpottedTime
+        {
+            get => _reducedSpottedTime;
+            set => _reducedSpottedTime = value;
+        }
+
+        public float VisionTimeToSpott
+        {
+            get => _visionTimeToSpott;
+            set => _visionTimeToSpott = value;
+        }
+
+        public float AcousticTimeToSpott
+        {
+            get => _acousticTimeToSpott;
+            set => _acousticTimeToSpott = value;
+        }
+
+        public float AcousticSecondsToSpott
+        {
+            get => _acousticSecondsToSpott;
+            set => _acousticSecondsToSpott = value;
+        }
+
+        public float VisionSecondsToSpott
+        {
+            get => _visionSecondsToSpott;
+            set => _visionSecondsToSpott = value;
+        }
 
         // when the player is in the view field, the spotted time for the vision will be used
         private bool _playerInViewField = false;
@@ -237,11 +273,27 @@ namespace Enemy.Controller
         
         // determines if the enemy is able to see the player or not, but he is not spotted
         private bool _canSeePlayer = false;
+        
+        // give the enemy the chance to chase the player again
+        // otherwise at a quick turn of the player or other situations, the enemy can't see him anymore, but should have an awareness that the player is next to or behind him. That is more realistic
+        private float _lastChanceTime = 0;
 
         public float LastChanceTime
         {
             get => _lastChanceTime;
             set => _lastChanceTime = value;
+        }
+        
+        public float ReminderTimeLowGround
+        {
+            get => _reminderTimeLowGround;
+            set => _reminderTimeLowGround = value;
+        }
+
+        public float ReminderTimeHighGround
+        {
+            get => _reminderTimeHighGround;
+            set => _reminderTimeHighGround = value;
         }
 
         // determines if the player is spotted or not
@@ -575,6 +627,7 @@ namespace Enemy.Controller
         void Start()
         {
             _highGroundViewCone.SetActive(false);
+            _lowGroundViewCone.SetActive(true);
             
             // start state machine with the idle
             _currentState = EnemyIdleState;
@@ -605,6 +658,9 @@ namespace Enemy.Controller
 
             // set the slowest investigation speed the enemy has. At the first and second stage the enemy doesn't expect the player, so he will search slowly
             _investigationRunSpeed = _firstStageRunSpeed;
+
+            _visionTimeToSpott = _visionSecondsToSpott;
+            _acousticTimeToSpott = _acousticSecondsToSpott;
         }
         
         void Update()
@@ -640,6 +696,11 @@ namespace Enemy.Controller
                 // Standard View Cone
                 _lowGroundViewCone.SetActive(true);
                 _highGroundViewCone.SetActive(false);
+
+                if (_canSeePlayer)
+                {
+                    _lastChanceTime = ReminderTimeLowGround;
+                }
             }
 
             if (_playerGroundDetection.HighGround)
@@ -647,6 +708,11 @@ namespace Enemy.Controller
                 // Bigger View Cone
                 _lowGroundViewCone.SetActive(false);
                 _highGroundViewCone.SetActive(true);
+
+                if (_canSeePlayer)
+                {
+                    _lastChanceTime = ReminderTimeHighGround;
+                }
             }
         }
         
@@ -657,7 +723,7 @@ namespace Enemy.Controller
         public bool ClosestPlayerPosition(float _stopDistance)
         {
             // give a position around the player on the NavMesh that is reachable
-            NavMesh.SamplePosition(_player.transform.position, out _hit,5, NavMesh.AllAreas);
+            NavMesh.SamplePosition(_player.transform.position, out _hit,4, NavMesh.AllAreas);
             
             return Vector3.Distance(transform.position, _hit.position) <= _stopDistance;
         }
@@ -862,25 +928,25 @@ namespace Enemy.Controller
                 float distance = Vector3.Distance(transform.position, _player.transform.position);
 
                 // the time will run and will fill the bar until the player is spotted
-                if (_spotTime < _visionSecondsToSpott && _playerInViewField)
+                if (_spotTime < _visionTimeToSpott && _playerInViewField)
                 {
-                    _spotTime += Time.deltaTime / _visionSecondsToSpott;
+                    _spotTime += Time.deltaTime / _visionTimeToSpott;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
-                if (_playerInHearField && _spotTime < _acousticSecondsToSpott)
+                if (_playerInHearField && _spotTime < _acousticTimeToSpott)
                 {
-                    _spotTime += Time.deltaTime / _acousticSecondsToSpott;
+                    _spotTime += Time.deltaTime / _acousticTimeToSpott;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
                 // when the player is to close to the enemy or to long in the view field, the player get spotted
                 if (_spottedBar.fillAmount >= 1 || distance <= _spottedVisionDistance  || distance <= _spottedAcousticDistance)
                 {
+                    _player.PlayerAnimationHandler.PlayerFlee(true);
                     _spotTime = 1;
                     _spottedBar.fillAmount = _spotTime;
                     _playerSpotted = true;
-                    _player.PlayerAnimationHandler.PlayerFlee(true);
                 }
             }
             else if(!_useSpottedBar && !_inChaseState)
@@ -949,7 +1015,7 @@ namespace Enemy.Controller
                 
                 if (_playerSpotted)
                 {
-                    _player.PlayerAnimationHandler.PlayerFlee(true);
+                    CheckPlayerGround();
                     _soundNoticed = true;
                     _soundBehaviourStage = 3;
                     _soundEventPosition = _player.transform;

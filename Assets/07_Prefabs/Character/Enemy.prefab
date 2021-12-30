@@ -790,8 +790,8 @@ Transform:
   m_LocalPosition: {x: -8.673617e-21, y: 0.03835678, z: 0.011943013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5663526892543817558}
   - {fileID: 4436888100803652039}
+  - {fileID: 5663526892543817558}
   - {fileID: 1721336523870544597}
   m_Father: {fileID: 2252344224049824851}
   m_RootOrder: 0
@@ -2391,7 +2391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guarding: 0
   _patrolling: 0
-  _lowGroundCatchDistance: 0.8
+  _lowGroundCatchDistance: 1
   _highGroundCatchDistance: 2
   _chaseSpeed: 4
   _patrollingRoute: {fileID: 0}
@@ -2407,9 +2407,10 @@ MonoBehaviour:
   _visionSecondsToSpott: 1.5
   _acousticSecondsToSpott: 1.5
   _spottedBar: {fileID: 148888973}
-  _spottedVisionDistance: 3
-  _spottedAcousticDistance: 3
-  _lastChanceTime: 1
+  _spottedVisionDistance: 2.5
+  _spottedAcousticDistance: 2.5
+  _reminderTimeLowGround: 2
+  _reminderTimeHighGround: 5
   _highGroundViewCone: {fileID: 2896255336031200142}
   _lowGroundViewCone: {fileID: 1763879659492049104}
   _firstStageRunSpeed: 2
@@ -2455,7 +2456,7 @@ NavMeshAgent:
   m_AngularSpeed: 360
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1.52
   m_BaseOffset: 0
@@ -2536,7 +2537,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1498486047235124521}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7973796227055374956
 GameObject:
@@ -3047,7 +3048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7447454331005467262, guid: d6335a6204fb59040893f1d9bea09eda, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7447454331005467262, guid: d6335a6204fb59040893f1d9bea09eda, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3089,6 +3090,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8418048045381250094, guid: 3ff7d67c90776ea4fa7e1c66a4320e3f, type: 3}
+      propertyPath: m_TagString
+      value: ViewCone
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194444659788527252, guid: 3ff7d67c90776ea4fa7e1c66a4320e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6335a6204fb59040893f1d9bea09eda, type: 3}
 --- !u!4 &5663526892543817558 stripped
@@ -3121,7 +3130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9194444659788527252, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.12
+      value: -0.62
       objectReference: {fileID: 0}
     - target: {fileID: 9194444659788527252, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3178,10 +3187,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: VisionConeHighGround
       objectReference: {fileID: 0}
-    - target: {fileID: 5145627461452695782, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5486264252879753820, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3230,6 +3235,14 @@ PrefabInstance:
       propertyPath: _enemyController
       value: 
       objectReference: {fileID: 7429465334143328895}
+    - target: {fileID: 5145627461452695782, guid: 72bbc38b3817d7240912cd0842ff7443, type: 3}
+      propertyPath: m_TagString
+      value: ViewCone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486264252879753820, guid: 72bbc38b3817d7240912cd0842ff7443, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
 --- !u!1 &2896255336031200142 stripped
