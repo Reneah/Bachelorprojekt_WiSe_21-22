@@ -105,10 +105,7 @@ namespace Enemy.Controller
 
         // when the enemy is near another enemy who has sighted the player he will chase him as well
         private bool _activateChasing = false;
-
-        // activate and deactivate the chase activation to pull other nearby enemies to chase the player 
-        private GameObject _chaseActivationObject;
-
+        
         // the time window where this enemy can pull other enemies to chase the player nearby
         private float _activateChaseCooldown = 0.1f;
 
@@ -123,13 +120,7 @@ namespace Enemy.Controller
             get => _activateChaseCooldown;
             set => _activateChaseCooldown = value;
         }
-
-        public GameObject ChaseActivationObject
-        {
-            get => _chaseActivationObject;
-            set => _chaseActivationObject = value;
-        }
-
+        
         public bool ActivateChasing
         {
             get => _activateChasing;
@@ -640,7 +631,6 @@ namespace Enemy.Controller
             _enemyTalkCheck = GetComponentInChildren<EnemyTalkCheck>();
             _playerStepsSound = FindObjectOfType<PlayerStepsSound>();
             _hearFieldPlayerCollider = _playerStepsSound.GetComponent<Collider>();
-            _chaseActivationObject = transform.Find("EnemyChaseActivation").GetComponent<ChaseActivation.ChaseActivation>().gameObject;
             _myMissionScore = FindObjectOfType<MissionScore>();
 
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
@@ -678,6 +668,25 @@ namespace Enemy.Controller
         }
         
         #region ChaseBehaviour
+
+        public void PullEnemyNearby()
+        {
+            for (int i = 0; i < FindObjectsOfType<EnemyController>().Length; i++)
+            {
+                if (Vector3.Distance(transform.position, FindObjectsOfType<EnemyController>()[i].transform.position) <= 2)
+                {
+                    if (!FindObjectsOfType<EnemyController>()[i].InChaseState)
+                    {
+                        FindObjectsOfType<EnemyController>()[i].ActivateChasing = true;
+                        // when the enemy will be pulled of another one, the enemy should not go instantly into the search mode. Should have the chance to follow the player
+                        FindObjectsOfType<EnemyController>()[i].LastChanceTime = 5;
+                        FindObjectsOfType<EnemyController>()[i].PlayerSpotted = true;
+                        FindObjectsOfType<EnemyController>()[i].SpottedBar.fillAmount = 1;
+                        FindObjectsOfType<EnemyController>()[i].PlayerSpotted = true;
+                    }
+                }
+            }
+        }
         
         /// <summary>
         /// Check if the Player is on higher ground or not to modify the vision for better player recognizing

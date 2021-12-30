@@ -9,13 +9,12 @@ namespace Enemy.States
         public IEnemyState Execute(EnemyController enemy)
         {
             // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
-            if (enemy.ChaseActivationObject.activeInHierarchy)
+            if (enemy.ActivateChasing)
             {
                 enemy.ActivateChaseCooldown -= Time.deltaTime;
 
                 if (enemy.ActivateChaseCooldown <= 0)
                 {
-                    enemy.ChaseActivationObject.SetActive(false);
                     enemy.ActivateChasing = false;
                     enemy.ActivateChaseCooldown = 0.1f;
                 }
@@ -128,7 +127,7 @@ namespace Enemy.States
             // only when the enemy hears the footstep he will go into the chase mode
             if (enemy.HeardFootsteps)
             {
-                enemy.ChaseActivationObject.SetActive(true);
+                enemy.PullEnemyNearby();
             }
             
             enemy.SoundNoticed = false;
