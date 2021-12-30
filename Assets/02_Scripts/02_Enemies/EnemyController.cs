@@ -105,10 +105,7 @@ namespace Enemy.Controller
 
         // when the enemy is near another enemy who has sighted the player he will chase him as well
         private bool _activateChasing = false;
-
-        // activate and deactivate the chase activation to pull other nearby enemies to chase the player 
-        private GameObject _chaseActivationObject;
-
+        
         // the time window where this enemy can pull other enemies to chase the player nearby
         private float _activateChaseCooldown = 0.1f;
 
@@ -123,13 +120,7 @@ namespace Enemy.Controller
             get => _activateChaseCooldown;
             set => _activateChaseCooldown = value;
         }
-
-        public GameObject ChaseActivationObject
-        {
-            get => _chaseActivationObject;
-            set => _chaseActivationObject = value;
-        }
-
+        
         public bool ActivateChasing
         {
             get => _activateChasing;
@@ -209,6 +200,55 @@ namespace Enemy.Controller
         [SerializeField] private GameObject _highGroundViewCone;
         [Tooltip("the view cone that will be activated when the player is on low ground")]
         [SerializeField] private GameObject _lowGroundViewCone;
+
+        // the time that will be set the spotted time when the enemy is searching for the player
+        private float _reducedSpottedTime = 1;
+        //the delay time that the player get spotted in the view field
+        private float _visionTimeToSpott;
+        //the delay time that the player get spotted in the hear radius
+        private float _acousticTimeToSpott;
+
+        public GameObject LowGroundViewCone
+        {
+            get => _lowGroundViewCone;
+            set => _lowGroundViewCone = value;
+        }
+
+        public GameObject HighGroundViewCone
+        {
+            get => _highGroundViewCone;
+            set => _highGroundViewCone = value;
+        }
+
+        public float ReducedSpottedTime
+        {
+            get => _reducedSpottedTime;
+            set => _reducedSpottedTime = value;
+        }
+
+        public float VisionTimeToSpott
+        {
+            get => _visionTimeToSpott;
+            set => _visionTimeToSpott = value;
+        }
+
+        public float AcousticTimeToSpott
+        {
+            get => _acousticTimeToSpott;
+            set => _acousticTimeToSpott = value;
+        }
+
+        public float AcousticSecondsToSpott
+        {
+            get => _acousticSecondsToSpott;
+            set => _acousticSecondsToSpott = value;
+        }
+
+        public float VisionSecondsToSpott
+        {
+            get => _visionSecondsToSpott;
+            set => _visionSecondsToSpott = value;
+        }
 
         // when the player is in the view field, the spotted time for the vision will be used
         private bool _playerInViewField = false;
@@ -578,6 +618,7 @@ namespace Enemy.Controller
         void Start()
         {
             _highGroundViewCone.SetActive(false);
+            _lowGroundViewCone.SetActive(true);
             
             // start state machine with the idle
             _currentState = EnemyIdleState;
@@ -590,7 +631,6 @@ namespace Enemy.Controller
             _enemyTalkCheck = GetComponentInChildren<EnemyTalkCheck>();
             _playerStepsSound = FindObjectOfType<PlayerStepsSound>();
             _hearFieldPlayerCollider = _playerStepsSound.GetComponent<Collider>();
-            _chaseActivationObject = transform.Find("EnemyChaseActivation").GetComponent<ChaseActivation.ChaseActivation>().gameObject;
             _myMissionScore = FindObjectOfType<MissionScore>();
 
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
@@ -608,6 +648,9 @@ namespace Enemy.Controller
 
             // set the slowest investigation speed the enemy has. At the first and second stage the enemy doesn't expect the player, so he will search slowly
             _investigationRunSpeed = _firstStageRunSpeed;
+
+            _visionTimeToSpott = _visionSecondsToSpott;
+            _acousticTimeToSpott = _acousticSecondsToSpott;
         }
         
         void Update()
@@ -625,6 +668,25 @@ namespace Enemy.Controller
         }
         
         #region ChaseBehaviour
+
+        public void PullEnemyNearby()
+        {
+            for (int i = 0; i < FindObjectsOfType<EnemyController>().Length; i++)
+            {
+                if (Vector3.Distance(transform.position, FindObjectsOfType<EnemyController>()[i].transform.position) <= 2)
+                {
+                    if (!FindObjectsOfType<EnemyController>()[i].InChaseState)
+                    {
+                        FindObjectsOfType<EnemyController>()[i].ActivateChasing = true;
+                        // when the enemy will be pulled of another one, the enemy should not go instantly into the search mode. Should have the chance to follow the player
+                        FindObjectsOfType<EnemyController>()[i].LastChanceTime = 5;
+                        FindObjectsOfType<EnemyController>()[i].PlayerSpotted = true;
+                        FindObjectsOfType<EnemyController>()[i].SpottedBar.fillAmount = 1;
+                        FindObjectsOfType<EnemyController>()[i].PlayerSpotted = true;
+                    }
+                }
+            }
+        }
         
         /// <summary>
         /// Check if the Player is on higher ground or not to modify the vision for better player recognizing
@@ -875,15 +937,15 @@ namespace Enemy.Controller
                 float distance = Vector3.Distance(transform.position, _player.transform.position);
 
                 // the time will run and will fill the bar until the player is spotted
-                if (_spotTime < _visionSecondsToSpott && _playerInViewField)
+                if (_spotTime < _visionTimeToSpott && _playerInViewField)
                 {
-                    _spotTime += Time.deltaTime / _visionSecondsToSpott;
+                    _spotTime += Time.deltaTime / _visionTimeToSpott;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
-                if (_playerInHearField && _spotTime < _acousticSecondsToSpott)
+                if (_playerInHearField && _spotTime < _acousticTimeToSpott)
                 {
-                    _spotTime += Time.deltaTime / _acousticSecondsToSpott;
+                    _spotTime += Time.deltaTime / _acousticTimeToSpott;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
@@ -962,6 +1024,7 @@ namespace Enemy.Controller
                 
                 if (_playerSpotted)
                 {
+                    CheckPlayerGround();
                     _soundNoticed = true;
                     _soundBehaviourStage = 3;
                     _soundEventPosition = _player.transform;

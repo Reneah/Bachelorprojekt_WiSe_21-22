@@ -12,7 +12,7 @@ namespace Enemy.States
         {
             enemy.SpottedBar.fillAmount = 1;
             // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
-            if (enemy.ChaseActivationObject.activeInHierarchy)
+            if (enemy.ActivateChasing)
             {
                 enemy.ActivateChaseCooldown -= Time.deltaTime;
 
@@ -20,7 +20,6 @@ namespace Enemy.States
                 {
                     enemy.ActivateChasing = false;
                     enemy.ActivateChaseCooldown = 0.1f;
-                    enemy.ChaseActivationObject.SetActive(false);
                 }
             }
             
@@ -52,10 +51,14 @@ namespace Enemy.States
                         {
                             if (enemy.Guarding)
                             {
+                                enemy.PlayerSpotted = false;
+                                enemy.UseSpottedBar = false;
                                 return EnemyController.EnemyGuardState;
                             }
                             else if (enemy.Patrolling)
                             {
+                                enemy.PlayerSpotted = false;
+                                enemy.UseSpottedBar = false;
                                 return EnemyController.EnemyPatrolState;
                             }
                         }
@@ -79,13 +82,11 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
-            enemy.SearchArea.PreparedSearchPoints = false;
-            
             enemy.SoundNoticed = false;
             enemy.InChaseState = true;
             
             enemy.EnemyTalkCheck.Talkable = false;
-            enemy.ChaseActivationObject.SetActive(true);
+            enemy.PullEnemyNearby();
 
             enemy.Agent.isStopped = false;
         }
@@ -95,8 +96,14 @@ namespace Enemy.States
             enemy.InChaseState = false;
             enemy.SoundNoticed = false;
             
+            //NOTE: Still have to test it because the third one can't search and at the start method of search these value will be deactivated
+          //  enemy.PlayerSpotted = false;
+           // enemy.UseSpottedBar = false;
+            
             enemy.Agent.isStopped = false;
             
+            enemy.HighGroundViewCone.SetActive(false);
+            enemy.LowGroundViewCone.SetActive(true);
         }
     }
 }
