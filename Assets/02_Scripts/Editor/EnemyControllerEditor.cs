@@ -30,6 +30,7 @@ namespace Enemy.CustomInspector
         private SerializedProperty _lowGroundCatchDistance;
         private SerializedProperty _highGroundCatchDistance;
         private SerializedProperty _chaseSpeed;
+        private SerializedProperty _pullDistance;
         
         // Field Of View variables
         private SerializedProperty _obstructionMask;
@@ -39,8 +40,8 @@ namespace Enemy.CustomInspector
         private SerializedProperty _spottedVisionDistance;
         private SerializedProperty _spottedAcousticDistance;
         private SerializedProperty _spottedBar;
-        private SerializedProperty _visionSecondsToSpott;
-        private SerializedProperty _acousticSecondsToSpott;
+        private SerializedProperty _visionSecondsToSpot;
+        private SerializedProperty _acousticSecondsToSpot;
         private SerializedProperty _reminderTimeLowGround;
         private SerializedProperty _reminderTimeHighGround;
         private SerializedProperty _spottedTime;
@@ -80,14 +81,15 @@ namespace Enemy.CustomInspector
             _lowGroundCatchDistance = serializedObject.FindProperty("_lowGroundCatchDistance");
             _highGroundCatchDistance = serializedObject.FindProperty("_highGroundCatchDistance");
             _chaseSpeed = serializedObject.FindProperty("_chaseSpeed");
+            _pullDistance = serializedObject.FindProperty("_pullDistance");
             
             // Field Of View variables
             _obstructionMask = serializedObject.FindProperty("_obstructionMask");
             _enemyHead = serializedObject.FindProperty("_enemyHead");
             _obstacleRaycastTransform = serializedObject.FindProperty("_obstacleRaycastTransform");
             _lookPositionAtSpotted = serializedObject.FindProperty("_lookPositionAtSpotted");
-            _acousticSecondsToSpott = serializedObject.FindProperty("_acousticSecondsToSpott");
-            _visionSecondsToSpott = serializedObject.FindProperty("_visionSecondsToSpott");
+            _acousticSecondsToSpot = serializedObject.FindProperty("_acousticSecondsToSpot");
+            _visionSecondsToSpot = serializedObject.FindProperty("_visionSecondsToSpot");
             _spottedBar = serializedObject.FindProperty("_spottedBar");
             _spottedAcousticDistance = serializedObject.FindProperty("_spottedAcousticDistance");
             _spottedVisionDistance = serializedObject.FindProperty("_spottedVisionDistance");
@@ -145,14 +147,15 @@ namespace Enemy.CustomInspector
             EditorGUILayout.PropertyField(_lowGroundCatchDistance);
             EditorGUILayout.PropertyField(_highGroundCatchDistance);
             EditorGUILayout.PropertyField(_chaseSpeed);
+            EditorGUILayout.PropertyField(_pullDistance);
             
             // Field Of View variables
             EditorGUILayout.PropertyField(_obstructionMask);
             EditorGUILayout.PropertyField(_enemyHead);
             EditorGUILayout.PropertyField(_obstacleRaycastTransform);
             EditorGUILayout.PropertyField(_lookPositionAtSpotted);
-            EditorGUILayout.PropertyField(_acousticSecondsToSpott);
-            EditorGUILayout.PropertyField(_visionSecondsToSpott);
+            EditorGUILayout.PropertyField(_acousticSecondsToSpot);
+            EditorGUILayout.PropertyField(_visionSecondsToSpot);
             EditorGUILayout.PropertyField(_spottedBar);
             EditorGUILayout.PropertyField(_spottedAcousticDistance);
             EditorGUILayout.PropertyField(_spottedVisionDistance);

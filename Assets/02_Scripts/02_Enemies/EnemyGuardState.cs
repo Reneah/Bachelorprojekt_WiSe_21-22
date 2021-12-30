@@ -9,11 +9,13 @@ namespace Enemy.States
         {
             if (enemy.CanSeePlayer || enemy.ActivateChasing)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemyVisionChaseState;
             }
 
             if (enemy.SoundNoticed)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemySoundInvestigationState;
             }
             

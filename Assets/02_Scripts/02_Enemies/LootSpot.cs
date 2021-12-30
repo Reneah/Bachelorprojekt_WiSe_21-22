@@ -118,8 +118,8 @@ namespace Enemy.LootSpot
                 {
                     _enemyController = other.GetComponent<EnemyController>();
 
-                    // when the enemy is patrolling he is able to loot
-                    if (!_enemyController.Patrolling)
+                    // when the enemy is a patrolling enemy and is patrolling, he is able to loot
+                    if (!_enemyController.Patrolling || !_enemyController.AbleToLoot)
                     {
                         return;
                     }

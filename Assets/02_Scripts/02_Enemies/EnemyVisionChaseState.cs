@@ -85,7 +85,6 @@ namespace Enemy.States
             enemy.SoundNoticed = false;
             enemy.InChaseState = true;
             
-            enemy.EnemyTalkCheck.Talkable = false;
             enemy.PullEnemyNearby();
 
             enemy.Agent.isStopped = false;
@@ -97,8 +96,8 @@ namespace Enemy.States
             enemy.SoundNoticed = false;
             
             //NOTE: Still have to test it because the third one can't search and at the start method of search these value will be deactivated
-          //  enemy.PlayerSpotted = false;
-           // enemy.UseSpottedBar = false;
+            enemy.PlayerSpotted = false;
+            enemy.UseSpottedBar = false;
             
             enemy.Agent.isStopped = false;
             
