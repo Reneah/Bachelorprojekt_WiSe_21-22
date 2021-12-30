@@ -87,9 +87,10 @@ namespace Enemy.SearchArea
         /// <summary>
         /// get all current search points in the area
         /// </summary>
-        private void GetSearchPoints()
+        public void GetSearchPoints()
         {
             _searchWaypoints.Clear();
+            _searchSelectedPoints.Clear();
             
             foreach (Transform waypoints in transform)
             {
@@ -129,7 +130,7 @@ namespace Enemy.SearchArea
         /// </summary>
         public void PrepareSearchBehaviour()
         {
-             _preparedSearchPoints = true;
+            _preparedSearchPoints = true;
             // get the current closest point based on the player position
             _closestWaypointDistance = Mathf.Infinity;
         
@@ -149,7 +150,7 @@ namespace Enemy.SearchArea
                 _searchWaypoints.Remove(_closestWaypoint);
                 _searchWaypointAmount--;
                 PrepareSearchBehaviour();
-
+                
                 // reset the amount of desired waypoints
                 if (_searchWaypointAmount <= 1)
                 {
@@ -159,7 +160,6 @@ namespace Enemy.SearchArea
         
             // the amount of waypoints that can be used of the selected
             _usuableSearchPointAmount = _searchSelectedPoints.Count;
-            
         }
     }
 }

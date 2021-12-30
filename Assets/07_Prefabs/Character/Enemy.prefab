@@ -2391,7 +2391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guarding: 0
   _patrolling: 0
-  _lowGroundCatchDistance: 0.8
+  _lowGroundCatchDistance: 1
   _highGroundCatchDistance: 2
   _chaseSpeed: 4
   _patrollingRoute: {fileID: 0}
@@ -2411,7 +2411,7 @@ MonoBehaviour:
   _spottedAcousticDistance: 2.5
   _reminderTimeLowGround: 2
   _reminderTimeHighGround: 5
-  _highGroundViewCone: {fileID: 0}
+  _highGroundViewCone: {fileID: 2896255336031200142}
   _lowGroundViewCone: {fileID: 1763879659492049104}
   _firstStageRunSpeed: 2
   _secondStageRunSpeed: 2.5
@@ -3166,6 +3166,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
+--- !u!1 &1763879659492049104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8418048045381250094, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
+  m_PrefabInstance: {fileID: 7829619195151215870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1382991670915619434 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9194444659788527252, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
@@ -3240,6 +3245,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
+--- !u!1 &2896255336031200142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5145627461452695782, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
+  m_PrefabInstance: {fileID: 8023549814863702888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2556426444524255540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5486264252879753820, guid: 116f41dc79abea44982b953aead4f29d, type: 3}

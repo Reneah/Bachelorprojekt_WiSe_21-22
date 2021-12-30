@@ -61,12 +61,6 @@ namespace Enemy.SearchArea
             
             GetSearchPoints();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
         
         /// <summary>
         /// get all current search points in the area
@@ -74,6 +68,7 @@ namespace Enemy.SearchArea
         private void GetSearchPoints()
         {
             _noisyItemSearchPoints.Clear();
+            _noisyItemSelectedPoints.Clear();
             
             foreach (Transform waypoints in transform)
             {
@@ -117,7 +112,6 @@ namespace Enemy.SearchArea
                 // the amount of waypoints that can be used of the selected
                 _usuableWaypointsRangeAmount = Random.Range(1, _noisyItemSelectedPoints.Count);
             }
-            
         }
         
         /// <summary>
