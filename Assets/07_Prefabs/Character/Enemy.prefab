@@ -790,8 +790,8 @@ Transform:
   m_LocalPosition: {x: -8.673617e-21, y: 0.03835678, z: 0.011943013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5663526892543817558}
   - {fileID: 4436888100803652039}
+  - {fileID: 5663526892543817558}
   - {fileID: 1721336523870544597}
   m_Father: {fileID: 2252344224049824851}
   m_RootOrder: 0
@@ -2411,8 +2411,8 @@ MonoBehaviour:
   _spottedAcousticDistance: 2.5
   _reminderTimeLowGround: 2
   _reminderTimeHighGround: 5
-  _highGroundViewCone: {fileID: 4487805588490079488}
-  _lowGroundViewCone: {fileID: 7351865297384955729}
+  _highGroundViewCone: {fileID: 0}
+  _lowGroundViewCone: {fileID: 0}
   _firstStageRunSpeed: 2
   _secondStageRunSpeed: 2.5
   _thirdStageRunSpeed: 3
@@ -2456,7 +2456,7 @@ NavMeshAgent:
   m_AngularSpeed: 360
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1.52
   m_BaseOffset: 0
@@ -2537,7 +2537,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1498486047235124521}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7973796227055374956
 GameObject:
@@ -3046,13 +3046,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyViewCone
       objectReference: {fileID: 0}
-    - target: {fileID: 8418048045381250094, guid: 3ff7d67c90776ea4fa7e1c66a4320e3f, type: 3}
-      propertyPath: m_TagString
-      value: ViewCone
-      objectReference: {fileID: 0}
-    - target: {fileID: 9194444659788527252, guid: 3ff7d67c90776ea4fa7e1c66a4320e3f, type: 3}
+    - target: {fileID: 7447454331005467262, guid: d6335a6204fb59040893f1d9bea09eda, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7447454331005467262, guid: d6335a6204fb59040893f1d9bea09eda, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3092,6 +3088,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7447454331005467262, guid: d6335a6204fb59040893f1d9bea09eda, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418048045381250094, guid: 3ff7d67c90776ea4fa7e1c66a4320e3f, type: 3}
+      propertyPath: m_TagString
+      value: ViewCone
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194444659788527252, guid: 3ff7d67c90776ea4fa7e1c66a4320e3f, type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3162,11 +3166,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
---- !u!1 &1763879659492049104 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8418048045381250094, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
-  m_PrefabInstance: {fileID: 7829619195151215870}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1382991670915619434 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9194444659788527252, guid: 4d2d824b9ec1b4b46a983539cf131479, type: 3}
@@ -3187,11 +3186,7 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5145627461452695782, guid: 72bbc38b3817d7240912cd0842ff7443, type: 3}
-      propertyPath: m_TagString
-      value: ViewCone
-      objectReference: {fileID: 0}
-    - target: {fileID: 5486264252879753820, guid: 72bbc38b3817d7240912cd0842ff7443, type: 3}
+    - target: {fileID: 5486264252879753820, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
@@ -3239,13 +3234,16 @@ PrefabInstance:
       propertyPath: _enemyController
       value: 
       objectReference: {fileID: 7429465334143328895}
+    - target: {fileID: 5145627461452695782, guid: 72bbc38b3817d7240912cd0842ff7443, type: 3}
+      propertyPath: m_TagString
+      value: ViewCone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486264252879753820, guid: 72bbc38b3817d7240912cd0842ff7443, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
---- !u!1 &2896255336031200142 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5145627461452695782, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
-  m_PrefabInstance: {fileID: 8023549814863702888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2556426444524255540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5486264252879753820, guid: 116f41dc79abea44982b953aead4f29d, type: 3}
