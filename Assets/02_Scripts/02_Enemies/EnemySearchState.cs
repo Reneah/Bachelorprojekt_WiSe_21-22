@@ -66,6 +66,9 @@ namespace Enemy.States
             enemy.SearchArea.EnemySearchAmount--;
             
             enemy.Agent.enabled = true;
+            
+            enemy.HighGroundViewCone.SetActive(false);
+            enemy.LowGroundViewCone.SetActive(true);
         }
     }
 }

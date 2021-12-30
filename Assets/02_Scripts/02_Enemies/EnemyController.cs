@@ -216,7 +216,19 @@ namespace Enemy.Controller
         private float _visionTimeToSpott;
         //the delay time that the player get spotted in the hear radius
         private float _acousticTimeToSpott;
-        
+
+        public GameObject LowGroundViewCone
+        {
+            get => _lowGroundViewCone;
+            set => _lowGroundViewCone = value;
+        }
+
+        public GameObject HighGroundViewCone
+        {
+            get => _highGroundViewCone;
+            set => _highGroundViewCone = value;
+        }
+
         public float ReducedSpottedTime
         {
             get => _reducedSpottedTime;
@@ -1003,6 +1015,7 @@ namespace Enemy.Controller
                 
                 if (_playerSpotted)
                 {
+                    CheckPlayerGround();
                     _soundNoticed = true;
                     _soundBehaviourStage = 3;
                     _soundEventPosition = _player.transform;

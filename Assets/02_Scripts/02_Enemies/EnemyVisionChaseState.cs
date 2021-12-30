@@ -97,6 +97,10 @@ namespace Enemy.States
             
             enemy.Agent.isStopped = false;
             
+            enemy.HighGroundViewCone.SetActive(false);
+            enemy.LowGroundViewCone.SetActive(true);
+            
+            
         }
     }
 }
