@@ -33,6 +33,7 @@ namespace Enemy.States
             if (!enemy.CanSeePlayer)
             {
                 enemy.LastChanceTime -= Time.deltaTime;
+               // Debug.Log(enemy.LastChanceTime);
                 
                 if (enemy.LastChanceTime > 0)
                 {
@@ -84,20 +85,19 @@ namespace Enemy.States
         {
             enemy.SoundNoticed = false;
             enemy.InChaseState = true;
+            enemy.AbleToLoot = false;
             
             enemy.PullEnemyNearby();
 
             enemy.Agent.isStopped = false;
+
+            enemy.PlayerSoundSpotted = false;
         }
     
         public void Exit(EnemyController enemy)
         {
             enemy.InChaseState = false;
             enemy.SoundNoticed = false;
-            
-            //NOTE: Still have to test it because the third one can't search and at the start method of search these value will be deactivated
-            enemy.PlayerSpotted = false;
-            enemy.UseSpottedBar = false;
             
             enemy.Agent.isStopped = false;
             

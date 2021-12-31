@@ -15,20 +15,14 @@ namespace Enemy.States
                 return EnemyController.EnemyPatrolState;
             }
             
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.PlayerSoundSpotted || enemy.ActivateChasing)
             {
                 enemy.Agent.isStopped = false;
                 enemy.AnimationHandler.LootSpot(false);
+                enemy.ResetLootVariables = true;
                 return EnemyController.EnemyVisionChaseState;
             }
-
-            if (enemy.SoundNoticed)
-            {
-                enemy.Agent.isStopped = false;
-                enemy.AnimationHandler.LootSpot(false);
-                return EnemyController.EnemySoundInvestigationState;
-            }
-
+            
             bool reachedLootSpot = Vector3.Distance(enemy.LootSpotTransform.position, enemy.transform.position) <= enemy.StopDistanceLootSpot;
             if (reachedLootSpot)
             {
@@ -51,7 +45,7 @@ namespace Enemy.States
 
         public void Exit(EnemyController enemy)
         {
-   
+            
         }
     }
 }

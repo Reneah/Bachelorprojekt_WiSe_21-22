@@ -11,7 +11,7 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
         
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.PlayerSoundSpotted || enemy.ActivateChasing)
             {
                 return EnemyController.EnemyVisionChaseState;
             }

@@ -8,19 +8,7 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
-            if (enemy.ActivateChasing)
-            {
-                enemy.ActivateChaseCooldown -= Time.deltaTime;
-
-                if (enemy.ActivateChaseCooldown <= 0)
-                {
-                    enemy.ActivateChasing = false;
-                    enemy.ActivateChaseCooldown = 0.1f;
-                }
-            }
-            
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.PlayerSoundSpotted)
             {
                 enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                 enemy.AnimationHandler.FinishedLookingAnimation = false;

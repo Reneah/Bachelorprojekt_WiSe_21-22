@@ -611,9 +611,26 @@ namespace Enemy.Controller
             set => _ableToLoot = value;
         }
 
+        // reset the loot variables when it will be interuppted
+        private bool _resetLootVariables = false;
+
+        public bool ResetLootVariables
+        {
+            get => _resetLootVariables;
+            set => _resetLootVariables = value;
+        }
+
         #endregion
-        
-        
+
+        private bool _playerSoundSpotted = false;
+
+        public bool PlayerSoundSpotted
+        {
+            get => _playerSoundSpotted;
+            set => _playerSoundSpotted = value;
+        }
+
+
         void Start()
         {
             _highGroundViewCone.SetActive(false);
@@ -684,8 +701,7 @@ namespace Enemy.Controller
                         
                         // when the enemy will be pulled of another one, the enemy should not go instantly into the search mode. Should have the chance to follow the player
                         _enemiesInWholeScene[i].LastChanceTime = 5;
-                        
-                        _enemiesInWholeScene[i].PlayerSpotted = true;
+                        _enemiesInWholeScene[i].UseSpottedBar = true;
                         _enemiesInWholeScene[i].SpottedBar.fillAmount = 1;
                         _enemiesInWholeScene[i].PlayerSpotted = true;
                         _enemiesInWholeScene[i].SpotTime = 10;
@@ -1033,10 +1049,9 @@ namespace Enemy.Controller
                     CheckPlayerGround();
                     
                     // goes instantly in the chase vision mode to have the reminder time to chase the player
-                    _canSeePlayer = true;
+                    _playerSoundSpotted = true;
+                    _lastChanceTime = 5;
                     
-                    _spottedBar.fillAmount = 1;
-                
                     if (!_scoreCount)
                     {
                         // Counts up the mission score for the player to have been spotted
