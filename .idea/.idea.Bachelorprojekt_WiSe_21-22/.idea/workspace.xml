@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="877614ff-2134-43be-8987-24837770e7e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_3.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -318,7 +314,7 @@
       <workItem from="1640933679240" duration="9370000" />
       <workItem from="1640956062481" duration="1929000" />
       <workItem from="1640967565293" duration="488000" />
-      <workItem from="1640969861800" duration="182000" />
+      <workItem from="1640969861800" duration="782000" />
     </task>
     <servers />
   </component>
