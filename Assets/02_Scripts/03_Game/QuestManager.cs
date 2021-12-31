@@ -185,6 +185,7 @@ public class QuestManager : MonoBehaviour
         {
             // activate next quest text "Enter the staircase to the cellar, to find the secret passage."
             _quest6Text.enabled = true;
+            _quest7Text.enabled = true;
             // activate crossed out resolved quest text "Find the hidden key under the throne."
             _quest5Text.fontStyle = FontStyles.Strikethrough;
             
