@@ -12,7 +12,7 @@ namespace Enemy.States
         {
             enemy.SpottedBar.fillAmount = 1;
             // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
-            if (enemy.ChaseActivationObject.activeInHierarchy)
+            if (enemy.ActivateChasing)
             {
                 enemy.ActivateChaseCooldown -= Time.deltaTime;
 
@@ -20,7 +20,6 @@ namespace Enemy.States
                 {
                     enemy.ActivateChasing = false;
                     enemy.ActivateChaseCooldown = 0.1f;
-                    enemy.ChaseActivationObject.SetActive(false);
                 }
             }
             
@@ -34,7 +33,7 @@ namespace Enemy.States
             if (!enemy.CanSeePlayer)
             {
                 enemy.LastChanceTime -= Time.deltaTime;
-                Debug.Log(enemy.LastChanceTime);
+               // Debug.Log(enemy.LastChanceTime);
                 
                 if (enemy.LastChanceTime > 0)
                 {
@@ -53,10 +52,14 @@ namespace Enemy.States
                         {
                             if (enemy.Guarding)
                             {
+                                enemy.PlayerSpotted = false;
+                                enemy.UseSpottedBar = false;
                                 return EnemyController.EnemyGuardState;
                             }
                             else if (enemy.Patrolling)
                             {
+                                enemy.PlayerSpotted = false;
+                                enemy.UseSpottedBar = false;
                                 return EnemyController.EnemyPatrolState;
                             }
                         }
@@ -80,29 +83,21 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
-            // when the enemy will be pulled of another one, the enemy should not go instantly into the search mode. Should have the chance to follow the player
-            if (enemy.ActivateChasing)
-            {
-               // enemy.LastChanceTime = 5;
-               // enemy.PlayerSpotted = true;
-            }
-            
             enemy.SoundNoticed = false;
             enemy.InChaseState = true;
+            enemy.AbleToLoot = false;
             
-            enemy.EnemyTalkCheck.Talkable = false;
-            enemy.ChaseActivationObject.SetActive(true);
+            enemy.PullEnemyNearby();
 
             enemy.Agent.isStopped = false;
+
+            enemy.PlayerSoundSpotted = false;
         }
     
         public void Exit(EnemyController enemy)
         {
             enemy.InChaseState = false;
             enemy.SoundNoticed = false;
-            
-            enemy.PlayerSpotted = false;
-            enemy.UseSpottedBar = false;
             
             enemy.Agent.isStopped = false;
             

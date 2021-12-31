@@ -11,7 +11,7 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
         
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.PlayerSoundSpotted || enemy.ActivateChasing)
             {
                 return EnemyController.EnemyVisionChaseState;
             }
@@ -32,8 +32,7 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            enemy.EnemyTalkCheck.Talkable = false;
-
+            
             if (!enemy.NoisyItemSearchArea.PreparedSearchPoints)
             {
                 enemy.NoisyItemSearchArea.GetSearchPoints();

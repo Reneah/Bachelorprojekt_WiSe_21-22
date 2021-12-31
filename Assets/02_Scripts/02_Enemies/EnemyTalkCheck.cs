@@ -167,6 +167,7 @@ namespace Enemy.TalkCheck
                 _talkable = false;
                 _talk = true;
                 _enemyController.AnimationHandler.SetSpeed(_enemyController.PatrolSpeed);
+                _talkReuseingTime = _reusingTime;
             }
         }
     }
