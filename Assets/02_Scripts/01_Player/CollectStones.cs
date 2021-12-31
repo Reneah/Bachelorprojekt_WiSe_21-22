@@ -80,6 +80,12 @@ public class CollectStones : MonoBehaviour
                 {
                     _stonesActive = true;
                     PlayerPrefs.SetInt("StoneActive", 1);
+
+                    // Blocks the player from picking up stones when they've reached the max stones amount
+                    if (_stonesCounter >= _maxStoneAmount)
+                    {
+                        return;
+                    }
                     _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount();
                     
                     if (_maxStoneAmount <= _stonesCounter)
