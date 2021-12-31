@@ -71790,15 +71790,15 @@ PrefabInstance:
       objectReference: {fileID: 1760395303100483793}
     - target: {fileID: 1102452243475783751, guid: ccad2b295a1780a498aa5ebe397abcd6, type: 3}
       propertyPath: m_Radius
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1102452243475783751, guid: ccad2b295a1780a498aa5ebe397abcd6, type: 3}
       propertyPath: m_Center.y
-      value: 0.99
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1102452243475783751, guid: ccad2b295a1780a498aa5ebe397abcd6, type: 3}
       propertyPath: m_Center.z
-      value: 1.36
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1102452243475783769, guid: ccad2b295a1780a498aa5ebe397abcd6, type: 3}
       propertyPath: m_RenderingLayerMask
