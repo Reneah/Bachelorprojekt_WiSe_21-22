@@ -718,7 +718,7 @@ namespace Enemy.Controller
             if (!_scoreCount)
             {
                 // Counts up the mission score for the player to have been spotted
-                //_myMissionScore.SpottedScoreCounter += 1;
+                _myMissionScore.SpottedScoreCounter += 1;
                 _scoreCount = true;
             }
             
@@ -1055,7 +1055,7 @@ namespace Enemy.Controller
                     if (!_scoreCount)
                     {
                         // Counts up the mission score for the player to have been spotted
-                       // _myMissionScore.SpottedScoreCounter += 1;
+                        _myMissionScore.SpottedScoreCounter += 1;
                         _scoreCount = true;
                     }
                 }

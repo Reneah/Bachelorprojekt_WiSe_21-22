@@ -137,6 +137,12 @@ namespace untitledProject
             set => _playerThrowTrigger = value;
         }
 
+        public bool PlayerIsSpotted
+        {
+            get => _playerIsSpotted;
+            set => _playerIsSpotted = value;
+        }
+
         // the current state of the player
         private IPlayerState _currentState;
         public static readonly PlayerIdleState PlayerIdleState = new PlayerIdleState();
@@ -207,7 +213,7 @@ namespace untitledProject
         /// </summary>
         private void CalmDownTime()
         {
-            if (!_playerIsSpotted)
+            if (!PlayerIsSpotted)
             {
                 if (_calmDownCooldown > 0)
                 {
@@ -218,7 +224,7 @@ namespace untitledProject
                 {
                     _calmDownCooldown = _calmDownTime;
                     _playerAnimationHandler.PlayerFlee(false);
-                    _playerIsSpotted = true;
+                    PlayerIsSpotted = true;
                 }
             }
         }
@@ -353,7 +359,7 @@ namespace untitledProject
             if(other.CompareTag("ViewCone"))
             {
                 _calmDownCooldown = _calmDownTime;
-                _playerIsSpotted = true;
+                PlayerIsSpotted = true;
             }
         }
 
@@ -361,7 +367,7 @@ namespace untitledProject
         {
             if(other.CompareTag("ViewCone"))
             {
-                _playerIsSpotted = false;
+                PlayerIsSpotted = false;
             }
         }
 
