@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="877614ff-2134-43be-8987-24837770e7e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_3.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/03_ArtAssets/01_Player/PlayerStepVisualization.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03_ArtAssets/01_Player/PlayerStepVisualization.mat" afterDir="false" />
@@ -323,7 +324,7 @@
       <workItem from="1640879487164" duration="5423000" />
       <workItem from="1640889621889" duration="8965000" />
       <workItem from="1640933679240" duration="9370000" />
-      <workItem from="1640956062481" duration="297000" />
+      <workItem from="1640956062481" duration="1067000" />
     </task>
     <servers />
   </component>
