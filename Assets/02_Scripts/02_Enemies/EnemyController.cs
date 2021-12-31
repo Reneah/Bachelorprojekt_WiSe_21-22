@@ -764,16 +764,12 @@ namespace Enemy.Controller
         /// </summary>
         public void ChasePlayer()
         {
-            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination 
-            if (EnemyShareInformation.EnemyInstance != null && !EnemyShareInformation.EnemyInstance._agent.isStopped) 
-            { 
-                EnemyShareInformation.FirstEnemyReachedDestination = false; 
-            } 
-            
+           
+
             // prevent that the run animation is playing when the agent can't go further in contrast to the player 
             // rotates the enemy towards the player position 
             // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop 
-            if (ClosestPlayerPosition(1)|| ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination && _playerGroundDetection.HighGround)
+            if (ClosestPlayerPosition(0.5f) || ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination && _playerGroundDetection.HighGround)
             {
                 if (!EnemyShareInformation.FirstEnemyReachedDestination)
                 {
@@ -789,10 +785,11 @@ namespace Enemy.Controller
                     _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 5 * Time.deltaTime);
                     transform.rotation = _desiredDirection;
                 }
-
                 return;
             }
-            
+
+            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination 
+            EnemyShareInformation.FirstEnemyReachedDestination = false; 
             _agent.SetDestination(_player.transform.position);
             _agent.speed = _chaseSpeed;
             _animationHandler.SetSpeed(_chaseSpeed);
