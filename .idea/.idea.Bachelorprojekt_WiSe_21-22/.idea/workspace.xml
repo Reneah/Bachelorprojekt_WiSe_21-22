@@ -65,12 +65,12 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/PlayerChaseInformation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Provisions.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectProvisions.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" />
@@ -93,8 +93,6 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkState.cs" />

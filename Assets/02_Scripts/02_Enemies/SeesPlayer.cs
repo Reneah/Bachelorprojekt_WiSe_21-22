@@ -45,7 +45,6 @@ namespace Enemy.ViewField
                     Debug.DrawRay(_enemyController.ObstacleRaycastTransform.position, directionToTarget * distanceToTarget, Color.green);
                     _enemyController.CanSeePlayer = true; 
                 }
-            
             }
         }
 
@@ -56,7 +55,6 @@ namespace Enemy.ViewField
                 _enemyController.CanSeePlayer = false;
                 _enemyController.UseSpottedBar = false;
                 _enemyController.PlayerInViewField = false;
-                
             }
         }
     }
