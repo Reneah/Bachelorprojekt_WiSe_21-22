@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using untitledProject;
 
 public class CollectProvisions : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class CollectProvisions : MonoBehaviour
     private Provisions _provisions;
     public static bool _provisionsActive;
     public static bool _UIdisplayed;
+    private PlayerController _playerController;
 
     public int ProvisionsCounter
     {
@@ -32,6 +34,8 @@ public class CollectProvisions : MonoBehaviour
     {
         _UIdisplayed = System.Convert.ToBoolean(PlayerPrefs.GetInt("ProvisionsUI", 0));
         _provisionsActive = System.Convert.ToBoolean(PlayerPrefs.GetInt("ProvisionsActive", 0));
+
+        _playerController = FindObjectOfType<PlayerController>();
         
         _provisionsAmountText.text = _provisionsCounter.ToString();
         
@@ -75,6 +79,7 @@ public class CollectProvisions : MonoBehaviour
                 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    _playerController.PickUpItem = true;
                     _provisionsActive = true;
                     PlayerPrefs.SetInt("ProvisionsActive", 1);
                     _provisionsCounter += _provisions.CollectAmount();
