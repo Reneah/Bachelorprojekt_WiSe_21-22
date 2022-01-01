@@ -159,16 +159,11 @@ namespace untitledProject
         public static readonly PlayerThrowState PlayerThrowState =  new PlayerThrowState();
         public static readonly PlayerPickUpState PlayerPickUpState =  new PlayerPickUpState();
         
-        
-        private void Awake()
+        void Start()
         {
             // start state machine with LookAroundState
             _currentState = PlayerIdleState;
-
-        }
-        
-        void Start()
-        {
+            
             _playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
             _characterController = GetComponent<CharacterController>();
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
@@ -184,9 +179,6 @@ namespace untitledProject
             _characterController.enabled = false;
             transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX", transform.position.x), PlayerPrefs.GetFloat("PlayerPositionY", transform.position.y), PlayerPrefs.GetFloat("PlayerPositionZ", transform.position.z));
             _characterController.enabled = true;
-            
-            // start state machine with the idle
-            _currentState = PlayerIdleState;
         }
         
         private void Update()
@@ -215,7 +207,6 @@ namespace untitledProject
         private IEnumerator PlayerPosition()
         {
             yield return new WaitForSeconds(0.1f);
-            
         }
         
         /// <summary>
