@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using BP._02_Scripts._03_Game;
 using Enemy.AnimationHandler;
@@ -121,10 +120,13 @@ namespace Enemy.Controller
         // need all enemies to be possible to pull them nearby when another one spotted the player
         private EnemyController[] _enemiesInWholeScene;
         
-        public float ActivateChaseCooldown
+        // when the enemy hears the footstep of the player, hew ill go into the chase mode
+        private bool _playerSoundSpotted = false;
+
+        public bool PlayerSoundSpotted
         {
-            get => _activateChaseCooldown;
-            set => _activateChaseCooldown = value;
+            get => _playerSoundSpotted;
+            set => _playerSoundSpotted = value;
         }
         
         public bool ActivateChasing
@@ -191,10 +193,10 @@ namespace Enemy.Controller
         [Range(0,10)]
         [SerializeField] private float _acousticSecondsToSpot = 1.5f;
         [SerializeField] private Image _spottedBar;
-        [Tooltip("the distance where you get spotted instantly")]
+        [Tooltip("the distance where the player get spotted instantly")]
         [Range(0,10)]
         [SerializeField] private float _spottedVisionDistance;
-        [Tooltip("the distance where you get spotted instantly")]
+        [Tooltip("the distance where player get spotted instantly")]
         [Range(0,10)]
         [SerializeField] private float _spottedAcousticDistance;
         [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
@@ -207,10 +209,18 @@ namespace Enemy.Controller
         [Tooltip("the view cone that will be activated when the player is on low ground")]
         [SerializeField] private GameObject _lowGroundViewCone;
         
-        //the delay time that the player get spotted in the view field
+        // the delay time that the player get spotted in the view field
         private float _visionTimeToSpot;
         //the delay time that the player get spotted in the hear radius
         private float _acousticTimeToSpot;
+        // the distance where the player get spotted instantly
+        private float _detectionAcousticDistance;
+
+        public float DetectionAcousticDistance
+        {
+            get => _detectionAcousticDistance;
+            set => _detectionAcousticDistance = value;
+        }
 
         public GameObject LowGroundViewCone
         {
@@ -255,6 +265,12 @@ namespace Enemy.Controller
         {
             get => _playerInViewField;
             set => _playerInViewField = value;
+        }
+
+        public float SpottedAcousticDistance
+        {
+            get => _spottedAcousticDistance;
+            set => _spottedAcousticDistance = value;
         }
 
         // the time to spot the enemy when he is in the view field
@@ -531,7 +547,6 @@ namespace Enemy.Controller
         public Transform CurrentLookPosition => _currentLookPosition;
         public float SmoothBodyRotation => _smoothBodyRotation;
         public Transform DesiredBodyRotation => _desiredBodyRotation;
-        public float StopGuardpointDistance => _stopGuardpointDistance;
         public Transform GuardPoint => _guardPoint;
 
         // the list of the enemy look points
@@ -619,18 +634,9 @@ namespace Enemy.Controller
             get => _resetLootVariables;
             set => _resetLootVariables = value;
         }
-
+        
         #endregion
-
-        private bool _playerSoundSpotted = false;
-
-        public bool PlayerSoundSpotted
-        {
-            get => _playerSoundSpotted;
-            set => _playerSoundSpotted = value;
-        }
-
-
+        
         void Start()
         {
             _highGroundViewCone.SetActive(false);
@@ -668,6 +674,7 @@ namespace Enemy.Controller
 
             _visionTimeToSpot = _visionSecondsToSpot;
             _acousticTimeToSpot = _acousticSecondsToSpot;
+            _detectionAcousticDistance = _spottedAcousticDistance;
         }
         
         void Update()
@@ -764,8 +771,6 @@ namespace Enemy.Controller
         /// </summary>
         public void ChasePlayer()
         {
-           
-
             // prevent that the run animation is playing when the agent can't go further in contrast to the player 
             // rotates the enemy towards the player position 
             // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop 
@@ -790,6 +795,7 @@ namespace Enemy.Controller
 
             // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination 
             EnemyShareInformation.FirstEnemyReachedDestination = false; 
+            
             _agent.SetDestination(_player.transform.position);
             _agent.speed = _chaseSpeed;
             _animationHandler.SetSpeed(_chaseSpeed);
@@ -896,7 +902,7 @@ namespace Enemy.Controller
             _currentLookPosition.position = Vector3.MoveTowards(_currentLookPosition.transform.position, _currentLookPoint.transform.position, Time.deltaTime * _lookSwitchSpeed);
 
             // when the current look position is reached, the look time will count down and set the next look point
-            if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookPoint.transform.position ) <= _stopGuardpointDistance && !_reachedLookPoint)
+            if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookPoint.transform.position ) <= 0.5f && !_reachedLookPoint)
             {
                 _reachedLookPoint = true;
             }
@@ -922,7 +928,7 @@ namespace Enemy.Controller
         /// <returns></returns>
         public bool GuardPointDistance()
         {
-            return Vector3.Distance(transform.position, _guardPoint.transform.position) <= StopGuardpointDistance;
+            return Vector3.Distance(transform.position, _guardPoint.transform.position) <= _stopGuardpointDistance;
         }
 
         /// <summary>
@@ -953,7 +959,7 @@ namespace Enemy.Controller
             // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view field
             if (_useSpottedBar)
             {
-                float distance = Vector3.Distance(transform.position, _player.transform.position);
+                float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
 
                 // the time will run and will fill the bar until the player is spotted
                 if (_spotTime <= _visionTimeToSpot && _playerInViewField)
@@ -969,7 +975,7 @@ namespace Enemy.Controller
                 }
                 
                 // when the player is to close to the enemy or to long in the view field, the player get spotted
-                if (_spottedBar.fillAmount >= 1 || distance <= _spottedVisionDistance  || distance <= _spottedAcousticDistance)
+                if (_spottedBar.fillAmount >= 1 || distanceToPlayer <= _spottedVisionDistance && _playerInViewField || distanceToPlayer <= _spottedAcousticDistance)
                 {
                     _player.PlayerAnimationHandler.PlayerFlee(true);
                     _spotTime = 1;
