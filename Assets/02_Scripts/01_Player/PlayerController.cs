@@ -255,7 +255,6 @@ namespace untitledProject
                 {
                     _targetSpeed = _fleeSpeed * _moveDirection.magnitude;
                 }
-                
             }
             
             // the current velocity will be smoothed, so that it is possible to have some tweaks 
