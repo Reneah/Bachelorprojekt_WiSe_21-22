@@ -10,48 +10,42 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
-            if (enemy.ChaseActivationObject.activeInHierarchy)
-            {
-                enemy.ActivateChaseCooldown -= Time.deltaTime;
-
-                if (enemy.ActivateChaseCooldown <= 0)
-                {
-                    enemy.ActivateChasing = false;
-                    enemy.ActivateChaseCooldown = 0.1f;
-                    enemy.ChaseActivationObject.SetActive(false);
-                }
-            }
-            
+            enemy.SpottedBar.fillAmount = 1;
             enemy.CheckPlayerGround();
             
             if (enemy.CanSeePlayer)
             {
-                enemy.ReminderTime = enemy.LastChanceTime;
                 enemy.ChasePlayer();
             }
             
             if (!enemy.CanSeePlayer)
             {
-                enemy.ReminderTime -= Time.deltaTime;
-    
-                if (enemy.ReminderTime > 0)
+                enemy.LastChanceTime -= Time.deltaTime;
+
+                if (enemy.LastChanceTime > 0)
                 {
-                    // prevent that the run animation is playing when the agent can't go further in contrast to the player
-                    if (!enemy.Agent.hasPath)
-                    {
-                        enemy.AnimationHandler.SetSpeed(0);
-                    }
-                    
                     enemy.Agent.SetDestination(enemy.Player.transform.position);
                 }
                 // if the enemy still doesn't see the player, the search mode will be activated 
-                if (enemy.ReminderTime <= 0)
+                if (enemy.LastChanceTime <= 0)
                 {
-                    if (!enemy.Agent.hasPath)
+                    if (!enemy.Agent.hasPath || Vector3.Distance(enemy.Agent.pathEndPosition, enemy.Agent.destination) <= 1)
                     {
-                        enemy.ReminderTime = enemy.LastChanceTime;
-                        return EnemyController.EnemySearchState;
+                        if (enemy.SearchArea.EnemySearchAmount < enemy.SearchArea.EnemySearchMaxAmount)
+                        {
+                            return EnemyController.EnemySearchState;
+                        }
+                        else
+                        {
+                            if (enemy.Guarding)
+                            {
+                                return EnemyController.EnemyGuardState;
+                            }
+                            else if (enemy.Patrolling)
+                            {
+                                return EnemyController.EnemyPatrolState;
+                            }
+                        }
                     }
                 }
             }
@@ -72,16 +66,33 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
-            enemy.EnemyTalkCheck.Talkable = false;
-            enemy.ChaseActivationObject.SetActive(true);
+            enemy.SoundNoticed = false;
+            enemy.InChaseState = true;
+            enemy.AbleToLoot = false;
             
-            enemy.ReminderTime = enemy.LastChanceTime;
+            enemy.PullEnemyNearby();
+
             enemy.Agent.isStopped = false;
+            
+            enemy.ActivateChasing = false;
+            enemy.PlayerSoundSpotted = false;
         }
     
         public void Exit(EnemyController enemy)
         {
+            enemy.ActivateChasing = false;
+            enemy.PlayerSoundSpotted = false;
             
+            enemy.InChaseState = false;
+            enemy.SoundNoticed = false;
+            
+            enemy.Agent.isStopped = false;
+            
+            enemy.HighGroundViewCone.SetActive(false);
+            enemy.LowGroundViewCone.SetActive(true);
+            
+            enemy.PlayerSpotted = false;
+            enemy.UseSpottedBar = false;
         }
     }
 }

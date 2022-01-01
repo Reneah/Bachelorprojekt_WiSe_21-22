@@ -7,7 +7,7 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            if (enemy.CanSeePlayer || enemy.ActivateChasing)
+            if (enemy.CanSeePlayer || enemy.ActivateChasing || enemy.PlayerSoundSpotted)
             {
                 return EnemyController.EnemyVisionChaseState;
             }

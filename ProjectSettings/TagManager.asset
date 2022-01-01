@@ -20,6 +20,7 @@ TagManager:
   - LowGround
   - NoisyItemShield
   - Blocked
+  - AcousticBlock
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - Provisions
   - NoisyItemShield
   - NoisyItemJug
-  - 
+  - AcousticBlock
   - 
   - 
   - 

@@ -9,7 +9,7 @@ namespace Enemy.States
         {
             enemy.CheckPlayerGround();
             
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.ActivateChasing || enemy.PlayerSoundSpotted)
             {
                 enemy.ResetSearchWaypoints = true;
                 return EnemyController.EnemyVisionChaseState;
@@ -20,13 +20,12 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
 
-            if (enemy.FinishChecking)
+            if (enemy.SearchArea.FinishChecking)
             {
                 if (enemy.Guarding)
                 {
                     return EnemyController.EnemyGuardState;
                 }
-                
                 return EnemyController.EnemyPatrolState;
             }
         
@@ -36,18 +35,42 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            enemy.EnemyTalkCheck.Talkable = false;
+            enemy.AcousticTimeToSpot = 0;
+            enemy.VisionTimeToSpot = 0;
+            
+            enemy.PlayerSpotted = false;
+            enemy.UseSpottedBar = false;
+            
             enemy.AnimationHandler.SetSpeed(enemy.SearchSpeed);
-            enemy.StartSearchBehaviour();
+
+            if (!enemy.SearchArea.PreparedSearchPoints)
+            {
+                enemy.SearchArea.GetSearchPoints();
+                enemy.SearchArea.PrepareSearchBehaviour();
+            }
+
+            enemy.SearchArea.EnemySearchAmount++;
+            enemy.SearchArea.StartSearchBehaviour(enemy.Agent,enemy.AnimationHandler, enemy.SearchSpeed);
             
             enemy.Agent.isStopped = false;
+
+
         }
 
         public void Exit(EnemyController enemy)
         {
-            enemy.FinishChecking = false;
+            enemy.AcousticTimeToSpot = enemy.AcousticSecondsToSpot;
+            enemy.VisionTimeToSpot = enemy.VisionSecondsToSpot;
+            
+            enemy.SearchArea.FinishChecking = false;
+            enemy.SearchArea.EnemySearchAmount--;
+            
+            enemy.Agent.enabled = true;
+            
+            enemy.HighGroundViewCone.SetActive(false);
+            enemy.LowGroundViewCone.SetActive(true);
+            
+            enemy.SearchArea.PreparedSearchPoints = false;
         }
-    
     }
-
 }

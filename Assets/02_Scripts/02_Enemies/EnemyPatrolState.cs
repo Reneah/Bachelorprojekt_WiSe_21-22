@@ -7,13 +7,15 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            if (enemy.CanSeePlayer || enemy.ActivateChasing)
+            if (enemy.CanSeePlayer || enemy.ActivateChasing || enemy.PlayerSoundSpotted)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemyVisionChaseState;
             }
 
             if (enemy.SoundNoticed)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemySoundInvestigationState;
             }
 
@@ -24,6 +26,7 @@ namespace Enemy.States
 
             if (enemy.Loot)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemyLootState;
             }
         
@@ -33,8 +36,6 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            // only when the enemy enters the patrol or guard mode, the enemy will stop to see the player instantly, because he lost the orientation of him
-            enemy.SpotTime = 0;
             enemy.PlayerSpotted = false;
         
             enemy.AnimationHandler.SetSpeed(enemy.PatrolSpeed);
@@ -43,11 +44,13 @@ namespace Enemy.States
             enemy.Agent.isStopped = false;
             
             enemy.EnemyTalkCheck.Talkable = true;
+            enemy.AbleToLoot = true;
         }
 
         public void Exit(EnemyController enemy)
         {
             enemy.SoundNoticed = false;
+            enemy.AbleToLoot = false;
         }
     }
 }

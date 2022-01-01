@@ -12,6 +12,8 @@ public class Checkpoint : MonoBehaviour
     private CollectProvisions _collectProvisions;
 
     private NoisyItem[] _noisyItems;
+    private StonePile[] _stonePile;
+    private Provisions[] _provisions;
     
     private void Start()
     {
@@ -19,15 +21,10 @@ public class Checkpoint : MonoBehaviour
         _collectProvisions = FindObjectOfType<CollectProvisions>();
 
         _noisyItems = FindObjectsOfType<NoisyItem>();
+        _stonePile = FindObjectsOfType<StonePile>();
+        _provisions = FindObjectsOfType<Provisions>();
     }
 
-    private static bool _blockUpdate;
-
-    public static bool BlockUpdate
-    {
-        get => _blockUpdate;
-        set => _blockUpdate = value;
-    }
 
     private void OnTriggerEnter(Collider other)
         {
@@ -41,11 +38,21 @@ public class Checkpoint : MonoBehaviour
                 
                 for (int i = 0; i < _noisyItems.Length; i++)
                 {
+                    _noisyItems[i].GetComponent<Transform>().gameObject.SetActive(true);
                     _noisyItems[i].SafeState = true;
                 }
                 
+                for (int i = 0; i < _stonePile.Length; i++)
+                {
+                    _stonePile[i].SafeState = true;
+                }
+                
+                for (int i = 0; i < _provisions.Length; i++)
+                {
+                    _provisions[i].SafeState = true;
+                }
+                
                 PlayerPrefs.Save();
-                BlockUpdate = true;
 
                 gameObject.SetActive(false);
             }

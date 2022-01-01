@@ -11,12 +11,12 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
         
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.PlayerSoundSpotted || enemy.ActivateChasing)
             {
                 return EnemyController.EnemyVisionChaseState;
             }
-
-            if (enemy.FinishChecking)
+            
+            if (enemy.NoisyItemSearchArea.FinishChecking)
             {
                 if (enemy.Guarding)
                 {
@@ -32,17 +32,22 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            enemy.EnemyTalkCheck.Talkable = false;
-            enemy.PrepareSearchNoisyItemBehaviour();
-            enemy.StartSearchNoisyItemBehaviour();
+            
+            if (!enemy.NoisyItemSearchArea.PreparedSearchPoints)
+            {
+                enemy.NoisyItemSearchArea.GetSearchPoints();
+                enemy.NoisyItemSearchArea.PrepareSearchNoisyItemBehaviour();
+            }
+            
+            enemy.NoisyItemSearchArea.StartSearchNoisyItemBehaviour(enemy.Agent, enemy.AnimationHandler, enemy.InvestigationRunSpeed, enemy.NoisyItemScript);
             
             enemy.Agent.isStopped = false;
         }
 
         public void Exit(EnemyController enemy)
         {
-            enemy.ResetNoisyItemWaypoints = true;
-            enemy.FinishChecking = false;
+            enemy.NoisyItemSearchArea.FinishChecking = false;
+            enemy.NoisyItemSearchArea.PreparedSearchPoints = false;
         }
     }
 }

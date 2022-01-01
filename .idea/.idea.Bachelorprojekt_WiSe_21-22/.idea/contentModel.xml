@@ -30,10 +30,11 @@
             <e p="PlayerThrowState.cs" t="Include" />
             <e p="PlayerThrowTrigger.cs" t="Include" />
             <e p="Provisions.cs" t="Include" />
+            <e p="StepVisualization.cs" t="Include" />
+            <e p="StepVisualizationManager.cs" t="Include" />
             <e p="StonePile.cs" t="Include" />
           </e>
           <e p="02_Enemies" t="Include">
-            <e p="ChaseActivation.cs" t="Include" />
             <e p="EnemyAnimationHandler.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyGuardState.cs" t="Include" />
@@ -53,7 +54,9 @@
             <e p="NoisyItem.cs" t="Include" />
             <e p="NoisyItemCloseActivation.cs" t="Include" />
             <e p="NoisyItemPullRadius.cs" t="Include" />
+            <e p="NoisyItemSearchArea.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
+            <e p="SearchAreaOverview.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
             <e p="SpottedBarTowardsCamera.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
@@ -66,6 +69,7 @@
             <e p="IntroScene.cs" t="Include" />
             <e p="IntroText.cs" t="Include" />
             <e p="LootChestAnimationController.cs" t="Include" />
+            <e p="MissionScore.cs" t="Include" />
             <e p="QuestManager.cs" t="Include" />
             <e p="SceneChange.cs" t="Include" />
             <e p="Tutorial.cs" t="Include" />

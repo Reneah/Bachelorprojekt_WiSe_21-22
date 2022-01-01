@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using BP._02_Scripts._03_Game;
 using DA.Menu;
 //using DarkTonic.MasterAudio;
 using DG.Tweening;
@@ -23,12 +24,16 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private string _introSceneName;
 
+    private MissionScore _myMissionScore;
+
     private bool _openMenu = false;
     
     private bool _fadeIn = false;
     
     private void Start()
     {
+        _myMissionScore = FindObjectOfType<MissionScore>();
+        
         PlayerPrefs.DeleteAll();
         
         Cursor.SetCursor(_cursorTexture,Vector2.zero, CursorMode.Auto);
@@ -106,8 +111,11 @@ public class MainMenu : MonoBehaviour
         // Set static booleans to false to reset QuestManager on New Game Start
         CollectItem._backpackCollected = false;
         CollectItem._parchmentCollected = false;
-        CollectItem._parchmentCollected = false;
+        CollectItem._keyCollected = false;
         CollectItem._enteredStaircase = false;
+        
+        // Signal to the MissionScore.cs that the game has been started, so the gameplay timer starts
+        _myMissionScore.GameStarted = true;
         
         _fadeImage.DOFade(1, 3);
     }

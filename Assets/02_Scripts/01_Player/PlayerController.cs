@@ -137,6 +137,12 @@ namespace untitledProject
             set => _playerThrowTrigger = value;
         }
 
+        public bool PlayerIsSpotted
+        {
+            get => _playerIsSpotted;
+            set => _playerIsSpotted = value;
+        }
+
         // the current state of the player
         private IPlayerState _currentState;
         public static readonly PlayerIdleState PlayerIdleState = new PlayerIdleState();
@@ -168,6 +174,9 @@ namespace untitledProject
             _characterController.enabled = false;
             transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX", transform.position.x), PlayerPrefs.GetFloat("PlayerPositionY", transform.position.y), PlayerPrefs.GetFloat("PlayerPositionZ", transform.position.z));
             _characterController.enabled = true;
+            
+            // start state machine with the idle
+            _currentState = PlayerIdleState;
         }
         
         private void Update()
@@ -204,7 +213,7 @@ namespace untitledProject
         /// </summary>
         private void CalmDownTime()
         {
-            if (!_playerIsSpotted)
+            if (!PlayerIsSpotted)
             {
                 if (_calmDownCooldown > 0)
                 {
@@ -215,7 +224,7 @@ namespace untitledProject
                 {
                     _calmDownCooldown = _calmDownTime;
                     _playerAnimationHandler.PlayerFlee(false);
-                    _playerIsSpotted = true;
+                    PlayerIsSpotted = true;
                 }
             }
         }
@@ -246,7 +255,6 @@ namespace untitledProject
                 {
                     _targetSpeed = _fleeSpeed * _moveDirection.magnitude;
                 }
-                
             }
             
             // the current velocity will be smoothed, so that it is possible to have some tweaks 
@@ -350,7 +358,7 @@ namespace untitledProject
             if(other.CompareTag("ViewCone"))
             {
                 _calmDownCooldown = _calmDownTime;
-                _playerIsSpotted = true;
+                PlayerIsSpotted = true;
             }
         }
 
@@ -358,7 +366,7 @@ namespace untitledProject
         {
             if(other.CompareTag("ViewCone"))
             {
-                _playerIsSpotted = false;
+                PlayerIsSpotted = false;
             }
         }
 

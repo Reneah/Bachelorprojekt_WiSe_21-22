@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BP._02_Scripts._03_Game;
 using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using TMPro;
@@ -27,9 +28,11 @@ namespace Enemy.SoundItem
         [SerializeField] private GameObject _offsetOrigin;
         [Tooltip("the key to save the used status of the item")]
         [SerializeField] private string _playerPrefsKey;
+        [Tooltip("the key to deactivate permanently the item sound when entering the checkpoint")]
+        [SerializeField] private string _jugRespawnSoundBlockKey;
         [Tooltip("the layer for the noisy item to be able to activate it")]
         [SerializeField] private LayerMask _noisyItemLayer;
-
+        
         public GameObject SoundRadius
         {
             get => _soundRadius;
@@ -96,6 +99,8 @@ namespace Enemy.SoundItem
         private float _pullEnemyCooldown = 0.1f;
         // determines if the mouse is hovering over the noisy item
         private bool _hoverOverNoisyItem;
+        // deactivate the noisy item functionalities when the noisy items will be activated again to check the used status for the player respawn
+        private bool _permanentlyDeactivated;
         
         public List<EnemyController> EnemyList
         {
@@ -121,7 +126,7 @@ namespace Enemy.SoundItem
             set => _stage = value;
         }
         
-        private bool _itemUsed = false;
+        private bool _itemUsed;
 
         public bool ItemUsed
         {
@@ -174,13 +179,16 @@ namespace Enemy.SoundItem
 
         private Collider _collider;
         private NoisyItemCloseActivation _noisyItemCloseActivation;
-        
+        private MissionScore _myMissionScore;
+
         void Start()
         {
-            _collider = GetComponent<Collider>();
             _noisyItemCloseActivation = GetComponentInChildren<NoisyItemCloseActivation>();
+            _collider = GetComponent<Collider>();
             
+            _permanentlyDeactivated = System.Convert.ToBoolean(PlayerPrefs.GetInt(_jugRespawnSoundBlockKey, 0));
             _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
+
             _collectibleSprite.gameObject.SetActive(false);
             
             if (!_reusable)
@@ -189,6 +197,8 @@ namespace Enemy.SoundItem
                 _unharmedItem.SetActive(true);
             }
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
+
+            _myMissionScore = FindObjectOfType<MissionScore>();
         }
 
         private void Update()
@@ -256,18 +266,29 @@ namespace Enemy.SoundItem
                         _itemUsed = false;
                         _oneTimeUsed = true;
                         MasterAudio.PlaySound3DAtTransform("ShieldHit", transform);
+
+                        // Count up the distraction score counter for the Mission Score
+                        _myMissionScore.DistractionsScoreCounter += 1;
                     }
                     else
                     {
                         _collider.enabled = false;
                         _noisyItemCloseActivation.enabled = false;
                         _brokenItem.SetActive(true);
-                        _unharmedItem.SetActive(false);
                         _negativeSprite.gameObject.SetActive(false);
                         _soundRangeCollider.SetActive(false);
                         _playerThrowTrigger.Close = false;
-                        this.enabled = false;
-                        MasterAudio.PlaySound3DAtTransform("ShatterVase", transform);
+
+                        if (!_permanentlyDeactivated)
+                        {
+                            MasterAudio.PlaySound3DAtTransform("ShatterVase", transform);
+                            _permanentlyDeactivated = true;
+                            PlayerPrefs.SetInt(_jugRespawnSoundBlockKey,_permanentlyDeactivated.GetHashCode());
+                        
+                            // Count up the distraction score counter for the Mission Score
+                            _myMissionScore.DistractionsScoreCounter += 1;
+                        }
+                        _unharmedItem.SetActive(false);
                     }
                 }
             }

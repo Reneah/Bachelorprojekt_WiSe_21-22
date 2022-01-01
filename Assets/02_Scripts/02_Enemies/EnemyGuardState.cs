@@ -7,13 +7,15 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.ActivateChasing || enemy.PlayerSoundSpotted)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemyVisionChaseState;
             }
 
             if (enemy.SoundNoticed)
             {
+                enemy.EnemyTalkCheck.Talkable = false;
                 return EnemyController.EnemySoundInvestigationState;
             }
             
@@ -40,8 +42,6 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            // only when the enemy enters the patrol or guard mode, the enemy will stop to see the player instantly, because he lost the orientation of him
-            enemy.SpotTime = 0;
             enemy.PlayerSpotted = false;
         
             enemy.Agent.SetDestination(enemy.GuardPoint.transform.position);

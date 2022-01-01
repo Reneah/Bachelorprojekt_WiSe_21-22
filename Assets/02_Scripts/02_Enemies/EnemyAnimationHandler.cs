@@ -131,7 +131,7 @@ namespace Enemy.AnimationHandler
         private void OnAnimatorIK(int layerIndex)
         {
             // controls the head rotation when the enemies sees the player
-            if (_enemyController.CanSeePlayer)
+            if (_enemyController.InChaseState)
             {
                 _enemyAnimator.SetLookAtWeight(0.5f);
                 _enemyAnimator.SetLookAtPosition(_enemyController.LookPositionAtSpotted.position);
@@ -143,7 +143,6 @@ namespace Enemy.AnimationHandler
                 _enemyAnimator.SetLookAtWeight(_headRotationWeight);
                 _enemyAnimator.SetLookAtPosition(_enemyController.CurrentLookPosition.transform.position);
             }
-
         }
         
         public void EnemyFootsteps(AnimationEvent animationEvent)
@@ -155,5 +154,4 @@ namespace Enemy.AnimationHandler
             }
         }
     }
-
 }
