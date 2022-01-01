@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playtimeDisplay: {fileID: 4303833415270594861}
   _playtimeScore: {fileID: 4303833415548201186}
-  _playtimePointsMultiplier: 1
+  _playtimePointsMultiplier: 2
   _provisionsDisplay: {fileID: 4303833414437683023}
   _provisionsScore: {fileID: 4303833415772102498}
   _provisionsPointsMultiplier: 500
@@ -200,7 +200,7 @@ MonoBehaviour:
   _stonesPointsMultiplier: 200
   _noisyItemDisplay: {fileID: 4303833416125942974}
   _noisyItemScore: {fileID: 4303833415618755387}
-  _noisyItemPointsMultiplier: 100
+  _noisyItemPointsMultiplier: 50
   _playerSpottedDisplay: {fileID: 4303833416091790243}
   _playerSpottedScore: {fileID: 4303833416086082988}
   _playerSpottedPointsMultiplier: 150
