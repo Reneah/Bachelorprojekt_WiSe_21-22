@@ -143,12 +143,22 @@ namespace untitledProject
             set => _playerIsSpotted = value;
         }
 
+        private bool _pickUpItem = false;
+
+        public bool PickUpItem
+        {
+            get => _pickUpItem;
+            set => _pickUpItem = value;
+        }
+
         // the current state of the player
         private IPlayerState _currentState;
         public static readonly PlayerIdleState PlayerIdleState = new PlayerIdleState();
         public static readonly PlayerRunState PlayerRunState = new PlayerRunState();
         public static readonly PlayerJumpState PlayerJumpState =  new PlayerJumpState();
         public static readonly PlayerThrowState PlayerThrowState =  new PlayerThrowState();
+        public static readonly PlayerPickUpState PlayerPickUpState =  new PlayerPickUpState();
+        
         
         private void Awake()
         {

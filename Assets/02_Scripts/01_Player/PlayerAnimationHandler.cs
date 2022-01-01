@@ -22,7 +22,10 @@ public class PlayerAnimationHandler : MonoBehaviour
     // checks if the throw animation is at the end
     private bool _runningThrowAnimation = false;
 
+    private bool _runningPickUpAnimation = false;
+
     private StepVisualizationManager myStepVisualizationManager;
+    private static readonly int PickUp = Animator.StringToHash("PickUp");
 
 
     public Animator PlayerAnimator
@@ -35,6 +38,12 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         get => _runningThrowAnimation;
         set => _runningThrowAnimation = value;
+    }
+
+    public bool RunningPickUpAnimation
+    {
+        get => _runningPickUpAnimation;
+        set => _runningPickUpAnimation = value;
     }
 
     void Start()
@@ -91,13 +100,27 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         _playerAnimator.SetBool(Flee, flee);
     }
+
+    public void PlayerPickUp()
+    {
+        _playerAnimator.SetTrigger(PickUp);
+    }
+
+    public void EndPickUpAnimation()
+    {
+        _runningPickUpAnimation = false;
+    }
+    public void ResetPickUpAnimation()
+    {
+        _playerAnimator.ResetTrigger(PickUp);
+    }
     
     /// <summary>
     /// Animation Event
     /// </summary>
     public void EndThrowAnimation()
     {
-        _runningThrowAnimation = true;
+        _runningThrowAnimation = false;
     }
 
     public void PlayerQuietFootsteps(AnimationEvent animationEvent)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using untitledProject;
 using Image = UnityEngine.UI.Image;
 
 public class CollectStones : MonoBehaviour
@@ -25,6 +26,7 @@ public class CollectStones : MonoBehaviour
     private GameObject _stones;
     public static bool _stonesActive;
     public static bool _UIdisplayed;
+    private PlayerController _playerController;
 
     public int StonesCounter
     {
@@ -34,6 +36,8 @@ public class CollectStones : MonoBehaviour
 
     void Start()
     {
+        _playerController = FindObjectOfType<PlayerController>();
+        
         _UIdisplayed = System.Convert.ToBoolean(PlayerPrefs.GetInt("StoneUI", 0));
         _stonesActive = System.Convert.ToBoolean(PlayerPrefs.GetInt("StoneActive", 0));
         
@@ -78,6 +82,7 @@ public class CollectStones : MonoBehaviour
                 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    _playerController.PickUpItem = true;
                     _stonesActive = true;
                     PlayerPrefs.SetInt("StoneActive", 1);
 
