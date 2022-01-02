@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1935,7 +1935,7 @@ MonoBehaviour:
     SoundEvents:
     - actionName: Your action name
       isExpanded: 1
-      soundType: BackSound
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -1970,8 +1970,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -2500,8 +2500,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -3966,7 +3966,7 @@ MonoBehaviour:
     SoundEvents:
     - actionName: Your action name
       isExpanded: 1
-      soundType: Click
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -4001,8 +4001,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -4531,8 +4531,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -5631,7 +5631,7 @@ MonoBehaviour:
     SoundEvents:
     - actionName: Your action name
       isExpanded: 1
-      soundType: Click
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -5666,8 +5666,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -6196,8 +6196,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -7872,7 +7872,7 @@ MonoBehaviour:
     SoundEvents:
     - actionName: Your action name
       isExpanded: 1
-      soundType: Click
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -7907,8 +7907,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -8437,8 +8437,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -9601,6 +9601,7 @@ GameObject:
   - component: {fileID: 658119054}
   - component: {fileID: 658119053}
   - component: {fileID: 658119056}
+  - component: {fileID: 658119057}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9705,6 +9706,147 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!82 &658119057
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658119052}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.02
+      value: 1
+      inSlope: -50.019924
+      outSlope: -50.019924
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.04
+      value: 0.5
+      inSlope: -12.504981
+      outSlope: -12.504981
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.08
+      value: 0.25
+      inSlope: -3.1262453
+      outSlope: -3.1262453
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.16
+      value: 0.125
+      inSlope: -0.7815613
+      outSlope: -0.7815613
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.32
+      value: 0.0625
+      inSlope: -0.19539033
+      outSlope: -0.19539033
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.64
+      value: 0.03125
+      inSlope: -0.048847582
+      outSlope: -0.048847582
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.020007985
+      outSlope: -0.020007985
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &658726621
 GameObject:
   m_ObjectHideFlags: 0
@@ -10764,7 +10906,7 @@ MonoBehaviour:
     SoundEvents:
     - actionName: Your action name
       isExpanded: 1
-      soundType: BackSound
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -10799,8 +10941,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -11329,8 +11471,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -13742,7 +13884,7 @@ MonoBehaviour:
     SoundEvents:
     - actionName: Your action name
       isExpanded: 1
-      soundType: Click
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -13777,8 +13919,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -14307,8 +14449,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -17591,8 +17733,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -19963,7 +20105,7 @@ MonoBehaviour:
     SoundEvents:
     - actionName: Your action name
       isExpanded: 1
-      soundType: Click
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -19998,8 +20140,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -20528,8 +20670,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -23055,7 +23197,7 @@ MonoBehaviour:
     SoundEvents:
     - actionName: Your action name
       isExpanded: 1
-      soundType: Click
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -23090,8 +23232,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -23620,8 +23762,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -24299,6 +24441,17 @@ RectTransform:
   m_AnchoredPosition: {x: -500, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2057894935 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2486071700702058270, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+  m_PrefabInstance: {fileID: 9113414239093919949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931518f9ca6c3844891dee74db8ed494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2081284292
 GameObject:
   m_ObjectHideFlags: 0
@@ -25679,7 +25832,7 @@ MonoBehaviour:
     SoundEvents:
     - actionName: Your action name
       isExpanded: 1
-      soundType: BackSound
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -25714,8 +25867,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -26244,8 +26397,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    m_PressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -27612,6 +27765,18 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.70794576
       objectReference: {fileID: 0}
+    - target: {fileID: 5083843041931774539, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: frames
+      value: 1863
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083843041931774539, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: groupVariations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083843041931774539, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
+      propertyPath: groupVariations.Array.data[1]
+      value: 
+      objectReference: {fileID: 2057894935}
     - target: {fileID: 5921601407647719814, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
       propertyPath: m_Volume
       value: 0.70794576
