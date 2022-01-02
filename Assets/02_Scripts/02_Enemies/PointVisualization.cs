@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace Enemy.WaypointVisualisation
+namespace Enemy.Visualization
 {
     public class PointVisualization : MonoBehaviour
     {
-        [Tooltip(" the color of the visualization")]
+        [Tooltip("the color of the visualization")]
         [SerializeField] private Color32 _color;
         [Tooltip("the size of the agent visualization")]
         [SerializeField] private float _radius;

@@ -65,6 +65,7 @@ namespace Enemy.LootSpot
         
         void Update()
         {
+            // reset the loot variables when the looting will be interrupted 
             if (_enemyController != null && _enemyController.ResetLootVariables)
             {
                 _enemyController.Loot = false;
@@ -103,6 +104,8 @@ namespace Enemy.LootSpot
                     _enemyController.AnimationHandler.LootSpot(false);
                     _enemyController.Loot = false;
                     _lootCooldown = _lootTime;
+                    
+                    // the perception of the enemy is reduced while looting
                     _enemyController.SpottedAcousticDistance = _enemyController.DetectionAcousticDistance;
                     _enemyController.AcousticTimeToSpot = _enemyController.AcousticSecondsToSpot;
 
@@ -132,7 +135,7 @@ namespace Enemy.LootSpot
 
         private void OnTriggerEnter(Collider other)
         {
-            // When the enemy is in range, he has the chance to loot the spot
+            // When the enemy is in range and not occupied, he has the chance to loot the spot
             if (other.CompareTag("Enemy") && !_reactivateLootSpot && !_occupied)
             {
                 _chanceToLoot = Random.value;
@@ -158,7 +161,7 @@ namespace Enemy.LootSpot
                     _enemyController.StopDistanceLootSpot = _stopDistance;
                     _lootChance -= _shrinkLootChance;
                     
-                    //  the loot chance can't drop below the minimum loot chance or 0
+                    // the loot chance can't drop below the minimum loot chance or 0
                     if (_lootChance < _minimumLootChance)
                     {
                         _lootChance = _minimumLootChance;

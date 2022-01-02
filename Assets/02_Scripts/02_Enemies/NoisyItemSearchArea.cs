@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using Enemy.AnimationHandler;
-using Enemy.SoundItem;
 using UnityEngine;
 using UnityEngine.AI;
 using untitledProject;
@@ -126,7 +124,7 @@ namespace Enemy.SearchArea
         /// <summary>
         /// select the waypoint where the enemy has to go
         /// </summary>
-        public void StartSearchNoisyItemBehaviour(NavMeshAgent _agent, EnemyAnimationHandler _animationHandler, float _searchSpeed, NoisyItem _noisyItemScript)
+        public void StartSearchNoisyItemBehaviour(NavMeshAgent _agent, EnemyAnimationHandler _animationHandler, float _searchSpeed, SoundItem.NoisyItem _noisyItemScript)
         {
             // when all points were used, the enemy will go back to his routine
             if (_usuableWaypointsAmount <= 0 || _usuableWaypointsRangeAmount <= 0)
