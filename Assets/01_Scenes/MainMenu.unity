@@ -1933,7 +1933,7 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
       soundType: Button
       allPlaylistControllersForGroupCmd: 0
@@ -2078,7 +2078,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -2464,7 +2506,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -3964,7 +4006,7 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
       soundType: Button
       allPlaylistControllersForGroupCmd: 0
@@ -4109,7 +4151,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -4495,7 +4579,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -5629,7 +5713,7 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
       soundType: Button
       allPlaylistControllersForGroupCmd: 0
@@ -5774,7 +5858,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -6160,7 +6286,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -7870,7 +7996,7 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
       soundType: Button
       allPlaylistControllersForGroupCmd: 0
@@ -8015,7 +8141,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -8401,7 +8569,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -10904,7 +11072,7 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
       soundType: Button
       allPlaylistControllersForGroupCmd: 0
@@ -11049,7 +11217,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -11435,7 +11645,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -13882,7 +14092,7 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
       soundType: Button
       allPlaylistControllersForGroupCmd: 0
@@ -14027,7 +14237,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -14413,7 +14665,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -17166,9 +17418,9 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
-      soundType: BackSound
+      soundType: Button
       allPlaylistControllersForGroupCmd: 0
       allSoundTypesForGroupCmd: 0
       allSoundTypesForBusCmd: 0
@@ -17203,8 +17455,8 @@ MonoBehaviour:
       restoreVolumeAfterFade: 0
       targetVolMode: 0
       clipName: '[None]'
-      variationType: 1
-      variationName: 
+      variationType: 0
+      variationName: ButtonClick
       colliderMaxDistance: 0
       showSphereGizmo: 0
       theCustomEventName: 
@@ -17311,7 +17563,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -17697,7 +17991,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -20103,7 +20397,7 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
       soundType: Button
       allPlaylistControllersForGroupCmd: 0
@@ -20248,7 +20542,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -20634,7 +20970,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -23195,7 +23531,7 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
       soundType: Button
       allPlaylistControllersForGroupCmd: 0
@@ -23340,7 +23676,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -23726,7 +24104,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -24441,17 +24819,6 @@ RectTransform:
   m_AnchoredPosition: {x: -500, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2057894935 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2486071700702058270, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
-  m_PrefabInstance: {fileID: 9113414239093919949}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 931518f9ca6c3844891dee74db8ed494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2081284292
 GameObject:
   m_ObjectHideFlags: 0
@@ -25830,7 +26197,7 @@ MonoBehaviour:
     mechanimStateName: 
     mechEventPlayedForState: 0
     SoundEvents:
-    - actionName: Your action name
+    - actionName: ButtonClick
       isExpanded: 1
       soundType: Button
       allPlaylistControllersForGroupCmd: 0
@@ -25975,7 +26342,49 @@ MonoBehaviour:
     isMechanimStateCheckEvent: 0
     mechanimStateName: 
     mechEventPlayedForState: 0
-    SoundEvents: []
+    SoundEvents:
+    - actionName: Your action name
+      isExpanded: 1
+      soundType: Button
+      allPlaylistControllersForGroupCmd: 0
+      allSoundTypesForGroupCmd: 0
+      allSoundTypesForBusCmd: 0
+      volume: 1
+      useFixedPitch: 0
+      pitch: 1
+      glidePitchType: 0
+      targetGlidePitch: 1
+      pitchGlideTime: 1
+      delaySound: 0
+      currentSoundFunctionType: 0
+      currentPlaylistCommand: 0
+      currentSoundGroupCommand: 0
+      currentBusCommand: 0
+      currentCustomEventCommand: 0
+      currentGlobalCommand: 0
+      currentMixerCommand: 0
+      snapshotToTransitionTo: {fileID: 0}
+      snapshotTransitionTime: 1
+      snapshotsToBlend:
+      - snapshot: {fileID: 0}
+        weight: 1
+      currentPersistentSettingsCommand: 0
+      busName: 
+      playlistName: 
+      playlistControllerName: 
+      startPlaylist: 1
+      fadeVolume: 0
+      fadeTime: 1
+      minAge: 1
+      stopAfterFade: 0
+      restoreVolumeAfterFade: 0
+      targetVolMode: 0
+      clipName: '[None]'
+      variationType: 0
+      variationName: ButtonHover
+      colliderMaxDistance: 0
+      showSphereGizmo: 0
+      theCustomEventName: 
     mouseDragStopMode: 0
     mouseDragFadeOutTime: 1
     retriggerLimitMode: 0
@@ -26361,7 +26770,7 @@ MonoBehaviour:
   useUnityPointerDownSound: 0
   useUnityDragSound: 0
   useUnityPointerUpSound: 0
-  useUnityPointerEnterSound: 0
+  useUnityPointerEnterSound: 1
   useUnityPointerExitSound: 0
   useUnityDropSound: 0
   useUnityScrollSound: 0
@@ -27776,7 +28185,7 @@ PrefabInstance:
     - target: {fileID: 5083843041931774539, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
       propertyPath: groupVariations.Array.data[1]
       value: 
-      objectReference: {fileID: 2057894935}
+      objectReference: {fileID: 0}
     - target: {fileID: 5921601407647719814, guid: f4cf956eb9378f2448f30cbbe3ea7268, type: 3}
       propertyPath: m_Volume
       value: 0.70794576
