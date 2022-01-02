@@ -668,7 +668,6 @@ namespace Enemy.Controller
             {
                 if (!EnemyShareInformation.FirstEnemyReachedDestination)
                 {
-                    EnemyShareInformation.EnemyInstance = this;
                     EnemyShareInformation.FirstEnemyReachedDestination = true;
                 }
                 
