@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using TMPro;
 using UnityEngine;
 using untitledProject;
@@ -91,6 +92,7 @@ public class CollectProvisions : MonoBehaviour
                     }
                     
                     _provisionsAmountText.text = _provisionsCounter.ToString();
+                    MasterAudio.PlaySound3DAtTransform("Backpack", _provisions.transform);
                     _provisions.GetComponent<Collider>().enabled = false;
                     _provisions.GetComponent<Provisions>().ProvisionsParent.SetActive(false);
                     _provisionsCollectible = false;
