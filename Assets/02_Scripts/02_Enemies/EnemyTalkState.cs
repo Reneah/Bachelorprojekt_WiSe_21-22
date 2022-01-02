@@ -1,5 +1,4 @@
 using Enemy.Controller;
-using UnityEngine;
 
 namespace Enemy.States
 {
@@ -17,7 +16,7 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
             
-            // When the enemy is finished talking he will go back to his routine
+            // When the enemy is finished talking, he will go back to his routine
             if (!enemy.EnemyTalkCheck.Talk)
             {
                 if (enemy.Patrolling)

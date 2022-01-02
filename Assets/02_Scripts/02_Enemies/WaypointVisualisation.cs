@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Enemy.WaypointVisualisation
+namespace Enemy.Visualization
 {
     public class WaypointVisualisation : MonoBehaviour
     { 
