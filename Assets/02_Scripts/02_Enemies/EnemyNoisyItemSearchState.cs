@@ -11,7 +11,7 @@ namespace Enemy.States
                 return EnemyController.EnemySoundInvestigationState;
             }
         
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.PlayerSoundSpotted || enemy.ActivateChasing)
             {
                 return EnemyController.EnemyVisionChaseState;
             }
@@ -32,8 +32,8 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            enemy.EnemyTalkCheck.Talkable = false;
-
+            // If the points are not prepared, they will be and the if condition will block other enemies to do the same again
+            // will be false again, when all points are used or this state will be exit
             if (!enemy.NoisyItemSearchArea.PreparedSearchPoints)
             {
                 enemy.NoisyItemSearchArea.GetSearchPoints();

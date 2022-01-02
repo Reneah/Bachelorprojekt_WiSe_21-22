@@ -2319,6 +2319,7 @@ MonoBehaviour:
   _lowGroundCatchDistance: 1
   _highGroundCatchDistance: 2
   _chaseSpeed: 4
+  _pullDistance: 3
   _patrollingRoute: {fileID: 0}
   _dwellingTimer: 3
   _stopDistance: 0.5
@@ -2329,10 +2330,10 @@ MonoBehaviour:
   _enemyHead: {fileID: 7429465334465209964}
   _obstacleRaycastTransform: {fileID: 7429465333900099875}
   _lookPositionAtSpotted: {fileID: 0}
-  _visionSecondsToSpott: 1.5
-  _acousticSecondsToSpott: 1.5
+  _visionSecondsToSpot: 1.5
+  _acousticSecondsToSpot: 1.5
   _spottedBar: {fileID: 148888973}
-  _spottedVisionDistance: 2.5
+  _spottedVisionDistance: 3
   _spottedAcousticDistance: 2.5
   _reminderTimeLowGround: 2
   _reminderTimeHighGround: 5
@@ -2349,7 +2350,7 @@ MonoBehaviour:
   _lookSwitchSpeed: 2
   _lookingRoute: {fileID: 0}
   _guardPoint: {fileID: 0}
-  _stopGuardpointDistance: 0.25
+  _stopGuardpointDistance: 0.5
   _desiredBodyRotation: {fileID: 0}
   _currentLookPosition: {fileID: 0}
   _smoothBodyRotation: 10

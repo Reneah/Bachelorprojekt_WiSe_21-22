@@ -137,22 +137,33 @@ namespace untitledProject
             set => _playerThrowTrigger = value;
         }
 
+        public bool PlayerIsSpotted
+        {
+            get => _playerIsSpotted;
+            set => _playerIsSpotted = value;
+        }
+
+        private bool _pickUpItem = false;
+
+        public bool PickUpItem
+        {
+            get => _pickUpItem;
+            set => _pickUpItem = value;
+        }
+
         // the current state of the player
         private IPlayerState _currentState;
         public static readonly PlayerIdleState PlayerIdleState = new PlayerIdleState();
         public static readonly PlayerRunState PlayerRunState = new PlayerRunState();
         public static readonly PlayerJumpState PlayerJumpState =  new PlayerJumpState();
         public static readonly PlayerThrowState PlayerThrowState =  new PlayerThrowState();
-        
-        private void Awake()
-        {
-            // start state machine with LookAroundState
-            _currentState = PlayerIdleState;
-
-        }
+        public static readonly PlayerPickUpState PlayerPickUpState =  new PlayerPickUpState();
         
         void Start()
         {
+            // start state machine with LookAroundState
+            _currentState = PlayerIdleState;
+            
             _playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
             _characterController = GetComponent<CharacterController>();
             _playerThrowTrigger = FindObjectOfType<PlayerThrowTrigger>();
@@ -168,9 +179,6 @@ namespace untitledProject
             _characterController.enabled = false;
             transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX", transform.position.x), PlayerPrefs.GetFloat("PlayerPositionY", transform.position.y), PlayerPrefs.GetFloat("PlayerPositionZ", transform.position.z));
             _characterController.enabled = true;
-            
-            // start state machine with the idle
-            _currentState = PlayerIdleState;
         }
         
         private void Update()
@@ -199,7 +207,6 @@ namespace untitledProject
         private IEnumerator PlayerPosition()
         {
             yield return new WaitForSeconds(0.1f);
-            
         }
         
         /// <summary>
@@ -207,7 +214,7 @@ namespace untitledProject
         /// </summary>
         private void CalmDownTime()
         {
-            if (!_playerIsSpotted)
+            if (!PlayerIsSpotted)
             {
                 if (_calmDownCooldown > 0)
                 {
@@ -218,7 +225,7 @@ namespace untitledProject
                 {
                     _calmDownCooldown = _calmDownTime;
                     _playerAnimationHandler.PlayerFlee(false);
-                    _playerIsSpotted = true;
+                    PlayerIsSpotted = true;
                 }
             }
         }
@@ -249,7 +256,6 @@ namespace untitledProject
                 {
                     _targetSpeed = _fleeSpeed * _moveDirection.magnitude;
                 }
-                
             }
             
             // the current velocity will be smoothed, so that it is possible to have some tweaks 
@@ -353,7 +359,7 @@ namespace untitledProject
             if(other.CompareTag("ViewCone"))
             {
                 _calmDownCooldown = _calmDownTime;
-                _playerIsSpotted = true;
+                PlayerIsSpotted = true;
             }
         }
 
@@ -361,7 +367,7 @@ namespace untitledProject
         {
             if(other.CompareTag("ViewCone"))
             {
-                _playerIsSpotted = false;
+                PlayerIsSpotted = false;
             }
         }
 

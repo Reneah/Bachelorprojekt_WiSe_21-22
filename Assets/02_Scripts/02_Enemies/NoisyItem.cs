@@ -28,6 +28,8 @@ namespace Enemy.SoundItem
         [SerializeField] private GameObject _offsetOrigin;
         [Tooltip("the key to save the used status of the item")]
         [SerializeField] private string _playerPrefsKey;
+        [Tooltip("the key to deactivate permanently the item sound when entering the checkpoint")]
+        [SerializeField] private string _jugRespawnSoundBlockKey;
         [Tooltip("the layer for the noisy item to be able to activate it")]
         [SerializeField] private LayerMask _noisyItemLayer;
         
@@ -184,7 +186,7 @@ namespace Enemy.SoundItem
             _noisyItemCloseActivation = GetComponentInChildren<NoisyItemCloseActivation>();
             _collider = GetComponent<Collider>();
             
-            _permanentlyDeactivated = System.Convert.ToBoolean(PlayerPrefs.GetInt("_permanentlyDeactivated", 0));
+            _permanentlyDeactivated = System.Convert.ToBoolean(PlayerPrefs.GetInt(_jugRespawnSoundBlockKey, 0));
             _itemUsed = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 0));
 
             _collectibleSprite.gameObject.SetActive(false);
@@ -281,7 +283,7 @@ namespace Enemy.SoundItem
                         {
                             MasterAudio.PlaySound3DAtTransform("ShatterVase", transform);
                             _permanentlyDeactivated = true;
-                            PlayerPrefs.SetInt("_permanentlyDeactivated",_permanentlyDeactivated.GetHashCode());
+                            PlayerPrefs.SetInt(_jugRespawnSoundBlockKey,_permanentlyDeactivated.GetHashCode());
                         
                             // Count up the distraction score counter for the Mission Score
                             _myMissionScore.DistractionsScoreCounter += 1;

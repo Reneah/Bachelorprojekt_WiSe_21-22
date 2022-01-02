@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using BP._02_Scripts._03_Game;
 using Enemy.Controller;
 using UnityEngine;
+using untitledProject;
 
 
-    public class CollectibleCloseActivation : MonoBehaviour
+public class CollectibleCloseActivation : MonoBehaviour
     {
         private CollectItem _collectItem;
         private QuestManager _questManager;
         private MissionScore _myMissionScore;
         private EnemyController[] _enemyController;
+
+        private PlayerController _playerController;
         
         void Start()
         {
+            _playerController = FindObjectOfType<PlayerController>();
             _collectItem = GetComponentInParent<CollectItem>();
             _questManager = FindObjectOfType<QuestManager>();
             _enemyController = FindObjectsOfType<EnemyController>();
@@ -24,6 +28,7 @@ using UnityEngine;
         {
             if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible)
             {
+                _playerController.PickUpItem = true;
                 _collectItem.ItemCollectible = false;
                     
                 if (_collectItem.Key)

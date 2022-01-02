@@ -294,13 +294,13 @@ namespace BP._02_Scripts._03_Game
                 _goodResultMessage.SetActive(false);
                 _excellentResultMessage.SetActive(false);
             }
-            else if (finalScore <= 7499)
+            else if (finalScore <= 9999)
             {
                 _averageResultMessage.SetActive(false);
                 _goodResultMessage.SetActive(true);
                 _excellentResultMessage.SetActive(false);
             }
-            else if (finalScore >= 7500)
+            else if (finalScore >= 10000)
             {
                 _averageResultMessage.SetActive(false);
                 _goodResultMessage.SetActive(false);

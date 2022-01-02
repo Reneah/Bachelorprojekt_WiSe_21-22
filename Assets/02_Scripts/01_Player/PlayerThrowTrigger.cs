@@ -146,7 +146,6 @@ public class PlayerThrowTrigger : MonoBehaviour
         if (!_close && _playerController.IsGrounded)
         { 
             // if the mouse is hovering over the noisy item, the corresponding text will show up and the throw is available
-            //!Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("Blocked"))
             if(_hitNoisyItem) 
             {
                 if (!_throwstate && Vector3.Distance(transform.position, _hit.collider.gameObject.transform.position) < _throwDistance)

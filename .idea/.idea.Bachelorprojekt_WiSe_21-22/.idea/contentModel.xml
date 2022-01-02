@@ -25,6 +25,7 @@
             <e p="PlayerGroundDetection.cs" t="Include" />
             <e p="PlayerIdleState.cs" t="Include" />
             <e p="PlayerJumpState.cs" t="Include" />
+            <e p="PlayerPickUpState.cs" t="Include" />
             <e p="PlayerRunState.cs" t="Include" />
             <e p="PlayerStepsSound.cs" t="Include" />
             <e p="PlayerThrowState.cs" t="Include" />

@@ -11,18 +11,6 @@ namespace Enemy.States
         public IEnemyState Execute(EnemyController enemy)
         {
             enemy.SpottedBar.fillAmount = 1;
-            // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
-            if (enemy.ActivateChasing)
-            {
-                enemy.ActivateChaseCooldown -= Time.deltaTime;
-
-                if (enemy.ActivateChaseCooldown <= 0)
-                {
-                    enemy.ActivateChasing = false;
-                    enemy.ActivateChaseCooldown = 0.1f;
-                }
-            }
-            
             enemy.CheckPlayerGround();
             
             if (enemy.CanSeePlayer)
@@ -33,7 +21,7 @@ namespace Enemy.States
             if (!enemy.CanSeePlayer)
             {
                 enemy.LastChanceTime -= Time.deltaTime;
-                
+
                 if (enemy.LastChanceTime > 0)
                 {
                     enemy.Agent.SetDestination(enemy.Player.transform.position);
@@ -51,14 +39,10 @@ namespace Enemy.States
                         {
                             if (enemy.Guarding)
                             {
-                                enemy.PlayerSpotted = false;
-                                enemy.UseSpottedBar = false;
                                 return EnemyController.EnemyGuardState;
                             }
                             else if (enemy.Patrolling)
                             {
-                                enemy.PlayerSpotted = false;
-                                enemy.UseSpottedBar = false;
                                 return EnemyController.EnemyPatrolState;
                             }
                         }
@@ -84,26 +68,31 @@ namespace Enemy.States
         {
             enemy.SoundNoticed = false;
             enemy.InChaseState = true;
+            enemy.AbleToLoot = false;
             
-            enemy.EnemyTalkCheck.Talkable = false;
             enemy.PullEnemyNearby();
 
             enemy.Agent.isStopped = false;
+            
+            enemy.ActivateChasing = false;
+            enemy.PlayerSoundSpotted = false;
         }
     
         public void Exit(EnemyController enemy)
         {
+            enemy.ActivateChasing = false;
+            enemy.PlayerSoundSpotted = false;
+            
             enemy.InChaseState = false;
             enemy.SoundNoticed = false;
-            
-            //NOTE: Still have to test it because the third one can't search and at the start method of search these value will be deactivated
-          //  enemy.PlayerSpotted = false;
-           // enemy.UseSpottedBar = false;
             
             enemy.Agent.isStopped = false;
             
             enemy.HighGroundViewCone.SetActive(false);
             enemy.LowGroundViewCone.SetActive(true);
+            
+            enemy.PlayerSpotted = false;
+            enemy.UseSpottedBar = false;
         }
     }
 }

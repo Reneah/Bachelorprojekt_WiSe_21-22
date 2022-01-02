@@ -27,6 +27,11 @@ namespace untitledProject
                 return PlayerController.PlayerThrowState;
             }
             
+            if (player.PickUpItem)
+            {
+                return PlayerController.PlayerPickUpState;
+            }
+            
             player.MovementExecution();
             return this;
         }

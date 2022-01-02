@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using BP._02_Scripts._03_Game;
 using Enemy.AnimationHandler;
@@ -22,7 +21,6 @@ namespace Enemy.Controller
         
         // need this script to get the information of the sound activation
         private NoisyItem _noisyItemScript;
-
         public NoisyItem NoisyItemScript
         {
             get => _noisyItemScript;
@@ -31,34 +29,25 @@ namespace Enemy.Controller
 
         // need this script to get the transform information and some methods of the player
         private PlayerController _player;
+        public PlayerController Player => _player;
 
         // need this script so that the enemy knows on which ground the player is 
         private PlayerGroundDetection _playerGroundDetection;
+        public PlayerGroundDetection PlayerGroundDetection => _playerGroundDetection;
 
-        public PlayerGroundDetection PlayerGroundDetection
-        {
-            get => _playerGroundDetection;
-            set => _playerGroundDetection = value;
-        }
-
-        public PlayerController Player => _player;
-
+        // this script controls the animation of the enemy
         private EnemyAnimationHandler _animationHandler;
         public EnemyAnimationHandler AnimationHandler => _animationHandler;
 
+        // need this script to use the bool values
         private EnemyTalkCheck _enemyTalkCheck;
+        public EnemyTalkCheck EnemyTalkCheck => _enemyTalkCheck;
 
+        // this script is for the score at the end of the game and counts some things
         private MissionScore _myMissionScore;
-
-        public EnemyTalkCheck EnemyTalkCheck
-        {
-            get => _enemyTalkCheck;
-            set => _enemyTalkCheck = value;
-        }
-
+        
         // need this script to call the death scene
         private InGameMenu _inGameMenu;
-
         public InGameMenu InGameMenu
         {
             get => _inGameMenu;
@@ -91,34 +80,40 @@ namespace Enemy.Controller
 
         [Header("Chase Behaviour")]
         [Tooltip("set the distance to catch the player")]
-        [Range(0.5f, 5)]
+        [Range(0.5f, 3)]
         [SerializeField] private float _lowGroundCatchDistance = 2;
         [Tooltip("set the distance to catch the player")]
-        [Range(1, 5)]
+        [Range(1, 3)]
         [SerializeField] private float _highGroundCatchDistance = 2;
         [Tooltip("the speed which the enemy will chase the player")]
-        [Range(1,10)]
+        [Range(1,7)]
         [SerializeField] private float _chaseSpeed;
+        [Tooltip("the range to pull another enemy nearby when this enemy spotted the player")]
+        [Range(1, 7)]
+        [SerializeField] private float _pullDistance = 3;
         
         // determines if the first enemy reached the destination of the player nearby so that the other ones can gather around
         private bool _firstEnemyReachedDestination;
 
-        // when the enemy is near another enemy who has sighted the player he will chase him as well
+        // when the enemy is near another enemy, who has sighted the player, he will chase him as well
         private bool _activateChasing = false;
         
-        // the time window where this enemy can pull other enemies to chase the player nearby
-        private float _activateChaseCooldown = 0.1f;
-
         // the position on the NavMesh around the current player position that is reachable
         private NavMeshHit _hit;
 
         // when the enemy spotted the player, the score for the player will change
         private bool _scoreCount;
+
+        // need all enemies to pull them nearby when another one spotted the player
+        private EnemyController[] _enemiesInWholeScene;
         
-        public float ActivateChaseCooldown
+        // when the enemy hears the footstep of the player, he will go into the chase mode
+        private bool _playerSoundSpotted = false;
+
+        public bool PlayerSoundSpotted
         {
-            get => _activateChaseCooldown;
-            set => _activateChaseCooldown = value;
+            get => _playerSoundSpotted;
+            set => _playerSoundSpotted = value;
         }
         
         public bool ActivateChasing
@@ -137,11 +132,11 @@ namespace Enemy.Controller
         [Tooltip("the time which the enemy is standing at a waypoint")]
         [Range(0,10)]
         [SerializeField] private float _dwellingTimer = 1;
-        [Range(0,5)]
+        [Range(0,3)]
         [Tooltip("the distance where the enemy will stop when arriving at a waypoint")]
         [SerializeField] private float _stopDistance = 0.5f;
         [Tooltip("the patrol speed of the enemy")] 
-        [Range(0,10)]
+        [Range(0,5)]
         [SerializeField] private float _patrolSpeed;
         
         // determines the current patrol points of the enemy
@@ -153,102 +148,80 @@ namespace Enemy.Controller
         // the list of the enemy patrol points
         List<Transform> _patrolPoints = new List<Transform>();
         
-        public bool Patrolling
-        {
-            get => _patrolling;
-            set => _patrolling = value;
-        }
-        
-        public float PatrolSpeed
-        {
-            get => _patrolSpeed;
-            set => _patrolSpeed = value;
-        }
-        
+        public bool Patrolling => _patrolling;
+
+        public float PatrolSpeed => _patrolSpeed;
+
         #endregion
         
         #region FieldOfViewVariables
         
         [Header("FieldOfView")]
-        [Tooltip("the mask for the registration of the obstacle in the view field")]
+        [Tooltip("the mask to determine the obstacle in the view field")]
         [SerializeField] private LayerMask _obstructionMask;
-        [Tooltip("the enemy head Transform to have the origin for the view field")]
+        [Tooltip("the enemy head transform to have the origin for raycasts in his view field")]
         [SerializeField] private Transform _enemyHead;
         [Tooltip("the raycast position to know obstacles")] 
         [SerializeField] private Transform _obstacleRaycastTransform;
         [Tooltip("the look position when the player is spotted")]
         [SerializeField] private Transform _lookPositionAtSpotted;
-        [Tooltip("the delay time that the player get spotted in the view field")]
-        [Range(0,10)]
-        [SerializeField] private float _visionSecondsToSpott;
-        [Tooltip("the delay time that the player get spotted in the hear radius")]
-        [Range(0,10)]
-        [SerializeField] private float _acousticSecondsToSpott;
+        [Tooltip("the delay time that the player gets spotted in the view field")]
+        [Range(0,5)]
+        [SerializeField] private float _visionSecondsToSpot = 1.5f;
+        [Tooltip("the delay time that the player gets spotted in the hear radius")]
+        [Range(0,5)]
+        [SerializeField] private float _acousticSecondsToSpot = 1.5f;
+        [Tooltip("the spotted bar, which shows the spotted time above the enemy")]
         [SerializeField] private Image _spottedBar;
-        [Tooltip("the distance where you get spotted instantly")]
-        [Range(0,10)]
+        [Tooltip("the distance where the player gets spotted instantly")]
+        [Range(0,5)]
         [SerializeField] private float _spottedVisionDistance;
-        [Tooltip("the distance where you get spotted instantly")]
-        [Range(0,10)]
+        [Tooltip("the distance where player get spotted instantly")]
+        [Range(0,5)]
         [SerializeField] private float _spottedAcousticDistance;
-        [Tooltip("the time which will still set the player as destination after out of sight to simulate the awareness that the player ran in the direction")]
-        [Range(0,10)]
+        [Tooltip("the time which will still set the player destination after out of sight to simulate the awareness that the player is not in his mind anymore")]
+        [Range(0,5)]
         [SerializeField] private float _reminderTimeLowGround;
         [Range(0,10)]
+        [Tooltip("the time which will still set the player destination after out of sight to simulate the awareness that the player is not in his mind anymore")]
         [SerializeField] private float _reminderTimeHighGround;
-        [Tooltip("the view cone that will eb activated when the player is on high ground")]
+        [Tooltip("the view cone that will be activated when the player is on high ground")]
         [SerializeField] private GameObject _highGroundViewCone;
         [Tooltip("the view cone that will be activated when the player is on low ground")]
         [SerializeField] private GameObject _lowGroundViewCone;
+        
+        // the delay time that the player gets spotted in the view field
+        private float _visionTimeToSpot;
+        //the delay time that the player gets spotted in the hear radius
+        private float _acousticTimeToSpot;
+        // the distance where the player gets spotted instantly
+        private float _detectionAcousticDistance;
 
-        // the time that will be set the spotted time when the enemy is searching for the player
-        private float _reducedSpottedTime = 1;
-        //the delay time that the player get spotted in the view field
-        private float _visionTimeToSpott;
-        //the delay time that the player get spotted in the hear radius
-        private float _acousticTimeToSpott;
+        public float ReminderTimeLowGround => _reminderTimeLowGround;
 
-        public GameObject LowGroundViewCone
+        public float ReminderTimeHighGround => _reminderTimeHighGround;
+        
+        public float DetectionAcousticDistance => _detectionAcousticDistance;
+
+        public GameObject LowGroundViewCone => _lowGroundViewCone;
+
+        public GameObject HighGroundViewCone => _highGroundViewCone;
+
+        public float VisionTimeToSpot
         {
-            get => _lowGroundViewCone;
-            set => _lowGroundViewCone = value;
+            get => _visionTimeToSpot;
+            set => _visionTimeToSpot = value;
         }
 
-        public GameObject HighGroundViewCone
+        public float AcousticTimeToSpot
         {
-            get => _highGroundViewCone;
-            set => _highGroundViewCone = value;
+            get => _acousticTimeToSpot;
+            set => _acousticTimeToSpot = value;
         }
 
-        public float ReducedSpottedTime
-        {
-            get => _reducedSpottedTime;
-            set => _reducedSpottedTime = value;
-        }
+        public float AcousticSecondsToSpot => _acousticSecondsToSpot;
 
-        public float VisionTimeToSpott
-        {
-            get => _visionTimeToSpott;
-            set => _visionTimeToSpott = value;
-        }
-
-        public float AcousticTimeToSpott
-        {
-            get => _acousticTimeToSpott;
-            set => _acousticTimeToSpott = value;
-        }
-
-        public float AcousticSecondsToSpott
-        {
-            get => _acousticSecondsToSpott;
-            set => _acousticSecondsToSpott = value;
-        }
-
-        public float VisionSecondsToSpott
-        {
-            get => _visionSecondsToSpott;
-            set => _visionSecondsToSpott = value;
-        }
+        public float VisionSecondsToSpot => _visionSecondsToSpot;
 
         // when the player is in the view field, the spotted time for the vision will be used
         private bool _playerInViewField = false;
@@ -259,10 +232,16 @@ namespace Enemy.Controller
             set => _playerInViewField = value;
         }
 
+        public float SpottedAcousticDistance
+        {
+            get => _spottedAcousticDistance;
+            set => _spottedAcousticDistance = value;
+        }
+
         // the time to spot the enemy when he is in the view field
         private float _spotTime = 0;
         
-        // determines if the enemy is able to see the player or not, but he is not spotted
+        // determines if the enemy is able to see the player or not. Player is visible when he is spotted
         private bool _canSeePlayer = false;
         
         // give the enemy the chance to chase the player again
@@ -275,18 +254,6 @@ namespace Enemy.Controller
             set => _lastChanceTime = value;
         }
         
-        public float ReminderTimeLowGround
-        {
-            get => _reminderTimeLowGround;
-            set => _reminderTimeLowGround = value;
-        }
-
-        public float ReminderTimeHighGround
-        {
-            get => _reminderTimeHighGround;
-            set => _reminderTimeHighGround = value;
-        }
-
         // determines if the player is spotted or not
         private bool _playerSpotted = false;
         // the player is in sight and the spotTime can start to manipulate the bar
@@ -294,7 +261,6 @@ namespace Enemy.Controller
 
         public bool UseSpottedBar
         {
-            get => _useSpottedBar;
             set => _useSpottedBar = value;
         }
 
@@ -306,39 +272,22 @@ namespace Enemy.Controller
 
         public float SpotTime
         {
-            get => _spotTime;
             set => _spotTime = value;
         }
         
-        public Transform LookPositionAtSpotted
-        {
-            get => _lookPositionAtSpotted;
-            set => _lookPositionAtSpotted = value;
-        }
+        public Transform LookPositionAtSpotted => _lookPositionAtSpotted;
 
-        public Transform ObstacleRaycastTransform
-        {
-            get => _obstacleRaycastTransform;
-            set => _obstacleRaycastTransform = value;
-        }
+        public Transform ObstacleRaycastTransform => _obstacleRaycastTransform;
 
-        public Transform EnemyHead
-        {
-            get => _enemyHead;
-            set => _enemyHead = value;
-        }
-        
+        public Transform EnemyHead => _enemyHead;
+
         public bool CanSeePlayer
         {
             get => _canSeePlayer;
             set => _canSeePlayer = value;
         }
         
-        public LayerMask ObstructionMask
-        {
-            get => _obstructionMask;
-            set => _obstructionMask = value;
-        }
+        public LayerMask ObstructionMask => _obstructionMask;
 
         private bool _inChaseState = false;
         public bool InChaseState
@@ -347,11 +296,7 @@ namespace Enemy.Controller
             set => _inChaseState = value;
         }
         
-        public Image SpottedBar
-        {
-            get => _spottedBar;
-            set => _spottedBar = value;
-        }
+        public Image SpottedBar => _spottedBar;
 
         #endregion
 
@@ -372,21 +317,17 @@ namespace Enemy.Controller
         [SerializeField] private float _playerSearchSpeed;
         [Tooltip("layer mask to block the acoustic through objects")]
         [SerializeField] private LayerMask _blockAcousticLayerMasks;
-        // the current sound state of the item to update the behaviour of the enemy
+         // the current sound state of the item to update the behaviour of the enemy
          private int _currentSoundStage = 0;
          // prevent that the animation will be activated permanently in Update
          private bool _animationActivated = false;
-         // update the agent destination of the enemy when the footsteps were heard
-         private bool _heardFootsteps = false;
-         // get all waypoints in the search area again after using them
-         private bool _resetSearchWaypoints = false;
          // the enemy is able to investigate the noisy item when he heard the sound and the max enemy pull amount is not reached
          private bool _canInvestigate = false;
          // because the trigger enter gets more calls than one at the sound tag, I counter it with this bool
          private bool _getSoundOnce = false;
          // when the player enters the hear field, the spotted time will be activated
          private bool _playerInHearField = false;
-         // the collider of the hear field so that when it is deactivated, the Trigger Exit function can be replaced to stop the spotted time
+         // when the collider is deactivated, the Trigger Exit function can be replaced to stop the spotted time
          private Collider _hearFieldPlayerCollider;
          // need this script to get the collider of the step sound 
          private PlayerStepsSound _playerStepsSound;
@@ -398,49 +339,41 @@ namespace Enemy.Controller
          private bool _hearFieldColliderActiv = true;
          // the speed when the enemy is searching the environment after investigating the noisy item
          private float _investigationRunSpeed;
+         // determines if the enemy heard a sound
+         private bool _soundNoticed = false;
+         // the current sound stage that influence the enemy behaviour
+         private int _soundBehaviourStage = 0;
+         // the position from where the sound came so that the enemy knows where to move
+         private Transform _soundEventPosition;
 
-         public float InvestigationRunSpeed
-         {
-             get => _investigationRunSpeed;
-             set => _investigationRunSpeed = value;
-         }
+         public float InvestigationRunSpeed => _investigationRunSpeed;
 
-         public NoisyItemSearchArea NoisyItemSearchArea
-         {
-             get => _noisyItemSearchArea;
-             set => _noisyItemSearchArea = value;
-         }
+         public NoisyItemSearchArea NoisyItemSearchArea => _noisyItemSearchArea;
 
-         public SearchAreaOverview SearchArea
-         {
-             get => _searchArea;
-             set => _searchArea = value;
-         }
+         public SearchAreaOverview SearchArea => _searchArea;
+         
+         public float SearchSpeed => _playerSearchSpeed;
 
+         public float FirstStageRunSpeed => _firstStageRunSpeed;
+
+         public float SecondStageRunSpeed => _secondStageRunSpeed;
+
+         public float ThirdStageRunSpeed => _thirdStageRunSpeed;
+         
+         public int SoundBehaviourStage => _soundBehaviourStage;
+         
+         public Transform SoundEventPosition => _soundEventPosition;
+         
          public bool CanInvestigate
          {
-             get => _canInvestigate;
              set => _canInvestigate = value;
          }
 
          public bool GetSoundOnce
          {
-             get => _getSoundOnce;
              set => _getSoundOnce = value;
          }
          
-         public bool ResetSearchWaypoints
-         {
-             get => _resetSearchWaypoints;
-             set => _resetSearchWaypoints = value;
-         }
-
-         public bool HeardFootsteps
-         {
-             get => _heardFootsteps;
-             set => _heardFootsteps = value;
-         }
-
          public bool AnimationActivated
          {
              get => _animationActivated;
@@ -452,56 +385,13 @@ namespace Enemy.Controller
              get => _currentSoundStage;
              set => _currentSoundStage = value;
          }
-
-         public float SearchSpeed
-         {
-             get => _playerSearchSpeed;
-             set => _playerSearchSpeed = value;
-         }
          
-        public float FirstStageRunSpeed
-        {
-            get => _firstStageRunSpeed;
-            set => _firstStageRunSpeed = value;
-        }
-
-        public float SecondStageRunSpeed
-        {
-            get => _secondStageRunSpeed;
-            set => _secondStageRunSpeed = value;
-        }
-
-        public float ThirdStageRunSpeed
-        {
-            get => _thirdStageRunSpeed;
-            set => _thirdStageRunSpeed = value;
-        }
-
-        // determines if the enemy heard a sound
-        private bool _soundNoticed = false;
-        // the current sound stage that influence the enemy behaviour
-        private int _soundBehaviourStage = 0;
-        // the position from where the sound came so that the enemy knows where to move
-        private Transform _soundEventPosition;
-
-        public Transform SoundEventPosition
-        {
-            get => _soundEventPosition;
-            set => _soundEventPosition = value;
-        }
-
-        public bool SoundNoticed
+         public bool SoundNoticed
         {
             get => _soundNoticed;
             set => _soundNoticed = value;
         }
-
-        public int SoundBehaviourStage
-        {
-            get => _soundBehaviourStage;
-            set => _soundBehaviourStage = value;
-        }
-        
+         
         #endregion
         
         #region GuardVariables
@@ -513,7 +403,7 @@ namespace Enemy.Controller
         [Tooltip("the speed how fast the invisible agent is moving")]
         [Range(0,10)]
         [SerializeField] private float _lookSwitchSpeed;
-        [Tooltip("the route where the enemy should look")]
+        [Tooltip("the parent of the route where the enemy should look")]
         [SerializeField] private GameObject _lookingRoute;
         [Tooltip("the point where the enemy is guarding")]
         [SerializeField] private Transform _guardPoint;
@@ -541,7 +431,6 @@ namespace Enemy.Controller
         public Transform CurrentLookPosition => _currentLookPosition;
         public float SmoothBodyRotation => _smoothBodyRotation;
         public Transform DesiredBodyRotation => _desiredBodyRotation;
-        public float StopGuardpointDistance => _stopGuardpointDistance;
         public Transform GuardPoint => _guardPoint;
 
         // the list of the enemy look points
@@ -611,12 +500,30 @@ namespace Enemy.Controller
             get => _lootSpotTransform;
             set => _lootSpotTransform = value;
         }
+
+        // enemy should only be allowed to loot when he is patrolling
+        private bool _ableToLoot = false;
+
+        public bool AbleToLoot
+        {
+            get => _ableToLoot;
+            set => _ableToLoot = value;
+        }
+
+        // reset the loot variables when it will be interuppted
+        private bool _resetLootVariables = false;
+
+        public bool ResetLootVariables
+        {
+            get => _resetLootVariables;
+            set => _resetLootVariables = value;
+        }
         
         #endregion
         
-        
         void Start()
         {
+            // start with low ground view cone
             _highGroundViewCone.SetActive(false);
             _lowGroundViewCone.SetActive(true);
             
@@ -632,6 +539,7 @@ namespace Enemy.Controller
             _playerStepsSound = FindObjectOfType<PlayerStepsSound>();
             _hearFieldPlayerCollider = _playerStepsSound.GetComponent<Collider>();
             _myMissionScore = FindObjectOfType<MissionScore>();
+            _enemiesInWholeScene = FindObjectsOfType<EnemyController>();
 
             // designer can choose between patrolling or guarding mode. The enemy will use only one mode as routine
             if (_patrolling)
@@ -649,8 +557,10 @@ namespace Enemy.Controller
             // set the slowest investigation speed the enemy has. At the first and second stage the enemy doesn't expect the player, so he will search slowly
             _investigationRunSpeed = _firstStageRunSpeed;
 
-            _visionTimeToSpott = _visionSecondsToSpott;
-            _acousticTimeToSpott = _acousticSecondsToSpott;
+            // set the detection time and distance
+            _visionTimeToSpot = _visionSecondsToSpot;
+            _acousticTimeToSpot = _acousticSecondsToSpot;
+            _detectionAcousticDistance = _spottedAcousticDistance;
         }
         
         void Update()
@@ -663,26 +573,33 @@ namespace Enemy.Controller
                 _currentState.Enter(this);
             }
             
-            PlayerVisionDetection();
+            PlayerDetection();
             ActivateNoisyItemInvestigation();
         }
         
         #region ChaseBehaviour
 
+        /// <summary>
+        /// pulls enemies nearby when another enemy has spotted the player
+        /// </summary>
         public void PullEnemyNearby()
         {
-            for (int i = 0; i < FindObjectsOfType<EnemyController>().Length; i++)
+            for (int i = 0; i < _enemiesInWholeScene.Length; i++)
             {
-                if (Vector3.Distance(transform.position, FindObjectsOfType<EnemyController>()[i].transform.position) <= 2)
+                // when the enemy is in pull range, he will be pulled to chase the player as well
+                if (Vector3.Distance(transform.position, _enemiesInWholeScene[i].transform.position) <= _pullDistance)
                 {
-                    if (!FindObjectsOfType<EnemyController>()[i].InChaseState)
+                    if (!_enemiesInWholeScene[i].InChaseState)
                     {
-                        FindObjectsOfType<EnemyController>()[i].ActivateChasing = true;
+                        _enemiesInWholeScene[i].ActivateChasing = true;
+                        
                         // when the enemy will be pulled of another one, the enemy should not go instantly into the search mode. Should have the chance to follow the player
-                        FindObjectsOfType<EnemyController>()[i].LastChanceTime = 5;
-                        FindObjectsOfType<EnemyController>()[i].PlayerSpotted = true;
-                        FindObjectsOfType<EnemyController>()[i].SpottedBar.fillAmount = 1;
-                        FindObjectsOfType<EnemyController>()[i].PlayerSpotted = true;
+                        _enemiesInWholeScene[i].LastChanceTime = 5;
+                        
+                        _enemiesInWholeScene[i].UseSpottedBar = true;
+                        _enemiesInWholeScene[i].SpottedBar.fillAmount = 1;
+                        _enemiesInWholeScene[i].PlayerSpotted = true;
+                        _enemiesInWholeScene[i].SpotTime = 10;
                     }
                 }
             }
@@ -696,7 +613,7 @@ namespace Enemy.Controller
             if (!_scoreCount)
             {
                 // Counts up the mission score for the player to have been spotted
-                //_myMissionScore.SpottedScoreCounter += 1;
+                _myMissionScore.SpottedScoreCounter += 1;
                 _scoreCount = true;
             }
             
@@ -706,6 +623,7 @@ namespace Enemy.Controller
                 _lowGroundViewCone.SetActive(true);
                 _highGroundViewCone.SetActive(false);
 
+                // when player is visible, set the low ground reminder time
                 if (_canSeePlayer)
                 {
                     _lastChanceTime = ReminderTimeLowGround;
@@ -718,6 +636,7 @@ namespace Enemy.Controller
                 _lowGroundViewCone.SetActive(false);
                 _highGroundViewCone.SetActive(true);
 
+                // when player is visible, set the high ground reminder time
                 if (_canSeePlayer)
                 {
                     _lastChanceTime = ReminderTimeHighGround;
@@ -742,20 +661,13 @@ namespace Enemy.Controller
         /// </summary>
         public void ChasePlayer()
         {
-            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination 
-            if (EnemyShareInformation.EnemyInstance != null && !EnemyShareInformation.EnemyInstance._agent.isStopped) 
-            { 
-                EnemyShareInformation.FirstEnemyReachedDestination = false; 
-            } 
-            
             // prevent that the run animation is playing when the agent can't go further in contrast to the player 
             // rotates the enemy towards the player position 
             // first if condition: first enemy reached the destination - second if condition: when more than one enemy reaches around the destination, they will stop 
-            if (ClosestPlayerPosition(1)|| ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination && _playerGroundDetection.HighGround)
+            if (ClosestPlayerPosition(0.5f) || ClosestPlayerPosition(2.5f) && EnemyShareInformation.FirstEnemyReachedDestination && _playerGroundDetection.HighGround)
             {
                 if (!EnemyShareInformation.FirstEnemyReachedDestination)
                 {
-                    EnemyShareInformation.EnemyInstance = this;
                     EnemyShareInformation.FirstEnemyReachedDestination = true;
                 }
                 
@@ -767,9 +679,11 @@ namespace Enemy.Controller
                     _desiredDirection = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 5 * Time.deltaTime);
                     transform.rotation = _desiredDirection;
                 }
-
                 return;
             }
+
+            // when the first enemy reached the destination, the enemy will be taken to signalize that the other have to stop around the destination 
+            EnemyShareInformation.FirstEnemyReachedDestination = false; 
             
             _agent.SetDestination(_player.transform.position);
             _agent.speed = _chaseSpeed;
@@ -798,7 +712,7 @@ namespace Enemy.Controller
         #region PatrolBehaviour
         
         /// <summary>
-        /// set the standing cooldown and add the waypoints to the list
+        /// set the dwelling cooldown and add the waypoints to the list
         /// </summary>
         private void SetUpPatrolBehaviour()
         {
@@ -811,7 +725,7 @@ namespace Enemy.Controller
         }
         
         /// <summary>
-        /// set the first destination point patrol speed
+        /// set the first destination point and patrol speed
         /// </summary>
         public void StartPatrolBehaviour()
         {
@@ -877,7 +791,7 @@ namespace Enemy.Controller
             _currentLookPosition.position = Vector3.MoveTowards(_currentLookPosition.transform.position, _currentLookPoint.transform.position, Time.deltaTime * _lookSwitchSpeed);
 
             // when the current look position is reached, the look time will count down and set the next look point
-            if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookPoint.transform.position ) <= _stopGuardpointDistance && !_reachedLookPoint)
+            if (Vector3.Distance(_currentLookPosition.transform.position, _currentLookPoint.transform.position ) <= 0.5f && !_reachedLookPoint)
             {
                 _reachedLookPoint = true;
             }
@@ -903,11 +817,11 @@ namespace Enemy.Controller
         /// <returns></returns>
         public bool GuardPointDistance()
         {
-            return Vector3.Distance(transform.position, _guardPoint.transform.position) <= StopGuardpointDistance;
+            return Vector3.Distance(transform.position, _guardPoint.transform.position) <= _stopGuardpointDistance;
         }
 
         /// <summary>
-        /// the desired standing position of the enemy at the guard point
+        /// the desired standing direction of the enemy at the guard point
         /// </summary>
         public void DesiredStandingLookDirection()
         {
@@ -922,8 +836,9 @@ namespace Enemy.Controller
         /// <summary>
         /// Bar control to show how much the player is spotted of the enemy
         /// </summary>
-        public void PlayerVisionDetection()
+        public void PlayerDetection()
         {
+            // when the trigger exit could not be used and the collider is still enabled, it will be deactivated
             if (!_hearFieldPlayerCollider.enabled && _hearFieldColliderActiv)
             {
                 _hearFieldColliderActiv = false;
@@ -931,26 +846,27 @@ namespace Enemy.Controller
                 _playerInHearField = false;
             }
             
-            // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view field
+            // when the enemy sees the player, he will get spotted in a fixed time when he stays in the view or hear field
             if (_useSpottedBar)
             {
-                float distance = Vector3.Distance(transform.position, _player.transform.position);
+                float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
 
-                // the time will run and will fill the bar until the player is spotted
-                if (_spotTime < _visionTimeToSpott && _playerInViewField)
+                // the vision time will run and will fill the bar until the player is spotted
+                if (_spotTime <= _visionTimeToSpot && _playerInViewField)
                 {
-                    _spotTime += Time.deltaTime / _visionTimeToSpott;
+                    _spotTime += Time.deltaTime / _visionTimeToSpot;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
-                if (_playerInHearField && _spotTime < _acousticTimeToSpott)
+                // the acoustic time will run and will fill the bar until the player is spotted
+                if (_playerInHearField && _spotTime <= _acousticTimeToSpot)
                 {
-                    _spotTime += Time.deltaTime / _acousticTimeToSpott;
+                    _spotTime += Time.deltaTime / _acousticTimeToSpot;
                     _spottedBar.fillAmount = _spotTime;
                 }
                 
-                // when the player is to close to the enemy or to long in the view field, the player get spotted
-                if (_spottedBar.fillAmount >= 1 || distance <= _spottedVisionDistance  || distance <= _spottedAcousticDistance)
+                // when the player is to close to the enemy or too long in the view field, the player get spotted
+                if (_spottedBar.fillAmount >= 1 || distanceToPlayer <= _spottedVisionDistance && _playerInViewField || distanceToPlayer <= _spottedAcousticDistance)
                 {
                     _player.PlayerAnimationHandler.PlayerFlee(true);
                     _spotTime = 1;
@@ -958,6 +874,7 @@ namespace Enemy.Controller
                     _playerSpotted = true;
                 }
             }
+            
             else if(!_useSpottedBar && !_inChaseState)
             {
                 if (_spotTime > 0)
@@ -975,92 +892,6 @@ namespace Enemy.Controller
         
         #endregion
         
-        private void OnTriggerEnter(Collider other)
-        {
-            // when the enemy hears the noisy item sound, he will investigate it when the max enemy pull amount is not reached
-            if (other.CompareTag("Sound") && !_getSoundOnce)
-            {
-                // get the current noisy item script of the item
-                _noisyItemScript = other.GetComponentInParent<NoisyItem>();
-                
-                Vector3 _raycastDirection = new Vector3(_noisyItemScript.transform.position.x, _noisyItemScript.transform.position.y, _noisyItemScript.transform.position.z) - _enemyHead.position;
-                // when a specific layer is hit that isolate sound, the enemy will hear nothing
-                if (Physics.Raycast(_enemyHead.position, _raycastDirection, Vector3.Distance(_enemyHead.position , _noisyItemScript.transform.position), _blockAcousticLayerMasks))
-                {
-                    return;
-                }
-                
-                _getSoundOnce = true;
-                
-                // add the enemy to the list and start the cooldown to choose the closest enemies
-                _noisyItemScript.EnemyList.Add(this);
-                _noisyItemScript.StartPullCountdown = true;
-            }
-            
-            // if the enemy gets in a new room, the old search points will be deleted and the new ones will be selected
-            if (other.CompareTag("SearchPoints"))
-            {
-                _searchArea = other.GetComponent<SearchAreaOverview>();
-                _noisyItemSearchArea = other.GetComponent<NoisyItemSearchArea>();
-            }
-        }
-
-        private void OnTriggerStay(Collider other)
-        {
-            // when the enemy hears the footsteps of the player, he knows that he is nearby, so he is spotted and will run to the player position
-            if (other.CompareTag("FootSteps"))
-            {
-                Vector3 _raycastDirection = new Vector3(_player.transform.position.x, _player.transform.position.y + 2.5f, _player.transform.position.z) - _enemyHead.position;
-                // when a specific layer is hit that isolate sound, the enemy will hear nothing
-                if (Physics.Raycast(_enemyHead.position, _raycastDirection,  Vector3.Distance(_enemyHead.position , _player.transform.position), _blockAcousticLayerMasks))
-                {
-                    _useSpottedBar = false;
-                    return;
-                }
-
-                _hearFieldColliderActiv = true;
-                _playerInHearField = true;
-                _useSpottedBar = true;
-                
-                if (_playerSpotted)
-                {
-                    CheckPlayerGround();
-                    _soundNoticed = true;
-                    _soundBehaviourStage = 3;
-                    _soundEventPosition = _player.transform;
-                    _animationActivated = false;
-                    _heardFootsteps = true;
-                    _spottedBar.fillAmount = 1;
-                
-                    if (!_scoreCount)
-                    {
-                        // Counts up the mission score for the player to have been spotted
-                       // _myMissionScore.SpottedScoreCounter += 1;
-                        _scoreCount = true;
-                    }
-                }
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            // when the enemy doesn't hear the footsteps anymore, the spotted bar will get down
-            if (other.CompareTag("FootSteps"))
-            {
-                _playerInHearField = false;
-                _useSpottedBar = false;
-            }
-        }
-
-        /// <summary>
-        /// the distance between the sound event and the enemy
-        /// </summary>
-        /// <returns></returns>
-        public float DistanceToSoundEvent()
-        {
-            return Vector3.Distance(_agent.pathEndPosition, transform.position);
-        }
-        
         #region SearchBehaviour
         
         /// <summary>
@@ -1068,7 +899,7 @@ namespace Enemy.Controller
         /// </summary>
         public void UpdateSearchBehaviour()
         {
-            // enemy has lost the player and reset the score count ability, so next time the player is spotted,
+            // enemy has lost the player and reset the score count ability, so next time the player is spotted
             // the score will be counted up again
             _scoreCount = false;
             
@@ -1130,7 +961,7 @@ namespace Enemy.Controller
             if (_canInvestigate)
             {
                 // the amount of the waypoints fo the enemy when the player activated the noisy item in close range
-                _noisyItemSearchArea.UsuableWaypointsAmount = Random.Range(1,_noisyItemScript.CloseNoisyItemWaypoints.Length);
+                _noisyItemSearchArea.UsuableWaypointsAmount = Random.Range(2,_noisyItemScript.CloseNoisyItemWaypoints.Length);
                 
                 // when the sound stage goes from 1 to 3, the sound will be noticed and the enemy will start to run towards it
                 if(_noisyItemScript.Stage <= 3)
@@ -1144,6 +975,93 @@ namespace Enemy.Controller
             }
         }
         #endregion
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            // when the enemy hears the noisy item sound, he will investigate it when the max enemy pull amount is not reached
+            if (other.CompareTag("Sound") && !_getSoundOnce)
+            {
+                // get the current noisy item script of the item
+                _noisyItemScript = other.GetComponentInParent<NoisyItem>();
+                
+                Vector3 _raycastDirection = new Vector3(_noisyItemScript.transform.position.x, _noisyItemScript.transform.position.y, _noisyItemScript.transform.position.z) - _enemyHead.position;
+                // when a specific layer is hit that isolate sound, the enemy will hear nothing
+                if (Physics.Raycast(_enemyHead.position, _raycastDirection, Vector3.Distance(_enemyHead.position , _noisyItemScript.transform.position), _blockAcousticLayerMasks))
+                {
+                    return;
+                }
+                
+                _getSoundOnce = true;
+                
+                // add the enemy to the list and start the cooldown to choose the closest enemies
+                _noisyItemScript.EnemyList.Add(this);
+                _noisyItemScript.StartPullCountdown = true;
+            }
+            
+            // get the scripts of the current search area
+            if (other.CompareTag("SearchPoints"))
+            {
+                _searchArea = other.GetComponent<SearchAreaOverview>();
+                _noisyItemSearchArea = other.GetComponent<NoisyItemSearchArea>();
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            // when the enemy hears the footsteps of the player, the spotted bar will be activated
+            if (other.CompareTag("FootSteps"))
+            {
+                Vector3 _raycastDirection = new Vector3(_player.transform.position.x, _player.transform.position.y + 2.5f, _player.transform.position.z) - _enemyHead.position;
+                // when a specific layer is hit that isolate sound, the enemy will hear nothing
+                if (Physics.Raycast(_enemyHead.position, _raycastDirection,  Vector3.Distance(_enemyHead.position , _player.transform.position), _blockAcousticLayerMasks))
+                {
+                    _useSpottedBar = false;
+                    return;
+                }
+
+                _hearFieldColliderActiv = true;
+                _playerInHearField = true;
+                _useSpottedBar = true;
+                
+                // when the player is spotted, the player will be chased
+                if (_playerSpotted)
+                {
+                    CheckPlayerGround();
+                    
+                    // goes instantly in the chase vision mode to have the reminder time to chase the player
+                    _playerSoundSpotted = true;
+                    _lastChanceTime = 5;
+                    
+                    if (!_scoreCount)
+                    {
+                        // Counts up the mission score for the player to have been spotted
+                        _myMissionScore.SpottedScoreCounter += 1;
+                        _scoreCount = true;
+                    }
+                }
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            // when the enemy doesn't hear the footsteps anymore, the spotted bar will get down
+            if (other.CompareTag("FootSteps"))
+            {
+                _playerInHearField = false;
+                _useSpottedBar = false;
+            }
+        }
+
+        /// <summary>
+        /// the distance between the sound event and the enemy
+        /// </summary>
+        /// <returns></returns>
+        public float DistanceToSoundEvent()
+        {
+            return Vector3.Distance(_agent.pathEndPosition, transform.position);
+        }
+        
+
     }
 }
 
