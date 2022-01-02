@@ -11,7 +11,6 @@ namespace Enemy.States
             
             if (enemy.CanSeePlayer || enemy.ActivateChasing || enemy.PlayerSoundSpotted)
             {
-                enemy.ResetSearchWaypoints = true;
                 return EnemyController.EnemyVisionChaseState;
             }
         

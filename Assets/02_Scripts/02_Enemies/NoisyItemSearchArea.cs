@@ -119,7 +119,7 @@ namespace Enemy.SearchArea
                 }
                 
                 // the amount of waypoints that can be used of the selected
-                _usuableWaypointsRangeAmount = Random.Range(1, _noisyItemSelectedPoints.Count);
+                _usuableWaypointsRangeAmount = Random.Range(2, _noisyItemSelectedPoints.Count);
             }
         }
         
