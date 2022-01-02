@@ -32,7 +32,8 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            
+            // If the points are not prepared, they will be and the if condition will block other enemies to do the same again
+            // will be false again, when all points are used or this state will be exit
             if (!enemy.NoisyItemSearchArea.PreparedSearchPoints)
             {
                 enemy.NoisyItemSearchArea.GetSearchPoints();
