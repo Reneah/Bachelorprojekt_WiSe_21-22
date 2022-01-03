@@ -7,23 +7,23 @@ namespace Enemy.SoundItem
 {
     public class NoisyItemCloseActivation : MonoBehaviour
     {
- 
         private NoisyItem _noisyItem;
 
         private void Start()
         {
             _noisyItem = GetComponentInParent<NoisyItem>();
         }
-
-
+        
         void Update()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit _hit;
             
+            // when the player hovers over the item, is in close range and the item is available, it can be used
             if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out _hit, Mathf.Infinity, _noisyItem.NoisyItemLayer) && _noisyItem.PlayerThrowTrigger.Close && !_noisyItem.ItemUsed && _noisyItem.ItemUsable)
             {
                 _noisyItem.PlayerThrowTrigger.PlayerThrew = false;
+                
                 if (_noisyItem.OneTimeUsed)
                 {
                     _noisyItem.Stage++;

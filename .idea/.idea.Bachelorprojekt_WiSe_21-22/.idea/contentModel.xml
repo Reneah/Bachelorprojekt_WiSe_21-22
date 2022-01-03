@@ -54,7 +54,6 @@
             <e p="LootSpot.cs" t="Include" />
             <e p="NoisyItem.cs" t="Include" />
             <e p="NoisyItemCloseActivation.cs" t="Include" />
-            <e p="NoisyItemPullRadius.cs" t="Include" />
             <e p="NoisyItemSearchArea.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
             <e p="SearchAreaOverview.cs" t="Include" />
