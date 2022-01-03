@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BP._02_Scripts._03_Game;
+using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using UnityEngine;
 using untitledProject;
@@ -34,18 +35,21 @@ public class CollectibleCloseActivation : MonoBehaviour
                 if (_collectItem.Key)
                 {
                     CollectItem._keyCollected = true;
+                    MasterAudio.PlaySound3DAtTransform("Keys", transform);
                 }
                 else if(_collectItem.Backpack)
                 {
                     CollectItem._backpackCollected = true;
                     _collectItem.SceneChange.ChangeScene();
                     _collectItem.PlayerController.enabled = false;
+                    MasterAudio.PlaySound3DAtTransform("Backpack", transform);
                 }
                 else if(_collectItem.Parchment)
                 {
                     CollectItem._parchmentCollected = true;
                     _collectItem.SceneChange.ChangeScene();
                     _collectItem.PlayerController.enabled = false;
+                    MasterAudio.PlaySound3DAtTransform("Paper", transform);
                 }
                 else if(_collectItem.ThroneCompartment)
                 {
