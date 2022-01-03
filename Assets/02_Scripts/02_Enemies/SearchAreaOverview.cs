@@ -16,29 +16,31 @@ namespace Enemy.SearchArea
         [Tooltip("the amount of enemies that can search at once after the player")]
         [SerializeField] private int _enemySearchMaxAmount;
         [Range(1,10)]
-        [Tooltip("the max amount of waypoint the enemy will pick around the player position after chasing")]
+        [Tooltip("the max amount of waypoints the enemy will pick around the player position after chasing")]
         [SerializeField] private int _playerSearchWaypointCounter;
         
-        // the closest waypoint to the current position of the throw position or player
+        // the closest waypoint to the current position of the throw position
         private float _closestWaypointDistance;
         // the transform of the closest current waypoint for the enemy
         private Transform _closestWaypoint;
-        // the current waypoint distance when searching the closest waypoint of the player or throw position
+        // the current waypoint distance when searching the closest waypoint of the throw position
         private float _currentWaypointDistance;
-        // the max amount of waypoint the enemy will pick around the player position
+        // the max amount of waypoints the enemy will pick around the player position
         private int _searchWaypointAmount;
-        // the possible waypoint that the enemy can pick when he searches the player
+        // the available waypoints that the enemy can pick when he searches the player
         List<Transform> _searchWaypoints = new List<Transform>();
         // the closest waypoints of the player position
         List<Transform> _searchSelectedPoints = new List<Transform>();
         // the amount of the waypoints that the enemy has when the player search for the player
-        private int _usuableSearchPointAmount = 1;
-        // signalize when the enemy is finish with searching to go back to his routine
+        private int _usableSearchPointAmount = 1;
+        // signalizes when the enemy is finished with searching to go back to his routine
         private bool _finishChecking = false;
         // pretend that the method will be activated multiple times of other enemies when they start to search after the player
         private bool _preparedSearchPoints = false;
         // the current closest waypoint for the enemy when the enemy searches the player
         private Transform _currentSearchWaypoint;
+        // the amount of enemies that are searching currently
+        private int _enemySearchAmount = 0;
 
         // need this script to get the player position
         private PlayerController _playerController;
@@ -60,10 +62,7 @@ namespace Enemy.SearchArea
             get => _enemySearchMaxAmount;
             set => _enemySearchMaxAmount = value;
         }
-
-        // the amount of enemies that are searching currently
-        private int _enemySearchAmount = 0;
-
+        
         public int EnemySearchAmount
         {
             get => _enemySearchAmount;
@@ -98,7 +97,7 @@ namespace Enemy.SearchArea
         public void StartSearchBehaviour(NavMeshAgent _agent, EnemyAnimationHandler _animationHandler, float _searchSpeed)
         {
             // when all search points has been used, the enemy goes back to patrolling or guarding
-            if (_usuableSearchPointAmount <= 0)
+            if (_usableSearchPointAmount <= 0)
             {
                 GetSearchPoints();
                 _finishChecking = true;
@@ -114,7 +113,7 @@ namespace Enemy.SearchArea
             }
             _animationHandler.SetSpeed(_searchSpeed);
             _agent.SetDestination(_currentSearchWaypoint.position);
-            _usuableSearchPointAmount--;
+            _usableSearchPointAmount--;
                 
             _searchSelectedPoints.Remove(_currentSearchWaypoint);
         }
@@ -125,9 +124,10 @@ namespace Enemy.SearchArea
         public void PrepareSearchBehaviour()
         {
             _preparedSearchPoints = true;
-            // get the current closest point based on the player position
+            
             _closestWaypointDistance = Mathf.Infinity;
         
+            // get the current closest point based on the player position
             foreach (Transform waypoint in _searchWaypoints)
             {
                 _currentWaypointDistance = Vector3.Distance(waypoint.transform.position, _playerController.transform.position);
@@ -153,7 +153,7 @@ namespace Enemy.SearchArea
             }
         
             // the amount of waypoints that can be used of the selected
-            _usuableSearchPointAmount = _searchSelectedPoints.Count;
+            _usableSearchPointAmount = _searchSelectedPoints.Count;
         }
     }
 }
