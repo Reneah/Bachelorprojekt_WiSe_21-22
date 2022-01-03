@@ -81,7 +81,7 @@ public class CollectStones : MonoBehaviour
                 _stoneSprite.SetActive(true);
                 _negativeStoneSprite.gameObject.SetActive(false);
                 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && _playerController.IsGrounded)
                 {
                     _playerController.PickUpItem = true;
                     _stonesActive = true;
