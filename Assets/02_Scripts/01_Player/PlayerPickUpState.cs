@@ -27,7 +27,6 @@ using untitledProject;
             player.PlayerAnimationHandler.ResetPickUpAnimation();
             player.PlayerAnimationHandler.RunningPickUpAnimation = false;
             player.PickUpItem = false;
-       
         }
     }
 
