@@ -2810,7 +2810,7 @@ MonoBehaviour:
   _sneakSoundRadius: 1.5
   _runSoundRadius: 3
   _fleeingSoundRadius: 4
-  _smoothSwitch: 15
+  _smoothSwitch: 12
 --- !u!1 &7246463578664892070
 GameObject:
   m_ObjectHideFlags: 0

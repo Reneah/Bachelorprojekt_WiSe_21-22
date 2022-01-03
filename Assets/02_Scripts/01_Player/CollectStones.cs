@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DarkTonic.MasterAudio;
 using TMPro;
 using UnityEngine;
 using untitledProject;
@@ -100,6 +101,7 @@ public class CollectStones : MonoBehaviour
                     }
                     
                     _stonesAmountText.text = _stonesCounter.ToString();
+                    MasterAudio.PlaySound3DAtTransform("Pebbles", _stones.transform);
                     _stones.GetComponent<Collider>().enabled = false;
                     _stones.GetComponent<StonePile>().StonePileParent.SetActive(false);
                     _stonesCollectible = false;
