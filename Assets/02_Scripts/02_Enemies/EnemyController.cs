@@ -48,11 +48,7 @@ namespace Enemy.Controller
         
         // need this script to call the death scene
         private InGameMenu _inGameMenu;
-        public InGameMenu InGameMenu
-        {
-            get => _inGameMenu;
-            set => _inGameMenu = value;
-        }
+        public InGameMenu InGameMenu => _inGameMenu;
 
         // the current state of the enemy
         private IEnemyState _currentState;
