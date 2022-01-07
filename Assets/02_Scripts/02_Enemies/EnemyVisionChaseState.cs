@@ -10,19 +10,9 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
+            // when the enemy is in chase mode, the spotted bar is permanently red
             enemy.SpottedBar.fillAmount = 1;
-            // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
-            if (enemy.ActivateChasing)
-            {
-                enemy.ActivateChaseCooldown -= Time.deltaTime;
-
-                if (enemy.ActivateChaseCooldown <= 0)
-                {
-                    enemy.ActivateChasing = false;
-                    enemy.ActivateChaseCooldown = 0.1f;
-                }
-            }
-            
+            // check if the player is on high or low ground to update the vision cone to help the enemy orientation
             enemy.CheckPlayerGround();
             
             if (enemy.CanSeePlayer)
@@ -33,13 +23,14 @@ namespace Enemy.States
             if (!enemy.CanSeePlayer)
             {
                 enemy.LastChanceTime -= Time.deltaTime;
-               // Debug.Log(enemy.LastChanceTime);
-                
+
                 if (enemy.LastChanceTime > 0)
                 {
                     enemy.Agent.SetDestination(enemy.Player.transform.position);
                 }
+                
                 // if the enemy still doesn't see the player, the search mode will be activated 
+                // if the max amount of search enemies is reached, they will go into their main routine
                 if (enemy.LastChanceTime <= 0)
                 {
                     if (!enemy.Agent.hasPath || Vector3.Distance(enemy.Agent.pathEndPosition, enemy.Agent.destination) <= 1)
@@ -52,14 +43,10 @@ namespace Enemy.States
                         {
                             if (enemy.Guarding)
                             {
-                                enemy.PlayerSpotted = false;
-                                enemy.UseSpottedBar = false;
                                 return EnemyController.EnemyGuardState;
                             }
                             else if (enemy.Patrolling)
                             {
-                                enemy.PlayerSpotted = false;
-                                enemy.UseSpottedBar = false;
                                 return EnemyController.EnemyPatrolState;
                             }
                         }
@@ -67,6 +54,7 @@ namespace Enemy.States
                 }
             }
 
+            // when the player is caught, the game will stop and the death menu pops up
             if (enemy.CatchPlayer())
             {
                 enemy.InGameMenu.EnemyCatchedPlayer = true;
@@ -90,12 +78,16 @@ namespace Enemy.States
             enemy.PullEnemyNearby();
 
             enemy.Agent.isStopped = false;
-
+            
+            enemy.ActivateChasing = false;
             enemy.PlayerSoundSpotted = false;
         }
     
         public void Exit(EnemyController enemy)
         {
+            enemy.ActivateChasing = false;
+            enemy.PlayerSoundSpotted = false;
+            
             enemy.InChaseState = false;
             enemy.SoundNoticed = false;
             
@@ -103,6 +95,9 @@ namespace Enemy.States
             
             enemy.HighGroundViewCone.SetActive(false);
             enemy.LowGroundViewCone.SetActive(true);
+            
+            enemy.PlayerSpotted = false;
+            enemy.UseSpottedBar = false;
         }
     }
 }

@@ -39,7 +39,7 @@ public class PlayerThrowState : IPlayerState
 
         // wait to the end of the animation to be able to move and throw again
         // activate sound
-        if (player.PlayerAnimationHandler.RunningThrowAnimation)
+        if (!player.PlayerAnimationHandler.RunningThrowAnimation)
         {
             player.PlayerThrowTrigger.NoisyItem.SoundRangeCollider.SetActive(true);
 
@@ -63,6 +63,7 @@ public class PlayerThrowState : IPlayerState
 
     public void Enter(PlayerController player)
     {
+        player.PlayerAnimationHandler.RunningThrowAnimation = true;
         _activateThrowAnimationTime = player.PlayerThrowTrigger.WaitToThrowDuringRotation;
         player.CollectStones.StoneUsed();
     }

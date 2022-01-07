@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using Enemy.AnimationHandler;
-using Enemy.SoundItem;
 using UnityEngine;
 using UnityEngine.AI;
 using untitledProject;
@@ -11,14 +9,14 @@ namespace Enemy.SearchArea
     public class NoisyItemSearchArea : MonoBehaviour
     {
         [Range(1,5)]
-        [Tooltip("the max amount of waypoint the enemy will pick around the throw position after checking the noisy item")]
+        [Tooltip("the max amount of waypoints the enemy will pick around the throw position after checking the noisy item")]
         [SerializeField] private int _throwWaypointCounter;
         
-        // the closest waypoint to the current position of the throw position or player
+        // the closest waypoint to the current position of the throw position
         private float _closestWaypointDistance;
         // the transform of the closest current waypoint for the enemy
         private Transform _closestWaypoint;
-        // the current waypoint distance when searching the closest waypoint of the player or throw position
+        // the current waypoint distance when searching the closest waypoint of the throw position
         private float _currentWaypointDistance;
         // the amount of the waypoints that the enemy has when the player activates the noisy item in long range
         private int _usuableWaypointsRangeAmount = 1;
@@ -26,18 +24,20 @@ namespace Enemy.SearchArea
         private Transform _currentCloseNoisyItemWaypoint;
         // get all waypoints in the search area again after using them
         private bool _resetNoisyItemWaypoints = false;
-        // the max amount of waypoint the enemy will pick around the throw position after checking the noisy item
+        // the max amount of waypoints the enemy will pick around the throw position after checking the noisy item
         private int _throwWaypointAmount;
-        // the possible waypoint that the enemy can pick when he investigated the noisy item
+        // the available waypoints that the enemy can pick when he investigated the noisy item
         List<Transform> _noisyItemSearchPoints = new List<Transform>();
-        // the closest waypoints of the throw position or near the noisy item
+        // the closest waypoints of the throw position
         List<Transform> _noisyItemSelectedPoints = new List<Transform>();
         // the amount of the waypoints that the enemy has when the player activates the noisy item in close range
-        private int _usuableWaypointsAmount = 1;
-        // signalize when the enemy is finish with searching to go back to his routine
+        private int _usableWaypointsAmount = 1;
+        // signalizes when the enemy is finished with searching to go back to his routine
         private bool _finishChecking = false;
         // pretend that the method will be activated multiple times of other enemies when they start to search after the player
         private bool _preparedSearchPoints = false;
+        // need this script to get information of the player throw
+        private PlayerController _playerController;
 
         public bool PreparedSearchPoints
         {
@@ -47,8 +47,8 @@ namespace Enemy.SearchArea
 
         public int UsuableWaypointsAmount
         {
-            get => _usuableWaypointsAmount;
-            set => _usuableWaypointsAmount = value;
+            get => _usableWaypointsAmount;
+            set => _usableWaypointsAmount = value;
         }
 
         public bool FinishChecking
@@ -56,15 +56,12 @@ namespace Enemy.SearchArea
             get => _finishChecking;
             set => _finishChecking = value;
         }
-
-        private PlayerController _playerController;
         
-        // Start is called before the first frame update
         void Start()
         {
             _playerController = FindObjectOfType<PlayerController>();
             
-            // set the max amount of waypoint the enemy will pick around the throw position after checking the noisy item
+            // set the max amount of waypoints the enemy will pick around the throw position after checking the noisy item
             _throwWaypointAmount = _throwWaypointCounter;
             
             GetSearchPoints();
@@ -85,11 +82,12 @@ namespace Enemy.SearchArea
         }
         
           /// <summary>
-        /// get the closest search points of the throw position of the player
+        /// get the closest search points of the player throw position 
         /// </summary>
         public void PrepareSearchNoisyItemBehaviour()
         {
             _preparedSearchPoints = true;
+            
             // when the enemy has thrown a stone, the closest waypoints of the throw position will be selected
             if (_playerController.PlayerThrowTrigger.PlayerThrew)
             {
@@ -119,17 +117,17 @@ namespace Enemy.SearchArea
                 }
                 
                 // the amount of waypoints that can be used of the selected
-                _usuableWaypointsRangeAmount = Random.Range(1, _noisyItemSelectedPoints.Count);
+                _usuableWaypointsRangeAmount = Random.Range(2, _noisyItemSelectedPoints.Count);
             }
         }
         
         /// <summary>
         /// select the waypoint where the enemy has to go
         /// </summary>
-        public void StartSearchNoisyItemBehaviour(NavMeshAgent _agent, EnemyAnimationHandler _animationHandler, float _searchSpeed, NoisyItem _noisyItemScript)
+        public void StartSearchNoisyItemBehaviour(NavMeshAgent _agent, EnemyAnimationHandler _animationHandler, float _searchSpeed, SoundItem.NoisyItem _noisyItemScript)
         {
             // when all points were used, the enemy will go back to his routine
-            if (_usuableWaypointsAmount <= 0 || _usuableWaypointsRangeAmount <= 0)
+            if (_usableWaypointsAmount <= 0 || _usuableWaypointsRangeAmount <= 0)
             {
                 _finishChecking = true;
                 GetSearchPoints();
@@ -166,7 +164,7 @@ namespace Enemy.SearchArea
                 }
                 
                 _agent.SetDestination(_currentCloseNoisyItemWaypoint.position);
-                _usuableWaypointsAmount--;
+                _usableWaypointsAmount--;
                 
                 _noisyItemSelectedPoints.Remove(_currentCloseNoisyItemWaypoint);
             }

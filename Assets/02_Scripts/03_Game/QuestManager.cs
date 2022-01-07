@@ -172,6 +172,9 @@ public class QuestManager : MonoBehaviour
                 // revoke crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Normal;
                 _provisionsQuestDone = false;
+                // deactivate next quest text "Enter the staircase to the cellar, to find the secret passage."
+                _quest6Text.enabled = false;
+                _quest7Text.enabled = false;
                 
                 // Dectivate interaction visualisation objects at staircase asset
                 if (CollectItem._keyCollected)

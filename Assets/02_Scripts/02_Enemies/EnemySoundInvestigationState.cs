@@ -21,6 +21,8 @@ namespace Enemy.States
             UpdateSearchStage(enemy);
             enemy.DistanceToSoundEvent();
             
+            // when the enemy is at the sound event, the specific sound behaviour will be activated
+            // when the first enemy reached the sound event, other pulled enemies will start to search as well
             if (enemy.DistanceToSoundEvent() <= 1 || EnemyShareInformation.ReachedNoisyItem)
             {
                 EnemyShareInformation.ReachedNoisyItem = true;
@@ -108,6 +110,7 @@ namespace Enemy.States
             enemy.GetSoundOnce = false;
             enemy.SoundNoticed = false;
             
+            // set the current sound state of the item to update the behaviour of the enemy
             enemy.CurrentSoundStage = enemy.SoundBehaviourStage;
             
             if (enemy.SoundBehaviourStage == 1)
@@ -136,15 +139,11 @@ namespace Enemy.States
             EnemyShareInformation.ReachedNoisyItem = false;
 
             enemy.SoundNoticed = false;
-            
-            enemy.HighGroundViewCone.SetActive(false);
-            enemy.LowGroundViewCone.SetActive(true);
         }
         
         private void UpdateSearchStage(EnemyController enemy)
         {
             // when the player should use the same sound again, the stage will be increased and the enemy will be more aggressive
-            // when the footsteps of the player were heard, the destination will be updated
             if (enemy.CurrentSoundStage < enemy.SoundBehaviourStage)
             {
                 if (enemy.SoundBehaviourStage == 2)
@@ -160,6 +159,7 @@ namespace Enemy.States
                     enemy.Agent.SetDestination(enemy.SoundEventPosition.position);
                 }
                 
+                // set the current sound state of the item to update the behaviour of the enemy
                 enemy.CurrentSoundStage = enemy.SoundBehaviourStage;
             }
         }

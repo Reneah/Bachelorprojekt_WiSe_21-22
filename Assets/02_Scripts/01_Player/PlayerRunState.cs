@@ -27,6 +27,11 @@ namespace untitledProject
                 return PlayerController.PlayerThrowState;
             }
             
+            if (player.PickUpItem && player.IsGrounded)
+            {
+                return PlayerController.PlayerPickUpState;
+            }
+            
             player.MovementExecution();
             return this;
         }
