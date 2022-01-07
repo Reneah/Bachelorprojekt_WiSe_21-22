@@ -14,6 +14,7 @@ public class Checkpoint : MonoBehaviour
     private NoisyItem[] _noisyItems;
     private StonePile[] _stonePile;
     private Provisions[] _provisions;
+    private EnemyController[] _enemyControllers;
     
     private void Start()
     {
@@ -23,6 +24,7 @@ public class Checkpoint : MonoBehaviour
         _noisyItems = FindObjectsOfType<NoisyItem>();
         _stonePile = FindObjectsOfType<StonePile>();
         _provisions = FindObjectsOfType<Provisions>();
+        _enemyControllers = FindObjectsOfType<EnemyController>();
     }
 
 
@@ -30,6 +32,14 @@ public class Checkpoint : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
+                for (int i = 0; i < _enemyControllers.Length; i++)
+                {
+                    if (_enemyControllers[i].InChaseState)
+                    {
+                        return;
+                    }
+                }
+                
                 PlayerPrefs.SetFloat("PlayerPositionX",transform.position.x);
                 PlayerPrefs.SetFloat("PlayerPositionY",transform.position.y);
                 PlayerPrefs.SetFloat("PlayerPositionZ",transform.position.z);
