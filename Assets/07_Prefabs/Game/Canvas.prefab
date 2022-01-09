@@ -17968,7 +17968,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1402475520}
         m_TargetAssemblyTypeName: SceneChange, Assembly-CSharp
-        m_MethodName: Skip
+        m_MethodName: SkipEverything
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -263,5 +263,6 @@ MonoBehaviour:
   _text: {fileID: 3421040220874471095}
   _textFadeTime: 3
   _fadeTime: 3
-  _fadeStayTime: 30
   _nextSceneName: 
+  _skipButton: {fileID: 0}
+  NarrativeTexts: []
