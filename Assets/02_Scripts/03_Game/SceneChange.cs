@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using BP;
 using DG.Tweening;
 using Enemy.SoundItem;
@@ -20,8 +18,6 @@ public class SceneChange : MonoBehaviour
     [Tooltip("the time how long the fade image needs to fade in and out")]
     [SerializeField] private float _fadeTime;
     [Tooltip("the time how long the text should appears when the fade in is completed")]
-    /*[SerializeField] private float _fadeStayTime;
-    [Tooltip("the next scene name that should be loaded")]*/
     [SerializeField] private string _nextSceneName;
     private float _fadeStayCooldown = 0;
     [Tooltip("skip the text")]
@@ -56,7 +52,6 @@ public class SceneChange : MonoBehaviour
         _text.text = NarrativeTexts[_currentNarrativeText].text;
 
         _fadeImage.fillAmount = 0;
-        //_fadeStayCooldown = _fadeStayTime;
 
         _playerController = FindObjectOfType<PlayerController>();
         _questManager = GameObject.Find("QuestManager");

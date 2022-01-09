@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: NarrativeText_GK2_02
   m_EditorClassIdentifier: 
-  fadeStayTime: 7
+  fadeStayTime: 9
   text: Drustan was nowhere to be seen, but a mention of a secret passage in the
     cellar gave Edward the guidance, he so desperately needed.
