@@ -71,6 +71,9 @@ namespace Enemy.States
     
         public void Enter(EnemyController enemy)
         {
+            // Counts up the mission score for the player to have been spotted
+            enemy.MyMissionScore.SpottedScoreCounter += 1;
+            
             enemy.SoundNoticed = false;
             enemy.InChaseState = true;
             enemy.AbleToLoot = false;

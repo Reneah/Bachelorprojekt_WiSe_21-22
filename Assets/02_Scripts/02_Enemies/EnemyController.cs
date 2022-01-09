@@ -45,7 +45,8 @@ namespace Enemy.Controller
 
         // this script is for the score at the end of the game and counts some things
         private MissionScore _myMissionScore;
-        
+        public MissionScore MyMissionScore => _myMissionScore;
+
         // need this script to call the death scene
         private InGameMenu _inGameMenu;
         public InGameMenu InGameMenu => _inGameMenu;
@@ -71,7 +72,7 @@ namespace Enemy.Controller
         [SerializeField] private bool _patrolling;
 
         public bool Guarding => _guarding;
-
+        
         #region ChaseVariables
 
         [Header("Chase Behaviour")]
@@ -96,10 +97,7 @@ namespace Enemy.Controller
         
         // the position on the NavMesh around the current player position that is reachable
         private NavMeshHit _hit;
-
-        // when the enemy spotted the player, the score for the player will change
-        private bool _scoreCount;
-
+        
         // need all enemies to pull them nearby when another one spotted the player
         private EnemyController[] _enemiesInWholeScene;
         
@@ -606,13 +604,6 @@ namespace Enemy.Controller
         /// </summary>
         public void CheckPlayerGround()
         {
-            if (!_scoreCount)
-            {
-                // Counts up the mission score for the player to have been spotted
-                _myMissionScore.SpottedScoreCounter += 1;
-                _scoreCount = true;
-            }
-            
             if (_playerGroundDetection.LowGround)
             {             
                 // Standard View Cone
@@ -895,10 +886,6 @@ namespace Enemy.Controller
         /// </summary>
         public void UpdateSearchBehaviour()
         {
-            // enemy has lost the player and reset the score count ability, so next time the player is spotted
-            // the score will be counted up again
-            _scoreCount = false;
-            
             // when the current search point position is reached, the standing time will count down and set the next search point
             if (Vector3.Distance(transform.position, _agent.destination) <= _stopDistance && !_reachedWaypoint)
             {
@@ -1027,13 +1014,6 @@ namespace Enemy.Controller
                     // goes instantly in the chase vision mode to have the reminder time to chase the player
                     _playerSoundSpotted = true;
                     _lastChanceTime = 5;
-                    
-                    if (!_scoreCount)
-                    {
-                        // Counts up the mission score for the player to have been spotted
-                        _myMissionScore.SpottedScoreCounter += 1;
-                        _scoreCount = true;
-                    }
                 }
             }
         }
