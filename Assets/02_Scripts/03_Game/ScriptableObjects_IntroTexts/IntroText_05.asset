@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: IntroText_05
   m_EditorClassIdentifier: 
-  fadeStayTime: 11
+  fadeStayTime: 15
   text: A while later, the two of them stood at the entrance to the inner keep. Drustan
     told Edward to quickly gather some equipment and meet him back at the front gate.
     They would grab supplies from the storerooms and escape together, but first Drustan

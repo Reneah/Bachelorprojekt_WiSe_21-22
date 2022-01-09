@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: NarrativeText_GK1_03
   m_EditorClassIdentifier: 
-  fadeStayTime: 8
+  fadeStayTime: 10
   text: Getting back to the front gate, to meet up with Drustan, had suddenly become
     a much more dangerous undertaking. Edward tried his best to suppress his fear
     and hoped to find the right moment to sneak past his enemies...

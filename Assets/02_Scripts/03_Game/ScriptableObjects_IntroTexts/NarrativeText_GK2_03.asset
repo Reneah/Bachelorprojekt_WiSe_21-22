@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: NarrativeText_GK2_03
   m_EditorClassIdentifier: 
-  fadeStayTime: 8
+  fadeStayTime: 10
   text: The key was supposed to be hidden in a secret compartment of the throne.
     To get the key and locate the secret passage in the cellar would be Edward's
     last hope of survival.

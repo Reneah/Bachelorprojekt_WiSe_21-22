@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: IntroText_02
   m_EditorClassIdentifier: 
-  fadeStayTime: 11
+  fadeStayTime: 15
   text: The siege had been raging for nigh three weeks, before the keep of the kinglet
     Wymond of Trustenwold II. was finally threatened to be overrun. As he was fighting
     in the last defense on top of the battlements, the kinglet's thoughts returned
