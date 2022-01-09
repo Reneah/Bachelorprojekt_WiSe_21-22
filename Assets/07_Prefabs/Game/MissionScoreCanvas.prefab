@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playtimeDisplay: {fileID: 4303833415270594861}
   _playtimeScore: {fileID: 4303833415548201186}
-  _playtimePointsMultiplier: 2
+  _playtimePointsMultiplier: 5
   _provisionsDisplay: {fileID: 4303833414437683023}
   _provisionsScore: {fileID: 4303833415772102498}
   _provisionsPointsMultiplier: 500
@@ -291,7 +291,7 @@ MonoBehaviour:
   _goodResultMessage: {fileID: 4303833415677233105}
   _averageResultMessage: {fileID: 4303833414296897697}
   _fadeImage: {fileID: 3085877087666303134}
-  _fadeSpeed: 10
+  _fadeSpeed: 6
 --- !u!1001 &2996141418479823039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -320,7 +320,91 @@ PrefabInstance:
       value: BP._02_Scripts._03_Game.MissionScore, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: useUnityPointerEnterSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
       propertyPath: unityButtonClickedSound.isExpanded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].minAge
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].clipName
+      value: '[None]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].fadeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].soundType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityButtonClickedSound.SoundEvents.Array.data[0].soundType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].actionName
+      value: Your action name
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].isExpanded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityButtonClickedSound.SoundEvents.Array.data[0].actionName
+      value: ButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].startPlaylist
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].variationName
+      value: ButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityButtonClickedSound.SoundEvents.Array.data[0].variationName
+      value: ButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityButtonClickedSound.SoundEvents.Array.data[0].variationType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].pitchGlideTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].targetGlidePitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].snapshotTransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].snapshotsToBlend.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310027485229958659, guid: 63ae3273b7120f842b893ac738c61746, type: 3}
+      propertyPath: unityPointerEnterSound.SoundEvents.Array.data[0].snapshotsToBlend.Array.data[0].weight
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1310027485867949102, guid: 63ae3273b7120f842b893ac738c61746, type: 3}

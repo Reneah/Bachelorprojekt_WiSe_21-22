@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: NarrativeText_GK2_04
   m_EditorClassIdentifier: 
-  fadeStayTime: 11
+  fadeStayTime: 8
   text: He turned around once more and almost felt the overbearing presence of the
     enemy forces, penetrating each corner of the keep, as time went on. The window
     of opportunity for an escape was surely closing...

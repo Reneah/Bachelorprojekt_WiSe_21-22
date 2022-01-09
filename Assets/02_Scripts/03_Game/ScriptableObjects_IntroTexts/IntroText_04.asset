@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: IntroText_04
   m_EditorClassIdentifier: 
-  fadeStayTime: 10
+  fadeStayTime: 8
   text: It was paramount for Edward to escape the keep and make for the wilderness.
     Otherwise there would be no hope to eventually find allies and take back what
     was rightfully his. So with a last glance Drustan turned from his lord to seek

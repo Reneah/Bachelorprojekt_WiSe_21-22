@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: NarrativeText_GK2_01
   m_EditorClassIdentifier: 
-  fadeStayTime: 11
+  fadeStayTime: 9
   text: Edward approached the front gate to find a parchment pinned to the wood by
     a dagger. Drustan's words were a hurried scribble and spoke of the defenses wavering,
     the battlements about to fall and that the intended escape route was blocked.

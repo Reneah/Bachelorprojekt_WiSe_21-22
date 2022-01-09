@@ -49,12 +49,12 @@ public class SceneChange : MonoBehaviour
 
     private bool _activateFade = true;
     private bool _firstFadeActivated;
+    private bool _fadeTimerSet;
     
     void Start()
     {
         _text.text = NarrativeTexts[_currentNarrativeText].text;
-        _fadeStayCooldown = NarrativeTexts[_currentNarrativeText].fadeStayTime;
-        
+
         _fadeImage.fillAmount = 0;
         //_fadeStayCooldown = _fadeStayTime;
 
@@ -78,6 +78,13 @@ public class SceneChange : MonoBehaviour
         {
             _skipButton.SetActive(true);
             
+            //Sets fade cooldown for the first narrative text
+            if (!_firstFadeActivated && !_fadeTimerSet)
+            {
+                _fadeStayCooldown = NarrativeTexts[_currentNarrativeText].fadeStayTime;
+                _fadeTimerSet = true;
+            }
+            
             if (_fadeStayCooldown <= 0)
             {
                 // Continued narrative text fades
@@ -91,8 +98,7 @@ public class SceneChange : MonoBehaviour
             {   // Initial narrative text fade
                 if (_activateFade && !_firstFadeActivated)
                 {
-                    _text.DOFade(1, _textFadeTime).OnComplete(CheckNextStep);
-                    _activateFade = false;
+                    _text.DOFade(1, _textFadeTime);
                     _firstFadeActivated = true;
                 }
                 _fadeStayCooldown -= Time.deltaTime;

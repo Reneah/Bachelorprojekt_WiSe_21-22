@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: NarrativeText_GK3_01
   m_EditorClassIdentifier: 
-  fadeStayTime: 12
+  fadeStayTime: 8
   text: With a last glance over his shoulder, to see if he truly had not been spotted,
     Edward descended the staircase to the cellar and to a fate unknown...

@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
+    rgba: 10921638
+  m_fontColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeImage: {fileID: 3421040221049713779}
   _text: {fileID: 3421040220874471095}
-  _textFadeTime: 3
+  _textFadeTime: 4
   _fadeTime: 3
   _nextSceneName: 
   _skipButton: {fileID: 0}

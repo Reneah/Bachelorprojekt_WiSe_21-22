@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: IntroText_06
   m_EditorClassIdentifier: 
-  fadeStayTime: 9
+  fadeStayTime: 7
   text: Left on his own, Edward knew what he had to do. How exactly, though, he was
     left to wonder, while he traversed the dark and damaged corridors of the keep...

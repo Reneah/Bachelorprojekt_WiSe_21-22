@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18bba5dcc7ccb44b5d5c22370dad4d, type: 3}
   m_Name: NarrativeText_GK1_02
   m_EditorClassIdentifier: 
-  fadeStayTime: 10
+  fadeStayTime: 8
   text: 'He realised it meant the enemy had tunneled underneath the walls. Quick
     footfalls of metal boots and the shouts of enemies echoed through the great hall,
     as the first intruders set foot into the inner keep.
