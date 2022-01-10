@@ -115,6 +115,14 @@ public class QuestManager : MonoBehaviour
         if (!CollectItem._keyCollected)
         {
             _quest5Text.fontStyle = FontStyles.Normal;
+            
+            _quest6Text.enabled = false;
+            _quest7Text.enabled = false;
+            
+            _staircaseToCellarInteractionObjects.SetActive(false);
+            
+            //Not sure if needed
+            //_provisionsKeyPopUpHappened = false;
         }
         if (!CollectItem._enteredStaircase)
         {
@@ -176,7 +184,7 @@ public class QuestManager : MonoBehaviour
                 _quest6Text.enabled = false;
                 _quest7Text.enabled = false;
                 
-                // Dectivate interaction visualisation objects at staircase asset
+                // Deactivate interaction visualisation objects at staircase asset
                 if (CollectItem._keyCollected)
                 {
                     _staircaseToCellarInteractionObjects.SetActive(false);

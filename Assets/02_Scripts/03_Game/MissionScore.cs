@@ -1,7 +1,9 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace BP._02_Scripts._03_Game
 {
@@ -110,7 +112,11 @@ namespace BP._02_Scripts._03_Game
         [SerializeField] private GameObject _goodResultMessage;
         [Tooltip("The text to be displayed with an good score result (<=5k).")]
         [SerializeField] private GameObject _averageResultMessage;
-
+        
+        [SerializeField] private Image _fadeImage;
+        [SerializeField] private float _fadeSpeed;
+        private bool _activateFade;
+        
         public int DistractionsScoreCounter
         {
             get => _distractionsScoreCounter;
@@ -172,6 +178,8 @@ namespace BP._02_Scripts._03_Game
             }
             else if (scene.name == "MissionScore" && loadSceneMode == LoadSceneMode.Single)
             {
+                _activateFade = true;
+                
                 if (!_scoresCalculated)
                 {
                     _myCanvas.enabled = true;
@@ -197,6 +205,12 @@ namespace BP._02_Scripts._03_Game
             {
                 _playtimeScoreCounter += Time.deltaTime;
             }
+
+            if (_activateFade)
+            {
+                _fadeImage.DOFade(0, _fadeSpeed);
+                _activateFade = false;
+            }
         }
         
         // Resets all required values for the Mission Score to the starting state on new playthrough attempt
@@ -218,8 +232,13 @@ namespace BP._02_Scripts._03_Game
         // Used when clicking the Continue button on the Mission Score screen
         public void BackToMainMenu()
         {
-            SceneManager.LoadScene("MainMenu");
+            _fadeImage.DOFade(1, _fadeSpeed).OnComplete(LoadMainMenu);
+        }
+
+        private void LoadMainMenu()
+        {
             ResetMissionScores();
+            SceneManager.LoadScene("MainMenu");
         }
 
         // Overwrites placeholder values with actual values from the player
@@ -282,12 +301,6 @@ namespace BP._02_Scripts._03_Game
         // Activates the appropriate text, depending on the final score result
         private void ChangeFinalResultText(int finalScore)
         {
-            
-            //Only necessary if references can't be found more cheaply
-            /*_excellentResultMessage = GameObject.Find("Text_FinalScore_GreatResult");
-            _goodResultMessage = GameObject.Find("Text_FinalScore_GoodResult");
-            _averageResultMessage = GameObject.Find("Text_FinalScore_AverageResult");*/
-            
             if (finalScore <= 4999)
             {
                 _averageResultMessage.SetActive(true);
@@ -312,7 +325,6 @@ namespace BP._02_Scripts._03_Game
         {
             _stonesScoreCounter = _myCollectStones.StonesCounter;
             _provisionsScoreCounter = _myCollectProvisions.ProvisionsCounter;
-            Debug.Log("Stones = " + _stonesScoreCounter + "and Provisions = " +_provisionsScoreCounter);
         }
     }
 }

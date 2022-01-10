@@ -11,8 +11,6 @@ public class IntroScene : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _text;
     [Tooltip("the time how long the text will fade in and out")]
     [SerializeField] private float _textFadeTime;
-    //[Tooltip("the time how long the text should appears when the fade in is completed")]
-    //[SerializeField] private float _fadeStayTime;
     [Tooltip("the next scene name that should be loaded")]
     [SerializeField] private string _nextSceneName;
     private float _fadeStayCooldown = 0;
@@ -37,7 +35,6 @@ public class IntroScene : MonoBehaviour
         {
             if (_activateFade)
             {
-                //_textColor = 1;
                 _text.DOFade(0, _textFadeTime).OnComplete(CheckNextStep);
                 _activateFade = false;
             }
@@ -60,7 +57,6 @@ public class IntroScene : MonoBehaviour
 
     public void CheckNextStep()
     {
-        //_textColor = 0;
         if (currentIntroText >= IntroTexts.Length-1)
         {
             LoadNextScene();
