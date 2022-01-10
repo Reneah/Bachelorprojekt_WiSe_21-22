@@ -145,6 +145,8 @@ public class CollectItem : MonoBehaviour
     
     void Start()
     {
+        _keyCollected = System.Convert.ToBoolean(PlayerPrefs.GetInt("KeyCollected", 0));
+        
         _collectibleSprite.gameObject.SetActive(false);
         _ItemImage.SetActive(false);
         _sceneChange = FindObjectOfType<SceneChange>();
