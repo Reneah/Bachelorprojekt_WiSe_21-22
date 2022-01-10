@@ -45,6 +45,7 @@ public class Checkpoint : MonoBehaviour
                 PlayerPrefs.SetFloat("PlayerPositionZ",transform.position.z);
                 PlayerPrefs.SetInt("StonesAmount", _collectStones.StonesCounter);
                 PlayerPrefs.SetInt("ProvisionsAmount", _collectProvisions.ProvisionsCounter);
+                PlayerPrefs.SetInt("KeyCollected", CollectItem._keyCollected.GetHashCode());
                 
                 for (int i = 0; i < _noisyItems.Length; i++)
                 {
