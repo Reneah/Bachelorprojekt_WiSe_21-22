@@ -2787,6 +2787,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: efacfe885b8fbb049bd8aafb6518aa3d, type: 2}
   - {fileID: 11400000, guid: de2bdfde0757aaf48a9fe30efd0897d5, type: 2}
   _fadingOverlay: {fileID: 1342690033}
+  _fadeOutSoundTime: 2
 --- !u!224 &4602165365526123608
 RectTransform:
   m_ObjectHideFlags: 0
