@@ -27,7 +27,7 @@ public class CollectibleCloseActivation : MonoBehaviour
         
         void Update()
         {
-            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible)
+            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible && _playerController.IsGrounded)
             {
                 _playerController.PickUpItem = true;
                 _collectItem.ItemCollectible = false;

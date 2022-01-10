@@ -161,7 +161,7 @@ Transform:
   m_LocalScale: {x: 2.4678538, y: 11.871877, z: 0.18942}
   m_Children: []
   m_Father: {fileID: 4355932393890437647}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0.541, z: 0}
 --- !u!65 &441285004355440512
 BoxCollider:
@@ -249,7 +249,7 @@ Transform:
   m_LocalScale: {x: 4.488399, y: 2.3126771, z: 0.18942}
   m_Children: []
   m_Father: {fileID: 4355932393890437647}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 79.729, z: 0}
 --- !u!65 &6924411953190653303
 BoxCollider:
@@ -293,7 +293,7 @@ Transform:
   m_LocalScale: {x: 17.624165, y: 11.871877, z: 0.18942}
   m_Children: []
   m_Father: {fileID: 4355932393890437647}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0.541, z: 0}
 --- !u!65 &9007226814398021426
 BoxCollider:
@@ -337,7 +337,7 @@ Transform:
   m_LocalScale: {x: 2.773887, y: 6.070051, z: 0.18942}
   m_Children: []
   m_Father: {fileID: 4355932393890437647}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 94.579, z: 0}
 --- !u!65 &2042585901864780966
 BoxCollider:
@@ -381,7 +381,7 @@ Transform:
   m_LocalScale: {x: 1.0117007, y: 7.701681, z: 1.1377012}
   m_Children: []
   m_Father: {fileID: 4355932393890437647}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 74.501, z: 0}
 --- !u!65 &3873978679908220166
 BoxCollider:
@@ -425,7 +425,7 @@ Transform:
   m_LocalScale: {x: 3.8779855, y: 6.5842533, z: 0.18942}
   m_Children: []
   m_Father: {fileID: 4355932393890437647}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0.541, z: 0}
 --- !u!65 &7415627856587364347
 BoxCollider:
@@ -469,7 +469,7 @@ Transform:
   m_LocalScale: {x: 5.055528, y: 2.3126771, z: 0.18942}
   m_Children: []
   m_Father: {fileID: 4355932393890437647}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 35.553, z: 0}
 --- !u!65 &2586882280624482631
 BoxCollider:
@@ -647,7 +647,6 @@ Transform:
   - {fileID: 4355932393579926389}
   - {fileID: 4355932393307553663}
   - {fileID: 1954808529720340359}
-  - {fileID: 7895110139863976818}
   - {fileID: 7728615726133310493}
   - {fileID: 8184280679606566222}
   - {fileID: 4882380011602283088}
@@ -693,50 +692,6 @@ Transform:
   m_Father: {fileID: 4355932393890437647}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9047629829814254169
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7895110139863976818}
-  - component: {fileID: 3311600962969131591}
-  m_Layer: 0
-  m_Name: WallBoxCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7895110139863976818
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9047629829814254169}
-  m_LocalRotation: {x: -0, y: 0.163941, z: -0, w: 0.98647016}
-  m_LocalPosition: {x: -4.88, y: 3.6112504, z: 81.87}
-  m_LocalScale: {x: 3.4589, y: 6.070051, z: 0.18942}
-  m_Children: []
-  m_Father: {fileID: 4355932393890437647}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 18.871, z: 0}
---- !u!65 &3311600962969131591
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9047629829814254169}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9080867362290627576
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +721,7 @@ Transform:
   m_LocalScale: {x: 9.511946, y: 3.3882897, z: 0.18942}
   m_Children: []
   m_Father: {fileID: 4355932393890437647}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 7.197, z: 0}
 --- !u!65 &1690583430831723273
 BoxCollider:

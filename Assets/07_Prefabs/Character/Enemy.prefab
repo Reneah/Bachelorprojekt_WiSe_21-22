@@ -2330,8 +2330,8 @@ MonoBehaviour:
   _enemyHead: {fileID: 7429465334465209964}
   _obstacleRaycastTransform: {fileID: 7429465333900099875}
   _lookPositionAtSpotted: {fileID: 0}
-  _visionSecondsToSpot: 1.5
-  _acousticSecondsToSpot: 1.5
+  _visionSecondsToSpot: 0.75
+  _acousticSecondsToSpot: 0.75
   _spottedBar: {fileID: 148888973}
   _spottedVisionDistance: 3
   _spottedAcousticDistance: 2.5
