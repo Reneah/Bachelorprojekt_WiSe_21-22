@@ -31826,9 +31826,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7395168851662861261}
-        m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetFullscreen
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -32553,9 +32553,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7395168851662861261}
-        m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetFramerate
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -37632,9 +37632,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7395168851662861261}
-        m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetMusicVolume
-        m_Mode: 4
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -40930,7 +40930,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7395168851662861261}
-        m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetVsync
         m_Mode: 1
         m_Arguments:
@@ -43770,9 +43770,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7395168851662861261}
-        m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetQuality
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
