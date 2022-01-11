@@ -18,6 +18,7 @@ public class FadeOut : MonoBehaviour
     [SerializeField] private bool firstSceneFadeOut;
 
     private float _movementSpeed;
+    private float _sprintSpeed;
     private float _smoothRotation;
     private bool fadingOut = true;
 
@@ -25,9 +26,12 @@ public class FadeOut : MonoBehaviour
     {
         if (firstSceneFadeOut)
         {
+            _tutorial.SetActive(true);
             _tutorial.SetActive(false);
             _movementSpeed = _playerController.MovementSpeed;
+            _sprintSpeed = _playerController.SprintSpeed;
             _smoothRotation = _playerController.SmoothRotation;
+            _playerController.SprintSpeed = 0;
             _playerController.MovementSpeed = 0;
             _playerController.SmoothRotation = 0;
         }
@@ -38,6 +42,12 @@ public class FadeOut : MonoBehaviour
 
     private void Update()
     {
+        if (firstSceneFadeOut && PlayerPrefs.GetInt("20",1) == 0)
+        {
+            EnableMovement();
+            return;
+        }
+        
         if (fadingOut && firstSceneFadeOut)
         {
             if (_fadeImage.color.a <= 0.1)
@@ -51,8 +61,15 @@ public class FadeOut : MonoBehaviour
     public void EnableTutorial()
     {
         _tutorial.SetActive(true);
+        EnableMovement();
+    }
+
+    public void EnableMovement()
+    {
         _playerController.enabled = true;
         _playerController.MovementSpeed = _movementSpeed;
+        _playerController.SprintSpeed = _sprintSpeed;
         _playerController.SmoothRotation = _smoothRotation;
+        firstSceneFadeOut = false;
     }
 }

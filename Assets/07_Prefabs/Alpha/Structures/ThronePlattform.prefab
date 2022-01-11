@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1225473004797647841
+--- !u!1 &1360134237583249928
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4000731900990359831}
-  - component: {fileID: 544358591046333442}
-  - component: {fileID: 4433048976053976600}
-  - component: {fileID: 1865858664274289675}
-  - component: {fileID: 5936033529734531233}
+  - component: {fileID: 3605614913144865562}
+  - component: {fileID: 7889542399055587831}
+  - component: {fileID: 1683281564679399240}
+  - component: {fileID: 2350755750455018195}
+  - component: {fileID: 397313392045238835}
   m_Layer: 6
   m_Name: StairsBack
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!4 &4000731900990359831
+--- !u!4 &3605614913144865562
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225473004797647841}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.007999897, y: 0, z: 0}
+  m_GameObject: {fileID: 1360134237583249928}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 7, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7892696789336084021}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &544358591046333442
+--- !u!114 &7889542399055587831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225473004797647841}
+  m_GameObject: {fileID: 1360134237583249928}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
@@ -685,92 +685,92 @@ MonoBehaviour:
   m_SharedTextures: []
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: -1.5, y: 0, z: 0}
+  - {x: -2, y: 0, z: 0}
   - {x: 0, y: 0.125, z: 0}
-  - {x: -1.5, y: 0.125, z: 0}
+  - {x: -2, y: 0.125, z: 0}
   - {x: 0, y: 0.125, z: 0}
-  - {x: -1.5, y: 0.125, z: 0}
+  - {x: -2, y: 0.125, z: 0}
   - {x: 0, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0.125, z: 0.5}
+  - {x: -2, y: 0.125, z: 0.5}
   - {x: 0, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0.125, z: 0.5}
+  - {x: -2, y: 0.125, z: 0.5}
   - {x: 0, y: 0.25, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 0.5}
+  - {x: -2, y: 0.25, z: 0.5}
   - {x: 0, y: 0.25, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 0.5}
+  - {x: -2, y: 0.25, z: 0.5}
   - {x: 0, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.25, z: 1}
+  - {x: -2, y: 0.25, z: 1}
   - {x: 0, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.25, z: 1}
+  - {x: -2, y: 0.25, z: 1}
   - {x: 0, y: 0.375, z: 1}
-  - {x: -1.5, y: 0.375, z: 1}
+  - {x: -2, y: 0.375, z: 1}
   - {x: 0, y: 0.375, z: 1}
-  - {x: -1.5, y: 0.375, z: 1}
+  - {x: -2, y: 0.375, z: 1}
   - {x: 0, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.375, z: 1.5}
   - {x: 0, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.375, z: 1.5}
   - {x: 0, y: 0.5, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 1.5}
+  - {x: -2, y: 0.5, z: 1.5}
   - {x: 0, y: 0.5, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 1.5}
+  - {x: -2, y: 0.5, z: 1.5}
   - {x: 0, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.5, z: 2}
+  - {x: -2, y: 0.5, z: 2}
   - {x: 0, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.5, z: 2}
+  - {x: -2, y: 0.5, z: 2}
   - {x: 0, y: 0.625, z: 2}
-  - {x: -1.5, y: 0.625, z: 2}
+  - {x: -2, y: 0.625, z: 2}
   - {x: 0, y: 0.625, z: 2}
-  - {x: -1.5, y: 0.625, z: 2}
+  - {x: -2, y: 0.625, z: 2}
   - {x: 0, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.625, z: 2.5}
   - {x: 0, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.625, z: 2.5}
   - {x: 0, y: 0.75, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 2.5}
+  - {x: -2, y: 0.75, z: 2.5}
   - {x: 0, y: 0.75, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 2.5}
+  - {x: -2, y: 0.75, z: 2.5}
   - {x: 0, y: 0.75, z: 3}
-  - {x: -1.5, y: 0.75, z: 3}
-  - {x: -1.5, y: 0, z: 0}
-  - {x: -1.5, y: 0, z: 0.5}
-  - {x: -1.5, y: 0.125, z: 0}
-  - {x: -1.5, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0, z: 0.5}
-  - {x: -1.5, y: 0, z: 1}
-  - {x: -1.5, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 1}
-  - {x: -1.5, y: 0, z: 1}
-  - {x: -1.5, y: 0, z: 1.5}
-  - {x: -1.5, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.375, z: 1}
-  - {x: -1.5, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0, z: 1.5}
-  - {x: -1.5, y: 0, z: 2}
-  - {x: -1.5, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 2}
-  - {x: -1.5, y: 0, z: 2}
-  - {x: -1.5, y: 0, z: 2.5}
-  - {x: -1.5, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.625, z: 2}
-  - {x: -1.5, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0, z: 2.5}
-  - {x: -1.5, y: 0, z: 3}
-  - {x: -1.5, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 3}
-  - {x: -1.5, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 3}
+  - {x: -2, y: 0.75, z: 3}
+  - {x: -2, y: 0, z: 0}
+  - {x: -2, y: 0, z: 0.5}
+  - {x: -2, y: 0.125, z: 0}
+  - {x: -2, y: 0.125, z: 0.5}
+  - {x: -2, y: 0, z: 0.5}
+  - {x: -2, y: 0, z: 1}
+  - {x: -2, y: 0.125, z: 0.5}
+  - {x: -2, y: 0.25, z: 1}
+  - {x: -2, y: 0.125, z: 0.5}
+  - {x: -2, y: 0.25, z: 0.5}
+  - {x: -2, y: 0.25, z: 1}
+  - {x: -2, y: 0, z: 1}
+  - {x: -2, y: 0, z: 1.5}
+  - {x: -2, y: 0.25, z: 1}
+  - {x: -2, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.25, z: 1}
+  - {x: -2, y: 0.375, z: 1}
+  - {x: -2, y: 0.375, z: 1.5}
+  - {x: -2, y: 0, z: 1.5}
+  - {x: -2, y: 0, z: 2}
+  - {x: -2, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.5, z: 2}
+  - {x: -2, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.5, z: 1.5}
+  - {x: -2, y: 0.5, z: 2}
+  - {x: -2, y: 0, z: 2}
+  - {x: -2, y: 0, z: 2.5}
+  - {x: -2, y: 0.5, z: 2}
+  - {x: -2, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.5, z: 2}
+  - {x: -2, y: 0.625, z: 2}
+  - {x: -2, y: 0.625, z: 2.5}
+  - {x: -2, y: 0, z: 2.5}
+  - {x: -2, y: 0, z: 3}
+  - {x: -2, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.75, z: 3}
+  - {x: -2, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.75, z: 2.5}
+  - {x: -2, y: 0.75, z: 3}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0.5}
   - {x: 0, y: 0.125, z: 0}
@@ -810,59 +810,59 @@ MonoBehaviour:
   - {x: 0, y: 0.625, z: 2.5}
   - {x: 0, y: 0.75, z: 2.5}
   - {x: 0, y: 0.75, z: 3}
-  - {x: -1.5, y: 0, z: 3}
+  - {x: -2, y: 0, z: 3}
   - {x: 0, y: 0, z: 3}
-  - {x: -1.5, y: 0.75, z: 3}
+  - {x: -2, y: 0.75, z: 3}
   - {x: 0, y: 0.75, z: 3}
   m_Textures0:
   - {x: 0, y: 0}
-  - {x: -1.5, y: 0}
+  - {x: -2, y: 0}
   - {x: 0, y: 0.125}
-  - {x: -1.5, y: 0.125}
+  - {x: -2, y: 0.125}
   - {x: 0, y: 0}
-  - {x: -1.5, y: 0}
+  - {x: -2, y: 0}
   - {x: 0, y: 0.5}
-  - {x: -1.5, y: 0.5}
+  - {x: -2, y: 0.5}
   - {x: 0, y: 0.125}
-  - {x: -1.5, y: 0.125}
+  - {x: -2, y: 0.125}
   - {x: 0, y: 0.25}
-  - {x: -1.5, y: 0.25}
+  - {x: -2, y: 0.25}
   - {x: 0, y: 0.5}
-  - {x: -1.5, y: 0.5}
+  - {x: -2, y: 0.5}
   - {x: 0, y: 1}
-  - {x: -1.5, y: 1}
+  - {x: -2, y: 1}
   - {x: 0, y: 0.25}
-  - {x: -1.5, y: 0.25}
+  - {x: -2, y: 0.25}
   - {x: 0, y: 0.375}
-  - {x: -1.5, y: 0.375}
+  - {x: -2, y: 0.375}
   - {x: 0, y: 1}
-  - {x: -1.5, y: 1}
+  - {x: -2, y: 1}
   - {x: 0, y: 1.5}
-  - {x: -1.5, y: 1.5}
+  - {x: -2, y: 1.5}
   - {x: 0, y: 0.375}
-  - {x: -1.5, y: 0.375}
+  - {x: -2, y: 0.375}
   - {x: 0, y: 0.5}
-  - {x: -1.5, y: 0.5}
+  - {x: -2, y: 0.5}
   - {x: 0, y: 1.5}
-  - {x: -1.5, y: 1.5}
+  - {x: -2, y: 1.5}
   - {x: 0, y: 2}
-  - {x: -1.5, y: 2}
+  - {x: -2, y: 2}
   - {x: 0, y: 0.5}
-  - {x: -1.5, y: 0.5}
+  - {x: -2, y: 0.5}
   - {x: 0, y: 0.625}
-  - {x: -1.5, y: 0.625}
+  - {x: -2, y: 0.625}
   - {x: 0, y: 2}
-  - {x: -1.5, y: 2}
+  - {x: -2, y: 2}
   - {x: 0, y: 2.5}
-  - {x: -1.5, y: 2.5}
+  - {x: -2, y: 2.5}
   - {x: 0, y: 0.625}
-  - {x: -1.5, y: 0.625}
+  - {x: -2, y: 0.625}
   - {x: 0, y: 0.75}
-  - {x: -1.5, y: 0.75}
+  - {x: -2, y: 0.75}
   - {x: 0, y: 2.5}
-  - {x: -1.5, y: 2.5}
+  - {x: -2, y: 2.5}
   - {x: 0, y: 3}
-  - {x: -1.5, y: 3}
+  - {x: -2, y: 3}
   - {x: 0, y: 0}
   - {x: -0.5, y: 0}
   - {x: 0, y: 0.125}
@@ -941,9 +941,9 @@ MonoBehaviour:
   - {x: 2.5, y: 0.625}
   - {x: 2.5, y: 0.75}
   - {x: 3, y: 0.75}
-  - {x: 1.5, y: 0}
+  - {x: 2, y: 0}
   - {x: 0, y: 0}
-  - {x: 1.5, y: 0.75}
+  - {x: 2, y: 0.75}
   - {x: 0, y: 0.75}
   m_Textures2: []
   m_Textures3: []
@@ -1091,13 +1091,13 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!23 &4433048976053976600
+--- !u!23 &1683281564679399240
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225473004797647841}
+  m_GameObject: {fileID: 1360134237583249928}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1132,21 +1132,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1865858664274289675
+--- !u!33 &2350755750455018195
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225473004797647841}
+  m_GameObject: {fileID: 1360134237583249928}
   m_Mesh: {fileID: 0}
---- !u!64 &5936033529734531233
+--- !u!64 &397313392045238835
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225473004797647841}
+  m_GameObject: {fileID: 1360134237583249928}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 1120221724832678792}
   m_Layer: 6
   m_Name: StairsFront
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1186,7 +1186,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7892696789336084021}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2538714448305532174
 MonoBehaviour:
@@ -2308,7 +2308,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!1 &3505612425897053828
+--- !u!1 &2340277843972298142
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2316,39 +2316,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4464931810584959428}
-  - component: {fileID: 6275992193630160879}
-  - component: {fileID: 824801350448250086}
-  - component: {fileID: 6836039044498588993}
-  - component: {fileID: 6891294773742098123}
+  - component: {fileID: 632490704376364759}
+  - component: {fileID: 4371897304906360833}
+  - component: {fileID: 5615515787297554167}
+  - component: {fileID: 7551690466122312975}
+  - component: {fileID: 6463607198373676295}
   m_Layer: 6
   m_Name: StairsBack
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!4 &4464931810584959428
+--- !u!4 &632490704376364759
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3505612425897053828}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 3.008, y: 0, z: 0}
+  m_GameObject: {fileID: 2340277843972298142}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7892696789336084021}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6275992193630160879
+--- !u!114 &4371897304906360833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3505612425897053828}
+  m_GameObject: {fileID: 2340277843972298142}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
@@ -2470,54 +2470,54 @@ MonoBehaviour:
   m_SharedTextures: []
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 1.5, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}
   - {x: 0, y: 0.75, z: 0}
-  - {x: 1.5, y: 0.75, z: 0}
-  - {x: 1.5, y: 0, z: 0}
-  - {x: 1.5, y: 0, z: -1}
-  - {x: 1.5, y: 0.75, z: 0}
-  - {x: 1.5, y: 0.75, z: -1}
-  - {x: 1.5, y: 0, z: -1}
+  - {x: 2, y: 0.75, z: 0}
+  - {x: 2, y: 0, z: 0}
+  - {x: 2, y: 0, z: -1}
+  - {x: 2, y: 0.75, z: 0}
+  - {x: 2, y: 0.75, z: -1}
+  - {x: 2, y: 0, z: -1}
   - {x: 0, y: 0, z: -1}
-  - {x: 1.5, y: 0.75, z: -1}
+  - {x: 2, y: 0.75, z: -1}
   - {x: 0, y: 0.75, z: -1}
   - {x: 0, y: 0, z: -1}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0.75, z: -1}
   - {x: 0, y: 0.75, z: 0}
   - {x: 0, y: 0.75, z: 0}
-  - {x: 1.5, y: 0.75, z: 0}
+  - {x: 2, y: 0.75, z: 0}
   - {x: 0, y: 0.75, z: -1}
-  - {x: 1.5, y: 0.75, z: -1}
+  - {x: 2, y: 0.75, z: -1}
   - {x: 0, y: 0, z: -1}
-  - {x: 1.5, y: 0, z: -1}
+  - {x: 2, y: 0, z: -1}
   - {x: 0, y: 0, z: 0}
-  - {x: 1.5, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}
   m_Textures0:
   - {x: 0, y: 0}
-  - {x: -1.5, y: 0}
+  - {x: -2, y: 0}
   - {x: 0, y: 0.75}
-  - {x: -1.5, y: 0.75}
+  - {x: -2, y: 0.75}
   - {x: 0, y: 0}
   - {x: -1, y: 0}
   - {x: 0, y: 0.75}
   - {x: -1, y: 0.75}
-  - {x: 1.5, y: 0}
+  - {x: 2, y: 0}
   - {x: 0, y: 0}
-  - {x: 1.5, y: 0.75}
+  - {x: 2, y: 0.75}
   - {x: 0, y: 0.75}
   - {x: 1, y: 0}
   - {x: 0, y: 0}
   - {x: 1, y: 0.75}
   - {x: 0, y: 0.75}
   - {x: 0, y: 0}
-  - {x: 1.5, y: 0}
+  - {x: 2, y: 0}
   - {x: 0, y: -1}
-  - {x: 1.5, y: -1}
+  - {x: 2, y: -1}
   - {x: 0, y: -1}
-  - {x: -1.5, y: -1}
+  - {x: -2, y: -1}
   - {x: 0, y: 0}
-  - {x: -1.5, y: 0}
+  - {x: -2, y: 0}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
@@ -2558,13 +2558,13 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!23 &824801350448250086
+--- !u!23 &5615515787297554167
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3505612425897053828}
+  m_GameObject: {fileID: 2340277843972298142}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -2599,21 +2599,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &6836039044498588993
+--- !u!33 &7551690466122312975
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3505612425897053828}
+  m_GameObject: {fileID: 2340277843972298142}
   m_Mesh: {fileID: 0}
---- !u!64 &6891294773742098123
+--- !u!64 &6463607198373676295
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3505612425897053828}
+  m_GameObject: {fileID: 2340277843972298142}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -2636,7 +2636,7 @@ GameObject:
   - component: {fileID: 9066995778844901439}
   m_Layer: 6
   m_Name: StairsFront
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2653,7 +2653,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7892696789336084021}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6162471942087130377
 MonoBehaviour:
@@ -3790,7 +3790,7 @@ GameObject:
   - component: {fileID: 2930846285049762651}
   m_Layer: 6
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3803,7 +3803,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3903721432989796289}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7892696789336084021}
@@ -4120,7 +4120,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7892696789336084021}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &725407061413634733
 MonoBehaviour:
@@ -4401,7 +4401,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!1 &4835374876968059435
+--- !u!1 &4729825177223903122
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4409,77 +4409,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7892696789336084021}
+  - component: {fileID: 990691926649969703}
+  - component: {fileID: 3285834268930969437}
+  - component: {fileID: 3893596397223888649}
+  - component: {fileID: 3151017542421962383}
+  - component: {fileID: 7045850192907308373}
   m_Layer: 6
-  m_Name: ThronePlattform
+  m_Name: StairsBack
   m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!4 &7892696789336084021
+--- !u!4 &990691926649969703
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4835374876968059435}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4920001, y: 0.5, z: 87.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5559352275580451079}
-  - {fileID: 4000731900990359831}
-  - {fileID: 7054872925155793553}
-  - {fileID: 4464931810584959428}
-  - {fileID: 3874167339527112662}
-  - {fileID: 6343739072963254651}
-  - {fileID: 387304863382648600}
-  - {fileID: 6079405713326330949}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5016397766216442036
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7054872925155793553}
-  - component: {fileID: 2648622490330134899}
-  - component: {fileID: 7352412716176810027}
-  - component: {fileID: 4018115462501742163}
-  - component: {fileID: 5111547554231673957}
-  m_Layer: 6
-  m_Name: StairsBack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7054872925155793553
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5016397766216442036}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 7.008, y: 0, z: 1.5}
+  m_GameObject: {fileID: 4729825177223903122}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7892696789336084021}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2648622490330134899
+--- !u!114 &3285834268930969437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5016397766216442036}
+  m_GameObject: {fileID: 4729825177223903122}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
@@ -5124,92 +5086,92 @@ MonoBehaviour:
   m_SharedTextures: []
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: -1.5, y: 0, z: 0}
+  - {x: -2, y: 0, z: 0}
   - {x: 0, y: 0.125, z: 0}
-  - {x: -1.5, y: 0.125, z: 0}
+  - {x: -2, y: 0.125, z: 0}
   - {x: 0, y: 0.125, z: 0}
-  - {x: -1.5, y: 0.125, z: 0}
+  - {x: -2, y: 0.125, z: 0}
   - {x: 0, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0.125, z: 0.5}
+  - {x: -2, y: 0.125, z: 0.5}
   - {x: 0, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0.125, z: 0.5}
+  - {x: -2, y: 0.125, z: 0.5}
   - {x: 0, y: 0.25, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 0.5}
+  - {x: -2, y: 0.25, z: 0.5}
   - {x: 0, y: 0.25, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 0.5}
+  - {x: -2, y: 0.25, z: 0.5}
   - {x: 0, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.25, z: 1}
+  - {x: -2, y: 0.25, z: 1}
   - {x: 0, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.25, z: 1}
+  - {x: -2, y: 0.25, z: 1}
   - {x: 0, y: 0.375, z: 1}
-  - {x: -1.5, y: 0.375, z: 1}
+  - {x: -2, y: 0.375, z: 1}
   - {x: 0, y: 0.375, z: 1}
-  - {x: -1.5, y: 0.375, z: 1}
+  - {x: -2, y: 0.375, z: 1}
   - {x: 0, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.375, z: 1.5}
   - {x: 0, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.375, z: 1.5}
   - {x: 0, y: 0.5, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 1.5}
+  - {x: -2, y: 0.5, z: 1.5}
   - {x: 0, y: 0.5, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 1.5}
+  - {x: -2, y: 0.5, z: 1.5}
   - {x: 0, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.5, z: 2}
+  - {x: -2, y: 0.5, z: 2}
   - {x: 0, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.5, z: 2}
+  - {x: -2, y: 0.5, z: 2}
   - {x: 0, y: 0.625, z: 2}
-  - {x: -1.5, y: 0.625, z: 2}
+  - {x: -2, y: 0.625, z: 2}
   - {x: 0, y: 0.625, z: 2}
-  - {x: -1.5, y: 0.625, z: 2}
+  - {x: -2, y: 0.625, z: 2}
   - {x: 0, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.625, z: 2.5}
   - {x: 0, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.625, z: 2.5}
   - {x: 0, y: 0.75, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 2.5}
+  - {x: -2, y: 0.75, z: 2.5}
   - {x: 0, y: 0.75, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 2.5}
+  - {x: -2, y: 0.75, z: 2.5}
   - {x: 0, y: 0.75, z: 3}
-  - {x: -1.5, y: 0.75, z: 3}
-  - {x: -1.5, y: 0, z: 0}
-  - {x: -1.5, y: 0, z: 0.5}
-  - {x: -1.5, y: 0.125, z: 0}
-  - {x: -1.5, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0, z: 0.5}
-  - {x: -1.5, y: 0, z: 1}
-  - {x: -1.5, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.125, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 0.5}
-  - {x: -1.5, y: 0.25, z: 1}
-  - {x: -1.5, y: 0, z: 1}
-  - {x: -1.5, y: 0, z: 1.5}
-  - {x: -1.5, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.25, z: 1}
-  - {x: -1.5, y: 0.375, z: 1}
-  - {x: -1.5, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0, z: 1.5}
-  - {x: -1.5, y: 0, z: 2}
-  - {x: -1.5, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.375, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 1.5}
-  - {x: -1.5, y: 0.5, z: 2}
-  - {x: -1.5, y: 0, z: 2}
-  - {x: -1.5, y: 0, z: 2.5}
-  - {x: -1.5, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.5, z: 2}
-  - {x: -1.5, y: 0.625, z: 2}
-  - {x: -1.5, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0, z: 2.5}
-  - {x: -1.5, y: 0, z: 3}
-  - {x: -1.5, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 3}
-  - {x: -1.5, y: 0.625, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 2.5}
-  - {x: -1.5, y: 0.75, z: 3}
+  - {x: -2, y: 0.75, z: 3}
+  - {x: -2, y: 0, z: 0}
+  - {x: -2, y: 0, z: 0.5}
+  - {x: -2, y: 0.125, z: 0}
+  - {x: -2, y: 0.125, z: 0.5}
+  - {x: -2, y: 0, z: 0.5}
+  - {x: -2, y: 0, z: 1}
+  - {x: -2, y: 0.125, z: 0.5}
+  - {x: -2, y: 0.25, z: 1}
+  - {x: -2, y: 0.125, z: 0.5}
+  - {x: -2, y: 0.25, z: 0.5}
+  - {x: -2, y: 0.25, z: 1}
+  - {x: -2, y: 0, z: 1}
+  - {x: -2, y: 0, z: 1.5}
+  - {x: -2, y: 0.25, z: 1}
+  - {x: -2, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.25, z: 1}
+  - {x: -2, y: 0.375, z: 1}
+  - {x: -2, y: 0.375, z: 1.5}
+  - {x: -2, y: 0, z: 1.5}
+  - {x: -2, y: 0, z: 2}
+  - {x: -2, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.5, z: 2}
+  - {x: -2, y: 0.375, z: 1.5}
+  - {x: -2, y: 0.5, z: 1.5}
+  - {x: -2, y: 0.5, z: 2}
+  - {x: -2, y: 0, z: 2}
+  - {x: -2, y: 0, z: 2.5}
+  - {x: -2, y: 0.5, z: 2}
+  - {x: -2, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.5, z: 2}
+  - {x: -2, y: 0.625, z: 2}
+  - {x: -2, y: 0.625, z: 2.5}
+  - {x: -2, y: 0, z: 2.5}
+  - {x: -2, y: 0, z: 3}
+  - {x: -2, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.75, z: 3}
+  - {x: -2, y: 0.625, z: 2.5}
+  - {x: -2, y: 0.75, z: 2.5}
+  - {x: -2, y: 0.75, z: 3}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0.5}
   - {x: 0, y: 0.125, z: 0}
@@ -5249,59 +5211,59 @@ MonoBehaviour:
   - {x: 0, y: 0.625, z: 2.5}
   - {x: 0, y: 0.75, z: 2.5}
   - {x: 0, y: 0.75, z: 3}
-  - {x: -1.5, y: 0, z: 3}
+  - {x: -2, y: 0, z: 3}
   - {x: 0, y: 0, z: 3}
-  - {x: -1.5, y: 0.75, z: 3}
+  - {x: -2, y: 0.75, z: 3}
   - {x: 0, y: 0.75, z: 3}
   m_Textures0:
   - {x: 0, y: 0}
-  - {x: -1.5, y: 0}
+  - {x: -2, y: 0}
   - {x: 0, y: 0.125}
-  - {x: -1.5, y: 0.125}
+  - {x: -2, y: 0.125}
   - {x: 0, y: 0}
-  - {x: -1.5, y: 0}
+  - {x: -2, y: 0}
   - {x: 0, y: 0.5}
-  - {x: -1.5, y: 0.5}
+  - {x: -2, y: 0.5}
   - {x: 0, y: 0.125}
-  - {x: -1.5, y: 0.125}
+  - {x: -2, y: 0.125}
   - {x: 0, y: 0.25}
-  - {x: -1.5, y: 0.25}
+  - {x: -2, y: 0.25}
   - {x: 0, y: 0.5}
-  - {x: -1.5, y: 0.5}
+  - {x: -2, y: 0.5}
   - {x: 0, y: 1}
-  - {x: -1.5, y: 1}
+  - {x: -2, y: 1}
   - {x: 0, y: 0.25}
-  - {x: -1.5, y: 0.25}
+  - {x: -2, y: 0.25}
   - {x: 0, y: 0.375}
-  - {x: -1.5, y: 0.375}
+  - {x: -2, y: 0.375}
   - {x: 0, y: 1}
-  - {x: -1.5, y: 1}
+  - {x: -2, y: 1}
   - {x: 0, y: 1.5}
-  - {x: -1.5, y: 1.5}
+  - {x: -2, y: 1.5}
   - {x: 0, y: 0.375}
-  - {x: -1.5, y: 0.375}
+  - {x: -2, y: 0.375}
   - {x: 0, y: 0.5}
-  - {x: -1.5, y: 0.5}
+  - {x: -2, y: 0.5}
   - {x: 0, y: 1.5}
-  - {x: -1.5, y: 1.5}
+  - {x: -2, y: 1.5}
   - {x: 0, y: 2}
-  - {x: -1.5, y: 2}
+  - {x: -2, y: 2}
   - {x: 0, y: 0.5}
-  - {x: -1.5, y: 0.5}
+  - {x: -2, y: 0.5}
   - {x: 0, y: 0.625}
-  - {x: -1.5, y: 0.625}
+  - {x: -2, y: 0.625}
   - {x: 0, y: 2}
-  - {x: -1.5, y: 2}
+  - {x: -2, y: 2}
   - {x: 0, y: 2.5}
-  - {x: -1.5, y: 2.5}
+  - {x: -2, y: 2.5}
   - {x: 0, y: 0.625}
-  - {x: -1.5, y: 0.625}
+  - {x: -2, y: 0.625}
   - {x: 0, y: 0.75}
-  - {x: -1.5, y: 0.75}
+  - {x: -2, y: 0.75}
   - {x: 0, y: 2.5}
-  - {x: -1.5, y: 2.5}
+  - {x: -2, y: 2.5}
   - {x: 0, y: 3}
-  - {x: -1.5, y: 3}
+  - {x: -2, y: 3}
   - {x: 0, y: 0}
   - {x: -0.5, y: 0}
   - {x: 0, y: 0.125}
@@ -5380,9 +5342,9 @@ MonoBehaviour:
   - {x: 2.5, y: 0.625}
   - {x: 2.5, y: 0.75}
   - {x: 3, y: 0.75}
-  - {x: 1.5, y: 0}
+  - {x: 2, y: 0}
   - {x: 0, y: 0}
-  - {x: 1.5, y: 0.75}
+  - {x: 2, y: 0.75}
   - {x: 0, y: 0.75}
   m_Textures2: []
   m_Textures3: []
@@ -5530,13 +5492,13 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!23 &7352412716176810027
+--- !u!23 &3893596397223888649
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5016397766216442036}
+  m_GameObject: {fileID: 4729825177223903122}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -5571,21 +5533,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &4018115462501742163
+--- !u!33 &3151017542421962383
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5016397766216442036}
+  m_GameObject: {fileID: 4729825177223903122}
   m_Mesh: {fileID: 0}
---- !u!64 &5111547554231673957
+--- !u!64 &7045850192907308373
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5016397766216442036}
+  m_GameObject: {fileID: 4729825177223903122}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -5593,6 +5555,44 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &4835374876968059435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7892696789336084021}
+  m_Layer: 6
+  m_Name: ThronePlattform
+  m_TagString: LowGround
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7892696789336084021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835374876968059435}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4920001, y: 0.5, z: 87.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5559352275580451079}
+  - {fileID: 3874167339527112662}
+  - {fileID: 6343739072963254651}
+  - {fileID: 387304863382648600}
+  - {fileID: 6079405713326330949}
+  - {fileID: 3605614913144865562}
+  - {fileID: 990691926649969703}
+  - {fileID: 632490704376364759}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7709695548726998867
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,7 +5608,7 @@ GameObject:
   - component: {fileID: 9090140231885716605}
   m_Layer: 6
   m_Name: StairsFront
-  m_TagString: Untagged
+  m_TagString: LowGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5625,7 +5625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7892696789336084021}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5778995579447024230
 MonoBehaviour:

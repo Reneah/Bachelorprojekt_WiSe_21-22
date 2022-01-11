@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DarkTonic.MasterAudio;
 using TMPro;
 using UnityEngine;
+using untitledProject;
 using Image = UnityEngine.UI.Image;
 
 public class CollectStones : MonoBehaviour
@@ -25,6 +27,7 @@ public class CollectStones : MonoBehaviour
     private GameObject _stones;
     public static bool _stonesActive;
     public static bool _UIdisplayed;
+    private PlayerController _playerController;
 
     public int StonesCounter
     {
@@ -34,6 +37,8 @@ public class CollectStones : MonoBehaviour
 
     void Start()
     {
+        _playerController = FindObjectOfType<PlayerController>();
+        
         _UIdisplayed = System.Convert.ToBoolean(PlayerPrefs.GetInt("StoneUI", 0));
         _stonesActive = System.Convert.ToBoolean(PlayerPrefs.GetInt("StoneActive", 0));
         
@@ -76,10 +81,17 @@ public class CollectStones : MonoBehaviour
                 _stoneSprite.SetActive(true);
                 _negativeStoneSprite.gameObject.SetActive(false);
                 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && _playerController.IsGrounded)
                 {
+                    _playerController.PickUpItem = true;
                     _stonesActive = true;
                     PlayerPrefs.SetInt("StoneActive", 1);
+
+                    // Blocks the player from picking up stones when they've reached the max stones amount
+                    if (_stonesCounter >= _maxStoneAmount)
+                    {
+                        return;
+                    }
                     _stonesCounter += _stones.GetComponent<StonePile>().CollectAmount();
                     
                     if (_maxStoneAmount <= _stonesCounter)
@@ -89,6 +101,7 @@ public class CollectStones : MonoBehaviour
                     }
                     
                     _stonesAmountText.text = _stonesCounter.ToString();
+                    MasterAudio.PlaySound3DAtTransform("Pebbles", _stones.transform);
                     _stones.GetComponent<Collider>().enabled = false;
                     _stones.GetComponent<StonePile>().StonePileParent.SetActive(false);
                     _stonesCollectible = false;

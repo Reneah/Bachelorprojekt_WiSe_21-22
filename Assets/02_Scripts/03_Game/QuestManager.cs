@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using Enemy.Controller;
 using TMPro;
@@ -13,15 +10,7 @@ public class QuestManager : MonoBehaviour
     
     /// <summary>
     /// Variables for quest line
-    /// 
-    /// Quest Stage booleans have been removed in the code, because they could create problems
-    /// with the CheckPointSystem and performance doesn't matter
     /// </summary>
-    private bool _questStage1complete;
-    private bool _questStage2complete;
-    private bool _questStage3complete;
-    private bool _questStage4complete;
-    private bool _questStage5complete;
 
     private TextMeshProUGUI _quest1Text;
     private TextMeshProUGUI _quest2Text;
@@ -29,6 +18,7 @@ public class QuestManager : MonoBehaviour
     private TextMeshProUGUI _quest4Text;
     private TextMeshProUGUI _quest5Text;
     private TextMeshProUGUI _quest6Text;
+    private TextMeshProUGUI _quest7Text;
 
     [SerializeField] private int _provisionsQuestTarget;
     private GameObject _staircaseToCellarInteractionObjects;
@@ -65,6 +55,9 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private bool firstScene;
 
+    private bool _provisionsQuestPopUpHappened;
+    private bool _provisionsKeyPopUpHappened;
+
     private void Awake()
     {
         DOTween.Sequence()
@@ -89,6 +82,8 @@ public class QuestManager : MonoBehaviour
         _collectProvisions = FindObjectOfType<CollectProvisions>();
         _staircaseToCellarInteractionObjects = GameObject.Find("StaircaseToCellarInteractionObjects");
         _staircaseToCellarInteractionObjects.SetActive(false);
+        _provisionsQuestPopUpHappened = false;
+        _provisionsKeyPopUpHappened = false;
 
         _quest1Text = GameObject.Find("Quest1Text").GetComponent<TextMeshProUGUI>();
         _quest2Text = GameObject.Find("Quest2Text").GetComponent<TextMeshProUGUI>();
@@ -96,11 +91,13 @@ public class QuestManager : MonoBehaviour
         _quest4Text = GameObject.Find("Quest4Text").GetComponent<TextMeshProUGUI>();
         _quest5Text = GameObject.Find("Quest5Text").GetComponent<TextMeshProUGUI>();
         _quest6Text = GameObject.Find("Quest6Text").GetComponent<TextMeshProUGUI>();
+        _quest7Text = GameObject.Find("Quest7Text").GetComponent<TextMeshProUGUI>();
 
         _quest3Text.enabled = false;
         _quest4Text.enabled = false;
         _quest5Text.enabled = false;
         _quest6Text.enabled = false;
+        _quest7Text.enabled = false;
     
         // Reset QuestManager quest texts to regular font on New Game Start
         if (!CollectItem._backpackCollected)
@@ -118,10 +115,19 @@ public class QuestManager : MonoBehaviour
         if (!CollectItem._keyCollected)
         {
             _quest5Text.fontStyle = FontStyles.Normal;
+            
+            _quest6Text.enabled = false;
+            _quest7Text.enabled = false;
+            
+            _staircaseToCellarInteractionObjects.SetActive(false);
+            
+            //Not sure if needed
+            //_provisionsKeyPopUpHappened = false;
         }
         if (!CollectItem._enteredStaircase)
         {
             _quest6Text.fontStyle = FontStyles.Normal;
+            _quest7Text.fontStyle = FontStyles.Underline;
         }
         
     }
@@ -131,18 +137,14 @@ public class QuestManager : MonoBehaviour
     {
         if (CollectItem._backpackCollected)
         {
-            //_questStage1complete = true;
-            
             // activate next quest text, "Meet up with Drustan back at the front gate."
             _quest3Text.enabled = true;
             // activate crossed out resolved quest text, "Find a backpack."
             _quest2Text.fontStyle = FontStyles.Strikethrough;
         }
         
-        if (CollectItem._parchmentCollected && !_questStage2complete)
+        if (CollectItem._parchmentCollected)
         {
-            //_questStage2complete = true;
-            
             // activate next quest text "Gather X provisions."
             _quest4Text.enabled = true;
             // activate next quest text "Find the hidden key under the throne."
@@ -160,8 +162,13 @@ public class QuestManager : MonoBehaviour
                 // activate crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Strikethrough;
                 _provisionsQuestDone = true;
-                MoveQuestPanelDown();
-                
+
+                if (!_provisionsQuestPopUpHappened)
+                {
+                    MoveQuestPanelDown();
+                    _provisionsQuestPopUpHappened = true;
+                }
+
                 // Activate interaction visualisation objects at staircase asset
                 if (CollectItem._keyCollected)
                 {
@@ -173,8 +180,11 @@ public class QuestManager : MonoBehaviour
                 // revoke crossed out resolved quest text "Gather at least X provisions."
                 _quest4Text.fontStyle = FontStyles.Normal;
                 _provisionsQuestDone = false;
+                // deactivate next quest text "Enter the staircase to the cellar, to find the secret passage."
+                _quest6Text.enabled = false;
+                _quest7Text.enabled = false;
                 
-                // Dectivate interaction visualisation objects at staircase asset
+                // Deactivate interaction visualisation objects at staircase asset
                 if (CollectItem._keyCollected)
                 {
                     _staircaseToCellarInteractionObjects.SetActive(false);
@@ -184,24 +194,27 @@ public class QuestManager : MonoBehaviour
         
         if (CollectItem._keyCollected)
         {
-            //_questStage3complete = true;
-            
             // activate next quest text "Enter the staircase to the cellar, to find the secret passage."
             _quest6Text.enabled = true;
+            _quest7Text.enabled = true;
             // activate crossed out resolved quest text "Find the hidden key under the throne."
             _quest5Text.fontStyle = FontStyles.Strikethrough;
-            MoveQuestPanelDown();
+            
+            if (!_provisionsKeyPopUpHappened)
+            {
+                MoveQuestPanelDown();
+                _provisionsKeyPopUpHappened = true;
+            }
         }
 
         if (CollectItem._enteredStaircase)
         {
-            //_questStage4complete = true;
+            // Doesn't get visualised as next scene loads instantly on entering the staircase. Left as is, so not to mess with the code
             
             // activate crossed out resolved quest text "Enter the staircase to the cellar, to find the secret passage."
             _quest6Text.fontStyle = FontStyles.Strikethrough;
             // activate crossed out resolved quest text "Escape the keep unharmed."
             _quest1Text.fontStyle = FontStyles.Strikethrough;
-            MoveQuestPanelDown();
         }
     }
     

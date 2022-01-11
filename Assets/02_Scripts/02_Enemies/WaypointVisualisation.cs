@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Enemy.WaypointVisualisation
+namespace Enemy.Visualization
 {
     public class WaypointVisualisation : MonoBehaviour
     { 
-        [Tooltip("the sphere size of the waypoint")]
+        [Tooltip("the sphere size of the waypoints")]
         [SerializeField] float wayPointsSize;
 
         [Tooltip("the color of the waypoints and ways")]
@@ -28,7 +28,7 @@ namespace Enemy.WaypointVisualisation
         /// <returns></returns>
         private int GetWaypoints(int i)
         {
-            if(i >= transform.childCount)
+            if (i >= transform.childCount)
             {
                 return 0;
             }

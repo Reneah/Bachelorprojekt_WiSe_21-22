@@ -15,7 +15,7 @@ namespace Enemy.TalkCheck
         [Tooltip("the distance to stop in front of the other enemy")]
         [Range(1,5)]
         [SerializeField] private float _stopDistance = 0.5f;
-        [Tooltip("the time the enemy talk to the other enemy")]
+        [Tooltip("the time in which the enemy talk to the other enemy")]
         [Range(3,15)]
         [SerializeField] private float _timeToTalk;
         [Tooltip("smooth the rotation towards the other enemy when talking")]
@@ -46,7 +46,7 @@ namespace Enemy.TalkCheck
         private EnemyTalkCheck _talkableEnemy;
         // the chance that the enemy will pick another one to speak with him
         private float _chanceToSpeak;
-        // the time the enemy talk to the other enemy
+        // the time in which the enemy talk to the other enemy
         private float _talkCooldown;
         // determines if the enemy has reached the other one to start the talking time
         private bool _countDown = false;
@@ -55,21 +55,16 @@ namespace Enemy.TalkCheck
         
         public bool TakeTalkPartner
         {
-            get => _takeTalkPartner;
             set => _takeTalkPartner = value;
         }
 
         private float _talkReuseingTime;
 
-        public float TalkReuseingTime
-        {
-            get => _talkReuseingTime;
-            set => _talkReuseingTime = value;
-        }
+        public float TalkReuseingTime => _talkReuseingTime;
 
         private bool _startCooldown;
         
-        // need those script to communicate with the enemy
+        // need those scripts to communicate with the enemy
         private EnemyController _enemyController;
         private EnemyAnimationHandler _enemyAnimation;
         
@@ -117,6 +112,7 @@ namespace Enemy.TalkCheck
                     }
                 }
             }
+            
             // if the enemy sees or hears the player while the countdown, everything will be reset
             else if (!_talk && _countDown)
             {
@@ -127,6 +123,7 @@ namespace Enemy.TalkCheck
                 _takeTalkPartner = false;
                 _talkable = true;
             }
+            
             else if(_startCooldown)
             {
                 _talkReuseingTime -= Time.deltaTime;
@@ -167,6 +164,7 @@ namespace Enemy.TalkCheck
                 _talkable = false;
                 _talk = true;
                 _enemyController.AnimationHandler.SetSpeed(_enemyController.PatrolSpeed);
+                _talkReuseingTime = _reusingTime;
             }
         }
     }

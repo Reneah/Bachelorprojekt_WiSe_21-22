@@ -23,6 +23,7 @@
             <e p="PlayerGroundDetection.cs" t="Include" />
             <e p="PlayerIdleState.cs" t="Include" />
             <e p="PlayerJumpState.cs" t="Include" />
+            <e p="PlayerPickUpState.cs" t="Include" />
             <e p="PlayerRunState.cs" t="Include" />
             <e p="PlayerStepsSound.cs" t="Include" />
             <e p="PlayerThrowState.cs" t="Include" />
@@ -33,7 +34,6 @@
             <e p="StonePile.cs" t="Include" />
           </e>
           <e p="02_Enemies" t="Include">
-            <e p="ChaseActivation.cs" t="Include" />
             <e p="EnemyAnimationHandler.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
             <e p="EnemyGuardState.cs" t="Include" />
@@ -52,8 +52,9 @@
             <e p="LootSpot.cs" t="Include" />
             <e p="NoisyItem.cs" t="Include" />
             <e p="NoisyItemCloseActivation.cs" t="Include" />
-            <e p="NoisyItemPullRadius.cs" t="Include" />
+            <e p="NoisyItemSearchArea.cs" t="Include" />
             <e p="PointVisualization.cs" t="Include" />
+            <e p="SearchAreaOverview.cs" t="Include" />
             <e p="SeesPlayer.cs" t="Include" />
             <e p="SpottedBarTowardsCamera.cs" t="Include" />
             <e p="WaypointVisualisation.cs" t="Include" />
@@ -74,6 +75,7 @@
             <e p="WallCheck.cs" t="Include" />
           </e>
           <e p="04_Menu" t="Include">
+            <e p="Credits.cs" t="Include" />
             <e p="InGameMenu.cs" t="Include" />
             <e p="MainMenu.cs" t="Include" />
             <e p="Options.cs" t="Include" />

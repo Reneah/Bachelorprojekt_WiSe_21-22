@@ -12,9 +12,9 @@ namespace Enemy.AnimationHandler
         
         // how much the head should rotate
         private float _headRotationWeight = 1;
-        // determines when the animation is finished
+        // determines when the investigation animation is finished
         private bool _finishedInvestigationAnimation = false;
-        // determines when the animation is finished
+        // determines when the look animation is finished
         private bool _finishedLookingAnimation = false;
         
         public bool FinishedLookingAnimation
@@ -51,7 +51,7 @@ namespace Enemy.AnimationHandler
         }
 
         /// <summary>
-        /// When the enemy reached the noisy item will will play the investigation animation
+        /// When the enemy reached the noisy item, the enemy will play the investigation animation
         /// </summary>
         public void InvestigatePoint()
         {
@@ -74,7 +74,9 @@ namespace Enemy.AnimationHandler
             _enemyAnimator.SetTrigger(Looking);
         }
         
-        // reset the look around animation
+        /// <summary>
+        /// reset the look around animation
+        /// </summary>
         public void ResetLookingAround()
         {
             _enemyAnimator.ResetTrigger(Looking);
@@ -89,7 +91,7 @@ namespace Enemy.AnimationHandler
         }
 
         /// <summary>
-        /// Animation Event, determines when the animation is finished to execute the next method
+        /// Animation Event, determines when the investigation animation is finished to execute the next method
         /// </summary>
         public void FinishedInvestigationAnimationClip()
         {
@@ -98,7 +100,7 @@ namespace Enemy.AnimationHandler
         }
 
         /// <summary>
-        /// Animation Event, determines when the animation is finished to execute the next method
+        /// Animation Event, determines when the look animation is finished to execute the next method
         /// </summary>
         public void FinishedLookingAnimationClip()
         {
@@ -130,8 +132,8 @@ namespace Enemy.AnimationHandler
         /// <param name="layerIndex"></param>
         private void OnAnimatorIK(int layerIndex)
         {
-            // controls the head rotation when the enemies sees the player
-            if (_enemyController.CanSeePlayer)
+            // controls the head rotation when the enemy is in chase state
+            if (_enemyController.InChaseState)
             {
                 _enemyAnimator.SetLookAtWeight(0.5f);
                 _enemyAnimator.SetLookAtPosition(_enemyController.LookPositionAtSpotted.position);
@@ -145,14 +147,16 @@ namespace Enemy.AnimationHandler
             }
         }
         
+        /// <summary>
+        /// plays the enemy footstep sound
+        /// </summary>
+        /// <param name="animationEvent"></param>
         public void EnemyFootsteps(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                //MasterAudio.PlaySound("EnemyFootsteps");
                 MasterAudio.PlaySound3DAtTransform("EnemyFootsteps", transform);
             }
         }
     }
-
 }

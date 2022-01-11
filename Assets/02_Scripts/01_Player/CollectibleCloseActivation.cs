@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using BP._02_Scripts._03_Game;
+using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using UnityEngine;
+using untitledProject;
 
 
-    public class CollectibleCloseActivation : MonoBehaviour
+public class CollectibleCloseActivation : MonoBehaviour
     {
         private CollectItem _collectItem;
         private QuestManager _questManager;
         private MissionScore _myMissionScore;
         private EnemyController[] _enemyController;
+
+        private PlayerController _playerController;
         
         void Start()
         {
+            _playerController = FindObjectOfType<PlayerController>();
             _collectItem = GetComponentInParent<CollectItem>();
             _questManager = FindObjectOfType<QuestManager>();
             _enemyController = FindObjectsOfType<EnemyController>();
@@ -22,25 +27,29 @@ using UnityEngine;
         
         void Update()
         {
-            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible)
+            if (Input.GetKey(KeyCode.Mouse0) && _collectItem.HitCollectable && _collectItem.ItemCollectible && _playerController.IsGrounded)
             {
+                _playerController.PickUpItem = true;
                 _collectItem.ItemCollectible = false;
                     
                 if (_collectItem.Key)
                 {
                     CollectItem._keyCollected = true;
+                    MasterAudio.PlaySound3DAtTransform("Keys", transform);
                 }
                 else if(_collectItem.Backpack)
                 {
                     CollectItem._backpackCollected = true;
                     _collectItem.SceneChange.ChangeScene();
                     _collectItem.PlayerController.enabled = false;
+                    MasterAudio.PlaySound3DAtTransform("Backpack", transform);
                 }
                 else if(_collectItem.Parchment)
                 {
                     CollectItem._parchmentCollected = true;
                     _collectItem.SceneChange.ChangeScene();
                     _collectItem.PlayerController.enabled = false;
+                    MasterAudio.PlaySound3DAtTransform("Paper", transform);
                 }
                 else if(_collectItem.ThroneCompartment)
                 {

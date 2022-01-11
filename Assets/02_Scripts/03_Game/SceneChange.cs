@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using BP;
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using Enemy.SoundItem;
 using TMPro;
@@ -12,6 +12,8 @@ public class SceneChange : MonoBehaviour
 {
     [Tooltip("the image that will fill the screen")]
     [SerializeField] private Image _fadeImage;
+    [Tooltip("the image that will fill the screen when narration is skipped")]
+    [SerializeField] private Image _fadingOverlay;
     [Tooltip("the text which will appears at completed fade in")]
     [SerializeField] private TextMeshProUGUI _text;
     [Tooltip("the time how long the text will fade in and out")]
@@ -19,12 +21,17 @@ public class SceneChange : MonoBehaviour
     [Tooltip("the time how long the fade image needs to fade in and out")]
     [SerializeField] private float _fadeTime;
     [Tooltip("the time how long the text should appears when the fade in is completed")]
-    [SerializeField] private float _fadeStayTime;
-    [Tooltip("the next scene name that should be loaded")]
     [SerializeField] private string _nextSceneName;
     private float _fadeStayCooldown = 0;
     [Tooltip("skip the text")]
     [SerializeField] private GameObject _skipButton;
+    [SerializeField] private TextMeshProUGUI _skipButtonText;
+    
+    [SerializeField] private IntroText[] NarrativeTexts;
+
+    [SerializeField] private string _voiceOverName;
+    [SerializeField] private float _fadeOutSoundTime = 2;
+    private int _currentNarrativeText = 0;
 
     private PlayerController _playerController;
     private GameObject _questManager;
@@ -44,12 +51,15 @@ public class SceneChange : MonoBehaviour
     }
 
     private bool _activateFade = true;
-    private bool _activateFade2 = true;
+    private bool _firstFadeActivated;
+    private bool _fadeTimerSet;
+    private bool _narrationSkipped;
     
     void Start()
     {
+        _text.text = NarrativeTexts[_currentNarrativeText].text;
+
         _fadeImage.fillAmount = 0;
-        _fadeStayCooldown = _fadeStayTime;
 
         _playerController = FindObjectOfType<PlayerController>();
         _questManager = GameObject.Find("QuestManager");
@@ -71,50 +81,70 @@ public class SceneChange : MonoBehaviour
         {
             _skipButton.SetActive(true);
             
+            //Sets fade cooldown for the first narrative text
+            if (!_firstFadeActivated && !_fadeTimerSet)
+            {
+                MasterAudio.PlaySound(_voiceOverName);
+                _fadeStayCooldown = NarrativeTexts[_currentNarrativeText].fadeStayTime;
+                _fadeTimerSet = true;
+           
+            }
+            
             if (_fadeStayCooldown <= 0)
             {
-                if (_activateFade2)
+                // Continued narrative text fades
+                if (_activateFade)
                 {
-                    _text.DOFade(0, _textFadeTime);
-                    _activateFade2 = false;
-                }
-                
-                if (_text.color.a <= 0.001f)
-                {
-                    PlayerPrefs.DeleteKey("PlayerPositionX");
-                    PlayerPrefs.DeleteKey("PlayerPositionY");
-                    PlayerPrefs.DeleteKey("PlayerPositionZ");
-                    PlayerPrefs.SetInt("StonesAmount", _collectStones.StonesCounter);
-                    
-                    for (int i = 0; i < _noisyItems.Length; i++)
-                    {
-                        _noisyItems[i].GetComponent<Transform>().gameObject.SetActive(true);
-                        _noisyItems[i].SafeState = true;
-                    }
-                    
-                    for (int i = 0; i < _stonePiles.Length; i++)
-                    {
-                        _stonePiles[i].SafeState = true;
-                    }
-
-                    for (int i = 0; i < _provisions.Length; i++)
-                    {
-                        _provisions[i].SafeState = true;
-                    }
-                    
-                    PlayerPrefs.Save();
-                    SceneManager.LoadScene(_nextSceneName);
+                    _text.DOFade(0, _textFadeTime).OnComplete(CheckNextStep);
+                    _activateFade = false;
                 }
             }
             else
-            {
-                if (_activateFade)
+            {   // Initial narrative text fade
+                if (_activateFade && !_firstFadeActivated)
                 {
                     _text.DOFade(1, _textFadeTime);
-                    _activateFade = false;
+                    _firstFadeActivated = true;
                 }
                 _fadeStayCooldown -= Time.deltaTime;
             }
+        }
+    }
+    
+    public void CheckNextStep()
+    {
+        if (_currentNarrativeText >= NarrativeTexts.Length-1)
+        {   
+            // Management of PlayerPrefs
+            PlayerPrefs.DeleteKey("PlayerPositionX");
+            PlayerPrefs.DeleteKey("PlayerPositionY");
+            PlayerPrefs.DeleteKey("PlayerPositionZ");
+            PlayerPrefs.SetInt("StonesAmount", _collectStones.StonesCounter);
+                    
+            for (int i = 0; i < _noisyItems.Length; i++)
+            {
+                _noisyItems[i].GetComponent<Transform>().gameObject.SetActive(true);
+                _noisyItems[i].SafeState = true;
+            }
+                    
+            for (int i = 0; i < _stonePiles.Length; i++)
+            {
+                _stonePiles[i].SafeState = true;
+            }
+
+            for (int i = 0; i < _provisions.Length; i++)
+            {
+                _provisions[i].SafeState = true;
+            }
+                    
+            PlayerPrefs.Save();
+            
+            // Loads next scene
+            LoadNextScene();
+        }
+        else
+        {
+            FadeInNextIntroText();
         }
     }
 
@@ -128,8 +158,31 @@ public class SceneChange : MonoBehaviour
         _fadeImage.DOFade(1, _fadeTime);
     }
 
-    public void Skip()
+    public void FadeInNextIntroText()
     {
-        _fadeStayCooldown = 0;
+        if (_narrationSkipped)
+        {
+            return;
+        }
+        
+        _currentNarrativeText++;
+        _activateFade = true;
+        _text.text = NarrativeTexts[_currentNarrativeText].text;
+        _text.DOFade(1, _textFadeTime);
+        _fadeStayCooldown = NarrativeTexts[_currentNarrativeText].fadeStayTime;
+    }
+
+    public void SkipEverything()
+    {
+        _narrationSkipped = true;
+        MasterAudio.FadeOutAllOfSound(_voiceOverName, _fadeOutSoundTime);
+        _skipButtonText.DOFade(0, _textFadeTime);
+        _fadingOverlay.DOFade(1, _textFadeTime).OnComplete(LoadNextScene);
+    }
+    
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(_nextSceneName);
+        _narrationSkipped = false;
     }
 }

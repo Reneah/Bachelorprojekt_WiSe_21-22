@@ -30,6 +30,7 @@ namespace Enemy.CustomInspector
         private SerializedProperty _lowGroundCatchDistance;
         private SerializedProperty _highGroundCatchDistance;
         private SerializedProperty _chaseSpeed;
+        private SerializedProperty _pullDistance;
         
         // Field Of View variables
         private SerializedProperty _obstructionMask;
@@ -39,9 +40,10 @@ namespace Enemy.CustomInspector
         private SerializedProperty _spottedVisionDistance;
         private SerializedProperty _spottedAcousticDistance;
         private SerializedProperty _spottedBar;
-        private SerializedProperty _visionSecondsToSpott;
-        private SerializedProperty _acousticSecondsToSpott;
-        private SerializedProperty _lastChanceTime;
+        private SerializedProperty _visionSecondsToSpot;
+        private SerializedProperty _acousticSecondsToSpot;
+        private SerializedProperty _reminderTimeLowGround;
+        private SerializedProperty _reminderTimeHighGround;
         private SerializedProperty _spottedTime;
         private SerializedProperty _highGroundViewCone;
         private SerializedProperty _lowGroundViewCone;
@@ -50,9 +52,7 @@ namespace Enemy.CustomInspector
         private SerializedProperty _firstStageRunSpeed;
         private SerializedProperty _secondStageRunSpeed;
         private SerializedProperty _thirdStageRunSpeed;
-        private SerializedProperty _searchSpeed;
-        private SerializedProperty _throwWaypointCounter;
-        private SerializedProperty _playerSearchWaypointCounter;
+        private SerializedProperty _playerSearchSpeed;
         private SerializedProperty _blockAcousticLayerMasks;
 
         private void OnEnable()
@@ -81,18 +81,20 @@ namespace Enemy.CustomInspector
             _lowGroundCatchDistance = serializedObject.FindProperty("_lowGroundCatchDistance");
             _highGroundCatchDistance = serializedObject.FindProperty("_highGroundCatchDistance");
             _chaseSpeed = serializedObject.FindProperty("_chaseSpeed");
+            _pullDistance = serializedObject.FindProperty("_pullDistance");
             
             // Field Of View variables
             _obstructionMask = serializedObject.FindProperty("_obstructionMask");
             _enemyHead = serializedObject.FindProperty("_enemyHead");
             _obstacleRaycastTransform = serializedObject.FindProperty("_obstacleRaycastTransform");
             _lookPositionAtSpotted = serializedObject.FindProperty("_lookPositionAtSpotted");
-            _acousticSecondsToSpott = serializedObject.FindProperty("_acousticSecondsToSpott");
-            _visionSecondsToSpott = serializedObject.FindProperty("_visionSecondsToSpott");
+            _acousticSecondsToSpot = serializedObject.FindProperty("_acousticSecondsToSpot");
+            _visionSecondsToSpot = serializedObject.FindProperty("_visionSecondsToSpot");
             _spottedBar = serializedObject.FindProperty("_spottedBar");
             _spottedAcousticDistance = serializedObject.FindProperty("_spottedAcousticDistance");
             _spottedVisionDistance = serializedObject.FindProperty("_spottedVisionDistance");
-            _lastChanceTime = serializedObject.FindProperty("_lastChanceTime");
+            _reminderTimeLowGround = serializedObject.FindProperty("_reminderTimeLowGround");
+            _reminderTimeHighGround = serializedObject.FindProperty("_reminderTimeHighGround");
             _highGroundViewCone = serializedObject.FindProperty("_highGroundViewCone");
             _lowGroundViewCone = serializedObject.FindProperty("_lowGroundViewCone");
             
@@ -100,9 +102,7 @@ namespace Enemy.CustomInspector
             _firstStageRunSpeed = serializedObject.FindProperty("_firstStageRunSpeed");
             _secondStageRunSpeed = serializedObject.FindProperty("_secondStageRunSpeed");
             _thirdStageRunSpeed = serializedObject.FindProperty("_thirdStageRunSpeed");
-            _searchSpeed = serializedObject.FindProperty("_searchSpeed");
-            _throwWaypointCounter = serializedObject.FindProperty("_throwWaypointCounter");
-            _playerSearchWaypointCounter = serializedObject.FindProperty("_playerSearchWaypointCounter");
+            _playerSearchSpeed = serializedObject.FindProperty("_playerSearchSpeed");
             _blockAcousticLayerMasks = serializedObject.FindProperty("_blockAcousticLayerMasks");
         }
 
@@ -147,18 +147,20 @@ namespace Enemy.CustomInspector
             EditorGUILayout.PropertyField(_lowGroundCatchDistance);
             EditorGUILayout.PropertyField(_highGroundCatchDistance);
             EditorGUILayout.PropertyField(_chaseSpeed);
+            EditorGUILayout.PropertyField(_pullDistance);
             
             // Field Of View variables
             EditorGUILayout.PropertyField(_obstructionMask);
             EditorGUILayout.PropertyField(_enemyHead);
             EditorGUILayout.PropertyField(_obstacleRaycastTransform);
             EditorGUILayout.PropertyField(_lookPositionAtSpotted);
-            EditorGUILayout.PropertyField(_acousticSecondsToSpott);
-            EditorGUILayout.PropertyField(_visionSecondsToSpott);
+            EditorGUILayout.PropertyField(_acousticSecondsToSpot);
+            EditorGUILayout.PropertyField(_visionSecondsToSpot);
             EditorGUILayout.PropertyField(_spottedBar);
             EditorGUILayout.PropertyField(_spottedAcousticDistance);
             EditorGUILayout.PropertyField(_spottedVisionDistance);
-            EditorGUILayout.PropertyField(_lastChanceTime);
+            EditorGUILayout.PropertyField(_reminderTimeLowGround);
+            EditorGUILayout.PropertyField(_reminderTimeHighGround);
             EditorGUILayout.PropertyField(_highGroundViewCone);
             EditorGUILayout.PropertyField(_lowGroundViewCone);
 
@@ -166,9 +168,7 @@ namespace Enemy.CustomInspector
             EditorGUILayout.PropertyField(_firstStageRunSpeed);
             EditorGUILayout.PropertyField(_secondStageRunSpeed);
             EditorGUILayout.PropertyField(_thirdStageRunSpeed);
-            EditorGUILayout.PropertyField(_searchSpeed);
-            EditorGUILayout.PropertyField(_throwWaypointCounter);
-            EditorGUILayout.PropertyField(_playerSearchWaypointCounter);
+            EditorGUILayout.PropertyField(_playerSearchSpeed);
             EditorGUILayout.PropertyField(_blockAcousticLayerMasks);
             
             serializedObject.ApplyModifiedProperties();

@@ -8,20 +8,7 @@ namespace Enemy.States
     {
         public IEnemyState Execute(EnemyController enemy)
         {
-            // when the enemy is able to pull other enemies, the cooldown is running to deactivate the mechanic
-            if (enemy.ChaseActivationObject.activeInHierarchy)
-            {
-                enemy.ActivateChaseCooldown -= Time.deltaTime;
-
-                if (enemy.ActivateChaseCooldown <= 0)
-                {
-                    enemy.ChaseActivationObject.SetActive(false);
-                    enemy.ActivateChasing = false;
-                    enemy.ActivateChaseCooldown = 0.1f;
-                }
-            }
-            
-            if (enemy.CanSeePlayer)
+            if (enemy.CanSeePlayer || enemy.PlayerSoundSpotted)
             {
                 enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                 enemy.AnimationHandler.FinishedLookingAnimation = false;
@@ -34,12 +21,11 @@ namespace Enemy.States
             UpdateSearchStage(enemy);
             enemy.DistanceToSoundEvent();
             
+            // when the enemy is at the sound event, the specific sound behaviour will be activated
+            // when the first enemy reached the sound event, other pulled enemies will start to search as well
             if (enemy.DistanceToSoundEvent() <= 1 || EnemyShareInformation.ReachedNoisyItem)
             {
                 EnemyShareInformation.ReachedNoisyItem = true;
-                
-                // stop the method "UpdateSearchStage" to not set a new agent destination or animation speed
-                enemy.HeardFootsteps = false;
                 
                 // prevent that the walking animation will be played
                 enemy.AnimationHandler.SetSpeed(0);
@@ -98,7 +84,21 @@ namespace Enemy.States
                         enemy.AnimationHandler.FinishedInvestigationAnimation = false;
                         enemy.AnimationHandler.ResetInvestigatePoint();
                         
-                        return EnemyController.EnemySearchState;
+                        if (enemy.SearchArea.EnemySearchAmount < 2)
+                        {
+                            return EnemyController.EnemySearchState;
+                        }
+                        else
+                        {
+                            if (enemy.Guarding)
+                            {
+                                return EnemyController.EnemyGuardState;
+                            }
+                            else if (enemy.Patrolling)
+                            {
+                                return EnemyController.EnemyPatrolState;
+                            }
+                        }
                     }
                 }
             }
@@ -107,17 +107,10 @@ namespace Enemy.States
 
         public void Enter(EnemyController enemy)
         {
-            enemy.EnemyTalkCheck.Talkable = false;
             enemy.GetSoundOnce = false;
-
-            // only when the enemy hears the footstep he will go into the chase mode
-            if (enemy.HeardFootsteps)
-            {
-                enemy.ChaseActivationObject.SetActive(true);
-            }
-            
             enemy.SoundNoticed = false;
             
+            // set the current sound state of the item to update the behaviour of the enemy
             enemy.CurrentSoundStage = enemy.SoundBehaviourStage;
             
             if (enemy.SoundBehaviourStage == 1)
@@ -143,17 +136,15 @@ namespace Enemy.States
         public void Exit(EnemyController enemy)
         {
             enemy.AnimationActivated = false;
-            enemy.HeardFootsteps = false;
             EnemyShareInformation.ReachedNoisyItem = false;
-            
+
             enemy.SoundNoticed = false;
         }
         
         private void UpdateSearchStage(EnemyController enemy)
         {
             // when the player should use the same sound again, the stage will be increased and the enemy will be more aggressive
-            // when the footsteps of the player were heard, the destination will be updated
-            if (enemy.CurrentSoundStage < enemy.SoundBehaviourStage || enemy.HeardFootsteps)
+            if (enemy.CurrentSoundStage < enemy.SoundBehaviourStage)
             {
                 if (enemy.SoundBehaviourStage == 2)
                 {
@@ -168,6 +159,7 @@ namespace Enemy.States
                     enemy.Agent.SetDestination(enemy.SoundEventPosition.position);
                 }
                 
+                // set the current sound state of the item to update the behaviour of the enemy
                 enemy.CurrentSoundStage = enemy.SoundBehaviourStage;
             }
         }

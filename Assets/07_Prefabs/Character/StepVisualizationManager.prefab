@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7085207917505395092}
   - component: {fileID: 8902279735220501415}
   - component: {fileID: 2976241908695543527}
-  - component: {fileID: 362851270288802510}
+  - component: {fileID: 2864762593229125468}
   m_Layer: 0
   m_Name: StepVisualizationOne
   m_TagString: Untagged
@@ -47,7 +47,7 @@ Projector:
   m_FieldOfView: 42.7
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 0.5
+  m_OrthographicSize: 0.7
   m_Material: {fileID: 2100000, guid: b88200200798cf74cb6d243b122d3205, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_perObjectData: 0
   m_stencilPass: {fileID: 0}
   m_stencilTestOptions: 0
---- !u!114 &362851270288802510
+--- !u!114 &2864762593229125468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,14 +85,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 101708135191616313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a216fba1e7c13f348b1df01b957e5956, type: 3}
+  m_Script: {fileID: 11500000, guid: 878b10689cd656f4ebc194a2209771fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myColor: {r: 1, g: 0.7377002, b: 0.25943398, a: 0}
-  minSize: 0.5
-  maxSize: 1.37
-  scalingDuration: 0.5
-  fadeDuration: 0.3
 --- !u!1 &370099223681653666
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,14 +99,14 @@ GameObject:
   - component: {fileID: 7356695159810947343}
   - component: {fileID: 9205581983262292796}
   - component: {fileID: 3244333863429860988}
-  - component: {fileID: 4426899112482280589}
+  - component: {fileID: 8871849073406751669}
   m_Layer: 0
   m_Name: StepVisualizationTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7356695159810947343
 Transform:
   m_ObjectHideFlags: 0
@@ -140,8 +135,8 @@ Projector:
   m_FieldOfView: 42.7
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 0.5
-  m_Material: {fileID: 2100000, guid: b88200200798cf74cb6d243b122d3205, type: 2}
+  m_OrthographicSize: 0.7
+  m_Material: {fileID: 2100000, guid: af26a51190183c44d867b34323963e3d, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -169,7 +164,7 @@ MonoBehaviour:
   m_perObjectData: 0
   m_stencilPass: {fileID: 0}
   m_stencilTestOptions: 0
---- !u!114 &4426899112482280589
+--- !u!114 &8871849073406751669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,14 +173,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 370099223681653666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a216fba1e7c13f348b1df01b957e5956, type: 3}
+  m_Script: {fileID: 11500000, guid: 878b10689cd656f4ebc194a2209771fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myColor: {r: 1, g: 0.7377002, b: 0.25943398, a: 0}
-  minSize: 0.5
-  maxSize: 1.37
-  scalingDuration: 0.5
-  fadeDuration: 0.3
 --- !u!1 &2532706927139440745
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,5 +221,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5683b536ba3de624ea0410af1d9dd191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepVisualizationOne: {fileID: 362851270288802510}
-  stepVisualizationTwo: {fileID: 4426899112482280589}
+  stepVisualizationOne: {fileID: 2864762593229125468}
+  stepVisualizationTwo: {fileID: 8871849073406751669}
+  color: {r: 1, g: 0.7389551, b: 0.43867922, a: 0}
+  minSize: 0.7
+  sneakSize: 1.66
+  sneakRunSize: 3.2
+  fleeSize: 4.3
+  scalingSpeedSneak: 1.2
+  scalingSpeedSneakRun: 1.7
+  scalingSpeedFlee: 4
+  fadeDurationSneak: 1
+  fadeDurationSneakRun: 0.3
+  fadeDurationFlee: 0.3

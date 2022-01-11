@@ -255,7 +255,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.26
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1490449576
 MonoBehaviour:
@@ -2810,7 +2810,7 @@ MonoBehaviour:
   _sneakSoundRadius: 1.5
   _runSoundRadius: 3
   _fleeingSoundRadius: 4
-  _smoothSwitch: 15
+  _smoothSwitch: 12
 --- !u!1 &7246463578664892070
 GameObject:
   m_ObjectHideFlags: 0

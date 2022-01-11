@@ -45,8 +45,8 @@ Projector:
   m_FarClipPlane: 100
   m_FieldOfView: 60
   m_AspectRatio: 1
-  m_Orthographic: 0
-  m_OrthographicSize: 10
+  m_Orthographic: 1
+  m_OrthographicSize: 2.98
   m_Material: {fileID: 2100000, guid: 27614a8e1322e62429c229f0e287e379, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2

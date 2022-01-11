@@ -194,8 +194,9 @@ public class InGameMenu : MonoBehaviour
 
     public void Restart()
     {
-        // Depending on whether the player is dead or not count up different score counters on the Restart button press
-        if (_dead)
+        // Depending on whether the player character is dead or not count up different score counters on the Restart button press
+        // Also if player character has been spotted and is fleeing, players can't restart to cheat the score, as it will count as a death
+        if (_dead || _playerController.PlayerIsSpotted)
         {
             // Count up the death score counter for the MissionScore.cs
             _myMissionScore.DeathScoreCounter += 1;
