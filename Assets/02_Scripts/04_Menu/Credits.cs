@@ -17,6 +17,7 @@ public class Credits : MonoBehaviour
 
     private float _timer;
     private float _imageAlpha;
+    
 
     // Get the necessary references
     private void Awake()
@@ -38,7 +39,7 @@ public class Credits : MonoBehaviour
 
     private void Start()
     {
-        _myCreditsFadeImage.DOFade(0, _fadeImageFadeDuration);
+        _myCreditsFadeImage.DOFade(0, _fadeImageFadeDuration * 4);
     }
 
     private void FadeInBackgroundImage()

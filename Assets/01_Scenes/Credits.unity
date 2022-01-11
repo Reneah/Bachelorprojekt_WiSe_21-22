@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _myCredits: {fileID: 378023013}
   _myCreditsFadeImage: {fileID: 1851985232}
-  _fadeImageFadeDuration: 10
+  _fadeImageFadeDuration: 3
   _sceneToLoad: MainMenu
 --- !u!95 &378023016
 Animator:
@@ -953,7 +953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
