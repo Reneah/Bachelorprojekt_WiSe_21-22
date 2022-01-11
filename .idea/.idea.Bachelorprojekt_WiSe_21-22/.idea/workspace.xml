@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="877614ff-2134-43be-8987-24837770e7e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/Credits.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/Credits.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Credits.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Credits.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/04_UI/Animations/Credits.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04_UI/Animations/Credits.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/04_UI/Animations/anim_scrollingCreditsText.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04_UI/Animations/anim_scrollingCreditsText.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,13 +102,13 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Credits.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs" />
       </list>
     </option>
   </component>
