@@ -80,6 +80,7 @@
             <e p="MainMenu.cs" t="Include" />
             <e p="Options.cs" t="Include" />
             <e p="ScenePersistent.cs" t="Include" />
+            <e p="SetOptions.cs" t="Include" />
             <e p="ShowFramerate.cs" t="Include" />
           </e>
           <e p="Editor" t="Include">
