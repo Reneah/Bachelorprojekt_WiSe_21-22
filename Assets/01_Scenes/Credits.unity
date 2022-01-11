@@ -333,7 +333,9 @@ MonoBehaviour:
     ProBuilder\n\nMaster Audio by Dark Tonic Inc.\n\npfranzen (https://freesound.org/people/pfranzen/sounds/192072/)\n\nFractalStudios
     (https://freesound.org/people/FractalStudios/sounds/363092/)\n\nhttps://www.zapsplat.com\n\nFantasy
     Game by Epic Sounds and FX\n\nzerolagtime (https://freesound.org/people/zerolagtime/sounds/214336/)\n\nDynamic
-    Shadow Projector by Nyahoon Games Pte. Ltd.\n\nStylized Fire VFX by HungNguyenVFX"
+    Shadow Projector by Nyahoon Games Pte. Ltd.\n\nStylized Fire VFX by HungNguyenVFX\n\nText
+    Font - Medieval English Normal by Alexandra Gophmann & Anatole\r\n\nHeader Font
+    - Helmswald Post by Dennis Ludlow, Sharkshock\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
   m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
