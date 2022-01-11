@@ -6,8 +6,6 @@ using TMPro;
 using Slider = UnityEngine.UI.Slider;
 using Toggle = UnityEngine.UI.Toggle;
 
-namespace DA.Menu
-{
     public class Options : MonoBehaviour
     {
         // all resolutions of the PC
@@ -42,46 +40,44 @@ namespace DA.Menu
         List<string> _resolutionOptions = new List<string>();
         
         [SerializeField] private Slider _musicSlider;
-
-        public Slider MusicSlider
-        {
-            get => _musicSlider;
-            set => _musicSlider = value;
-        }
         
         [SerializeField] private Slider _soundSlider;
-    
-        public Slider SoundSlider
-        {
-            get => _soundSlider;
-            set => _soundSlider = value;
-        }
-        
         
         private ScenePersistent _scenePersistent;
 
+        private SetOptions setOptions;
+
         private void Start()
         {
-            // deactivates the V-Sync
-            QualitySettings.vSyncCount = 0;
-            // because the V-Sync is deactivated the toggle has to be on false
-            _vSyncToggle.isOn = false;
+            setOptions = FindObjectOfType<SetOptions>();
 
-            // set the framerate at the start of the game
-            Application.targetFrameRate = 60;
-            // set the right framerate Display at the Dropdown menu
-            _framerateDropdown.value = 1;
-            // deactivates the framerate object
-            _framerate.SetActive(false);
-            // because the framerate label is deactivated the toggle has to be on false
-            _framerateToggle.isOn = false;
+            Screen.fullScreen = setOptions.ScreenStatus;
+            _fullScreen.isOn = setOptions.ScreenStatus;
+            
+            _soundSlider.value = setOptions.SoundVolume;
+            ChangeSoundVolume();
 
-            // set the quality level in the beginning
-            QualitySettings.SetQualityLevel(2);
-            // get the current graphic settings and show that in the dropdown 
-            _graphicsDropdown.value = QualitySettings.GetQualityLevel();
+            _musicSlider.value = setOptions.MusicVolume;
+            Debug.Log(_musicSlider.value);
+            SetMusicVolume();
+            
+            _framerateDropdown.value = setOptions.Framerate;
+            _framerateToggle.isOn = setOptions.FramerateToogle;
+            SetFramerate();
 
+            QualitySettings.vSyncCount = setOptions.VSync;
+            _vSyncToggle.isOn = setOptions.VSyncToggle;
+            
+            QualitySettings.SetQualityLevel(setOptions.Quality);
+            _graphicsDropdown.value = setOptions.Quality;
+            SetQuality();
+            
+            _framerate.SetActive(setOptions.FramerateToogle);
+            
             Resolution();
+            
+            Screen.SetResolution(setOptions.ScreenResolution.width, setOptions.ScreenResolution.height, Screen.fullScreen);
+            _resolutionDropdown.value = setOptions.ResolutionValue;
         }
 
         private void Resolution()
@@ -127,18 +123,21 @@ namespace DA.Menu
         /// Set the volume of the music
         /// </summary>
         /// <param name="volume"></param>
-        public void SetMusicVolume(float volume)
+        public void SetMusicVolume()
         {
             MasterAudio.PlaylistMasterVolume = _musicSlider.value;
+            
+            setOptions.MusicVolume = MasterAudio.PlaylistMasterVolume;
         }
 
         /// <summary>
         /// set the Graphic Quality of the game
         /// </summary>
         /// <param name="qualityIndex"></param>
-        public void SetQuality(int qualityIndex)
+        public void SetQuality()
         {
             QualitySettings.SetQualityLevel(_graphicsDropdown.value);
+            setOptions.Quality = _graphicsDropdown.value;
             
             if (_vSyncToggle.isOn)
             {
@@ -148,16 +147,16 @@ namespace DA.Menu
             {
                 QualitySettings.vSyncCount = 0;
             }
-
         }
 
         /// <summary>
         /// decide to set it to fullscreen or not
         /// </summary>
         /// <param name="isFullScreen"></param>
-        public void SetFullscreen(bool isFullScreen)
+        public void SetFullscreen()
         {
             Screen.fullScreen = _fullScreen.isOn;
+            setOptions.ScreenStatus = _fullScreen.isOn;
         }
 
         /// <summary>
@@ -168,6 +167,9 @@ namespace DA.Menu
         {
             Resolution resolution = _resolutions[_resolutionDropdown.value];
             Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+            
+            setOptions.ResolutionValue = _resolutionDropdown.value;
+            setOptions.ScreenResolution = resolution;
         }
 
         /// <summary>
@@ -177,6 +179,8 @@ namespace DA.Menu
         public void ShowFramerate()
         {
             _framerate.SetActive(_framerateToggle.isOn);
+            
+            setOptions.FramerateToogle = _framerateToggle.isOn;
         }
 
         public void SetVsync()
@@ -190,19 +194,24 @@ namespace DA.Menu
                 QualitySettings.vSyncCount = 0;
             }
 
+            setOptions.VSyncToggle = _vSyncToggle.isOn;
+
         }
         
         public void ChangeSoundVolume()
         {
             MasterAudio.MasterVolumeLevel = _soundSlider.value;
+
+            setOptions.SoundVolume = MasterAudio.MasterVolumeLevel;
         }
 
         /// <summary>
         /// set the defined framerates
         /// </summary>
         /// <param name="framerate"></param>
-        public void SetFramerate(int framerate)
+        public void SetFramerate()
         {
+            setOptions.Framerate = _framerateDropdown.value;
             switch (_framerateDropdown.value)
             {
                 case 0:
@@ -232,5 +241,3 @@ namespace DA.Menu
             }
         }
     }
-
-}
