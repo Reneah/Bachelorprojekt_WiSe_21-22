@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
 
     private bool _openMenu = false;
     
-    private bool _fadeIn = false;
+    //private bool _fadeIn = false;
     
     private void Start()
     {
@@ -52,20 +52,17 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (_fadeImage.color.a <= 0.95f)
+        /*if (_fadeImage.color.a <= 0.95f)
         {
             _fadeIn = true;
         }
         
-
         if (_fadeImage.color.a >= 1 && _fadeIn)
         {
-            SceneManager.LoadScene(_introSceneName);
-            
             //MasterAudio.ChangePlaylistByName("Start");
             //MasterAudio.StopAllOfSound("Forest");
             //MasterAudio.StopAllOfSound("Wind");
-        }
+        }*/
     }
     
     public void GoToOptionPage()
@@ -117,8 +114,23 @@ public class MainMenu : MonoBehaviour
         // Signal to the MissionScore.cs that the game has been started, so the gameplay timer starts
         _myMissionScore.GameStarted = true;
         
-        _fadeImage.DOFade(1, 3);
+        _fadeImage.DOFade(1, 3).OnComplete(LoadGame);
     }
+
+    private void LoadGame()
+    {
+        SceneManager.LoadScene(_introSceneName);
+    }
+
+    public void CreditsButton()
+    {
+        _fadeImage.DOFade(1, 3).OnComplete(LoadCredits);
+    }
+    private void LoadCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
 
     public void Exit()
     {

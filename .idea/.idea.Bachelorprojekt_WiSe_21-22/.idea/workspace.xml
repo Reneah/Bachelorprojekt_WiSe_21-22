@@ -5,24 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="877614ff-2134-43be-8987-24837770e7e3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/Credits.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/Credits.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/MissionScore.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/MissionScore.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_02.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_02.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_03.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_03.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_04.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_04.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_05.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_05.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_06.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/IntroText_06.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK1_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK1_01.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK1_02.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK1_02.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK1_03.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK1_03.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK2_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK2_01.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK2_02.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK2_02.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK2_03.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK2_03.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK2_04.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ScriptableObjects_IntroTexts/NarrativeText_GK2_04.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03_ArtAssets/01_Player/PlayerStepVisualization.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03_ArtAssets/01_Player/PlayerStepVisualization.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/07_Prefabs/Game/MissionScoreUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/07_Prefabs/Game/MissionScoreUI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Credits.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Credits.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,8 +62,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerGroundDetection.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
@@ -124,6 +111,8 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Credits.cs" />
       </list>
     </option>
   </component>
@@ -348,6 +337,8 @@
       <workItem from="1641300348844" duration="1435000" />
       <workItem from="1641375821762" duration="1233000" />
       <workItem from="1641725772048" duration="9815000" />
+      <workItem from="1641834415312" duration="1226000" />
+      <workItem from="1641891067804" duration="1252000" />
     </task>
     <servers />
   </component>
