@@ -122,12 +122,13 @@ public class InGameMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        PlayerPrefs.DeleteAll();
         //MasterAudio.ChangePlaylistByName("PlaylistController","Start");
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1;
         
         _deathPage.SetActive(false);
-        PlayerPrefs.DeleteAll();
+
     }
 
     public void CloseGame()
