@@ -12,6 +12,8 @@ public class SceneChange : MonoBehaviour
 {
     [Tooltip("the image that will fill the screen")]
     [SerializeField] private Image _fadeImage;
+    [Tooltip("the image that will fill the screen when narration is skipped")]
+    [SerializeField] private Image _fadingOverlay;
     [Tooltip("the text which will appears at completed fade in")]
     [SerializeField] private TextMeshProUGUI _text;
     [Tooltip("the time how long the text will fade in and out")]
@@ -23,6 +25,7 @@ public class SceneChange : MonoBehaviour
     private float _fadeStayCooldown = 0;
     [Tooltip("skip the text")]
     [SerializeField] private GameObject _skipButton;
+    [SerializeField] private TextMeshProUGUI _skipButtonText;
     
     [SerializeField] private IntroText[] NarrativeTexts;
 
@@ -50,6 +53,7 @@ public class SceneChange : MonoBehaviour
     private bool _activateFade = true;
     private bool _firstFadeActivated;
     private bool _fadeTimerSet;
+    private bool _narrationSkipped;
     
     void Start()
     {
@@ -156,6 +160,11 @@ public class SceneChange : MonoBehaviour
 
     public void FadeInNextIntroText()
     {
+        if (_narrationSkipped)
+        {
+            return;
+        }
+        
         _currentNarrativeText++;
         _activateFade = true;
         _text.text = NarrativeTexts[_currentNarrativeText].text;
@@ -165,12 +174,15 @@ public class SceneChange : MonoBehaviour
 
     public void SkipEverything()
     {
+        _narrationSkipped = true;
         MasterAudio.FadeOutAllOfSound(_voiceOverName, _fadeOutSoundTime);
-        _fadeImage.DOFade(1, _textFadeTime).OnComplete(LoadNextScene);
+        _skipButtonText.DOFade(0, _textFadeTime);
+        _fadingOverlay.DOFade(1, _textFadeTime).OnComplete(LoadNextScene);
     }
     
     private void LoadNextScene()
     {
         SceneManager.LoadScene(_nextSceneName);
+        _narrationSkipped = false;
     }
 }

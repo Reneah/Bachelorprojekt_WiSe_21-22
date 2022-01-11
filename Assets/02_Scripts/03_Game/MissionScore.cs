@@ -50,14 +50,6 @@ namespace BP._02_Scripts._03_Game
         private CollectProvisions _myCollectProvisions;
         private CollectStones _myCollectStones;
         
-        // Probably not needed unless we want to display the highscore somewhere in a Main Menu sub page
-        /*private float _playtimeScoreResult;
-        private int _provisionsScoreResult;
-        private int _stonesScoreResult;
-        private int _distractionsScoreResult;
-        private int _spottedScoreResult;
-        private int _deathScoreResult;
-        private int _restartScoreResult;*/
         private int _finalScoreResult;
 
         [Header("Text fields to be assigned to certain calculations.")]
@@ -171,6 +163,11 @@ namespace BP._02_Scripts._03_Game
                 _myCanvas.enabled = false;
             }
             
+            if (scene.name == "Credits" && loadSceneMode == LoadSceneMode.Single)
+            {
+                _myCanvas.enabled = false;
+            }
+            
             if (scene.name == "GameWorld_BesiegedKeep_3" && loadSceneMode == LoadSceneMode.Single && _myCollectStones == null)
             {
                _myCollectStones = FindObjectOfType<CollectStones>();
@@ -188,12 +185,6 @@ namespace BP._02_Scripts._03_Game
                     ChangeFinalResultText(_finalScoreResult);
                 }
             }
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            
         }
 
         // Update is called once per frame
@@ -232,13 +223,13 @@ namespace BP._02_Scripts._03_Game
         // Used when clicking the Continue button on the Mission Score screen
         public void BackToMainMenu()
         {
-            _fadeImage.DOFade(1, _fadeSpeed).OnComplete(LoadMainMenu);
+            _fadeImage.DOFade(1, _fadeSpeed).OnComplete(LoadNextScene);
         }
 
-        private void LoadMainMenu()
+        private void LoadNextScene()
         {
             ResetMissionScores();
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("Credits");
         }
 
         // Overwrites placeholder values with actual values from the player

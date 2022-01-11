@@ -160,10 +160,10 @@ namespace Enemy.Controller
         [Tooltip("the look position when the player is spotted")]
         [SerializeField] private Transform _lookPositionAtSpotted;
         [Tooltip("the delay time that the player gets spotted in the view field")]
-        [Range(0,5)]
+        [Range(1,3)]
         [SerializeField] private float _visionSecondsToSpot = 1.5f;
         [Tooltip("the delay time that the player gets spotted in the hear radius")]
-        [Range(0,5)]
+        [Range(1,3)]
         [SerializeField] private float _acousticSecondsToSpot = 1.5f;
         [Tooltip("the spotted bar, which shows the spotted time above the enemy")]
         [SerializeField] private Image _spottedBar;
