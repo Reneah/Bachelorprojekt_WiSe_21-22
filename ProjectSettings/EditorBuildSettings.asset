@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/MissionScore.unity
     guid: 3fca73a98101cf046815eb9684e30e45
+  - enabled: 1
+    path: Assets/01_Scenes/Credits.unity
+    guid: 83d48a28e1bf9ef499b12a5ef7f6def0
   m_configObjects: {}
