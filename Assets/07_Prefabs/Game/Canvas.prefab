@@ -9594,7 +9594,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1537031279}
-  - component: {fileID: 7395168851662861261}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -9618,7 +9617,6 @@ RectTransform:
   - {fileID: 8190883183357755892}
   - {fileID: 5498928398047911059}
   - {fileID: 8037629299498001058}
-  - {fileID: 3266022910124403866}
   m_Father: {fileID: 1910889829873361671}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9627,27 +9625,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 32.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7395168851662861261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537031278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a3f14732680be548b04a121cd427e17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _resolutionDropdown: {fileID: 2596863636123307345}
-  _graphicsDropdown: {fileID: 5633178558043644566}
-  _framerateDropdown: {fileID: 7657639984630294490}
-  _framerate: {fileID: 6165817996994969015}
-  _framerateToggle: {fileID: 8846796927267283283}
-  _vSyncToggle: {fileID: 7281954223093138923}
-  _fullScreen: {fileID: 1845917780929123273}
-  _musicSlider: {fileID: 5989691597678575609}
-  _soundSlider: {fileID: 25807564242442608}
 --- !u!1 &1552011567
 GameObject:
   m_ObjectHideFlags: 0
@@ -16664,7 +16641,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7395168851662861261}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
         m_MethodName: ShowFramerate
         m_Mode: 1
@@ -19842,6 +19819,7 @@ GameObject:
   - component: {fileID: 1910889829873361669}
   - component: {fileID: 1910889829873361666}
   - component: {fileID: 212996044}
+  - component: {fileID: 3860506259380309455}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -19868,6 +19846,7 @@ RectTransform:
   - {fileID: 1025212291}
   - {fileID: 5608175792949745117}
   - {fileID: 1537031279}
+  - {fileID: 3266022910124403866}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19959,6 +19938,27 @@ MonoBehaviour:
   _soundSlider: {fileID: 25807564242442608}
   _hud: {fileID: 3775684735448037145}
   _cursorTexture: {fileID: 0}
+--- !u!114 &3860506259380309455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910889829873361667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3f14732680be548b04a121cd427e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resolutionDropdown: {fileID: 2596863636123307345}
+  _graphicsDropdown: {fileID: 5633178558043644566}
+  _framerateDropdown: {fileID: 7657639984630294490}
+  _framerate: {fileID: 6165817996994969015}
+  _framerateToggle: {fileID: 8846796927267283283}
+  _vSyncToggle: {fileID: 7281954223093138923}
+  _fullScreen: {fileID: 1845917780929123273}
+  _musicSlider: {fileID: 5989691597678575609}
+  _soundSlider: {fileID: 25807564242442608}
 --- !u!1 &1910889830418407894
 GameObject:
   m_ObjectHideFlags: 0
@@ -31825,7 +31825,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7395168851662861261}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetFullscreen
         m_Mode: 1
@@ -32552,7 +32552,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7395168851662861261}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetFramerate
         m_Mode: 1
@@ -34546,7 +34546,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7395168851662861261}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
         m_MethodName: ChangeSoundVolume
         m_Mode: 1
@@ -37631,7 +37631,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7395168851662861261}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -37795,14 +37795,14 @@ RectTransform:
   m_GameObject: {fileID: 6165817996994969015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.69743276, y: 0.69743276, z: 0.69743276}
+  m_LocalScale: {x: 0.59520996, y: 0.59520996, z: 0.59520996}
   m_Children: []
-  m_Father: {fileID: 1537031279}
-  m_RootOrder: 5
+  m_Father: {fileID: 1910889829873361671}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -163.19919, y: 13.574007}
+  m_AnchoredPosition: {x: -139.27907, y: 44.48448}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &331333551843414781
@@ -40831,7 +40831,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7395168851662861261}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 3
@@ -40929,7 +40929,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7395168851662861261}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetVsync
         m_Mode: 1
@@ -43769,7 +43769,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7395168851662861261}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetQuality
         m_Mode: 1
@@ -46231,11 +46231,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 563f45241e28ffe42bdae7f48eeed69f, type: 3}
---- !u!1 &2664227721513946180 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2353284532083121777, guid: 563f45241e28ffe42bdae7f48eeed69f, type: 3}
-  m_PrefabInstance: {fileID: 311231263697146421}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2551743028048149863 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2826057062466301778, guid: 563f45241e28ffe42bdae7f48eeed69f, type: 3}
@@ -46244,6 +46239,11 @@ RectTransform:
 --- !u!1 &9219149606387448964 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8908481354384928433, guid: 563f45241e28ffe42bdae7f48eeed69f, type: 3}
+  m_PrefabInstance: {fileID: 311231263697146421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2664227721513946180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2353284532083121777, guid: 563f45241e28ffe42bdae7f48eeed69f, type: 3}
   m_PrefabInstance: {fileID: 311231263697146421}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1352580875835780821
@@ -46473,14 +46473,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
---- !u!224 &1287181867895207242 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4344594181122484400, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
-  m_PrefabInstance: {fileID: 3285345645799366138}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7731494690416258339 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5106005557620977881, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
+  m_PrefabInstance: {fileID: 3285345645799366138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1287181867895207242 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4344594181122484400, guid: d5cec07282a3719449b3a178b2ac3b81, type: 3}
   m_PrefabInstance: {fileID: 3285345645799366138}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3421040222324077695
