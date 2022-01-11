@@ -130,8 +130,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Credits");
     }
-
-
+    
     public void Exit()
     {
         Application.Quit();
