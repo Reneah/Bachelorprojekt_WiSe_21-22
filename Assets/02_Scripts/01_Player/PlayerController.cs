@@ -52,6 +52,12 @@ namespace untitledProject
             set => _movementSpeed = value;
         }
         
+        public float SprintSpeed
+        {
+            get => _sprintSpeed;
+            set => _sprintSpeed = value;
+        }
+        
         public float SmoothRotation
         {
             get => _smoothRotation;
