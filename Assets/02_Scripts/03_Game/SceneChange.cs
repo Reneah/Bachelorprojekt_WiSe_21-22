@@ -1,4 +1,5 @@
 using BP;
+using DarkTonic.MasterAudio;
 using DG.Tweening;
 using Enemy.SoundItem;
 using TMPro;
@@ -24,6 +25,9 @@ public class SceneChange : MonoBehaviour
     [SerializeField] private GameObject _skipButton;
     
     [SerializeField] private IntroText[] NarrativeTexts;
+
+    [SerializeField] private string _voiceOverName;
+    [SerializeField] private float _fadeOutSoundTime = 2;
     private int _currentNarrativeText = 0;
 
     private PlayerController _playerController;
@@ -76,8 +80,10 @@ public class SceneChange : MonoBehaviour
             //Sets fade cooldown for the first narrative text
             if (!_firstFadeActivated && !_fadeTimerSet)
             {
+                MasterAudio.PlaySound(_voiceOverName);
                 _fadeStayCooldown = NarrativeTexts[_currentNarrativeText].fadeStayTime;
                 _fadeTimerSet = true;
+           
             }
             
             if (_fadeStayCooldown <= 0)
@@ -159,6 +165,7 @@ public class SceneChange : MonoBehaviour
 
     public void SkipEverything()
     {
+        MasterAudio.FadeOutAllOfSound(_voiceOverName, _fadeOutSoundTime);
         _fadeImage.DOFade(1, _textFadeTime).OnComplete(LoadNextScene);
     }
     

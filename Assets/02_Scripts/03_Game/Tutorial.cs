@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemy.Controller;
 using UnityEngine;
 using untitledProject;
 
@@ -11,9 +12,11 @@ public class Tutorial : MonoBehaviour
         [SerializeField] private GameObject[] _content;
         [SerializeField] private GameObject[] _sprites;
         [SerializeField] private GameObject _hud;
+        [SerializeField] private bool _noTutorialAtChase;
 
         private PlayerController _playerController;
         private PlayerStepsSound _playerStepsSound;
+        private EnemyController[] _enemyController;
 
         private int _contentCounter = 0;
 
@@ -25,6 +28,7 @@ public class Tutorial : MonoBehaviour
         {
             _playerController = FindObjectOfType<PlayerController>();
             _playerStepsSound = FindObjectOfType<PlayerStepsSound>();
+            _enemyController = FindObjectsOfType<EnemyController>();
             _reactivateTutorialSpot = System.Convert.ToBoolean(PlayerPrefs.GetInt(_playerPrefsKey, 1));
             
             if (!_reactivateTutorialSpot)
@@ -42,6 +46,14 @@ public class Tutorial : MonoBehaviour
 
         private void OnTriggerEnter(Collider other)
         {
+            for (int i = 0; i < _enemyController.Length; i++)
+            {
+                if (_noTutorialAtChase && _enemyController[i].InChaseState)
+                {
+                    return;
+                }
+            }
+            
             if (other.CompareTag("Player"))
             {
                 _playerController.enabled = false;
