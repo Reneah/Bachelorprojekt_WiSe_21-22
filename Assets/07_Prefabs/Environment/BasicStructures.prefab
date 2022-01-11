@@ -59405,6 +59405,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2634694971010000764}
     m_Modifications:
+    - target: {fileID: 376880571478098173, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
     - target: {fileID: 1353337076609679676, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -59457,6 +59461,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1877721327463834279, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251639677461308223, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792529249654125571, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803060403558309848, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885465328653833155, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
     - target: {fileID: 3548716126910562717, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
       propertyPath: m_Name
       value: Wall_Plane_CorridorWithDebris
@@ -59473,9 +59497,41 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4575443337274352395, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757742670123633002, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
     - target: {fileID: 6096082743600318589, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710490708056623137, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 6816065565376773959, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961902824763649408, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135701889777081978, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 7893486250657669478, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200680090400464874, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
@@ -63029,6 +63085,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2634694971010000764}
     m_Modifications:
+    - target: {fileID: 376880571478098173, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
     - target: {fileID: 1353337076609679676, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -63081,6 +63141,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1877721327463834279, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251639677461308223, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792529249654125571, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803060403558309848, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885465328653833155, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
     - target: {fileID: 3548716126910562717, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
       propertyPath: m_Name
       value: Wall_Plane_CorridorWithDebris (1)
@@ -63097,9 +63177,41 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4575443337274352395, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757742670123633002, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
     - target: {fileID: 6096082743600318589, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710490708056623137, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 6816065565376773959, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961902824763649408, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135701889777081978, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 7893486250657669478, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200680090400464874, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87533
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 252e39dbb2183594489c240f9c8fa913, type: 3}
