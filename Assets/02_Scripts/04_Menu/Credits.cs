@@ -58,7 +58,7 @@ public class Credits : MonoBehaviour
 
     private void LoadScene()
     {
-        Destroy(_scenePersistentGameObjects);
+        //Destroy(_scenePersistentGameObjects);
         SceneManager.LoadScene(_sceneToLoad);
     }
 }
