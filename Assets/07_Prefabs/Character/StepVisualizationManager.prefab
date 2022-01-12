@@ -225,12 +225,12 @@ MonoBehaviour:
   stepVisualizationTwo: {fileID: 8871849073406751669}
   color: {r: 1, g: 0.7389551, b: 0.43867922, a: 0}
   minSize: 0.7
-  sneakSize: 1.66
-  sneakRunSize: 3.2
-  fleeSize: 4.3
-  scalingSpeedSneak: 1.2
-  scalingSpeedSneakRun: 1.7
-  scalingSpeedFlee: 4
+  sneakSize: 2.13
+  sneakRunSize: 4.28
+  fleeSize: 5.33
+  scalingSpeedSneak: 1.5
+  scalingSpeedSneakRun: 2
+  scalingSpeedFlee: 4.3
   fadeDurationSneak: 1
   fadeDurationSneakRun: 0.3
   fadeDurationFlee: 0.3

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using BP._02_Scripts._03_Game;
 using Enemy.AnimationHandler;
 using Enemy.SearchArea;
 using Enemy.ShareInformation;
@@ -9,7 +8,6 @@ using Enemy.TalkCheck;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-using untitledProject;
 using Random = UnityEngine.Random;
 
 namespace Enemy.Controller

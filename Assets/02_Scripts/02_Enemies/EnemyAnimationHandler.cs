@@ -1,7 +1,6 @@
 using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using UnityEngine;
-using untitledProject;
 
 namespace Enemy.AnimationHandler
 {

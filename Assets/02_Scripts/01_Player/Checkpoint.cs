@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Enemy.Controller;
 using Enemy.SoundItem;
 using UnityEngine;
-using untitledProject;
 
 public class Checkpoint : MonoBehaviour
 {

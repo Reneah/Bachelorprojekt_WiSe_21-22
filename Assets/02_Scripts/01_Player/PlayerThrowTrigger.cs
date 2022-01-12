@@ -1,6 +1,5 @@
 using Enemy.SoundItem;
 using UnityEngine;
-using untitledProject;
 
 public class PlayerThrowTrigger : MonoBehaviour
 {

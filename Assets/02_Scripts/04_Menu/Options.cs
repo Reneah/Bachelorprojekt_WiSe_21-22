@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using DarkTonic.MasterAudio;
 using UnityEngine;
-using UnityEngine.Audio;
 using TMPro;
 using Slider = UnityEngine.UI.Slider;
 using Toggle = UnityEngine.UI.Toggle;

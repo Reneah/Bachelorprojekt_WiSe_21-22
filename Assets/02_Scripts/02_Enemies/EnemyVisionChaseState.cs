@@ -1,8 +1,5 @@
 using Enemy.Controller;
-using Enemy.ShareInformation;
 using UnityEngine;
-using UnityEngine.AI;
-using untitledProject;
 
 namespace Enemy.States
 {
