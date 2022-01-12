@@ -2793,7 +2793,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1097205241
 MonoBehaviour:
@@ -2807,9 +2807,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbbdb9b53f27d148afc574e8a7b33ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sneakSoundRadius: 1.5
-  _runSoundRadius: 3
-  _fleeingSoundRadius: 4
+  _sneakSoundRadius: 2
+  _runSoundRadius: 4
+  _fleeingSoundRadius: 5
   _smoothSwitch: 12
 --- !u!1 &7246463578664892070
 GameObject:
