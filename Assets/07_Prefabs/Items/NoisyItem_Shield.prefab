@@ -126,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2937518348545023570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15501682, y: 0.08066761, z: 0.31894815}
+  m_LocalPosition: {x: -0.155, y: 0.081, z: 0.453}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4069851119948102033}
@@ -328,16 +328,17 @@ MonoBehaviour:
   _reusable: 1
   _offsetOrigin: {fileID: 636022045}
   _playerPrefsKey: 6
+  _jugRespawnSoundBlockKey: 
   _noisyItemLayer:
     serializedVersion: 2
     m_Bits: 8192
-  _stage: 1
-  _soundRangeCollider: {fileID: 4069851118831218652}
   _closeNoisyItemWaypoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   _enemyPullAmount: 2
+  _stage: 1
+  _soundRangeCollider: {fileID: 4069851118831218652}
 --- !u!1 &4430369898077634204
 GameObject:
   m_ObjectHideFlags: 0

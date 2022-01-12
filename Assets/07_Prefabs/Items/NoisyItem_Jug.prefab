@@ -87,7 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290068d5f9c79ab43a56cc8ce4141add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _noisyItem: {fileID: 1826813201120431298}
 --- !u!1 &2937518348545023570
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,17 +313,17 @@ MonoBehaviour:
   _reusable: 0
   _offsetOrigin: {fileID: 636022045}
   _playerPrefsKey: 5
+  _jugRespawnSoundBlockKey: 
   _noisyItemLayer:
     serializedVersion: 2
     m_Bits: 16384
-  _noisyItemCloseActivation: {fileID: 1924744485}
-  _stage: 1
-  _soundRangeCollider: {fileID: 4069851118831218652}
   _closeNoisyItemWaypoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   _enemyPullAmount: 2
+  _stage: 1
+  _soundRangeCollider: {fileID: 4069851118831218652}
 --- !u!1001 &1906999566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -537,6 +536,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4bff1705323f6464b8014647b8d648fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17212037efa74f245add73d8937a0f3d, type: 2}
     - target: {fileID: 919132149155446097, guid: 4bff1705323f6464b8014647b8d648fa, type: 3}
       propertyPath: m_Name
       value: Jug
