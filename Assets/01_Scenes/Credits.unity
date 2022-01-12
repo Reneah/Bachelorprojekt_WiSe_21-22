@@ -326,9 +326,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\n\n\n\n\n\n\n\n\nSteven Kaule\n\nProf. Eric Jannot\n\n\n\nBela Baldwin\n\n\nBela
-    Baldwin\n\n\nChristian Katz\n\n\nFranziska Sch\xFCmann\n\n\n\n\ngoony124 for
-    his dedicated efforts in play-testing\nour early builds.\n\nto all the other
+  m_text: "\n\n\n\n\n\n\n\n\n\nSteven Kaule\n\nProf. Eric Jannot & Kevin Hagen\n\n\n\nBela
+    Baldwin\n\n\nBela Baldwin\n\n\nChristian Katz\n\n\nFranziska Sch\xFCmann\n\n\n\n\ngoony124
+    for his dedicated efforts in play-testing\nour early builds.\n\nto all the other
     play-testers, who helped us with their incredibly valuable feedback.\n\n\n\n\nUnity
     ProBuilder\n\nMaster Audio by Dark Tonic Inc.\n\npfranzen (https://freesound.org/people/pfranzen/sounds/192072/)\n\nFractalStudios
     (https://freesound.org/people/FractalStudios/sounds/363092/)\n\nhttps://www.zapsplat.com\n\nFantasy
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1034,7 +1034,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Bloodline - The Last Heir\n\r\n\r\nUniversity of Europe for Applied Sciences\r\n\r\n\r\nBachelor
-    Project\r\n\r\n \r\n\r\nPrimary Bachelor Advisor\n\nSecondary Bachelor Advisor\r\n\r\n\n\r\r\nGame
+    Project\r\n\r\n \r\n\r\nPrimary Bachelor Advisor\n\nSecondary Bachelor Advisors\r\n\r\n\n\r\r\nGame
     Production\r\n\r\n\nGame Design\r\n\r\n\nGame Programming\n\n\nGame Art\r\n\r\n\n\n\nSpecial
     Thanks to\n\n\n\rAnd\n\n\n\r\n\n\nExternal Resources"
   m_isRightToLeft: 0
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

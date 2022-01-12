@@ -57,7 +57,6 @@ using Toggle = UnityEngine.UI.Toggle;
             ChangeSoundVolume();
 
             _musicSlider.value = setOptions.MusicVolume;
-            Debug.Log(_musicSlider.value);
             SetMusicVolume();
             
             _framerateDropdown.value = setOptions.Framerate;
