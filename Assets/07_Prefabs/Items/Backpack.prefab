@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ItemImage: {fileID: 0}
-  _textOffset: {x: 40, y: 0}
+  _textOffset: {x: 40, y: -40}
   _collectibleSprite: {fileID: 0}
   _negativeSprite: {fileID: 0}
   _usebleMarker: {fileID: 5050900069585843629}

@@ -157,7 +157,7 @@ namespace Enemy.SoundItem
         private void Update()
         {
             // set the sprite position at the mouse
-            _textOffset.x = 50;
+            _textOffset.x = 40;
             _textOffset.y = -40;
             _collectibleSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;
             _negativeSprite.transform.position = new Vector3(_textOffset.x, _textOffset.y, 0) + Input.mousePosition;

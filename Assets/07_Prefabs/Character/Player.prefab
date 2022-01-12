@@ -61,7 +61,7 @@ MonoBehaviour:
   _throwableSprite: {fileID: 0}
   _notThrowableSprite: {fileID: 0}
   _inWayRaycastPosition: {fileID: 983871270}
-  _textOffset: {x: 40, y: -20}
+  _textOffset: {x: 40, y: -40}
   _rotationSpeed: 5
   _waitToThrowDuringRotation: 0.3
   _lastThrowPositionObject: {fileID: 0}

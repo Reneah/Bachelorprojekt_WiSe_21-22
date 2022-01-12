@@ -2127,7 +2127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931518f9ca6c3844891dee74db8ed494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 1
+  weight: 3
   probabilityToPlay: 100
   importance: 5
   isUninterruptible: 0
@@ -6981,7 +6981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931518f9ca6c3844891dee74db8ed494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 1
+  weight: 3
   probabilityToPlay: 100
   importance: 5
   isUninterruptible: 0
