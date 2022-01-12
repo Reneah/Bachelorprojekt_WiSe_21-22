@@ -7,30 +7,6 @@ using UnityEngine.UI;
 
 public sealed class MissionScore : MonoBehaviour
 {
-    
-    // Singleton pattern - simple thread-safety
-    private static MissionScore _instance = null;
-    private static readonly object _padlock = new object();
-
-    MissionScore()
-    {
-    }
-
-    public static MissionScore Instance
-    {
-        get
-        {
-            lock (_padlock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new MissionScore();
-                }
-                return _instance;
-            }
-        }
-    }
-    
     private Canvas _myCanvas;
 
     private bool _gameStarted;

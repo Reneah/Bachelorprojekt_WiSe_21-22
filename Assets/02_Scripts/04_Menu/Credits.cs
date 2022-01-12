@@ -17,11 +17,15 @@ public class Credits : MonoBehaviour
 
     private float _timer;
     private float _imageAlpha;
+
+    private GameObject _scenePersistentGameObjects;
     
 
     // Get the necessary references
     private void Awake()
     {
+        _scenePersistentGameObjects = GameObject.Find("ScenePersistent");
+        
         _imageAlpha = _myCreditsFadeImage.GetComponent<RawImage>().color.a;
         
         // Activates credits GO on scene start, if it was deactivated
@@ -49,6 +53,7 @@ public class Credits : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        Destroy(_scenePersistentGameObjects);
         FadeInBackgroundImage();
     }
 
