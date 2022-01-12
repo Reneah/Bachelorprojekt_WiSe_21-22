@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DarkTonic.MasterAudio;
 using TMPro;
 using UnityEngine;
-using untitledProject;
-using Image = UnityEngine.UI.Image;
 
 public class CollectStones : MonoBehaviour
 {

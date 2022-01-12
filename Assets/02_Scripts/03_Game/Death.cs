@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using DA.Menu;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using untitledProject;
 
 public class Death : MonoBehaviour
 {

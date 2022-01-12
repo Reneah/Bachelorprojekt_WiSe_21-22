@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using untitledProject;
 
 public class CollectItem : MonoBehaviour
 { 

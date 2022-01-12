@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Enemy.AnimationHandler;
 using UnityEngine;
 using UnityEngine.AI;
-using untitledProject;
 
 namespace Enemy.SearchArea
 {

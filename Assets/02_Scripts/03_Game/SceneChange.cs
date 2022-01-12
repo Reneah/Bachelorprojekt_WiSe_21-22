@@ -1,4 +1,3 @@
-using BP;
 using DarkTonic.MasterAudio;
 using DG.Tweening;
 using Enemy.SoundItem;
@@ -6,7 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using untitledProject;
 
 public class SceneChange : MonoBehaviour
 {

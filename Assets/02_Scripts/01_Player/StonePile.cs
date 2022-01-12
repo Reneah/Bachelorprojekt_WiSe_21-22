@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StonePile : MonoBehaviour
@@ -51,6 +48,4 @@ public class StonePile : MonoBehaviour
         _collected = true;
         return _collectAmount;
     }
-
-
 }
