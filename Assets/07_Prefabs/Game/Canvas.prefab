@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MainMenu
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
   m_sharedMaterial: {fileID: -3869958480880891678, guid: 498d4482e72ca994d867b41dc460d57c, type: 2}
@@ -16641,8 +16641,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
+      - m_Target: {fileID: 3860506259380309455}
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: ShowFramerate
         m_Mode: 1
         m_Arguments:
@@ -31825,7 +31825,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3860506259380309455}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetFullscreen
         m_Mode: 1
@@ -32552,7 +32552,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3860506259380309455}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetFramerate
         m_Mode: 1
@@ -34546,8 +34546,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
+      - m_Target: {fileID: 3860506259380309455}
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: ChangeSoundVolume
         m_Mode: 1
         m_Arguments:
@@ -37631,7 +37631,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3860506259380309455}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -40831,8 +40831,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DA.Menu.Options, Assembly-CSharp
+      - m_Target: {fileID: 3860506259380309455}
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 3
         m_Arguments:
@@ -40929,7 +40929,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3860506259380309455}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetVsync
         m_Mode: 1
@@ -43769,7 +43769,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3860506259380309455}
         m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetQuality
         m_Mode: 1

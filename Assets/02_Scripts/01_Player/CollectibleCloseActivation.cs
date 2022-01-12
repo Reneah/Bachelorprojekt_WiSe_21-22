@@ -60,6 +60,7 @@ public class CollectibleCloseActivation : MonoBehaviour
                     _collectItem.SpawnKey.SetActive(true);
                     _collectItem.gameObject.layer = LayerMask.GetMask("Default");
                     _collectItem.enabled = false;
+                    MasterAudio.PlaySound3DAtTransform("Compartment", transform);
                     gameObject.SetActive(false);
                 }
                 else if(_collectItem.StaircaseToCellar)
