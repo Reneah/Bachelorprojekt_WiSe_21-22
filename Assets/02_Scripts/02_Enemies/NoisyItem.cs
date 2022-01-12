@@ -165,6 +165,7 @@ namespace Enemy.SoundItem
             if (_safeState)
             {
                 PlayerPrefs.SetInt(_playerPrefsKey, _itemUsed.GetHashCode());
+                PlayerPrefs.SetInt(_jugRespawnSoundBlockKey,_permanentlyDeactivated.GetHashCode());
                 _safeState = false;
             }
             
@@ -242,8 +243,7 @@ namespace Enemy.SoundItem
                         {
                             MasterAudio.PlaySound3DAtTransform("ShatterVase", transform);
                             _permanentlyDeactivated = true;
-                            PlayerPrefs.SetInt(_jugRespawnSoundBlockKey,_permanentlyDeactivated.GetHashCode());
-                        
+                            
                             // Count up the distraction score counter for the Mission Score
                             _myMissionScore.DistractionsScoreCounter += 1;
                         }
