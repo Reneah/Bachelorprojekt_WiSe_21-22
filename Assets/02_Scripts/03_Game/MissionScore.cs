@@ -132,11 +132,6 @@ public sealed class MissionScore : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if (scene.name == "MainMenu" && loadSceneMode == LoadSceneMode.Single)
-        {
-            _myCanvas.enabled = false;
-        }
-        
         if (scene.name == "Credits" && loadSceneMode == LoadSceneMode.Single)
         {
             _myCanvas.enabled = false;
