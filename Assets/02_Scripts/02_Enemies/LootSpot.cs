@@ -1,3 +1,4 @@
+using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -94,6 +95,7 @@ namespace Enemy.LootSpot
                 if (!_chestAnimation && _usingChest)
                 {
                     _lootChestAnimation.OpenChest(true);
+                    MasterAudio.PlaySound3DAtTransform("OpenChest", transform);
                     _chestAnimation = true;
                 }
                 
@@ -111,6 +113,7 @@ namespace Enemy.LootSpot
                     if (_usingChest)
                     {
                         _lootChestAnimation.OpenChest(false);
+                        MasterAudio.PlaySound3DAtTransform("CloseChest", transform);
                         _chestAnimation = false;
                     }
 
