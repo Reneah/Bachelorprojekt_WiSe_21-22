@@ -119,9 +119,9 @@ public sealed class MissionScore : MonoBehaviour
         set => _playerFinishedGame = value;
     }
 
-    private void Awake()
+    private void Start()
     {
-        _myCanvas = this.GetComponent<Canvas>();
+        _myCanvas = GetComponent<Canvas>();
         _myCanvas.enabled = false;
     }
 

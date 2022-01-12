@@ -53,12 +53,12 @@ public class Credits : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        Destroy(_scenePersistentGameObjects);
         FadeInBackgroundImage();
     }
 
     private void LoadScene()
     {
+        Destroy(_scenePersistentGameObjects);
         SceneManager.LoadScene(_sceneToLoad);
     }
 }
