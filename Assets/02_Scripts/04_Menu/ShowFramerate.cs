@@ -34,7 +34,7 @@ namespace DA.Menu
             // set the font size
             style.fontSize = h * 2 / 100;
             // set the color of the text
-            style.normal.textColor = new Color(0.0f, 0.0f, 0.5f, 1.0f);
+            style.normal.textColor = new Color(245f/255f, 151f/255f, 24f/255f, 1f);
             // calculate the milliseconds between the frames
             float msec = deltaTime * 1000.0f;
             //calculates the fps per second

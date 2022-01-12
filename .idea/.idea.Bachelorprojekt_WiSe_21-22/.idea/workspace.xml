@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="877614ff-2134-43be-8987-24837770e7e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scenes/LevelDesign/Beta/GameWorld_BesiegedKeep_2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ShowFramerate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ShowFramerate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07_Prefabs/Game/Checkpoints.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/07_Prefabs/Game/Checkpoints.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07_Prefabs/Items/PileOfStones.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/07_Prefabs/Items/PileOfStones.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,8 +115,8 @@
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Options.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ScenePersistent.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/SetOptions.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ShowFramerate.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ShowFramerate.cs" />
       </list>
     </option>
   </component>
@@ -163,7 +170,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -338,11 +345,12 @@
       <workItem from="1641891067804" duration="1252000" />
       <workItem from="1641902747236" duration="2137000" />
       <workItem from="1641960838214" duration="401000" />
+      <workItem from="1641994263659" duration="1802000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
@@ -478,12 +486,12 @@
     <state x="843" y="294" key="run.anything.popup/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640967952593" />
     <state x="652" y="212" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638347951073" />
     <state x="669" y="235" key="run.anything.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1635953837811" />
-    <state x="851" y="303" width="869" height="849" key="search.everywhere.popup" timestamp="1641984212038">
+    <state x="851" y="303" width="869" height="849" key="search.everywhere.popup" timestamp="1641995555278">
       <screen x="0" y="0" width="2482" height="1440" />
     </state>
     <state x="851" y="303" width="869" height="849" key="search.everywhere.popup/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640967893370" />
     <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1641300582754" />
     <state x="675" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1639913180248" />
-    <state x="851" y="303" width="869" height="849" key="search.everywhere.popup/0.0.2482.1440@0.0.2482.1440" timestamp="1641984212038" />
+    <state x="851" y="303" width="869" height="849" key="search.everywhere.popup/0.0.2482.1440@0.0.2482.1440" timestamp="1641995555278" />
   </component>
 </project>
