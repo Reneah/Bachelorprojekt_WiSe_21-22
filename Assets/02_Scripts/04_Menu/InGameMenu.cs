@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Enemy.Controller;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,6 +19,8 @@ public class InGameMenu : MonoBehaviour
     private TutorialContinueButton _tutorialContinueButton;
     private Death _death;
     private MissionScore _myMissionScore;
+
+    private EnemyController[] _enemyControllers;
     
     private bool _enemyCatchedPlayer;
     public bool EnemyCatchedPlayer
@@ -25,6 +28,8 @@ public class InGameMenu : MonoBehaviour
         get => _enemyCatchedPlayer;
         set => _enemyCatchedPlayer = value;
     }
+
+    private bool _playerIsChased = false;
     
     // activate the restart fade to the loading scene
     // can't open the menu anymore
@@ -60,6 +65,7 @@ public class InGameMenu : MonoBehaviour
         _sceneChange = FindObjectOfType<SceneChange>();
         _death = FindObjectOfType<Death>();
         _myMissionScore = FindObjectOfType<MissionScore>();
+        _enemyControllers = FindObjectsOfType<EnemyController>();
         
         // MasterAudio.PlaySound("Wind");
         // MasterAudio.PlaySound("Forest");
@@ -187,7 +193,17 @@ public class InGameMenu : MonoBehaviour
     {
         // Depending on whether the player character is dead or not count up different score counters on the Restart button press
         // Also if player character has been spotted and is fleeing, players can't restart to cheat the score, as it will count as a death
-        if (_dead || _playerController.PlayerIsSpotted)
+
+        for (int i = 0; i < _enemyControllers.Length; i++)
+        {
+            if (_enemyControllers[i].InChaseState)
+            {
+                _playerIsChased = true;
+                break;
+            }
+        }
+        
+        if (_dead || _playerIsChased)
         {
             // Count up the death score counter for the MissionScore.cs
             _myMissionScore.DeathScoreCounter += 1;
@@ -200,6 +216,7 @@ public class InGameMenu : MonoBehaviour
         
         Time.timeScale = 1;
         _deathPage.SetActive(false);
+        _playerIsChased = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
