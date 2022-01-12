@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 // It is not my script : http://wiki.unity3d.com/index.php?title=FramesPerSecond&_ga=2.209546843.832596759.1589348256-2109853351.1584380006
 // I just explain it

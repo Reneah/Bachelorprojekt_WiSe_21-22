@@ -1,7 +1,5 @@
-using System;
 using Enemy.AnimationHandler;
 using Enemy.Controller;
-using Enemy.ShareInformation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using BP._02_Scripts._03_Game;
 using DarkTonic.MasterAudio;
 using Enemy.Controller;
 using UnityEngine;
-using untitledProject;
 
 
 public class CollectibleCloseActivation : MonoBehaviour

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using BP;
+﻿using BP;
 using DarkTonic.MasterAudio;
 using UnityEngine;
-using untitledProject;
 
 public class PlayerAnimationHandler : MonoBehaviour
 {

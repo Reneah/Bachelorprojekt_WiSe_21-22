@@ -1,49 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace untitledProject
+
+public class PlayerRunState : IPlayerState
 {
-    public class PlayerRunState : IPlayerState
+    Vector3 currentPosition;
+    public IPlayerState Execute(PlayerController player)
     {
-        Vector3 currentPosition;
-        public IPlayerState Execute(PlayerController player)
+        bool move = player.MoveDirection.magnitude >= 0.1f;
+        if (!move)
         {
-            bool move = player.MoveDirection.magnitude >= 0.1f;
-            if (!move)
-            {
-                return PlayerController.PlayerIdleState;
-            }
+            return PlayerController.PlayerIdleState;
+        }
 
-            bool jump = Input.GetKeyDown(KeyCode.Space);
-            if (jump)
-            {
-                player.Jump();
-                return PlayerController.PlayerJumpState;
-            }
-            
-            if (player.PlayerThrowTrigger.Throwstate && player.CollectStones.StonesCounter > 0 && player.IsGrounded)
-            {
-                return PlayerController.PlayerThrowState;
-            }
-            
-            if (player.PickUpItem && player.IsGrounded)
-            {
-                return PlayerController.PlayerPickUpState;
-            }
-            
-            player.MovementExecution();
-            return this;
-        }
-    
-        public void Enter(PlayerController player)
+        bool jump = Input.GetKeyDown(KeyCode.Space);
+        if (jump)
         {
-            
+            player.Jump();
+            return PlayerController.PlayerJumpState;
         }
-    
-        public void Exit(PlayerController player)
+        
+        if (player.PlayerThrowTrigger.Throwstate && player.CollectStones.StonesCounter > 0 && player.IsGrounded)
         {
-            
+            return PlayerController.PlayerThrowState;
         }
+        
+        if (player.PickUpItem && player.IsGrounded)
+        {
+            return PlayerController.PlayerPickUpState;
+        }
+        
+        player.MovementExecution();
+        return this;
+    }
+
+    public void Enter(PlayerController player)
+    {
+        
+    }
+
+    public void Exit(PlayerController player)
+    {
+        
     }
 }

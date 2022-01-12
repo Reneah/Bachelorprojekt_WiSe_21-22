@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using BP._02_Scripts._03_Game;
-using DA.Menu;
-using DarkTonic.MasterAudio;
-//using DarkTonic.MasterAudio;
-using DG.Tweening;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using untitledProject;
 
 public class InGameMenu : MonoBehaviour
 {

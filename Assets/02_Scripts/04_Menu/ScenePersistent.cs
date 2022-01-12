@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using DA.Menu;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class ScenePersistent : MonoBehaviour
 {

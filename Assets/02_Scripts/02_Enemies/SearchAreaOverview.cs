@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Enemy.AnimationHandler;
-using Enemy.Controller;
 using UnityEngine;
 using UnityEngine.AI;
-using untitledProject;
 using Random = UnityEngine.Random;
 
 namespace Enemy.SearchArea

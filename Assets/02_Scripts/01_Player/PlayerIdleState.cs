@@ -1,49 +1,45 @@
 ﻿using UnityEngine;
-using untitledProject;
 
-namespace untitledProject
+public class PlayerIdleState : IPlayerState
 {
-    public class PlayerIdleState : IPlayerState
+    Vector3 currentPosition;
+    public IPlayerState Execute(PlayerController player)
     {
-        Vector3 currentPosition;
-        public IPlayerState Execute(PlayerController player)
+        bool move = player.MoveDirection.magnitude >= 0.1f;
+        if (move)
         {
-            bool move = player.MoveDirection.magnitude >= 0.1f;
-            if (move)
-            {
-                return PlayerController.PlayerRunState;
-            }
-            
-            bool jump = Input.GetKeyDown(KeyCode.Space);
-            if (jump && player.IsGrounded)
-            {
-                player.Jump();
-                return PlayerController.PlayerJumpState;
-            }
+            return PlayerController.PlayerRunState;
+        }
+        
+        bool jump = Input.GetKeyDown(KeyCode.Space);
+        if (jump && player.IsGrounded)
+        {
+            player.Jump();
+            return PlayerController.PlayerJumpState;
+        }
 
-            if (player.PlayerThrowTrigger.Throwstate && player.CollectStones.StonesCounter > 0 && player.IsGrounded)
-            {
-                return PlayerController.PlayerThrowState;
-            }
+        if (player.PlayerThrowTrigger.Throwstate && player.CollectStones.StonesCounter > 0 && player.IsGrounded)
+        {
+            return PlayerController.PlayerThrowState;
+        }
 
-            if (player.PickUpItem && player.IsGrounded)
-            {
-                return PlayerController.PlayerPickUpState;
-            }
-            
-            player.MovementExecution();
-            
-            return this;
-        }
-    
-        public void Enter(PlayerController player)
+        if (player.PickUpItem && player.IsGrounded)
         {
-            
+            return PlayerController.PlayerPickUpState;
         }
-    
-        public void Exit(PlayerController player)
-        {
-            
-        }
+        
+        player.MovementExecution();
+        
+        return this;
+    }
+
+    public void Enter(PlayerController player)
+    {
+        
+    }
+
+    public void Exit(PlayerController player)
+    {
+        
     }
 }

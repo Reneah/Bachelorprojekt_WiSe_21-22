@@ -6,11 +6,60 @@
   <component name="ChangeListManager">
     <list default="true" id="877614ff-2134-43be-8987-24837770e7e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bachelorprojekt_WiSe_21-22/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Checkpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Checkpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectProvisions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectProvisions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/IPlayerState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/IPlayerState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerGroundDetection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerGroundDetection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerJumpState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerJumpState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerPickUpState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerPickUpState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerStepsSound.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerStepsSound.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Provisions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Provisions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StepVisualization.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StepVisualization.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StepVisualizationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StepVisualizationManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkCheck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkCheck.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyVisionChaseState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyVisionChaseState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LootSpot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LootSpot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemCloseActivation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemCloseActivation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemSearchArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemSearchArea.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SearchAreaOverview.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SearchAreaOverview.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SpottedBarTowardsCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SpottedBarTowardsCamera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ImageAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ImageAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroText.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroText.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/LootChestAnimationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/LootChestAnimationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03_ArtAssets/01_Player/PlayerStepVisualization.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03_ArtAssets/01_Player/PlayerStepVisualization.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/07_Prefabs/Game/NextLevel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/07_Prefabs/Game/NextLevel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/TutorialContinueButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/TutorialContinueButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Options.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Options.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ScenePersistent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ScenePersistent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/SetOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/SetOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ShowFramerate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ShowFramerate.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,57 +109,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/Editor/EnemyControllerEditor.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyLootState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleItemRaycast.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/LootChestAnimationController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/ImageAnimation.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/CinemachineFadeOutObjects.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/IPlayerState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectProvisions.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectibleCloseActivation.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerGroundDetection.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerJumpState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerPickUpState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerStepsSound.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Provisions.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StepVisualization.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StepVisualizationManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/StonePile.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyAnimationHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyNoisyItemSearchState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyGuardState.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyPatrolState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySearchState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyShareInformation.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkCheck.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemySoundInvestigationState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyTalkState.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyVisionChaseState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LookAgentVisualization.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/PointVisualization.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/LootSpot.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemPullRadius.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/Checkpoint.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowTrigger.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItem.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemCloseActivation.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/NoisyItemSearchArea.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SearchAreaOverview.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SeesPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/WaypointVisualisation.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerPickUpState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerAnimationHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerThrowState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerRunState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/PlayerIdleState.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/01_Player/CollectStones.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/IntroScene.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/QuestManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/MainMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Credits.cs" />
-        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/MissionScore.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/02_Enemies/SpottedBarTowardsCamera.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Death.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/FadeOut.cs" />
         <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/SceneChange.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/Tutorial.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/03_Game/WallCheck.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/InGameMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/Options.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ScenePersistent.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/SetOptions.cs" />
+        <option value="$PROJECT_DIR$/Assets/02_Scripts/04_Menu/ShowFramerate.cs" />
       </list>
     </option>
   </component>
@@ -458,12 +507,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="778" y="221" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1641037211829" />
-    <state x="126" y="150" width="2117" height="900" key="VCS.FileHistoryDialog" timestamp="1641728410863">
+    <state x="126" y="150" width="2117" height="900" key="VCS.FileHistoryDialog" timestamp="1641984785336">
       <screen x="0" y="0" width="2482" height="1440" />
     </state>
     <state x="126" y="150" width="2117" height="900" key="VCS.FileHistoryDialog/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640966123437" />
     <state x="100" y="120" width="1680" height="720" key="VCS.FileHistoryDialog/0.0.1970.1152@0.0.1970.1152" timestamp="1639915076630" />
-    <state x="126" y="150" width="2117" height="900" key="VCS.FileHistoryDialog/0.0.2482.1440@0.0.2482.1440" timestamp="1641728410863" />
+    <state x="126" y="150" width="2117" height="900" key="VCS.FileHistoryDialog/0.0.2482.1440@0.0.2482.1440" timestamp="1641984785336" />
     <state width="992" height="583" key="XDebugger.FullValuePopup" timestamp="1640176352267">
       <screen x="0" y="0" width="1970" height="1152" />
     </state>
@@ -478,12 +527,12 @@
     <state x="843" y="294" key="run.anything.popup/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640967952593" />
     <state x="652" y="212" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638347951073" />
     <state x="669" y="235" key="run.anything.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1635953837811" />
-    <state x="851" y="303" width="869" height="849" key="search.everywhere.popup" timestamp="1641902752255">
+    <state x="851" y="303" width="869" height="849" key="search.everywhere.popup" timestamp="1641984212038">
       <screen x="0" y="0" width="2482" height="1440" />
     </state>
     <state x="851" y="303" width="869" height="849" key="search.everywhere.popup/-1920.-69.1842.1080/0.0.2482.1440@0.0.2482.1440" timestamp="1640967893370" />
     <state x="658" y="219" width="672" height="613" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1641300582754" />
     <state x="675" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1970.1152@0.0.1970.1152" timestamp="1639913180248" />
-    <state x="851" y="303" width="869" height="849" key="search.everywhere.popup/0.0.2482.1440@0.0.2482.1440" timestamp="1641902752255" />
+    <state x="851" y="303" width="869" height="849" key="search.everywhere.popup/0.0.2482.1440@0.0.2482.1440" timestamp="1641984212038" />
   </component>
 </project>
